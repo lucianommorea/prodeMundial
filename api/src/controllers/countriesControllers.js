@@ -9,8 +9,8 @@ async function getAllCountries(){
                 name: country.name.common,
                 img: country.flags.png,
                 continents: country.continents[0],
-                capital: country.capital ? country.capital[0] : 'Undefined capital city',
-                subregion: country.subregion ? country.subregion : 'Undefined Subregion',
+                capital: country.capital ? country.capital[0] : 'No posee',
+                subregion: country.subregion ? country.subregion : 'No posee',
                 area: country.area,
                 population: country.population
         }))

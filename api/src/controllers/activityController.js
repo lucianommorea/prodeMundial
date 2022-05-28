@@ -24,7 +24,7 @@ async function postActivity(name, difficult, duration, season, countries) {
 
 // async function getAllActivities() {
 //     try{
-      
+   
 //     }
 //     catch(error) {
 //     }

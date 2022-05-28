@@ -1,0 +1,18 @@
+.bar input{
+    background-color:rgb(236, 243, 249);
+    border:#1d3557 solid 1px;
+    flex-direction: column;
+}
+
+.btn{
+    background-color: #1d3557;
+    border: #06101f solid 1px;
+    color: white;
+    margin-left: 2px;
+    
+}
+
+.btn:hover{
+    background-color: #adb6c4;
+    cursor: pointer;
+}

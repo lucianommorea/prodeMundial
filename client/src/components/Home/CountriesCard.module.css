@@ -1,0 +1,53 @@
+.cuadro{
+    border: #adb6c4 solid 10px;
+    border-radius: 6%;
+    background-color: #adb6c4;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 250px;
+    position: relative;
+    justify-content: center;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    text-decoration: none;
+}
+
+.cuadro:hover{
+    background-color: transparent;
+
+}
+
+.flag{
+   color: black;
+   width: 100%;
+   height: 80%;
+   justify-content: center;
+   border-radius: 6%;
+
+}
+
+.btn{
+    height: min-content;
+    width: min-content;
+    background-color: #ad2831;
+    position: absolute;
+    border-radius: 10%;
+    top: 0;
+    right: 0;
+    border: rgb(221, 52, 52) solid 0.1px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.country{
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+.continent{
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 20px;
+    text-decoration: none;
+}
