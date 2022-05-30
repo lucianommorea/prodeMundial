@@ -21,3 +21,20 @@ export function getCountryById(id) {
         })
     }
 }
+
+
+export function filterByContinent(payload){
+    return {
+            type: 'FILTER_BY_CONTINENT',
+            payload
+    }
+}
+
+
+export function orderBy(payload){
+    return {
+            type: 'ORDER_BY',
+            payload
+    }
+}
+
