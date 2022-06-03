@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { postActivity } = require('../controllers/activityController')
+const { postActivity, getAllActivities } = require('../controllers/activityController')
 const { Country } = require('../db')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -27,4 +27,12 @@ router.post('/', async function (req, res){
     }
 })
 
+router.get('/', async (req,res) => {
+    try {
+        let getActivities = await getAllActivities()
+        res.status(200).send(getActivities)
+    } catch (error) {
+        console.log('Error getActivities' + error)
+    }
+})
 module.exports = router

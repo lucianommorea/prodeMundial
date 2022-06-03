@@ -1,53 +1,83 @@
 .cuadro{
-    border: #adb6c4 solid 10px;
-    border-radius: 6%;
-    background-color: #adb6c4;
+    border: #c0c0c0 solid 2px;
+    border-radius: 10px;
+    background-color: rgba(173,181,189, 0.35);;
+    opacity: 0.8;
     display: flex;
     flex-direction: column;
     height: 250px;
-    width: 250px;
+    width: 211px;
+    font-family: 'Source Serif Pro', serif;
     position: relative;
-    justify-content: center;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    overflow: hidden;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: space-between;
+    color: white;
     text-decoration: none;
 }
 
-.cuadro:hover{
-    background-color: transparent;
+.first{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 5px;
 
 }
+
 
 .flag{
-   color: black;
-   width: 100%;
-   height: 80%;
-   justify-content: center;
-   border-radius: 6%;
+    height: 60px;
+    width: 90px;
+    border: transparent solid 1px;
+    justify-content: center;
+    border-radius: 20%;
 
 }
 
-.btn{
-    height: min-content;
-    width: min-content;
-    background-color: #ad2831;
-    position: absolute;
-    border-radius: 10%;
-    top: 0;
-    right: 0;
-    border: rgb(221, 52, 52) solid 0.1px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.country {
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    align-self: center;
+    justify-content:center;
+    margin-left: 12px;
+    margin-right: 15px;
+    font-size: large;
+    height: 90px;
 }
 
-.country{
-    margin-top: 5px;
-    margin-left: 10px;
-    margin-right: 20px;
-    text-decoration: none;
+span {
+    margin-right: 2px;
 }
+
 .continent{
+    font-size: medium;
+    font-weight: 300;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 20px;
     text-decoration: none;
 }
+
+.btn {
+    width: 90%;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left: 8px;
+
+}
+
+.btn:hover {
+    cursor: pointer;
+    color: black;
+    background-color: grey;
+}
+

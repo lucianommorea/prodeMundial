@@ -1,0 +1,125 @@
+.back {
+    background-image: url('../../images/46632.png');
+    opacity: 0.9; 
+    background-size: auto;
+    width: 100%;
+    height: 100vh;
+    display: 'flex';
+    flex-direction: 'column';
+    text-align: center;
+    position: relative;
+    margin: auto;
+    justify-items:flex-start;
+}
+
+.board {
+    /* border: 10px outset #cccccc; */
+    /* border-radius: 3%; */
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 23%;
+    width: 1000px;
+    position: relative;
+    margin: auto;
+    justify-content: end;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    line-height: 30px;
+    text-decoration: none; 
+}
+
+h1 {
+    color: #fcca46;
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+      
+@keyframes slidein {
+    from {
+            margin-left: 100%;
+          width: 500%
+        }
+      
+    to {
+          margin-left: 0%;
+          width: 100%;
+        }
+}
+
+      
+@keyframes slidein {
+    from {
+            margin-right: 100%;
+            width: 300%
+        }
+      
+    to {
+          margin-right: 0%;
+          width: 100%;
+        }
+}
+
+.title {
+    display: 'flex';
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.btn{
+    background-color: transparent;
+    border: whitesmoke solid 2px;
+    color: whitesmoke;
+    width: 120px;
+    height: 40px;
+    border-radius: 12%;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    /* transition-property: font-size;
+    transition-duration: 2s;
+    transition-delay: 0s; */
+    font-size: 14px;
+    animation: fadein 4s; 
+    
+}
+
+@keyframes fadein {
+    0% {
+        opacity:0;
+    }
+    25%{
+        opacity:0.25;
+    }
+    50%{
+        opacity:0.5;
+    }
+    75%{
+        opacity:0.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: black;
+    background-color: #efca08;
+    transition-property: font-size, background-color;
+    transition-duration: 2s;
+    transition-delay: 0s;
+    font-size: 28px;
+} 
+
+.start {
+    color:white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.start:visited:link:active{
+    text-decoration: none;
+}

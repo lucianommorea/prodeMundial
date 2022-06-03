@@ -5,15 +5,17 @@ import React from 'react';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import Detail from './components/CountryDetail/CountryDetail'
+import ActivityCreate from './components/ActivityCreate/activityCreate'
 
 function App() {
   return (
-    <React.Fragment>
+    <div>
       <Route exact path={'/'} component={LandingPage} /> 
       <Route path={'/home'} component={NavBar}/>
       <Route exact path={'/home'} component={Home} />
-      <Route path={'/home/:id'} component={Detail} />
-    </React.Fragment>
+      <Route exact path={'/home/country/:id'} component={Detail} />
+      <Route exact path={'/home/activity'} component={ActivityCreate} />
+    </div>
   );
 }
 

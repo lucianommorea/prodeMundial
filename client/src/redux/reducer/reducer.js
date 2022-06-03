@@ -2,7 +2,7 @@ const initialState = {
     allCountries: [],
     countries: [],
     countryDetail: {},
-    activities: []
+    activities: [],
 }
 
 function reducer(state= initialState, action){
@@ -11,7 +11,12 @@ function reducer(state= initialState, action){
             return{
                 ...state,
                 countries: action.payload,
-                allCountries: action.payload
+                allCountries: action.payload,
+            }
+        case 'GET_COUNTRY_BY_NAME':
+            return{
+                ...state,
+                countries: action.payload
             }
         case 'GET_COUNTRY_DETAIL':
             return{
@@ -24,6 +29,22 @@ function reducer(state= initialState, action){
             return{
                 ...state,
                 countries: continentFilter
+            }
+        case 'GET_ACTIVITIES':
+            return{
+                ...state,
+                activities: action.payload,
+            }
+        case 'FILTER_BY_ACTIVITIES':
+            let countries = state.allCountries
+            let ActivityFilter = action.payload === 'All' ? countries : countries.filter(c => c.activities.map(a => a.name === action.payload))
+            return{
+                ...state,
+                countries: ActivityFilter
+            }
+        case 'POST_ACTIVITY':
+            return{
+                ...state
             }
         case 'ORDER_BY':
             let sorted = state.countries
@@ -66,6 +87,28 @@ function reducer(state= initialState, action){
                         return 1
                     }
                     if (b.population < a.population) {
+                        return -1
+                    }
+                return 0
+                })
+            }
+            else if (action.payload === 'minArea'){
+                sorted.sort(function(a,b){
+                    if(a.area > b.area) {
+                        return 1
+                    }
+                    if (b.area > a.area) {
+                        return -1
+                    }
+                return 0
+                })
+            }
+            else if (action.payload === 'maxArea'){
+                sorted.sort(function(a,b){
+                    if(a.area < b.area) {
+                        return 1
+                    }
+                    if (b.area < a.area) {
                         return -1
                     }
                 return 0

@@ -7,7 +7,7 @@ async function getAllCountries(){
             let countries = (await axios('https://restcountries.com/v3.1/all')).data.map(country=> ({
                 id: country.cca3,
                 name: country.name.common,
-                img: country.flags.png,
+                img: country.flags.svg,
                 continents: country.continents[0],
                 capital: country.capital ? country.capital[0] : 'No posee',
                 subregion: country.subregion ? country.subregion : 'No posee',

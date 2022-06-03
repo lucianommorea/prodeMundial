@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCountries, orderBy, filterByContinent } from '../../redux/actions/actions';
 import CountriesCard from './CountriesCard';
-import {Link} from 'react-router-dom';
 import s from './Home.module.css';
 import FilterBar from './FilterBar';
-import Paginated from './Paginated'
+import Pagination from './Pagination'
+import SearchBar from '../NavBar/SearchBar';
 
 export default function Home () {
 
@@ -15,16 +15,26 @@ export default function Home () {
     const [orden, setOrden] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [countriesPerPage, setCountriesPerPage] = useState(10)
-    const indexOfLast = currentPage * countriesPerPage
-    const indexOfFirst = indexOfLast - countriesPerPage
-    const currentCountries = allCountries.slice(indexOfFirst, indexOfLast)
+    const lastIndex = currentPage * countriesPerPage
+    const firstIndex = lastIndex - countriesPerPage
+    const currentCountries = allCountries.slice(firstIndex, lastIndex)
 
     const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
     }
 
+    function handlePrev(e){
+        e.preventDefault()
+        setCurrentPage(currentPage - 1)
+    }
+
+    function handleNext(e){
+        e.preventDefault()
+        setCurrentPage(currentPage + 1)
+    }
+
     useEffect(()=> {
-        dispatch(getCountries())
+        dispatch(getCountries());
     }, [dispatch])
 
 
@@ -33,6 +43,7 @@ export default function Home () {
         dispatch(getCountries())
         document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected'
         document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected'
+        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected'
     }
 
     function handleClickFilter(e) {
@@ -48,23 +59,31 @@ export default function Home () {
 
 
     return(
-        <>
-            <FilterBar handleClick={handleClick} handleClickFilter={handleClickFilter} handleClickContinent={handleClickContinent}/>
+        <div className={s.all}>
+        <div className={s.container}>     
+            <div className={s.horizontal}>
+                <div className={s.bar}>
+                    <SearchBar className={s.search} setCurrentPage={setCurrentPage}/>
+                    <FilterBar className={s.filter} handleClick={handleClick} handleClickFilter={handleClickFilter} handleClickContinent={handleClickContinent}/>
+                </div>
                 <div className={s.cards}>
                     {
                         currentCountries && currentCountries.map(c => {
                             return (
-                            <Link to={`/home/${c.id}`} key={c.id} >
-                                <CountriesCard name={c.name} img={c.img} continents={c.continents} />
-                            </Link>
+                                <CountriesCard key={c.id} id={c.id} name={c.name} img={c.img} continents={c.continents} capital={c.capital} />
                             )
                         })
                     }
                 </div>
-            <Paginated  countriesPerPage={countriesPerPage}
-                        allCountries={allCountries.length}
-                        paginado={paginado}
+            </div>
+            <Pagination     countriesPerPage={countriesPerPage}
+                            allCountries={allCountries.length}
+                            paginado={paginado}
+                            currentPage={currentPage}
+                            handlePrev={handlePrev}
+                            handleNext={handleNext}
             />
-        </>
+        </div>
+        </div>
     )
 }

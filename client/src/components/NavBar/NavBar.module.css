@@ -1,0 +1,103 @@
+.navbar {
+    height: 50px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: transparent;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 6fr 1fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: grey solid 1px;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    /* box-sizing: border-box; */
+}
+
+.title {
+    margin-left: 40px;
+    margin-bottom: 5px;
+    align-self:flex-end;
+    font-size:x-large;
+    font-weight:500;
+    color: #c0c0c0;
+    
+}
+
+.countries:active {
+    background-color: #808080;
+    color: white;
+} 
+
+.btn1 {
+    width: 80px;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 17px;
+    animation: fadein 3s;
+}
+
+.btn1:hover {
+    cursor: pointer;
+    color: black;
+    background-color: grey;
+}
+
+.btn2 {
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 17px;
+    animation: fadein 3s;
+}
+
+.btn2:hover {
+    cursor: pointer;
+    color: black;
+    background-color: grey;
+}
+
+.btn3 {
+    width: 140px;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 17px;
+    animation: fadein 3s;
+}
+
+.btn3:hover {
+    cursor: pointer;
+    color: black;
+    background-color: grey;
+}
+
+@keyframes fadein {
+    0% {
+        opacity:0;
+    }
+    50%{
+        opacity:0.5;
+    }
+    100% {
+        opacity:1;
+    }
+}
+

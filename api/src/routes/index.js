@@ -15,6 +15,6 @@ const router = Router();
 router.use("/countries", countriesRoutes)
 router.use("/country", countryRoute)
 router.use("/filters", filterRoutes)
-router.use("/activity", activityRoute)
+router.use("/activities", activityRoute)
 
 module.exports = router;

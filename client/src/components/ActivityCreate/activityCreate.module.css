@@ -1,0 +1,25 @@
+.back {
+    background-image: url('../../images/46632.png');
+    background-size: auto;
+    opacity: 0.9;
+    height: 100vh;
+
+}
+
+#board {
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10px;
+    background-color: rgba(173,181,189, 0.75);
+    /* background-color: transparent; */
+    opacity: 0.9;
+    height: 550px;
+    width: 450px;
+    align-items: center;
+    font-size:medium; 
+}
+
+#title{
+    justify-content: center;
+}
