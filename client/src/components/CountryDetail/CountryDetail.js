@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import {getCountryById} from '../../redux/actions/actions'
 import logo from '../../images/info3.png'
+import {Link} from 'react-router-dom'
 import s from './CountryDetail.module.css'
 
 export default function Detail(){
@@ -22,8 +23,6 @@ export default function Detail(){
 
     return(
         <div className={s.all}>
-            <div className={s.detail}>
-                <div className={s.card1}>
                     <div className={s.up}>
                         <div id={s.flag}>
                             <img id={s.img} src={detail.img} alt={detail.name} />
@@ -63,37 +62,40 @@ export default function Detail(){
                             <span className={s.span2}>{formatNumber(detail.population)}</span>
                         </div>
                     </div>
-                </div>
                 
                 <div className={s.card2}>
                     <div id={s.title}>
                         <p>Activities</p>
                     </div>
-                {
-                    detail.activities && detail.activities.map(a=>{
-                        return(
-                            <div key={a.id}>
-                                <div className={s.cuadro}>
-                                    <span id={s.activity}>{a.name}</span>
-                                </div>
-                                <div className={s.cuadro}>
-                                    <span className={s.span3}>Difficult:</span>
-                                    <span className={s.span4}>{a.difficult}</span>
-                                </div>
-                                <div className={s.cuadro}>
-                                    <span className={s.span3}>Duration:</span>
-                                    <span className={s.span4}>{a.duration}</span>
-                                </div>
-                                <div className={s.cuadro}>
-                                    <span className={s.span3}>Season:</span>
-                                    <span className={s.span4}>{a.season}</span>
-                                </div>
-                            </div>
-                            )
-                    })      
-                }
+                        {
+                            detail.activities && detail.activities.map(a=>{
+                                return(
+                                    <div key={a.id}>
+                                        <div className={s.cuadro}>
+                                            <span id={s.activity}>{a.name}</span>
+                                        </div>
+                                        <div className={s.cuadro}>
+                                            <span className={s.span3}>Difficult:</span>
+                                            <span className={s.span4}>{a.difficult}</span>
+                                        </div>
+                                        <div className={s.cuadro}>
+                                            <span className={s.span3}>Duration:</span>
+                                            <span className={s.span4}>{a.duration}</span>
+                                        </div>
+                                        <div className={s.cuadro}>
+                                            <span className={s.span3}>Season:</span>
+                                            <span className={s.span4}>{a.season}</span>
+                                        </div>
+                                    </div>
+                                    )
+                            })      
+                        }
                 </div>
-            </div>
+                <div className={s.btn}>   
+                    <Link to='/home'>   
+                        <button> Back to countries </button>
+                    </Link> 
+                </div> 
         </div>
         
     )

@@ -1,9 +1,9 @@
 .navbar {
+    /* margin-top: -3px; */
     height: 50px;
     width: 100%;
     top: 0;
     left: 0;
-    position: absolute;
     background-color: transparent;
     position: absolute;
     display: grid;

@@ -26,10 +26,14 @@
     border-radius: 10%;
     color: #c0c0c0;
     font-family: 'Source Serif Pro', serif;
-    margin-left: 40px;
+    margin-left: 25px;
     font-weight: 300;
     font-size: 17px;
     animation: fadein 3s;
+}
+
+select{
+    cursor: pointer;
 }
 
 .btn button:hover {

@@ -29,7 +29,7 @@ export default function NavBar(){
             </div>     
             <div>
                 <span>
-                    <Link to={'/home/activity'} >
+                    <Link to={'/activity'} >
                         <button className={s.btn3}>
                             Create Activity 
                         </button>

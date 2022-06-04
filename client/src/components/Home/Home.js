@@ -19,18 +19,21 @@ export default function Home () {
     const firstIndex = lastIndex - countriesPerPage
     const currentCountries = allCountries.slice(firstIndex, lastIndex)
 
+    // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
+    // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
+
     const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
     }
 
     function handlePrev(e){
         e.preventDefault()
-        setCurrentPage(currentPage - 1)
+        setCurrentPage(prev => prev -1)
     }
 
     function handleNext(e){
         e.preventDefault()
-        setCurrentPage(currentPage + 1)
+        setCurrentPage(prev => prev +1)
     }
 
     useEffect(()=> {
@@ -54,7 +57,8 @@ export default function Home () {
     }
 
     function handleClickContinent(e){
-        dispatch(filterByContinent(e.target.value)) 
+        dispatch(filterByContinent(e.target.value));
+        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected'
     }
 
 

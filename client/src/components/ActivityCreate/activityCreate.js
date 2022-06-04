@@ -3,7 +3,10 @@ import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries, postActivity } from '../../redux/actions/actions';
 import { useHistory} from 'react-router-dom';
-import s from './activityCreate.module.css'
+import NavBar from '../NavBar/NavBar';
+import s from './activityCreate.module.css';
+import tacho from '../../images/tacho.png';
+import {Link} from 'react-router-dom'
 
 function validate(input){
     let errors = {}
@@ -12,11 +15,14 @@ function validate(input){
     if(!input.difficult) errors.difficult = 'Choose one'
     if(!input.duration) errors.duration = 'Duration is required'
     if(input.duration && !/^[0-9]+([.][0-9]+)?$/.test(input.duration)) errors.duration = 'Duration must be integer or decimal'
+    if(input.duration > 100) errors.duration = 'Duration cannot be higher than 100'
     if(!input.season) errors.season = 'Choose one'
     if(input.countries.length === 0) errors.countries = 'Select at least one Country'
     
    return errors
 }
+
+const tab = '\u00A0';
 
 export default function ActivityCreate () {
 
@@ -50,6 +56,7 @@ export default function ActivityCreate () {
     }
 
     function handleSelectCountries(e){
+        if (!input.countries.includes(e.target.value)) {
         setInput({
             ...input,
             countries: [...input.countries, e.target.value]
@@ -58,7 +65,9 @@ export default function ActivityCreate () {
             ...input,
             countries: e.target.value
         }))
+        }   
     }
+
 
     function handleCheck(e){
         setInput({
@@ -106,23 +115,26 @@ export default function ActivityCreate () {
 
 
     return (
-        <div className={s.back}>
-            <div id={s.board}>
+        <div className={s.fondo}>
+            <NavBar />
+
+            <div id={s.rect}>
                 <div id={s.title}>
                     <h1> Create Activity</h1>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <form className={s.form} onSubmit={handleSubmit}>
+                    <div id={s.div1}>
                         <label> Name: </label>
                         <input  type='text'
                                 value={input.name} 
                                 name='name' 
                                 autoComplete='off'
-                                onChange={handleChange}     
-                        />
+                                onChange={handleChange}
+                                className={s.input1} />      
+    
                         {   
                             errors.name && (
-                                <div>
+                                <div className={s.error}>
                                     <span> {errors.name}</span>
                                 </div>
                             )
@@ -130,7 +142,7 @@ export default function ActivityCreate () {
                     </div>
                     <div>
                         <label> Difficult: </label>
-                        <select value={input.difficult} name='difficult' multiple={false} onChange={handleSelect} >
+                        <select id={s.select1} value={input.difficult} name='difficult' multiple={false} onChange={handleSelect} >
                             <option value="" disabled>Please select</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -140,7 +152,9 @@ export default function ActivityCreate () {
                         </select>
                         {   
                             errors.difficult && (
-                                <span> {errors.difficult}</span>
+                                <div className={s.error}>
+                                    <span> {errors.difficult}</span>
+                                </div>
                             )
                         }
                     </div>
@@ -151,26 +165,27 @@ export default function ActivityCreate () {
                                 name='duration' 
                                 autoComplete='off'
                                 min= '0'
-                                step=".01"
                                 onChange={handleChange}
+                                className={s.input2}
                         />
                         {   
                             errors.duration && (
-                                <div>
-                                <span> {errors.duration}</span>
+                                <div className={s.error}>
+                                    <span> {errors.duration}</span>
                                 </div>
                             )
                         }
                     </div>
                     <div>
-                        <label> Season: </label>
-                        {/* <select value={input.season} name='season' multiple={false} onChange={handleSelect} > */}
+                        <label id={s.labseason}> Season: </label>
                             <label>
-                                <input type='radio' 
+                                <input
+                                    type='radio' 
                                     name='season'
                                     value='Summer'
                                     onChange={handleCheck} />
                                     Summer
+                                    
                             </label> 
                             <label>
                                 <input type='radio' 
@@ -179,12 +194,13 @@ export default function ActivityCreate () {
                                     onChange={handleCheck} />
                                     Autumn
                             </label> 
-                            <label>
+                            <br/>
+                            <label id={s.labseason2}>
                                 <input type='radio' 
                                     name='season'
                                     value='Winter'
                                     onChange={handleCheck} />
-                                    Winter
+                                    Winter {tab}
                             </label> 
                             <label>
                                 <input type='radio' 
@@ -193,15 +209,9 @@ export default function ActivityCreate () {
                                     onChange={handleCheck} />
                                     Spring
                             </label> 
-                            {/* <option value="" disabled>Please select</option>
-                            <option value='Summer'>Summer</option>
-                            <option value='Autumn'>Autumn</option>
-                            <option value='Winter'>Winter</option>
-                            <option value='Spring'>Spring</option> */}
-                        {/* </select> */}
                         {   
                             errors.season && (
-                                <div>
+                                <div className={s.error}>
                                     <span> {errors.season}</span>
                                 </div>
                             )
@@ -209,8 +219,8 @@ export default function ActivityCreate () {
                     </div>
                     <div>
                         <label> Countries: </label>
-                            <select value={input.countries} onChange={handleSelectCountries} >
-                                <option value="" disabled >Please select</option>
+                            <select id={s.select2} value={input.countries} onChange={handleSelectCountries} >
+                                <option value="" disabled>Please select</option>
                                 {
                                     allCountries && allCountries.map(c=>(
                                         <option value={c.name} key={c.id}> {c.name} </option>
@@ -219,26 +229,42 @@ export default function ActivityCreate () {
                         </select>
                         {   
                             errors.countries && (
-                                <div>
-                                    <span> {errors.counties}</span>
+                                <div className={s.error}>
+                                    <span> {errors.countries}</span>
                                 </div>
                             )
                         }
                     </div>
+                    <button type='submit' 
+                            disabled={!input.name || !input.season || !input.difficult || !input.duration || !input.season || input.countries.length === 0}
+                            className={s.btn}>
+                            Create Activity
+                    </button>     
+                </form>
+            </div>
+            <div className={s.rect2}>
+                <div>
+                    <p>Countries selected: {input.countries.length}</p>
+                </div>
+                <div className={s.countrySelect}>
                     {input.countries.map(c=>
-                            <div key={c}>
+                            <div key={c} className={s.country}>
                                 <span>
                                     {c}
                                 </span>
-                                <button onClick={()=>handleDelete(c)}>X</button>
+                                <button onClick={()=>handleDelete(c)}>
+                                    <img src={tacho} alt="x" width='17px' height='17px' />
+                                </button>
                             </div>
-                        )}  
-                    <button type='submit' disabled={!input.name || !input.season || !input.difficult || !input.duration || !input.season || input.countries.length === 0}>Create Activity</button>
-
-                </form>
-
-          
+                        )
+                    }
+                </div>        
             </div>
+            <div className={s.btnback}>   
+                    <Link to='/home'>   
+                        <button> Back to countries </button>
+                    </Link> 
+                </div> 
         </div>
     )
 }

@@ -11,17 +11,17 @@ export default function Pagination({countriesPerPage, allCountries, paginado, cu
 
     return(
         <div className={s.bar}>
-            <button className={s.prev} onClick={e=>handlePrev(e)} disabled={currentPage - 1 === 0 ? true : false}> Prev </button>
             <ul> 
+                <button className={s.prev} onClick={e=>handlePrev(e)} disabled={currentPage - 1 === 0 ? true : false}> Prev </button>
                 { pageNumbers &&
                     pageNumbers.map(number =>(
                         <li key={number}>
-                            <button className={s.number} onClick={()=> paginado(number)}> {number} </button>
+                            <button id={s.number} className= {currentPage === number ? s.active : null} onClick={()=> paginado(number)}> {number} </button>
                         </li>
                     ))
                 }
+                <button className={s.next} onClick={e=> handleNext(e)} disabled={currentPage >= pageNumbers.length ? true : false}> Next </button>
             </ul>
-            <button className={s.next} onClick={e=> handleNext(e)} disabled={currentPage >= pageNumbers.length ? true : false}> Next </button>
         </div>
     )
 }

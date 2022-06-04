@@ -1,31 +1,31 @@
 .all {
-    background-image: url('../../images/darkmap3.jpg');
+    background-image: url('../../images/darkmap3.jpg') ;
     background-size: cover;
-    height:720px;
-}
-
-.detail {
+    height: 100vh;
     font-family: 'Source Serif Pro', serif;
     color: white;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-left: 20px;
+    grid-template-rows: 2fr 7fr 1fr;
+    grid-template-areas: "titulo titulo"
+                         "cuadro cuadro2"
+                         "boton  cuadro2";    
 }
 
-.card1{
-    display: grid;
-    grid-template-rows: 1fr 3fr;
-    margin-top:10px;
-}
 
 .up{
+    grid-column-start: titulo;
+    grid-column-end: titulo;
+    grid-row-start: titulo;
+    grid-row-end: titulo;
     display: grid;
-    grid-template-columns: 2fr 5fr;
-    margin-top: 60px;
-    background-color: transparent;;
+    grid-template-columns: 1fr 10fr;  
+    margin-top: 75px;
+    background-color: transparent;
     opacity: 0.8;
-    height: 100px;
-    width: 450px;
+    justify-content: flex-start;
+
+   
 }
 
 #img {
@@ -40,16 +40,17 @@
 }
 
 .name{
+    display: flex;
     font-size: 60px;
-    align-self: center;
-    justify-self: center;
+    align-self: flex-start;
+    justify-self: flex-start;
 }
 
 #maps{
     width: 40px;
     height: 40px;
     position: relative;
-    left: 165px;;
+    left: 215px;;
     top: 10px;
 }
 
@@ -62,7 +63,7 @@
     background-color: transparent;
     opacity: 0.8;
     height: 350px;
-    width: 450px;
+    width: 500px;
     margin-top: 50px;
     margin-left: 20px;
     gap: 15px;
@@ -89,12 +90,6 @@
     justify-self: flex-start;
 }
 
-p {
-    margin-left: 10px;
-    justify-self: flex-start;
-    font-size: x-large;  
-}
-
 .span2 {
     margin-right: 10px;
     justify-self: flex-end;
@@ -110,9 +105,9 @@ p {
     opacity: 0.8;
     height: min-content;
     width: 550px;
-    margin-top: 170px;
+    margin-top: 50px;
     margin-left: 20px;
-    gap: 35px;
+    gap: 26px;
     align-items: center;
     font-size:medium;
 }
@@ -120,9 +115,40 @@ p {
 .card2 p{
     font-size: 35px;
     text-decoration: underline;
+    font-size: x-large;  
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 #activity {
     font-size: x-large;
+    /* text-decoration: underline; */
     border-bottom: white solid 2px;
+}
+
+.btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn button {
+    width: 155px;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 17px;
+    animation: fadein 3s;
+    justify-self: center;
+}
+
+.btn button:hover {
+    cursor: pointer;
+    color: black;
+    background-color: grey;
 }

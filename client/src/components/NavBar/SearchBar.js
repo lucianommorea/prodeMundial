@@ -31,7 +31,6 @@ export default function SearchBar({setCurrentPage}){
             <span className={s.search}>
                 Search country by name:
             </span>
-       
             <form className={s.bar} onSubmit={(e) => handleSubmit(e)} >
                 <input  type='text' 
                         id='name' 

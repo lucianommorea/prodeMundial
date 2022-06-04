@@ -30,20 +30,6 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                 </span>
                 <button onClick={e=> handleClick(e)}>Reset</button>
             </div>
-            <div className={s.sort1}>
-                <p className={s.search}>
-                    Sort by:
-                </p>
-                <select id='firstSelect' onChange={e=> handleClickFilter(e)}>
-                    <option value= '' disabled selected >Please select</option>
-                    <option value= 'asc'>A-Z</option>
-                    <option value= 'desc'>Z-A</option>
-                    <option value= 'maxPop'>Ascending population</option>
-                    <option value= 'minPop'>Descending population</option>
-                    <option value= 'maxArea'>Largest Area</option>
-                    <option value= 'minArea'>Smaller Area</option>
-                </select>
-            </div>
             <div className={s.sort2}>
                 <p className={s.search}>
                     Filter by Continent:
@@ -57,6 +43,20 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                     <option value= 'South America'>South America</option>
                     <option value= 'North America'>North America</option>
                     <option value= 'Oceania'>Oceania</option>
+                </select>
+            </div>
+            <div className={s.sort1}>
+                <p className={s.search}>
+                    Sort by:
+                </p>
+                <select id='firstSelect' onChange={e=> handleClickFilter(e)}>
+                    <option value= 'defaultValue' disabled>Please select</option>
+                    <option value= 'asc'>A-Z</option>
+                    <option value= 'desc'>Z-A</option>
+                    <option value= 'maxPop'>Ascending population</option>
+                    <option value= 'minPop'>Descending population</option>
+                    <option value= 'maxArea'>Largest Area</option>
+                    <option value= 'minArea'>Smaller Area</option>
                 </select>
             </div>
             <div className={s.sort3}>

@@ -9,7 +9,9 @@
 
 .bar ul{
     display: inline;
-    border: #c0c0c0 solid 1.8px;
+    /* border: #c0c0c0 solid 1.8px; */
+    margin-left: 220px;
+    
 }
 
 .bar li{
@@ -22,16 +24,20 @@
     border-radius: 100%;
 } 
 
-.number{
+#number{
     height:32px;
     width:32px;
     border-radius: 100%;
     font-family: 'Source Serif Pro', serif;
 }
 
-.number:hover{
+#number:hover{
     cursor: pointer;
     background-color: grey;
+}
+
+.active{
+    background-color: #fcca46;
 }
 
 .prev{
