@@ -23,30 +23,30 @@ export default function Home () {
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
 
     const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber);
     }
 
     function handlePrev(e){
-        e.preventDefault()
-        setCurrentPage(prev => prev -1)
+        e.preventDefault();
+        setCurrentPage(prev => prev -1);
     }
 
     function handleNext(e){
-        e.preventDefault()
-        setCurrentPage(prev => prev +1)
+        e.preventDefault();
+        setCurrentPage(prev => prev +1);
     }
 
     useEffect(()=> {
         dispatch(getCountries());
-    }, [dispatch])
+    }, [dispatch]);
 
 
     function handleClick(e){
         e.preventDefault()
         dispatch(getCountries())
-        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected'
-        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected'
-        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected'
+        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
     }
 
     function handleClickFilter(e) {
@@ -58,7 +58,8 @@ export default function Home () {
 
     function handleClickContinent(e){
         dispatch(filterByContinent(e.target.value));
-        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected'
+        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
     }
 
 

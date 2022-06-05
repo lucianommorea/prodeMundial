@@ -9,13 +9,30 @@ async function getAllCountries(){
                 name: country.name.common,
                 img: country.flags.svg,
                 continents: country.continents[0],
-                capital: country.capital ? country.capital[0] : 'No posee',
-                subregion: country.subregion ? country.subregion : 'No posee',
+                capital: country.capital ? country.capital[0] : 'Undefined capital',
+                subregion: country.subregion ? country.subregion : 'Undefine Subregion',
                 area: country.area,
                 population: country.population
         }))
 
-        await Country.bulkCreate(countries);  
+        // await Country.bulkCreate(countries);  
+        
+        countries.forEach(country =>{
+            Country.findOrCreate({
+                where: {id:country.id},
+                defaults:{
+                    id:country.id,
+                    name:country.name,
+                    img: country.img,
+                    continents: country.continents,
+                    capital: country.capital,
+                    subregion: country.subregion,
+                    area: country.area,
+                    population: country.population,
+                }
+            })
+        })
+        
         console.log("Countries cargados en DB correctamente")
     } 
     catch (error){

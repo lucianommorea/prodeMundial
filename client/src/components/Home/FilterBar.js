@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivities, filterByActivities, getCountries } from '../../redux/actions/actions';
+import { getActivities, filterByActivities, getCountries} from '../../redux/actions/actions';
 import s from './FilterBar.module.css'
 
 
@@ -20,6 +20,7 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
     function handleClickActivity(e){
         e.preventDefault()
         dispatch(filterByActivities(e.target.value))
+        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
     }
 
     return(
@@ -30,11 +31,11 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                 </span>
                 <button onClick={e=> handleClick(e)}>Reset</button>
             </div>
-            <div className={s.sort2}>
+            <div>
                 <p className={s.search}>
                     Filter by Continent:
                 </p>
-                <select id='secondSelect' onChange={e=> handleClickContinent(e)}>
+                <select id='firstSelect' onChange={e=> handleClickContinent(e)}>
                     <option value= 'All'>All continents</option>
                     <option value= 'Africa'>Africa</option>
                     <option value= 'Antarctica'>Antartica</option>
@@ -45,29 +46,29 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                     <option value= 'Oceania'>Oceania</option>
                 </select>
             </div>
-            <div className={s.sort1}>
+            <div>
+                <p className={s.search}>
+                    Filter by Activity:
+                </p>
+                <select id='secondSelect' onChange={e=> handleClickActivity(e)} >
+                    <option value= 'All'>Select activity</option>
+                    { activities && activities.map(a=>(
+                        <option value={a.name} key={a.id}>{a.name}</option>
+                    ))}                
+                </select>
+            </div>
+            <div>
                 <p className={s.search}>
                     Sort by:
                 </p>
-                <select id='firstSelect' onChange={e=> handleClickFilter(e)}>
-                    <option value= 'defaultValue' disabled>Please select</option>
+                <select id='thirdSelect' onChange={e=> handleClickFilter(e)}>
+                    <option value= 'All' selected disabled>Please select</option>
                     <option value= 'asc'>A-Z</option>
                     <option value= 'desc'>Z-A</option>
                     <option value= 'maxPop'>Ascending population</option>
                     <option value= 'minPop'>Descending population</option>
                     <option value= 'maxArea'>Largest Area</option>
                     <option value= 'minArea'>Smaller Area</option>
-                </select>
-            </div>
-            <div className={s.sort3}>
-                <p className={s.search}>
-                    Filter by Activity:
-                </p>
-                <select id='thirdSelect' onChange={e=> handleClickActivity(e)} >
-                    <option value= 'All'>Select activity</option>
-                    { activities && activities.map(a=>(
-                        <option value={a.name} key={a.id}>{a.name}</option>
-                    ))}                
                 </select>
             </div>
             

@@ -1,6 +1,7 @@
 const initialState = {
     allCountries: [],
     countries: [],
+    byContinentCountries: [],
     countryDetail: {},
     activities: [],
 }
@@ -11,7 +12,7 @@ function reducer(state= initialState, action){
             return{
                 ...state,
                 countries: action.payload,
-                allCountries: action.payload,
+                allCountries: action.payload
             }
         case 'GET_COUNTRY_BY_NAME':
             return{
@@ -28,7 +29,8 @@ function reducer(state= initialState, action){
             let continentFilter = action.payload === 'All' ? allCountries : allCountries.filter(el => el.continents === action.payload)
             return{
                 ...state,
-                countries: continentFilter
+                countries: continentFilter,
+                byContinentCountries: continentFilter
             }
         case 'GET_ACTIVITIES':
             return{
@@ -36,11 +38,15 @@ function reducer(state= initialState, action){
                 activities: action.payload,
             }
         case 'FILTER_BY_ACTIVITIES':
-            let countries = state.allCountries
-            let ActivityFilter = action.payload === 'All' ? countries : countries.filter(c => c.activities.map(a => a.name === action.payload))
+            let countriesActivities = document.getElementById("secondSelect").getElementsByTagName('option')[0].selected === 'selected' 
+            ? state.allCountries
+            : state.byContinentCountries
+            let activityFilter = action.payload === 'All'
+            ? countriesActivities
+            : countriesActivities.filter(e=> e.activities && e.activities.map(a => a.name).includes(action.payload))
             return{
                 ...state,
-                countries: ActivityFilter
+                countries: activityFilter,
             }
         case 'POST_ACTIVITY':
             return{
