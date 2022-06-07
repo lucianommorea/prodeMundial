@@ -15,7 +15,6 @@ export default function Detail(){
 
     useEffect(()=> {
         dispatch(getCountryById(id));
-        return () => dispatch(getCountryById())
     }, [dispatch, id])
 
     function formatNumber(number){

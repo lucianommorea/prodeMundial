@@ -7,6 +7,7 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
+import notFoundImage from '../../images/error.jpg'
 
 export default function Home () {
 
