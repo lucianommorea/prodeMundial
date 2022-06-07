@@ -10,7 +10,7 @@ export default function LandingPage() {
                     <h1>Henry Countries</h1>
                 </div>
                 <div className={s.bottom}>
-                    <Link to='/home' className={s.start}>  
+                    <Link to='/home'>  
                         <button className={s.btn}>
                             Start
                         </button>

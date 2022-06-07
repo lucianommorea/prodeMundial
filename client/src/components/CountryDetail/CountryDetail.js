@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams , useNavigate} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {getCountryById} from '../../redux/actions/actions'
 import logo from '../../images/info3.png'
 import {Link} from 'react-router-dom'
@@ -10,12 +10,12 @@ import s from './CountryDetail.module.css'
 export default function Detail(){
 
     let { id } = useParams()
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
+    let dispatch = useDispatch();
     let detail = useSelector(state=> state.countryDetail);
 
     useEffect(()=> {
-        dispatch(getCountryById(id))
+        dispatch(getCountryById(id));
+        return () => dispatch(getCountryById())
     }, [dispatch, id])
 
     function formatNumber(number){
@@ -93,9 +93,9 @@ export default function Detail(){
                         }
                 </div>
                 <div className={s.btn}>   
-                    {/* <Link to='/home'>    */}
-                        <button onClick={()=> navigate(-1)}> Back to countries </button>
-                    {/* </Link>  */}
+                    <Link to='/home'>   
+                        <button> Back to countries </button>
+                    </Link> 
                 </div> 
         </div>
         

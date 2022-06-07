@@ -1,26 +1,13 @@
 import React from 'react';
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountries, postActivity } from '../../redux/actions/actions';
+import { getActivities, getCountries, postActivity } from '../../redux/actions/actions';
 import { useHistory} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import s from './activityCreate.module.css';
 import tacho from '../../images/tacho.png';
 import {Link} from 'react-router-dom'
 
-function validate(input){
-    let errors = {}
-    if(!input.name) errors.name = 'Name Activity is required'
-    if(input.name && !/^[A-Za-z0-9\s]+$/.test(input.name)) errors.name = 'Name must have only letters numbers and spaces'
-    if(!input.difficult) errors.difficult = 'Choose one'
-    if(!input.duration) errors.duration = 'Duration is required'
-    if(input.duration && !/^[0-9]+([.][0-9]+)?$/.test(input.duration)) errors.duration = 'Duration must be integer or decimal'
-    if(input.duration > 100) errors.duration = 'Duration cannot be higher than 100'
-    if(!input.season) errors.season = 'Choose one'
-    if(input.countries.length === 0) errors.countries = 'Select at least one Country'
-    
-   return errors
-}
 
 const tab = '\u00A0';
 
@@ -29,10 +16,29 @@ export default function ActivityCreate () {
     const dispatch = useDispatch()
     let allCountries = useSelector(state=> state.allCountries)
     const history = useHistory()
+    const activities = useSelector(state => state.activities)
 
     useEffect(()=> {
-        dispatch(getCountries())
+        dispatch(getCountries());
+        dispatch(getActivities());
     }, [dispatch])
+
+    function validate(input){
+        let errors = {}
+        if(!input.name) errors.name = 'Activity name is required'
+        if(input.name.length > 25) errors.name = 'Activity name must have a maximum of 25 characters'
+        if(input.name && !/^[A-Za-z0-9\s]+$/.test(input.name)) errors.name = 'Name must have only letters numbers and spaces'
+        let activityExist = activities.filter(a=> a.name === input.name)
+        if(activityExist.length > 0) errors.name = 'That activity already exists'
+        if(!input.difficult) errors.difficult = 'Choose one'
+        if(!input.duration) errors.duration = 'Duration is required'
+        if(input.duration && !/^[0-9]+([.][0-9]+)?$/.test(input.duration)) errors.duration = 'Duration must be integer or decimal'
+        if(input.duration > 100) errors.duration = 'Duration cannot be higher than 100'
+        if(!input.season) errors.season = 'Choose one'
+        if(input.countries.length === 0) errors.countries = 'Select at least one Country'
+        
+       return errors
+    }
 
     const[input, setInput] = useState({
         name: '',
@@ -68,7 +74,6 @@ export default function ActivityCreate () {
         }   
     }
 
-
     function handleCheck(e){
         setInput({
             ...input,
@@ -90,7 +95,6 @@ export default function ActivityCreate () {
             [e.target.name]: e.target.value
         }))
     }
-    
 
     function handleSubmit(e){
         e.preventDefault()
@@ -116,8 +120,7 @@ export default function ActivityCreate () {
 
     return (
         <div className={s.fondo}>
-            <NavBar />
-
+            {/* <NavBar /> */}
             <div id={s.rect}>
                 <div id={s.title}>
                     <h1> Create Activity</h1>
@@ -142,7 +145,7 @@ export default function ActivityCreate () {
                     </div>
                     <div>
                         <label> Difficult: </label>
-                        <select id={s.select1} value={input.difficult} name='difficult' multiple={false} onChange={handleSelect} >
+                        <select id={s.select1} value={input.difficult} name='difficult' onChange={handleSelect} >
                             <option value="" disabled>Please select</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -159,12 +162,13 @@ export default function ActivityCreate () {
                         }
                     </div>
                     <div>
-                        <label> Duration:</label>
+                        <label> Duration: (in hs)</label>
                         <input  type='number' 
                                 value={input.duration} 
                                 name='duration' 
                                 autoComplete='off'
                                 min= '0'
+                                step= '0.5'
                                 onChange={handleChange}
                                 className={s.input2}
                         />
@@ -220,7 +224,7 @@ export default function ActivityCreate () {
                     <div>
                         <label> Countries: </label>
                             <select id={s.select2} value={input.countries} onChange={handleSelectCountries} >
-                                <option value="" disabled>Please select</option>
+                                <option value="">Please select</option>
                                 {
                                     allCountries && allCountries.map(c=>(
                                         <option value={c.name} key={c.id}> {c.name} </option>
@@ -236,7 +240,8 @@ export default function ActivityCreate () {
                         }
                     </div>
                     <button type='submit' 
-                            disabled={!input.name || !input.season || !input.difficult || !input.duration || !input.season || input.countries.length === 0}
+                            disabled={!input.name || !input.season || !input.difficult || !input.duration || !input.season || input.countries.length === 0 ||
+                                        errors.name || errors.season || errors.difficult || errors.duration || errors.season || errors.countries}
                             className={s.btn}>
                             Create Activity
                     </button>     

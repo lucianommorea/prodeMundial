@@ -10,7 +10,7 @@ async function getDescPopulation(){
             include: [Activity]
         });
         
-        return populationDesc
+        return populationDesc;
     } 
     catch (error){
         console.log('Error en getDescPopulation', error)
@@ -25,7 +25,7 @@ async function getAscPopulation(){
             include: [Activity]
         });
         
-        return populationAsc
+        return populationAsc;
     } 
     catch (error){
         console.log('Error en getAscPopulation', error)

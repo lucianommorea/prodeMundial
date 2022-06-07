@@ -33,10 +33,10 @@ async function getAllCountries(){
             })
         })
         
-        console.log("Countries cargados en DB correctamente")
+        console.log("Countries loaded in DB correctly")
     } 
     catch (error){
-        console.log('Error en getAllCountries', error)
+        console.log('Error in getAllCountries', error)
     }
 }
 
@@ -48,7 +48,7 @@ async function getAllCountriesFromDB() {
         return countriesDB
     }
     catch(error) {
-       console.log('Error en getAllCountriesFromDB', error)
+       console.log('Error in getAllCountriesFromDB', error)
     }
 }
 
@@ -63,7 +63,7 @@ async function getCountryByName(name) {
         }) 
         return countryName
     } catch (error) {
-        console.log('error en getCountryByName', error)
+        console.log('error in getCountryByName', error)
     }
 }
 

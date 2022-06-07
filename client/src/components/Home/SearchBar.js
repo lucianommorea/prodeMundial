@@ -2,13 +2,12 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { getCountryByName } from '../../redux/actions/actions'
 import s from './SearchBar.module.css'
-
+import {IoSearchOutline} from 'react-icons/io5'
 
 export default function SearchBar({setCurrentPage}){
 
     const dispatch = useDispatch()
     const [name, setName] = useState("")
-
     
     function handleChange(e) {
         e.preventDefault()
@@ -39,7 +38,11 @@ export default function SearchBar({setCurrentPage}){
                         value={name} 
                         className={s.input}
                         onChange={(e) => handleChange(e)} />
-                <button type='submit' className={s.btn}> Search</button>
+                <button type='submit' className={s.btn}> 
+                {/* Search */}
+                <IoSearchOutline />
+                </button>
+                
             </form>
         </div>
     

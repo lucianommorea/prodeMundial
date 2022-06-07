@@ -1,5 +1,5 @@
 const {Country, Activity} = require('../../db');
-const {Op} = require('sequelize')
+// const {Op} = require('sequelize')
 
 
 async function getDescCountries(){
@@ -10,7 +10,7 @@ async function getDescCountries(){
             include: [Activity]
         });
         
-        return countriesDesc
+        return countriesDesc;
     } 
     catch (error){
         console.log('Error en getDescCountries', error)
@@ -25,7 +25,7 @@ async function getAscCountries(){
             include: [Activity]
         });
         
-        return countriesAsc
+        return countriesAsc;
     } 
     catch (error){
         console.log('Error en getAscCountries', error)

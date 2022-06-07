@@ -2,6 +2,7 @@ const initialState = {
     allCountries: [],
     countries: [],
     byContinentCountries: [],
+    byActivityCountries:[],
     countryDetail: {},
     activities: [],
 }
@@ -12,7 +13,8 @@ function reducer(state= initialState, action){
             return{
                 ...state,
                 countries: action.payload,
-                allCountries: action.payload
+                allCountries: action.payload,
+                countryDetail: {}
             }
         case 'GET_COUNTRY_BY_NAME':
             return{
@@ -38,12 +40,12 @@ function reducer(state= initialState, action){
                 activities: action.payload,
             }
         case 'FILTER_BY_ACTIVITIES':
-            let countriesActivities = document.getElementById("secondSelect").getElementsByTagName('option')[0].selected === 'selected' 
+            let countriesActivities = document.getElementById("firstSelect").value === 'All' 
             ? state.allCountries
             : state.byContinentCountries
             let activityFilter = action.payload === 'All'
             ? countriesActivities
-            : countriesActivities.filter(e=> e.activities && e.activities.map(a => a.name).includes(action.payload))
+            : countriesActivities.filter(country=> country.activities && country.activities.map(a => a.name).includes(action.payload))
             return{
                 ...state,
                 countries: activityFilter,

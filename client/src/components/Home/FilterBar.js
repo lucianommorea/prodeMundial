@@ -1,37 +1,15 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getActivities, filterByActivities, getCountries} from '../../redux/actions/actions';
+import { useSelector } from 'react-redux';
 import s from './FilterBar.module.css'
 
 
+export default function FilterBar({handleClickActivity, handleClickReset, handleClickFilter, handleClickContinent}) {
 
-
-export default function FilterBar({handleClick, handleClickFilter, handleClickContinent}) {
-
-    const dispatch = useDispatch()
     const activities = useSelector(state=> state.activities)
-
-    useEffect(()=> {
-        dispatch(getCountries())
-        dispatch(getActivities());
-    }, [dispatch])
-
-    function handleClickActivity(e){
-        e.preventDefault()
-        dispatch(filterByActivities(e.target.value))
-        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
-    }
 
     return(
         <div className={s.all}>
-            <div className={s.btn}>
-                <span className={s.search}>
-                    Press to reset countries:
-                </span>
-                <button onClick={e=> handleClick(e)}>Reset</button>
-            </div>
-            <div>
+            <div id={s.f1}>
                 <p className={s.search}>
                     Filter by Continent:
                 </p>
@@ -62,7 +40,7 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                     Sort by:
                 </p>
                 <select id='thirdSelect' onChange={e=> handleClickFilter(e)}>
-                    <option value= 'All' selected disabled>Please select</option>
+                    <option value= 'All'>Please select</option>
                     <option value= 'asc'>A-Z</option>
                     <option value= 'desc'>Z-A</option>
                     <option value= 'maxPop'>Ascending population</option>
@@ -70,6 +48,9 @@ export default function FilterBar({handleClick, handleClickFilter, handleClickCo
                     <option value= 'maxArea'>Largest Area</option>
                     <option value= 'minArea'>Smaller Area</option>
                 </select>
+            </div>
+            <div className={s.btn}>
+                <button onClick={e=> handleClickReset(e)}>Reset filters</button>
             </div>
             
         </div>

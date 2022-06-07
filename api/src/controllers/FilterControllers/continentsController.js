@@ -8,7 +8,7 @@ async function getContinentCountries(cont){
             include: [Activity]
         });
         
-        return continentCountries
+        return continentCountries;
     } 
     catch (error){
         console.log('Error en getContinentCountries', error)

@@ -1,18 +1,19 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCountries, orderBy, filterByContinent } from '../../redux/actions/actions';
+import { getCountries, getActivities, orderBy, filterByContinent, filterByActivities} from '../../redux/actions/actions';
 import CountriesCard from './CountriesCard';
 import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
-import SearchBar from '../NavBar/SearchBar';
+import SearchBar from './SearchBar';
 
 export default function Home () {
 
-    const dispatch = useDispatch()
-    const allCountries = useSelector((state => state.countries))
+    const dispatch = useDispatch();
+    const allCountries = useSelector((state => state.countries));
     const [orden, setOrden] = useState('')
+    let [resetChange, setResetChange] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [countriesPerPage, setCountriesPerPage] = useState(10)
     const lastIndex = currentPage * countriesPerPage
@@ -38,42 +39,61 @@ export default function Home () {
 
     useEffect(()=> {
         dispatch(getCountries());
+        dispatch(getActivities());
     }, [dispatch]);
 
 
-    function handleClick(e){
+    function handleClickContinent(e){
         e.preventDefault()
-        dispatch(getCountries())
-        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
-        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
-        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
+        let saveActivity = document.getElementById("secondSelect").value
+        let filter = document.getElementById("thirdSelect").value
+        dispatch(filterByContinent(e.target.value));
+        dispatch(filterByActivities(saveActivity));
+        dispatch(orderBy(filter));
+        if(currentCountries) setCurrentPage(1);
     }
+
+    function handleClickActivity(e){
+        e.preventDefault();
+        let filter2 = document.getElementById("thirdSelect").value
+        dispatch(filterByActivities(e.target.value));
+        dispatch(orderBy(filter2));
+        if(currentCountries) setCurrentPage(1);
+    }
+
 
     function handleClickFilter(e) {
         e.preventDefault();
         dispatch(orderBy(e.target.value));
         setCurrentPage(1);
-        setOrden(`Ordenado ${e.target.value}`) //solo para setear estado y renderizar
+        setOrden(`Ordenado ${e.target.value} ${resetChange}`) //solo para setear estado y renderizar
     }
 
-    function handleClickContinent(e){
-        dispatch(filterByContinent(e.target.value));
+    function handleClickReset(e){
+        e.preventDefault()
+        dispatch(getCountries())
+        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
+        setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
-
 
     return(
         <div className={s.all}>
         <div className={s.container}>     
             <div className={s.horizontal}>
                 <div className={s.bar}>
-                    <SearchBar className={s.search} setCurrentPage={setCurrentPage}/>
-                    <FilterBar className={s.filter} handleClick={handleClick} handleClickFilter={handleClickFilter} handleClickContinent={handleClickContinent}/>
+                    <SearchBar  className={s.search} setCurrentPage={setCurrentPage}/>
+                    <FilterBar  className={s.filter} 
+                                handleClickActivity={handleClickActivity} 
+                                handleClickReset={handleClickReset} 
+                                handleClickFilter={handleClickFilter}
+                                handleClickContinent={handleClickContinent}/>
                 </div>
                 <div className={s.cards}>
                     {
-                        currentCountries && currentCountries.map(c => {
+                        currentCountries
+                        && currentCountries.map(c => {
                             return (
                                 <CountriesCard key={c.id} id={c.id} name={c.name} img={c.img} continents={c.continents} capital={c.capital} />
                             )

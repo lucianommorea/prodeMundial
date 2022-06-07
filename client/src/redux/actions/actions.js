@@ -1,5 +1,31 @@
 import axios from 'axios'
 
+// con fetch y promesas
+
+// export function getCountries(){
+//     return function(dispatch){
+//         return fetch("http://localhost:3001/countries")
+//         .then(response => response.json())
+//         .then(data => dispatch({
+//                 type: 'GET_COUNTRIES',
+//                 payload: data
+//                 })
+//         )
+//     }
+// }
+
+
+// con axios y promesas
+// export function getCountries(){
+//     return function(dispatch){
+//         return axios.get("http://localhost:3001/countries")
+//         .then(response => dispatch({
+//                 type: 'GET_COUNTRIES',
+//                 payload: response.data
+//                 })
+//         )
+//     }
+// }
 
 export function getCountries(){
     return async function (dispatch) {
@@ -52,7 +78,6 @@ export function filterByContinent(payload){
             payload
     }
 }
-
 
 export function orderBy(payload){
     return {

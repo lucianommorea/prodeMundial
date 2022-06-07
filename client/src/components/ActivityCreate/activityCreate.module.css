@@ -2,10 +2,10 @@
     background-image: url('../../images/46632.png');
     background-size: auto;
     opacity: 0.87;
-    height: 100vh;
+    height: 740px;
     margin-top: -20px;
     font-size:medium; 
-    color:#c0c0c0;
+    /* color:#c0c0c0; */
     display:grid;
     grid-template-columns: 9fr 6fr;
     font-weight: 500;
@@ -26,29 +26,26 @@
     position: relative;
     justify-content: center;
     align-self: flex-start;
-    margin-left: 300px;
+    margin-left: 250px;
     top: 100px;
 }
-
 
 #title{
     justify-self: center;
     margin-top: 10px;
     margin-bottom: 10px;
-} 
+}  
 
 .form{
     display:grid;
     grid-template-rows: repeat(1fr);
     margin-left: -20px;
-
 }
 
 .option{
     display:grid;
     grid-template-columns: repeat(2 1fr);
 }
-
 
 .input1 {
     position: absolute;
@@ -134,7 +131,6 @@
     cursor: none;
 }
 
-
 .rect2{
     display: grid;
     grid-template-rows: 1fr 6fr;
@@ -142,8 +138,7 @@
     border-radius: 10px;
     background-color: rgba(40,40,40);
     opacity: 0.9;
-    height: min-content;
-    
+    height: min-content;   
     width: 400px;  
     font-size:medium; 
     color:#c0c0c0;
@@ -195,9 +190,10 @@
 }
 
 .btnback {
-    position: absolute;
-    bottom: 40px;
-    right: 20px;
+    display: flex;
+    position:fixed;
+    bottom: 20px;
+    right: 10px;
 }
 
 .btnback button {
@@ -218,4 +214,78 @@
     cursor: pointer;
     color: black;
     background-color: grey;
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+    .fondo{
+        grid-template-columns: 8fr 6fr;
+    }
+    #rect{
+        margin-left: 150px;
+    }
+}
+
+@media screen and (min-width: 950px) and (max-width: 1000px){
+    .fondo{
+        background-size: cover;
+        grid-template-columns: 6fr 6fr;
+    }
+    #rect{
+        margin-left: 85px;
+    }
+}
+
+@media screen and (max-width: 950px){
+    .fondo{
+        background-size: cover;
+        grid-template-columns: 6fr 6fr;
+    }
+    #rect{
+        margin-left: 10px;
+        width: 400px;
+    }
+    .rect2{
+        width: 370px;
+    }
+}
+
+@media screen and (max-width: 780px){
+    .fondo{
+        background-size: cover;
+        grid-template-columns: 6fr 5fr;
+    }
+    #rect{
+        margin-left: 10px;
+        width: 400px;
+    }
+    .rect2{
+        width: 320px;
+    }
+}
+
+@media screen and (max-width: 720px){
+    .fondo{
+        background-size: auto;
+        height: max-content;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr
+    }
+    #rect{
+        margin-top: -20px;
+        margin-left: 10px;
+        width: 400px;
+        justify-self: center;
+        height: 450px;
+    }
+    .rect2{
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 400px;
+        justify-self: center;
+        margin-bottom: -40px;
+        height: 310px; 
+    }
+    .btnback{
+        display: none;;
+    }
 }

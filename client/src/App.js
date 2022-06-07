@@ -1,5 +1,5 @@
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage'
 import React from 'react';
 import Home from './components/Home/Home';
@@ -10,11 +10,11 @@ import ActivityCreate from './components/ActivityCreate/activityCreate'
 function App() {
   return (
     <div>
-      <Route exact path={'/'} component={LandingPage} /> 
-      <Route path={'/home'} component={NavBar}/>
+      <Route exact path={'/'} component={LandingPage} />    
       <Route exact path={'/home'} component={Home} />
       <Route exact path={'/home/country/:id'} component={Detail} />
-      <Route exact path={'/activity'} component={ActivityCreate} />
+      <Route exact path={'/home/activity'} component={ActivityCreate} />
+      <Route path={'/home'} render={({match}) => <NavBar match={match}/>} />   
     </div>
   );
 }

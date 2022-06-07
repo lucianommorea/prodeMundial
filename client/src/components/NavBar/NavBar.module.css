@@ -7,14 +7,10 @@
     background-color: transparent;
     position: absolute;
     display: grid;
-    grid-template-columns: 6fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 0.14fr 0.00fr 0.14fr;
     justify-content: space-between;
     align-items: center;
     border-bottom: grey solid 1px;
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* align-items: center; */
-    /* box-sizing: border-box; */
 }
 
 .title {
@@ -27,13 +23,8 @@
     
 }
 
-.countries:active {
-    background-color: #808080;
-    color: white;
-} 
-
-.btn1 {
-    width: 80px;
+.countries{
+    width: 150px;
     height: 30px;
     background-color: transparent;
     border: #c0c0c0 solid 1.8px;
@@ -42,7 +33,24 @@
     font-family: 'Source Serif Pro', serif;
     font-weight: 300;
     font-size: 17px;
-    animation: fadein 3s;
+    animation: fadein 2s;
+}
+
+/* .countries:active {
+    background-color: #fcca46;
+} */
+
+.btn1 {
+    width: 130px;
+    height: 30px;
+    background-color: transparent;
+    border: #c0c0c0 solid 1.8px;
+    border-radius: 10%;
+    color: #c0c0c0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    font-size: 17px;
+    animation: fadein 2s;
 }
 
 .btn1:hover {
@@ -52,16 +60,17 @@
 }
 
 .btn2 {
-    width: 100px;
+    width: 80px;
     height: 30px;
     background-color: transparent;
     border: #c0c0c0 solid 1.8px;
     border-radius: 10%;
+    margin-right: 20px;
     color: #c0c0c0;
     font-family: 'Source Serif Pro', serif;
     font-weight: 300;
     font-size: 17px;
-    animation: fadein 3s;
+    animation: fadein 2s;
 }
 
 .btn2:hover {
@@ -80,7 +89,7 @@
     font-family: 'Source Serif Pro', serif;
     font-weight: 300;
     font-size: 17px;
-    animation: fadein 3s;
+    animation: fadein 2s;
 }
 
 .btn3:hover {
@@ -101,3 +110,10 @@
     }
 }
 
+@media screen and (max-width: 600px){
+    .title{
+        margin-left: 20px;
+        font-size: medium;
+        justify-self: center;
+    }
+}

@@ -3,6 +3,8 @@
     align-items:center;
     display:inline-flex;
     justify-content:center;
+    position: relative;
+    /* top: 60px; */
     /* flex-wrap: wrap; */
     /* float: left; */
 }
@@ -10,8 +12,7 @@
 .bar ul{
     display: inline;
     /* border: #c0c0c0 solid 1.8px; */
-    margin-left: 220px;
-    
+    margin-left: 190px;
 }
 
 .bar li{
@@ -61,4 +62,38 @@
 
 li:active{
     background-color: #fcca46;
+}
+
+
+@media screen and (max-width: 1260px){
+    #number{
+        height:28px;
+        width:28px;
+    } 
+    .bar ul{
+        margin-left: 100px;
+    }
+    .prev{
+        height:40px;
+        width:40px;
+    }
+    .next{
+        height:40px;
+        width:40px;
+        justify-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #number{
+        height:27px;
+        width:27px;
+    } 
+    .bar ul{
+        margin-left: -30px;
+        
+    }
+    .bar li{
+        margin-left: 0px;
+    }
 }

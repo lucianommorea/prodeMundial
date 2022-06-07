@@ -7,7 +7,6 @@ const { getAllCountriesFromDB, getCountryByName } = require('../controllers/coun
 const router = Router();
 
 
-
 router.get("/", async function(req, res){
     const {name} = req.query
     try {
@@ -17,7 +16,7 @@ router.get("/", async function(req, res){
                 res.status(200).send(nameCountries)
             }
             else{
-                res.status(404).send('Pais no encontrado')
+                res.status(404).send('Countries not found')
             }
         }
         else{
@@ -26,7 +25,7 @@ router.get("/", async function(req, res){
                 res.status(200).send(allCountries)         
             }
             else{
-                res.status(404).send('Paises no encontrados')
+                res.status(404).send('Countries not found')
             }
         }
     } catch (error) {

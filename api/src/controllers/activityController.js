@@ -30,12 +30,28 @@ async function getAllActivities() {
         return activities
     }
     catch(error) {
-        console.log('Error en getAllActivities', error)
+        console.log('Error in getAllActivities', error)
     }
 }
+
+async function getActivityByName(name) {
+    try {
+        const activityName = await Activity.findOne({  
+            where: {
+                name: name
+                },
+        include: [Country]          
+        }) 
+        return activityName
+    } catch (error) {
+        console.log('Error in getActivityByName', error)
+    }
+}
+
 
 
 module.exports = {
     postActivity,
     getAllActivities,
+    getActivityByName
 }

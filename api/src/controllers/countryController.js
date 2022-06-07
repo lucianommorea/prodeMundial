@@ -9,7 +9,7 @@ async function getCountryById(id) {
         })
         return countryFound
     } catch (error) {
-        console.log('error en getCountryById', error)
+        console.log('Error in getCountryById', error)
     }
     
 }

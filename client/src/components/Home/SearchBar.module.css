@@ -7,7 +7,7 @@
     grid-template-rows: 1fr 5fr;
     top: 0px;
     height: 100px;
-    width: 290px;
+    width: 220px;
     margin-left: 10px;
     padding-bottom: 25px;
 }
@@ -17,15 +17,9 @@
     margin-top: 25px;
 }
 
-/* .bar input{
-    background-color:rgb(236, 243, 249);
-    border:#1d3557 solid 1px;
-    flex-direction: column;
-} */
-
 .input{
     width: 180px;
-    height: 30px;
+    height: 29px;
     border-radius: 10%;
     background: rgba(233, 236, 239, 0.8);
     font-family: 'Source Serif Pro', serif;
@@ -38,29 +32,29 @@
 }
 
 .btn {
-    width: 80px;
+    width: 30px;
     height: 30px;
-    background-color: transparent;
+    background-color: rgb(189, 191, 193);
     border: #c0c0c0 solid 1.8px;
     border-radius: 10%;
-    color: #c0c0c0;
+    color: black;
     font-family: 'Source Serif Pro', serif;
-    margin-left: 10px;
-    font-weight: 300;
-    font-size: 17px;
-    animation: fadein 3s;
+    position: absolute;
+    top: 68px;
+    left: 170px;
+    font-size: 16px;;
 }
 
 .btn:hover {
     cursor: pointer;
-    color: black;
-    background-color: grey;
+    color: white;
+    background-color: rgb(189, 191, 193);
 }
 
-.btn:hover{
+/* .btn:hover{
     background-color: #adb6c4;
     cursor: pointer;
-}
+} */
 
 @keyframes fadein {
     0% {
@@ -72,4 +66,28 @@
     100% {
         opacity:1;
     }
+}
+
+@media screen and (max-width: 740px){
+    .all{
+        padding-bottom: 10px;
+        width: 180px;
+        margin-bottom: 0px;
+        }
+    .search{
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .input{
+        width: 150px;
+        height: 25px;
+    }
+    .btn {
+        height:auto;
+        width:auto;
+        position: absolute;
+        top: 45px;
+        left: 136px;
+    }
+
 }

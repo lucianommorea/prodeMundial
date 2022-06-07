@@ -9,9 +9,9 @@ router.get('/:id', async function(req,res){
     try {
        let country = await getCountryById(id)
        if(country) res.status(200).send(country)
-       else res.status(404).send('Pais no encontrado')
+       else res.status(404).send('Country not found')
     } catch (error) {
-        console.log('Error en CountryRoute', error)
+        console.log('Error in CountryRoute', error)
     }
     
 })
