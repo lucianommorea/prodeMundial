@@ -14,7 +14,7 @@
     animation: ring 2s linear infinite;
 }
 
-@keyfames ring {
+@keyframes ring {
     0%{
         transform: rotate(0deg);
         box-shadow: 1px 5px 2px #e65c00;

@@ -258,8 +258,8 @@
         width: 400px;
         height: fit-content;
         justify-self: flex-start;
-        margin-bottom: 0px;
-        height: 320px; 
+        margin-bottom: 10px;
+        /* height: 320px;  */
         position: relative;
         top: 0px;
     }
