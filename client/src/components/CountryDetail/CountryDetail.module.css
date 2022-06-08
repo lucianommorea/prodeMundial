@@ -229,6 +229,9 @@
         /* width: 500px; */
         height: fit-content;
     }
+    .up{
+        width: fit-content;
+    }
     .down{
         width: 360px;
         height: 250px;
