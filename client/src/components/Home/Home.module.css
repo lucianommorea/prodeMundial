@@ -74,3 +74,12 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+@media screen and (max-width: 680px){
+    .all{
+        height: 1640px;
+    }
+    .horizontal{
+        flex-direction: column;
+    }
+}

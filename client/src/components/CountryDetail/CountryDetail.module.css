@@ -1,6 +1,7 @@
 .all {
     background-image: url('../../images/darkmap3.jpg') ;
     background-size: cover;
+    width: 100%;
     height:max-content;
     font-family: 'Source Serif Pro', serif;
     color: white;

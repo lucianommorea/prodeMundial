@@ -91,3 +91,9 @@
     }
 
 }
+
+@media screen and (max-width: 680px){
+    .all{
+        display: none;
+    }
+}

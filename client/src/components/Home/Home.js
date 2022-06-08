@@ -20,6 +20,7 @@ export default function Home () {
     const firstIndex = lastIndex - countriesPerPage
     const currentCountries = allCountries.slice(firstIndex, lastIndex)
     const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
@@ -57,7 +58,7 @@ export default function Home () {
 
     function handleClickActivity(e){
         e.preventDefault();
-        // setName('');
+        setName('');
         let filter2 = document.getElementById("thirdSelect").value
         dispatch(filterByActivities(e.target.value));
         dispatch(orderBy(filter2));
