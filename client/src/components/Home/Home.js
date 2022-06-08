@@ -7,7 +7,6 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
-import notFoundImage from '../../images/error.jpg'
 
 export default function Home () {
 
@@ -20,6 +19,7 @@ export default function Home () {
     const lastIndex = currentPage * countriesPerPage
     const firstIndex = lastIndex - countriesPerPage
     const currentCountries = allCountries.slice(firstIndex, lastIndex)
+    const [name, setName] = useState("");
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
@@ -46,8 +46,9 @@ export default function Home () {
 
     function handleClickContinent(e){
         e.preventDefault()
-        let saveActivity = document.getElementById("secondSelect").value
-        let filter = document.getElementById("thirdSelect").value
+        setName('');
+        let saveActivity = document.getElementById("secondSelect").value;
+        let filter = document.getElementById("thirdSelect").value;
         dispatch(filterByContinent(e.target.value));
         dispatch(filterByActivities(saveActivity));
         dispatch(orderBy(filter));
@@ -56,6 +57,7 @@ export default function Home () {
 
     function handleClickActivity(e){
         e.preventDefault();
+        // setName('');
         let filter2 = document.getElementById("thirdSelect").value
         dispatch(filterByActivities(e.target.value));
         dispatch(orderBy(filter2));
@@ -67,29 +69,32 @@ export default function Home () {
         e.preventDefault();
         dispatch(orderBy(e.target.value));
         setCurrentPage(1);
-        setOrden(`Ordenado ${e.target.value} ${resetChange}`) //solo para setear estado y renderizar
+        setOrden(`Ordenado ${e.target.value} ${resetChange}`); //solo para setear estado y renderizar
     }
 
     function handleClickReset(e){
-        e.preventDefault()
-        dispatch(getCountries())
+        e.preventDefault();
+        dispatch(getCountries());
+        setName('');
         document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
         setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
 
+   
     return(
         <div className={s.all}>
         <div className={s.container}>     
             <div className={s.horizontal}>
                 <div className={s.bar}>
-                    <SearchBar  className={s.search} setCurrentPage={setCurrentPage}/>
+                    <SearchBar  className={s.search} setCurrentPage={setCurrentPage} name={name} setName={setName}/>
                     <FilterBar  className={s.filter} 
                                 handleClickActivity={handleClickActivity} 
                                 handleClickReset={handleClickReset} 
                                 handleClickFilter={handleClickFilter}
-                                handleClickContinent={handleClickContinent}/>
+                                handleClickContinent={handleClickContinent}
+                    />
                 </div>
                 <div className={s.cards}>
                     {

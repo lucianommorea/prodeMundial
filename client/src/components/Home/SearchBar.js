@@ -1,48 +1,37 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { getCountryByName } from '../../redux/actions/actions'
 import s from './SearchBar.module.css'
-import {IoSearchOutline} from 'react-icons/io5'
 
-export default function SearchBar({setCurrentPage}){
+export default function SearchBar({setCurrentPage, name, setName}){
 
-    const dispatch = useDispatch()
-    const [name, setName] = useState("")
-    
+    const dispatch = useDispatch();
+     
     function handleChange(e) {
-        e.preventDefault()
+        e.preventDefault();
         setName(e.target.value);
+        dispatch(getCountryByName(e.target.value));
+        setCurrentPage(1);
+        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        dispatch(getCountryByName(name))
-        setName('')
-        setCurrentPage(1)
-        document.getElementById("name")[0] = ''
-        document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected'
-        document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected'
-        document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected'
-    }
 
     return(
         <div className={s.all}>   
             <span className={s.search}>
                 Search country by name:
             </span>
-            <form className={s.bar} onSubmit={(e) => handleSubmit(e)} >
+            <form className={s.bar}  >
                 <input  type='text' 
                         id='name' 
                         placeholder="Country name..." 
                         autoComplete='off' 
-                        value={name} 
+                        value={name}
                         className={s.input}
-                        onChange={(e) => handleChange(e)} />
-                <button type='submit' className={s.btn}> 
-                {/* Search */}
-                <IoSearchOutline />
-                </button>
-                
+                        onChange={(e) => handleChange(e)}
+                 />             
             </form>
         </div>
     

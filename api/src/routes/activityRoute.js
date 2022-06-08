@@ -22,6 +22,7 @@ router.post('/', async function (req, res){
     if(nameExists) res.status(404).send({error: "That activity already exists"})
     if(difficult !== '1' && difficult !== '2' && difficult !== '3' && difficult !== '4' && difficult !== '5') res.status(404).send({error: "Difficult must be a number between 1 and 5"})
     if(isNaN(duration)) res.status(404).send({error: "Duration must be a number"})
+    if(duration > 100) res.status(404).send({error: "Duration must be a number"})
     if(season !== 'Summer' && season !== 'Autumn' && season !== 'Winter' && season !== 'Spring') res.status(404).send({error: "That's not an existing season"})
     let countriesSelect = await Country.findAll({
         where: {

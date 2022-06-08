@@ -6,7 +6,7 @@ import {useLocation} from 'react-router-dom'
 
 export default function NavBar({match}){
 
-    let location = useLocation()
+    let location = useLocation();
 
     return(
         <div className={s.navbar}>

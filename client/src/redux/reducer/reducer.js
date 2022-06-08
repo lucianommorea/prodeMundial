@@ -34,6 +34,12 @@ function reducer(state= initialState, action){
                 countries: continentFilter,
                 byContinentCountries: continentFilter
             }
+        // case 'FILTER_BY_CONTINENT':
+        //     return{
+        //         ...state,
+        //         countries: action.payload,
+        //         byContinentCountries: action.payload
+        //     }
         case 'GET_ACTIVITIES':
             return{
                 ...state,

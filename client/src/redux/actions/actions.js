@@ -72,6 +72,16 @@ export function getCountryByName(name) {
     }
 }
 
+// export function filterByContinent(payload){
+//     return async function(dispatch){
+//         let countriesContinent = await axios.get(`http://localhost:3001/filters/${payload}`)
+//         return dispatch({
+//             type:'FILTER_BY_CONTINENT',
+//             payload: countriesContinent.data
+//         })
+//     }
+// }
+
 export function filterByContinent(payload){
     return {
             type: 'FILTER_BY_CONTINENT',

@@ -13,7 +13,7 @@ async function getAllCountries(){
                 subregion: country.subregion ? country.subregion : 'Undefine Subregion',
                 area: country.area,
                 population: country.population
-        }))
+            }))
 
         // await Country.bulkCreate(countries);  
         
@@ -57,7 +57,7 @@ async function getCountryByName(name) {
         const countryName = await Country.findAll({
             where: {
                 name: {
-                    [Op.iLike]: `${name}%`
+                    [Op.iLike]: `%${name}%`
                 }
             }
         }) 

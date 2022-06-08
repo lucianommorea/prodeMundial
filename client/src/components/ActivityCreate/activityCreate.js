@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getCountries, postActivity } from '../../redux/actions/actions';
 import { useHistory} from 'react-router-dom';
-import NavBar from '../NavBar/NavBar';
 import s from './activityCreate.module.css';
 import tacho from '../../images/tacho.png';
 import {Link} from 'react-router-dom'

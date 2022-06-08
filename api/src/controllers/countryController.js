@@ -11,9 +11,7 @@ async function getCountryById(id) {
     } catch (error) {
         console.log('Error in getCountryById', error)
     }
-    
 }
-
 
 module.exports = {
     getCountryById
