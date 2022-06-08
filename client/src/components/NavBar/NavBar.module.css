@@ -7,7 +7,7 @@
     background-color: transparent;
     position: absolute;
     display: grid;
-    grid-template-columns: 1fr 0.14fr 0.00fr 0.14fr;
+    grid-template-columns: 1fr 0.14fr 0.08fr 0.15fr;
     justify-content: space-between;
     align-items: center;
     border-bottom: grey solid 1px;
@@ -111,8 +111,15 @@
 }
 
 @media screen and (max-width: 600px){
+    .navbar{
+        display: flex;
+        flex-direction: row;
+    }
+    .btn1 {
+        margin-left: 20px;;
+    }
     .title{
-        margin-left: 20px;
+      
         font-size: medium;
         justify-self: center;
     }
