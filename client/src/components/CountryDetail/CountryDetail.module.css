@@ -225,7 +225,8 @@
 
 @media screen and (max-width: 500px){
     .all{
-        width: 500px;
+        width:auto;
+        /* width: 500px; */
         height: fit-content;
     }
     .down{
