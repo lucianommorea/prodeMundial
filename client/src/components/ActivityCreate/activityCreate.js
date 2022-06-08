@@ -32,6 +32,7 @@ export default function ActivityCreate () {
         if(!input.difficult) errors.difficult = 'Choose one'
         if(!input.duration) errors.duration = 'Duration is required'
         if(input.duration && !/^[0-9]+([.][0-9]+)?$/.test(input.duration)) errors.duration = 'Duration must be integer or decimal'
+        if(input.duration <= 0) errors.duration = 'Duration cannot be 0'
         if(input.duration > 100) errors.duration = 'Duration cannot be higher than 100'
         if(!input.season) errors.season = 'Choose one'
         if(input.countries.length === 0) errors.countries = 'Select at least one Country'
