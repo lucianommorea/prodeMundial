@@ -1,12 +1,9 @@
 .all {
     background-image: url('../../images/darkmap3.jpg') ;
     background-size: cover;
-    width: 100%;
-    min-width: 100vh;
-    /* height:max-content; */
+    width: auto;
     height: 100%;
     min-height: 100vh;
-    height:max-content;
     font-family: 'Source Serif Pro', serif;
     color: white;
     display: grid;
@@ -178,19 +175,18 @@
     .all {
         display: flex;
         flex-direction: column;  
-        /* min-height: 100vh;  */
-        height: fit-content;
-        width: fit-content;
-        /* max-height: 100%; */
+        height: max-content;
+        width: auto;
     }
     .up{
         grid-template-columns: 1fr 7fr; 
     }
     .down{
         width: 450px;
-        height: 250px;
-        gap: 0px;
-        margin-top: 20px;
+        height: 300px;
+        gap: 00px;
+        margin-top: 40px;
+        margin-bottom: 20px;
     }
     #maps{
         left: 165px;;
@@ -214,6 +210,38 @@
 }
 
 @media screen and (max-width: 660px){
+    .down{
+        width: 450px;
+        height: 250px;
+        margin-top: 40px;
+    }
+    #maps{
+        left: 165px;;
+    }
+    .btn {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .all{
+        width: 500px;
+        height: fit-content;
+    }
+    .down{
+        width: 360px;
+        height: 250px;
+        margin-top: 40px;
+    }
+    #maps{
+        left: 80px;;
+    }
+
+    .card2{
+        width: 360px;
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
     .btn {
         display:none;
     }
