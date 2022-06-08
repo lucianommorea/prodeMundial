@@ -21,7 +21,6 @@
     opacity: 0.9;
     height: 550px;
     width: 400px;  
-
     font-size:medium; 
     color:#c0c0c0;
     font-weight: 500;
@@ -239,57 +238,65 @@
 
 @media screen and (max-width: 950px){
     .fondo{
-        background-size: cover;
-        grid-template-columns: 6fr 6fr;
+        background-size: auto;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: auto;
     }
     #rect{
-        margin-left: 10px;
+        margin-top: 80px;
+        margin-left: 2px;
         width: 400px;
+        justify-self: center;
+        height: 450px;
+        top: 0px;
     }
     .rect2{
-        width: 370px;
+        margin-top: 20px;
+        margin-left: 2px;
+        width: 400px;
+        height: fit-content;
+        justify-self: flex-start;
+        margin-bottom: 0px;
+        height: 320px; 
+        position: relative;
+        top: 0px;
+    }
+    .btnback{
+        display: none;;
     }
 }
 
 @media screen and (max-width: 780px){
-    .fondo{
-        background-size: cover;
-        grid-template-columns: 6fr 5fr;
-    }
     #rect{
-        margin-left: 10px;
-        width: 400px;
+        margin-left: 40px;
     }
     .rect2{
-        width: 320px;
+        margin-left: 40px;
     }
 }
 
 @media screen and (max-width: 720px){
-    .fondo{
-        background-size: auto;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        height: max-content;
-        width: max-content;
-        
-    }
+
     #rect{
-        margin-top: -20px;
         margin-left: 10px;
-        width: 400px;
-        justify-self: center;
-        height: 450px;
     }
     .rect2{
-        margin-top: 20px;
         margin-left: 10px;
-        width: 400px;
-        justify-self: center;
-        margin-bottom: -40px;
-        height: 310px; 
     }
     .btnback{
-        display: none;;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 420px){
+    #rect{
+        margin-left: 2px;
+        width: 360px;
+    }
+    .rect2{
+        margin-left: 2px;
+        width: 360px;
     }
 }

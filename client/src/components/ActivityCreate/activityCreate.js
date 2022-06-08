@@ -72,6 +72,9 @@ export default function ActivityCreate () {
             countries: e.target.value
         }))
         }   
+        else{
+            alert('Coutnry Already select')
+        }
     }
 
     function handleCheck(e){
