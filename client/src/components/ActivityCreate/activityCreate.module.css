@@ -4,7 +4,7 @@
     opacity: 0.87;
     height: 740px;
     width:auto;
-    margin-top: -20px;
+    /* margin-top: -20px; */
     font-size:medium; 
     /* color:#c0c0c0; */
     display:grid;
@@ -155,9 +155,9 @@
     color: #c0c0c0
 }
 
-.countryselect {
+/* .countryselect {
     margin-top: 0px;
-}
+} */
 
 .country{
     margin-bottom: 4px;
