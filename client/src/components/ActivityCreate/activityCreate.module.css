@@ -3,6 +3,7 @@
     background-size: auto;
     opacity: 0.87;
     height: 740px;
+    width:auto;
     margin-top: -20px;
     font-size:medium; 
     /* color:#c0c0c0; */
@@ -20,6 +21,7 @@
     opacity: 0.9;
     height: 550px;
     width: 400px;  
+
     font-size:medium; 
     color:#c0c0c0;
     font-weight: 500;
@@ -266,9 +268,11 @@
 @media screen and (max-width: 720px){
     .fondo{
         background-size: auto;
-        height: max-content;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr
+        grid-template-rows: 1fr 1fr;
+        height: max-content;
+        width: max-content;
+        
     }
     #rect{
         margin-top: -20px;
