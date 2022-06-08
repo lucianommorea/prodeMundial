@@ -7,7 +7,7 @@
     background-color: transparent;
     position: absolute;
     display: grid;
-    grid-template-columns: 1fr 0.14fr 0.08fr 0.15fr;
+    grid-template-columns: 1fr 0.10fr 0.15fr;
     justify-content: space-between;
     align-items: center;
     border-bottom: grey solid 1px;
@@ -35,9 +35,6 @@
     animation: fadein 2s;
 }
 
-/* .countries:active {
-    background-color: #fcca46;
-} */
 
 .btn1 {
     width: 130px;
@@ -109,17 +106,19 @@
     }
 }
 
-@media screen and (max-width: 600px){
-    .navbar{
+@media screen and (max-width: 500px){
+    /* .navbar{
         display: flex;
         flex-direction: row;
-    }
+    } */
     .btn1 {
         margin-left: 20px;;
     }
     .title{
-      
-        font-size: medium;
-        justify-self: center;
+        align-content: center;
+        font-size: large;
+        justify-self: flex-start;
+        margin-left: 20px;
+        margin-bottom: 10px;
     }
 }
