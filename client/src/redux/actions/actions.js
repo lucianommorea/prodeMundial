@@ -30,7 +30,7 @@ import axios from 'axios'
 export function getCountries(){
     return async function (dispatch) {
         try{
-            let allCountries = await axios.get("http://localhost:3001/countries");
+            let allCountries = await axios.get("/countries");
             return dispatch({
                 type: 'GET_COUNTRIES',
                 payload: allCountries.data
@@ -45,7 +45,7 @@ export function getCountries(){
 export function getCountryById(id) {
     return async function(dispatch){
         try{
-            let countryDetail = await axios.get(`http://localhost:3001/country/${id}`)
+            let countryDetail = await axios.get(`/country/${id}`)
             return dispatch({
                 type: 'GET_COUNTRY_DETAIL',
                 payload: countryDetail.data
@@ -60,7 +60,7 @@ export function getCountryById(id) {
 export function getCountryByName(name) {
     return async function(dispatch){
         try{
-            let countryByName = await axios.get('http://localhost:3001/countries?name='+name)
+            let countryByName = await axios.get('/countries?name='+name)
             return dispatch({
                 type: 'GET_COUNTRY_BY_NAME',
                 payload: countryByName.data
@@ -74,7 +74,7 @@ export function getCountryByName(name) {
 
 // export function filterByContinent(payload){
 //     return async function(dispatch){
-//         let countriesContinent = await axios.get(`http://localhost:3001/filters/${payload}`)
+//         let countriesContinent = await axios.get(`/filters/${payload}`)
 //         return dispatch({
 //             type:'FILTER_BY_CONTINENT',
 //             payload: countriesContinent.data
@@ -99,7 +99,7 @@ export function orderBy(payload){
 export function postActivity(payload){
     return async function (dispatch){
         try{
-            let activity = await axios.post("http://localhost:3001/activities", payload)
+            let activity = await axios.post("/activities", payload)
             return dispatch({
                 type: 'POST_ACTIVITY',
                 payload: activity.data
@@ -114,7 +114,7 @@ export function postActivity(payload){
 export function getActivities(){
     return async function (dispatch) {
         try{
-            let allActivities = await axios.get("http://localhost:3001/activities");
+            let allActivities = await axios.get("/activities");
             return dispatch({
                 type: 'GET_ACTIVITIES',
                 payload: allActivities.data
