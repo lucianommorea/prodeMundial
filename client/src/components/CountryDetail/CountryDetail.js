@@ -35,7 +35,9 @@ export default function Detail(){
                     <div className={s.down}>
                         <div id={s.cuadro}>
                             <span className={s.info}> Country Information</span>
+                            <a href={detail.maps} target='blank'>
                             <img id={s.maps} src={logo} alt='logo' />
+                            </a>
                         </div>
                         <div className={s.cuadro}>
                             <span className={s.span1}>Code:</span>

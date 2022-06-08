@@ -12,7 +12,8 @@ async function getAllCountries(){
                 capital: country.capital ? country.capital[0] : 'Undefined capital',
                 subregion: country.subregion ? country.subregion : 'Undefine Subregion',
                 area: country.area,
-                population: country.population
+                population: country.population,
+                maps: country.maps.googleMaps
             }))
 
         // await Country.bulkCreate(countries);  
@@ -29,6 +30,7 @@ async function getAllCountries(){
                     subregion: country.subregion,
                     area: country.area,
                     population: country.population,
+                    maps: country.maps
                 }
             })
         })
