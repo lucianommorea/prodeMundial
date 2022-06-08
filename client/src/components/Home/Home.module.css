@@ -82,4 +82,7 @@
     .horizontal{
         flex-direction: column;
     }
+    .container .cards{
+        margin-top: 15px;
+    }
 }

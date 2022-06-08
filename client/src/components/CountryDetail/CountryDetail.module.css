@@ -226,12 +226,13 @@
 
 @media screen and (max-width: 490px){
     .all{
-        width:max-content;
+        width: fit-content;
         /* width: 500px; */
         height: fit-content;
     }
     .up{
         width: fit-content;
+        margin-left: 0px;
     }
     .down{
         width: 360px;
