@@ -73,7 +73,7 @@ export default function ActivityCreate () {
         }))
         }   
         else{
-            alert('Coutnry Already select')
+            alert('That Country has already been selected')
         }
     }
 

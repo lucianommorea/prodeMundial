@@ -2,7 +2,6 @@ const initialState = {
     allCountries: [],
     countries: [],
     byContinentCountries: [],
-    byActivityCountries:[],
     countryDetail: {},
     activities: [],
 }

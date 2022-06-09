@@ -1,8 +1,8 @@
 .all {
     background-image: url('../../images/darkmap3.jpg');
-    background-size: auto;
+    background-size: cover;
     height: 100vh;
-    width: auto;
+    width:fit-content;
 }
 
 .container{
@@ -35,9 +35,22 @@
     align-items: center;
 }
 
+#noCountries{
+    width: 450px;
+}
+
+#noCountries p{
+    margin-top: 15px;
+    margin-left: 35px;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #c0c0c0;
+}
+
 @media screen and (max-width: 1700px){
     .all {
-        height: 45rem;
+        height: 145vh;
     }
 }
 
@@ -66,7 +79,7 @@
 
 @media screen and (max-width: 1000px){
     .all {
-        height: 98.8rem;
+        height: 96.5rem;
     }
     .container .cards{
         margin-left: 10px;
@@ -77,7 +90,7 @@
 
 @media screen and (max-width: 680px){
     .all{
-        height: 1640px;
+        height: 1650px;
     }
     .horizontal{
         flex-direction: column;

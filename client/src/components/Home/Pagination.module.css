@@ -4,9 +4,6 @@
     display:inline-flex;
     justify-content:center;
     position: relative;
-    /* top: 60px; */
-    /* flex-wrap: wrap; */
-    /* float: left; */
 }
 
 .bar ul{

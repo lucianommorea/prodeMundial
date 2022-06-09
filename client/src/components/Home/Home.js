@@ -7,6 +7,8 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
+import Loading from '../Loading/Loading';
+import countrynotfound from '../../images/countrynotfound.jpg';
 
 export default function Home () {
 
@@ -20,7 +22,7 @@ export default function Home () {
     const firstIndex = lastIndex - countriesPerPage
     const currentCountries = allCountries.slice(firstIndex, lastIndex)
     const [name, setName] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
@@ -42,6 +44,9 @@ export default function Home () {
     useEffect(()=> {
         dispatch(getCountries());
         dispatch(getActivities());
+        if (!isLoading) {
+            setIsLoading(true)
+        }
     }, [dispatch]);
 
 
@@ -65,7 +70,6 @@ export default function Home () {
         if(currentCountries) setCurrentPage(1);
     }
 
-
     function handleClickFilter(e) {
         e.preventDefault();
         dispatch(orderBy(e.target.value));
@@ -83,7 +87,17 @@ export default function Home () {
         setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
 
-   
+    if(isLoading) {
+       
+    setTimeout(() => {
+          setIsLoading(false)
+        }, 1300)
+
+        return (
+       <Loading />
+       )
+   }
+
     return(
         <div className={s.all}>
         <div className={s.container}>     
@@ -98,13 +112,23 @@ export default function Home () {
                     />
                 </div>
                 <div className={s.cards}>
-                    {
-                        currentCountries
-                        && currentCountries.map(c => {
+                    {                         
+                        currentCountries.length > 0 ?
+                        currentCountries.map(c => {
                             return (
                                 <CountriesCard key={c.id} id={c.id} name={c.name} img={c.img} continents={c.continents} capital={c.capital} />
                             )
-                        })
+                        }) :
+                        <div id={s.noCountries}>
+                            <p>
+                            No countries were found with these parameters.
+                            </p>
+                            <p>
+                            Try a new search ...
+                            </p>
+                        </div>
+                       
+
                     }
                 </div>
             </div>

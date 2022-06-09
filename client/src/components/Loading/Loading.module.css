@@ -1,4 +1,6 @@
 .center{
+    background-image: url('../../images/darkmap3.jpg');
+    background-size: auto;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -8,10 +10,11 @@
 
 .ring{
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     animation: ring 2s linear infinite;
+    background: transparent;
 }
 
 @keyframes ring {
@@ -40,7 +43,8 @@
     box-shadow: 0 0 5px rgba(255,255,255, 0.3);
 }
 
-.ring span{
+.center span{
+    font-family: 'Source Serif Pro', serif;
     color: #737373;
     font-size: 20px;
     letter-spacing: 1px;
