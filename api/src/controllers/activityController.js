@@ -21,6 +21,15 @@ async function postActivity(name, difficult, duration, season, countries) {
         }
     }
 
+async function deleteActivity(name){
+    let activityDeleted = await Activity.findOne({
+        where:{
+            name: name
+        }
+    })
+    return activityDeleted
+}
+
 
 async function getAllActivities() {    
    try{
@@ -34,24 +43,42 @@ async function getAllActivities() {
     }
 }
 
-async function getActivityByName(name) {
-    try {
-        const activityName = await Activity.findOne({  
+// async function getActivityByName(name) {
+//     try {
+//         const activityName = await Activity.findOne({  
+//             where: {
+//                 name: name
+//                 },
+//         include: [Country]          
+//         }) 
+//         return activityName
+//     } catch (error) {
+//         console.log('Error in getActivityByName', error)
+//     }
+// }
+
+
+function getActivityByName(name) {
+    try{
+        const activityName = Activity.findOne({  
             where: {
                 name: name
-                },
-        include: [Country]          
+            },
+            include: [Country]          
         }) 
         return activityName
     } catch (error) {
-        console.log('Error in getActivityByName', error)
+            console.log('Error in getActivityByName', error)
     }
-}
+    
 
+    
+}
 
 
 module.exports = {
     postActivity,
     getAllActivities,
-    getActivityByName
+    getActivityByName,
+    deleteActivity
 }

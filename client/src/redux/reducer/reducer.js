@@ -25,6 +25,11 @@ function reducer(state= initialState, action){
                 ...state,
                 countryDetail: action.payload
             }
+        case 'CLEAN_COUNTRIES':
+            return{
+                ...state,
+                countries: []
+        }
         case 'FILTER_BY_CONTINENT':
             let allCountries = state.allCountries
             let continentFilter = action.payload === 'All' ? allCountries : allCountries.filter(el => el.continents === action.payload)

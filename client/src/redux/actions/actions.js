@@ -132,3 +132,9 @@ export function filterByActivities(payload){
         payload
     }
 }
+
+export function cleanCountries(){
+    return{
+        type: 'CLEAN_COUNTRIES'
+    }
+}

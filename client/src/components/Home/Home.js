@@ -7,7 +7,7 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
-import Loading from './LoadingComponent'
+import Loading from '../Loading/LoadingComponent';
 
 
 export default function Home () {
@@ -42,11 +42,9 @@ export default function Home () {
     }
 
     useEffect(()=> {
+        setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
-        if (!isLoading) {
-            setIsLoading(true)
-        }
     }, [dispatch]);
 
 
@@ -88,14 +86,10 @@ export default function Home () {
     }
 
     if(isLoading) {
-       
     setTimeout(() => {
           setIsLoading(false)
         }, 1300)
-
-        return (
-       <Loading />
-       )
+        return <Loading />
    }
 
     return(

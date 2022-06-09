@@ -1,11 +1,12 @@
 import React from 'react';
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivities, getCountries, postActivity } from '../../redux/actions/actions';
+import { cleanCountries, getActivities, getCountries, postActivity } from '../../redux/actions/actions';
 import { useHistory} from 'react-router-dom';
 import s from './activityCreate.module.css';
 import tacho from '../../images/tacho.png';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import Loading from '../Loading/LoadingComponent';
 
 
 const tab = '\u00A0';
@@ -18,6 +19,8 @@ export default function ActivityCreate () {
     const activities = useSelector(state => state.activities)
 
     useEffect(()=> {
+        dispatch(cleanCountries())
+        setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
     }, [dispatch])
@@ -48,6 +51,7 @@ export default function ActivityCreate () {
         countries: []
     })
 
+    const [isLoading, setIsLoading] = useState(false)
     const[errors, setErrors] = useState({})
 
     function handleChange(e){
@@ -120,6 +124,12 @@ export default function ActivityCreate () {
         })
     }
 
+    if(isLoading) {
+        setTimeout(() => {
+              setIsLoading(false)
+            }, 1300)
+            return <Loading />
+    }
 
     return (
         <div className={s.fondo}>
