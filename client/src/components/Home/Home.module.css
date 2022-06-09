@@ -2,7 +2,7 @@
     background-image: url('../../images/darkmap3.jpg');
     background-size: auto;
     height: 100vh;
-    width:fit-content;
+    width: auto;
 }
 
 .container{
