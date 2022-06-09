@@ -7,7 +7,7 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
-import Loading from '../Loading/Loading'
+import Loading from './LoadingComponent'
 
 
 export default function Home () {
