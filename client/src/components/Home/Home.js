@@ -7,8 +7,8 @@ import s from './Home.module.css';
 import FilterBar from './FilterBar';
 import Pagination from './Pagination'
 import SearchBar from './SearchBar';
-import Loading from '../Loading/Loading';
-import countrynotfound from '../../images/countrynotfound.jpg';
+import Loading from '../Loading/Loading'
+
 
 export default function Home () {
 
