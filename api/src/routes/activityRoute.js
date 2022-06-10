@@ -61,25 +61,26 @@ router.get('/', async (req,res) => {
     }
 })
 
-// router.delete('/', async function (req, res){
-//     const {name} = req.body;
+router.delete('/', async function (req, res){
+    const {name} = req.body;
 
-//     if(!name) return res.status(404).send({
-//         error: "No se recibieron los parámetros necesarios para eliminar una Actividad"
-//       })
+    if(!name) return res.status(404).send({
+        error: "No se recibieron los parámetros necesarios para eliminar una Actividad"
+      })
 
-//     const activityToDestroy = await getActivityByName(name);
-//     if(!activityToDestroy) return res.status(404).send({
-//         error: "No existe Actividad"
-//       })
+    const activityToDestroy = await getActivityByName(name);
+    
+    if(!activityToDestroy) return res.status(404).send({
+        error: "No existe Actividad"
+      })
 
-//     Activity.destroy ({
-//         where:{
-//             name: name
-//         }
-//     })
-//     return res.send({ success: true })
-// })
+    Activity.destroy ({
+        where:{
+            name: name
+        }
+    })
+    return res.send({ success: true })
+})
 
 
 module.exports = router

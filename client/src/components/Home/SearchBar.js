@@ -17,7 +17,6 @@ export default function SearchBar({setCurrentPage, name, setName}){
         document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
     }
 
-
     return(
         <div className={s.all}>   
             <span className={s.search}>

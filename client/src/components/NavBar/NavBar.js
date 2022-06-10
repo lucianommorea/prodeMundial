@@ -14,21 +14,8 @@ export default function NavBar({match}){
                 <span>Countries App  </span>  
             </div>  
 
-            {/* {
-                location.pathname === '/home' ?    
-            <div>
-                <span>  
-                    <Link to= {'/'}> 
-                        <button className={s.btn1}>
-                            Landing Page
-                        </button>
-                    </Link>
-                </span>
-            </div> :
-            null
-            } */}
             {
-                match && !match.isExact ?
+                !match.isExact ?
                 <div>
                     <span>  
                         <Link to= {'/home'} > 
@@ -54,8 +41,7 @@ export default function NavBar({match}){
                     </span>
                 </div>
                 : <div>
-                </div>
-             
+                </div>  
             }
         </div>
     )

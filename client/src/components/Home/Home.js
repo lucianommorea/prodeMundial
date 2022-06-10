@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCountries, getActivities, orderBy, filterByContinent, filterByActivities} from '../../redux/actions/actions';
+import { getCountries, getActivities, orderBy, filterByContinent, filterByActivities, cleanCountries} from '../../redux/actions/actions';
 import CountriesCard from './CountriesCard';
 import s from './Home.module.css';
 import FilterBar from './FilterBar';
@@ -14,18 +14,18 @@ export default function Home () {
 
     const dispatch = useDispatch();
     const allCountries = useSelector((state => state.countries));
-    const [orden, setOrden] = useState('')
-    let [resetChange, setResetChange] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
-    const [countriesPerPage, setCountriesPerPage] = useState(10)
-    const lastIndex = currentPage * countriesPerPage
-    const firstIndex = lastIndex - countriesPerPage
-    const currentCountries = allCountries.slice(firstIndex, lastIndex)
+    const [orden, setOrden] = useState('');
+    let [resetChange, setResetChange] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage, setCountriesPerPage] = useState(10);
+    const lastIndex = currentPage * countriesPerPage;
+    const firstIndex = lastIndex - countriesPerPage;
+    const currentCountries = allCountries.slice(firstIndex, lastIndex);
     const [name, setName] = useState("");
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
-    // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                si van 9 en la primer pag
+    // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                
 
     const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -45,6 +45,7 @@ export default function Home () {
         setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
+        return ()=> dispatch(cleanCountries())
     }, [dispatch]);
 
 
@@ -62,7 +63,7 @@ export default function Home () {
     function handleClickActivity(e){
         e.preventDefault();
         setName('');
-        let filter2 = document.getElementById("thirdSelect").value
+        let filter2 = document.getElementById("thirdSelect").value;
         dispatch(filterByActivities(e.target.value));
         dispatch(orderBy(filter2));
         if(currentCountries) setCurrentPage(1);

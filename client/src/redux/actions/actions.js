@@ -1,5 +1,20 @@
 import axios from 'axios'
 
+export function getCountries(){
+    return async function (dispatch) {
+        try{
+            let allCountries = await axios.get("/countries");
+            return dispatch({
+                type: 'GET_COUNTRIES',
+                payload: allCountries.data
+            })
+        }  
+        catch(error){
+            console.log('Error getCountries' + error)
+        }
+    }
+}
+
 // con fetch y promesas
 
 // export function getCountries(){
@@ -16,9 +31,10 @@ import axios from 'axios'
 
 
 // con axios y promesas
+
 // export function getCountries(){
 //     return function(dispatch){
-//         return axios.get("http://localhost:3001/countries")
+//         return axios.get("/countries")
 //         .then(response => dispatch({
 //                 type: 'GET_COUNTRIES',
 //                 payload: response.data
@@ -26,21 +42,6 @@ import axios from 'axios'
 //         )
 //     }
 // }
-
-export function getCountries(){
-    return async function (dispatch) {
-        try{
-            let allCountries = await axios.get("/countries");
-            return dispatch({
-                type: 'GET_COUNTRIES',
-                payload: allCountries.data
-            })
-        }  
-        catch(error){
-            console.log('Error getCountries' + error)
-        }
-    }
-}
 
 export function getCountryById(id) {
     return async function(dispatch){
@@ -138,3 +139,10 @@ export function cleanCountries(){
         type: 'CLEAN_COUNTRIES'
     }
 }
+
+export function cleanCountryDetail(){
+    return{
+        type: 'CLEAN_COUNTRY_DETAIL'
+    }
+}
+

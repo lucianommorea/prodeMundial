@@ -12,7 +12,7 @@ router.get("/", async function(req, res){
     try {
         if(name){
             const nameCountries = await getCountryByName(name)
-            if(nameCountries !== 0){
+            if(nameCountries.length !== 0){
                 res.status(200).send(nameCountries)
             }
             else{

@@ -2,11 +2,12 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {cleanCountries, getCountryById} from '../../redux/actions/actions';
+import { cleanCountryDetail, getCountryById } from '../../redux/actions/actions';
 import logo from '../../images/info3.png';
 import {Link} from 'react-router-dom';
 import s from './CountryDetail.module.css';
 import Loading from '../Loading/LoadingComponent';
+import NotFound from '../NotFound/NotFound';
 
 export default function Detail(){
 
@@ -16,24 +17,24 @@ export default function Detail(){
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=> {
-        dispatch(cleanCountries())
         setIsLoading(true);
         dispatch(getCountryById(id));
+        return ()=> dispatch(cleanCountryDetail())
     }, [dispatch, id])
 
     function formatNumber(number){
         return new Intl.NumberFormat().format(number)
     }
 
+    if(!detail.id) return <NotFound />
+
     if(isLoading) {
-       
         setTimeout(() => {
               setIsLoading(false)
             }, 1000)
-            return (
-           <Loading />
-           )
-    }
+            return <Loading />
+           
+    }  
 
     return(
         <div className={s.all}>

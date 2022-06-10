@@ -43,20 +43,6 @@ async function getAllActivities() {
     }
 }
 
-// async function getActivityByName(name) {
-//     try {
-//         const activityName = await Activity.findOne({  
-//             where: {
-//                 name: name
-//                 },
-//         include: [Country]          
-//         }) 
-//         return activityName
-//     } catch (error) {
-//         console.log('Error in getActivityByName', error)
-//     }
-// }
-
 
 function getActivityByName(name) {
     try{

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanCountries, getActivities, getCountries, postActivity } from '../../redux/actions/actions';
+import { getActivities, getCountries, postActivity } from '../../redux/actions/actions';
 import { useHistory} from 'react-router-dom';
 import s from './activityCreate.module.css';
 import tacho from '../../images/tacho.png';
@@ -19,7 +19,6 @@ export default function ActivityCreate () {
     const activities = useSelector(state => state.activities)
 
     useEffect(()=> {
-        dispatch(cleanCountries())
         setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
@@ -29,7 +28,7 @@ export default function ActivityCreate () {
         let errors = {}
         if(!input.name) errors.name = 'Activity name is required'
         if(input.name.length > 25) errors.name = 'Activity name must have a maximum of 25 characters'
-        if(input.name && !/^[A-Za-z0-9\s]+$/.test(input.name)) errors.name = 'Name must have only letters numbers and spaces'
+        if(input.name && !/^[A-Za-z0-9\s]+$/.test(input.name)) errors.name = 'Name must have only letters, numbers and spaces'
         let activityExist = activities.filter(a=> a.name.toLowerCase() === input.name.toLowerCase())
         if(activityExist.length > 0) errors.name = 'That activity already exists'
         if(!input.difficult) errors.difficult = 'Choose one'
@@ -133,7 +132,6 @@ export default function ActivityCreate () {
 
     return (
         <div className={s.fondo}>
-            {/* <NavBar /> */}
             <div id={s.rect}>
                 <div id={s.title}>
                     <h1> Create Activity</h1>
