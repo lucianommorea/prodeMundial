@@ -3,14 +3,14 @@ const {Country, Activity} = require('../db');
 const {Op} = require('sequelize')
 
 async function getAllCountries(){
+
+    let countriesDB = await Country.findAll({
+        include: [Activity]
+    })
+
     try{
-        let countriesDB = await Country.findAll({
-            include: [Activity]
-        })
 
-        if(countriesDB.length>0) return countriesDB
-
-        else{
+        if(countriesDB.length === 0) {
 
             let countries = (await axios('https://restcountries.com/v3.1/all')).data.map(country=> ({
                 id: country.cca3,
@@ -24,7 +24,6 @@ async function getAllCountries(){
                 maps: country.maps.googleMaps
             }))
 
-        // await Country.bulkCreate(countries);  
         
         countries.forEach(country =>{
             Country.findOrCreate({
@@ -42,10 +41,13 @@ async function getAllCountries(){
                 }
             })
         })
+        countriesDB = await Country.findAll({
+            include: [Activity]
+        })
+        };
+        return countriesDB
     }
-        
-        console.log("Countries loaded in DB correctly")
-    } 
+    
     catch (error){
         console.log('Error in getAllCountries', error)
     }

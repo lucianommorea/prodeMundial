@@ -2,15 +2,14 @@
     background-image: url('../../images/darkmap3.jpg');
     background-size: cover;
     height: 100vh;
-    width:fit-content;
+    width: fit-content;
 }
 
 .container{
     /* border: red solid 2px; */
-    max-width: 1520px;
     position: relative;
-    top: 60px;
-    margin: auto;
+    padding-top: 60px;
+    justify-content: center;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -29,7 +28,7 @@
     right: 20px;
     height: min-content;
     display: grid;
-    grid-gap: 28px;
+    grid-gap: 22px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     align-items: center;
@@ -48,16 +47,36 @@
     color: #c0c0c0;
 }
 
-@media screen and (max-width: 1700px){
+@media screen and (min-width: 1750px) {
+    .container .cards{
+        /* border: white solid 5px; */
+        margin-left: 50px;
+        margin-top: 25px;
+        right: 20px;
+        height: min-content;
+        display: grid;
+        grid-gap: 40px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+    }
+}
+@media screen and (min-width: 1520px) {
     .all {
-        height: 145vh;
+        background-size: auto;
+        width: 100%;
     }
 }
 
-@media screen and (max-width: 1510px){
+@media screen and (min-height: 720px){
+    .all {
+        height: 100vh;
+    }
+}
+@media screen and (max-width: 1495px){
     .all {
         background-size: auto;
-        height: 62rem;
+        height: fit-content;
     }
     .container .cards{
         margin-left: 20px;
@@ -67,9 +86,6 @@
 }
 
 @media screen and (max-width: 1260px){
-    .all {
-        height: 79rem;
-    }
     .container .cards{
         margin-left: 15px;
         margin-top: 5px;
@@ -78,9 +94,6 @@
 }
 
 @media screen and (max-width: 1000px){
-    .all {
-        height: 96.5rem;
-    }
     .container .cards{
         margin-left: 10px;
         margin-top: 5px;
@@ -89,9 +102,7 @@
 }
 
 @media screen and (max-width: 680px){
-    .all{
-        height: 1650px;
-    }
+
     .horizontal{
         flex-direction: column;
     }

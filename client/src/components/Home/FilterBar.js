@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import s from './FilterBar.module.css'
+import s from './FilterBar.module.css';
 
 
 export default function FilterBar({handleClickActivity, handleClickReset, handleClickFilter, handleClickContinent}) {
@@ -52,7 +52,6 @@ export default function FilterBar({handleClickActivity, handleClickReset, handle
             <div className={s.btn}>
                 <button onClick={e=> handleClickReset(e)}>Reset filters</button>
             </div>
-            
         </div>
     )
 }
