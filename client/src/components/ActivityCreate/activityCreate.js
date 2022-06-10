@@ -51,7 +51,7 @@ export default function ActivityCreate () {
     })
 
     const [isLoading, setIsLoading] = useState(false)
-    const[errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({})
 
     function handleChange(e){
         setInput({

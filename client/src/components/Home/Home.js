@@ -48,7 +48,6 @@ export default function Home () {
         return ()=> dispatch(cleanCountries())
     }, [dispatch]);
 
-
     function handleClickContinent(e){
         e.preventDefault()
         setName('');
@@ -83,6 +82,7 @@ export default function Home () {
         document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("thirdSelect").getElementsByTagName('option')[0].selected = 'selected';
+        setCurrentPage(1);
         setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
 

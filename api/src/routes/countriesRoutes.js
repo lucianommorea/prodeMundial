@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllCountriesFromDB, getCountryByName } = require('../controllers/countriesControllers')
+const { getAllCountries, getCountryByName } = require('../controllers/countriesControllers')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -20,7 +20,7 @@ router.get("/", async function(req, res){
             }
         }
         else{
-            const allCountries = await getAllCountriesFromDB()
+            const allCountries = await getAllCountries()
             if(allCountries){
                 res.status(200).send(allCountries)         
             }

@@ -4,6 +4,14 @@ const {Op} = require('sequelize')
 
 async function getAllCountries(){
     try{
+        let countriesDB = await Country.findAll({
+            include: [Activity]
+        })
+
+        if(countriesDB.length>0) return countriesDB
+
+        else{
+
             let countries = (await axios('https://restcountries.com/v3.1/all')).data.map(country=> ({
                 id: country.cca3,
                 name: country.name.common,
@@ -34,6 +42,7 @@ async function getAllCountries(){
                 }
             })
         })
+    }
         
         console.log("Countries loaded in DB correctly")
     } 
@@ -42,17 +51,17 @@ async function getAllCountries(){
     }
 }
 
-async function getAllCountriesFromDB() {
-    try{
-        let countriesDB = await Country.findAll({
-            include: [Activity]
-        })
-        return countriesDB
-    }
-    catch(error) {
-       console.log('Error in getAllCountriesFromDB', error)
-    }
-}
+// async function getAllCountriesFromDB() {
+//     try{
+//         let countriesDB = await Country.findAll({
+//             include: [Activity]
+//         })
+//         return countriesDB
+//     }
+//     catch(error) {
+//        console.log('Error in getAllCountriesFromDB', error)
+//     }
+// }
 
 async function getCountryByName(name) {
     try {
@@ -71,6 +80,6 @@ async function getCountryByName(name) {
 
 module.exports = {
     getAllCountries,
-    getAllCountriesFromDB,
+    // getAllCountriesFromDB,
     getCountryByName
 }

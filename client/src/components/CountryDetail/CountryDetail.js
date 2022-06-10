@@ -32,8 +32,7 @@ export default function Detail(){
         setTimeout(() => {
               setIsLoading(false)
             }, 1000)
-            return <Loading />
-           
+            return <Loading />     
     }  
 
     return(

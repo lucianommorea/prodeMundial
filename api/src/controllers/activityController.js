@@ -21,15 +21,6 @@ async function postActivity(name, difficult, duration, season, countries) {
         }
     }
 
-async function deleteActivity(name){
-    let activityDeleted = await Activity.findOne({
-        where:{
-            name: name
-        }
-    })
-    return activityDeleted
-}
-
 
 async function getAllActivities() {    
    try{
@@ -65,6 +56,5 @@ function getActivityByName(name) {
 module.exports = {
     postActivity,
     getAllActivities,
-    getActivityByName,
-    deleteActivity
+    getActivityByName
 }
