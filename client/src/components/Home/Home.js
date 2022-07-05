@@ -23,6 +23,7 @@ export default function Home () {
     const currentCountries = allCountries.slice(firstIndex, lastIndex);
     const [name, setName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [second, setSecond] = useState(false)
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                
@@ -42,6 +43,7 @@ export default function Home () {
     }
 
     useEffect(()=> {
+        setSecond(true)
         setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
@@ -87,10 +89,10 @@ export default function Home () {
         setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
 
-    if(isLoading) {
-    // setTimeout(() => {
-    //       setIsLoading(false)
-    //     }, 1300)
+    if(second) {
+    setTimeout(() => {
+          setSecond(false)
+        }, 1300)
         return <Loading />
    }
 
