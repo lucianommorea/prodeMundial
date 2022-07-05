@@ -45,6 +45,7 @@ export default function Home () {
         setIsLoading(true);
         dispatch(getCountries());
         dispatch(getActivities());
+        setIsLoading(false)
         return ()=> dispatch(cleanCountries())
     }, [dispatch]);
 
@@ -87,9 +88,9 @@ export default function Home () {
     }
 
     if(isLoading) {
-    setTimeout(() => {
-          setIsLoading(false)
-        }, 1300)
+    // setTimeout(() => {
+    //       setIsLoading(false)
+    //     }, 1300)
         return <Loading />
    }
 

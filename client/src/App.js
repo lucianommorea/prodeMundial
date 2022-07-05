@@ -11,7 +11,7 @@ import NotFound from './components/NotFound/NotFound';
 function App() {
   return (
     <div>
-      <Switch>
+      <Switch> 
       <Route exact path={'/'} component={LandingPage} />    
       <Route exact path={'/home'} component={Home} />
       <Route exact path={'/home/country/:id'} component={Detail} />
