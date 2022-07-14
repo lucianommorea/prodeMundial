@@ -126,7 +126,7 @@ export default function ActivityCreate () {
     if(isLoading) {
         setTimeout(() => {
               setIsLoading(false)
-            }, 1300)
+            }, 1000)
             return <Loading />
     }
 
