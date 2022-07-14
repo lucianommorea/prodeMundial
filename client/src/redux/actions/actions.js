@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-export function getCountries(){
+export function getCountries(setisLoading){
     return async function (dispatch) {
         try{
             let allCountries = await axios.get("/countries");
-            return dispatch({
+            dispatch({
                 type: 'GET_COUNTRIES',
                 payload: allCountries.data
             })
+            setisLoading(false)
         }  
         catch(error){
             console.log('Error getCountries' + error)

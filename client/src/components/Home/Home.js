@@ -23,7 +23,7 @@ export default function Home () {
     const currentCountries = allCountries.slice(firstIndex, lastIndex);
     const [name, setName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [second, setSecond] = useState(false)
+    // const [second, setSecond] = useState(false)
 
     // const lastIndex = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1
     // const firstIndex = currentPage === 1 ? 0 : lastIndex - countriesPerPage                
@@ -43,11 +43,10 @@ export default function Home () {
     }
 
     useEffect(()=> {
-        setSecond(true)
+        // setSecond(true)
         setIsLoading(true);
-        dispatch(getCountries());
+        dispatch(getCountries(setIsLoading));
         dispatch(getActivities());
-        setIsLoading(false)
         return ()=> dispatch(cleanCountries())
     }, [dispatch]);
 
@@ -80,7 +79,7 @@ export default function Home () {
 
     function handleClickReset(e){
         e.preventDefault();
-        dispatch(getCountries());
+        dispatch(getCountries(setIsLoading));
         setName('');
         document.getElementById("firstSelect").getElementsByTagName('option')[0].selected = 'selected';
         document.getElementById("secondSelect").getElementsByTagName('option')[0].selected = 'selected';
@@ -89,10 +88,15 @@ export default function Home () {
         setResetChange(resetChange = resetChange === 0 ? resetChange = 1 : resetChange = 0);
     }
 
-    if(second) {
-    setTimeout(() => {
-          setSecond(false)
-        }, 1300)
+//     if(second) {
+//     setTimeout(() => {
+//           setSecond(false)
+//         }, 1300)
+//         return <Loading />
+//    }
+
+
+    if(isLoading) {
         return <Loading />
    }
 
