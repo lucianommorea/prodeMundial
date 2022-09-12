@@ -1,0 +1,39 @@
+.all {
+    background-color: #6C1D45;
+    min-height: 100vh;
+    /* background-size: cover; */
+    /* opacity: 0.8; */
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    
+}
+
+.filterbar {
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 40px;
+    text-align: center;
+}
+
+h2 {
+    color: goldenrod;
+    height: 100%;
+}
+
+
+@media screen and (max-width: 600px) {
+    .all {
+        width: 100%;
+    }
+}

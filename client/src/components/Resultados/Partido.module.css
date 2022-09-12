@@ -1,0 +1,79 @@
+.all {
+    display: grid;
+    grid-template-columns: 6fr 3fr 10fr 2fr 7fr 3fr 3fr 7fr 2fr;
+    width: 100%;
+    font-size: 11px;
+    border-radius: 0.5vw;
+    margin-top: 3px;
+    padding: 5px;
+    background-color: rgb(239, 177, 177);
+    /* font-family: 'Montserrat', sans-serif; */
+}
+
+.team {
+    flex-direction: column;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid red */
+}
+
+.hour {
+    display: flex;
+    justify-content: center;
+}
+
+.stadium {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.flag {
+    border-radius: 10%;
+    border-radius: 0.3vw;
+    width: 30px;
+    height: 22px;
+    align-self: center;
+}
+
+.team1 {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 0.7vw;
+}
+
+.team2 {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.7vw;
+}
+
+.input {
+    width: 45px;
+    border-radius: 0.5vw;
+    border: 1px solid rgb(178, 91, 91);
+}
+
+.goals {
+    display: flex;
+    border: none;
+}
+
+.button {
+    /* background-color: #2e7d32;
+    border: 1px solid rgb(23, 102, 23); */
+    width: 28px;
+    height: 28px;
+    margin: auto
+}
+
+.button:hover {
+    cursor: pointer
+}
+
+.none {
+    visibility: hidden;
+}

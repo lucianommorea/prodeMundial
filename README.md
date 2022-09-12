@@ -1,8 +1,8 @@
 # Countries App - Proyecto Individual Henry
 
-<img src='./client/src/images/PICountries1.png' width='33%'/>
+<!-- <img src='./client/src/images/PICountries1.png' width='33%'/>
 <img src='./client/src/images/PICountries2.png' width='33%'/>
-<img src='./client/src/images/PICountries3.png' width='33%'/>
+<img src='./client/src/images/PICountries3.png' width='33%'/> -->
 
 ## Introducción
 

@@ -1,11 +1,6 @@
-import reducer from "../reducer/reducer";
-import {createStore, applyMiddleware} from 'redux'
-import thunk from 'redux-thunk'
-import {composeWithDevTools} from 'redux-devtools-extension'
+import rootReducer from '../reducer/index'                           // reducer se encarga de filtrar las peticiones de las acciones
+import { configureStore } from '@reduxjs/toolkit'
 
-const store = createStore(
-    reducer, 
-    composeWithDevTools(applyMiddleware(thunk))
-)
+const store = configureStore({ reducer: rootReducer })
 
-export default store
+export default store;
