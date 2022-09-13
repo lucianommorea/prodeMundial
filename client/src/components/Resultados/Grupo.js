@@ -86,7 +86,68 @@ function Grupo({group}) {
         }
         {/* <Partido idGame={idGame}/> */}
       </div>
-
+      <div className={style.buttons}>
+          { group === 'A' &&
+          <div>      
+            <button className={style.hidden}>  </button>
+            <button className={style.next}> Ir a Grupo B </button>
+          </div> }
+          { group === 'B' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo A </button>
+            <button className={style.next}> Ir a Grupo C </button>
+          </div> }       
+          { group === 'C' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo B </button>
+            <button className={style.next}> Ir a Grupo D </button>
+          </div> }      
+          { group === 'D' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo C </button>
+            <button className={style.next}> Ir a Grupo E </button>
+          </div> }   
+          { group === 'E' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo D </button>
+            <button className={style.next}> Ir a Grupo F </button>
+          </div> }     
+          { group === 'F' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo E </button>
+            <button className={style.next}> Ir a Grupo G </button>
+          </div> }    
+          { group === 'G' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo F </button>
+            <button className={style.next}> Ir a Grupo H </button>
+          </div> }   
+          { group === 'H' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo G </button>
+            <button className={style.next}> Ir a Grupo H  </button>
+          </div> }   
+          { group === 'Octavos de Final' &&
+          <div>      
+            <button className={style.prev}> Ir a Grupo H </button>
+            <button className={style.next}> Ir a Cuartos de Final  </button>
+          </div> }   
+          { group === 'Cuartos de Final' &&
+          <div>      
+            <button className={style.prev}> Ir a Octavos de Final </button>
+            <button className={style.next}> Ir a Semifinales  </button>
+          </div> }   
+          { group === 'Semifinales' &&
+          <div>      
+            <button className={style.prev}> Ir a Cuartos de Final </button>
+            <button className={style.next}> Ir a Final y Tercer Puesto  </button>
+          </div> }  
+          { group === 'Final y Tercer Puesto' &&
+          <div>      
+            <button className={style.prev}> Ir a Semifinales </button>
+            <button className={style.hidden}>  </button>
+          </div> }  
+      </div>
      
        
 

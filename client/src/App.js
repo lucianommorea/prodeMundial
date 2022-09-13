@@ -3,6 +3,7 @@ import MisPronosticos from "./components/MisPronosticos/MisPronosticos";
 import Headerlogin from "./components/NavBar/HeaderLogin";
 import Landing from "./components/Landing/Landing";
 import Resultados from "./components/Resultados/Resultados";
+import './App.css';
 
 //importacion de páginas
 

@@ -22,13 +22,14 @@ function Partido({id, date, hour, stadium, img1, team1, team2, img2, localResult
             ...goals,
             localResult: e.target.value
         })
-        if(e.target.value === '' || goals.awayResult === null){
+        if(e.target.value === '' || goals.awayResult === ''){
             const resultado1 = {
                 id: id,
                 localResult: null,
                 awayResult: null
             }
             dispatch(putGameResult(resultado1, setIsModify))
+            console.log(resultado1)
         }
         else {
             const resultado = {
@@ -37,7 +38,7 @@ function Partido({id, date, hour, stadium, img1, team1, team2, img2, localResult
                 awayResult: goals.awayResult
             }
             dispatch(putGameResult(resultado, setIsModify))
-            console.log('send')
+            console.log(resultado)
         }
     }
 
@@ -47,13 +48,14 @@ function Partido({id, date, hour, stadium, img1, team1, team2, img2, localResult
             ...goals,
             awayResult: e.target.value
         })
-        if(e.target.value === '' || goals.localResult === null){
+        if(e.target.value === '' || goals.localResult === ''){
             const resultado1 = {
                 id: id,
                 localResult: null,
                 awayResult: null
             }
             dispatch(putGameResult(resultado1, setIsModify))
+            console.log(resultado1)
         }
         else {
             const resultado = {
@@ -62,7 +64,7 @@ function Partido({id, date, hour, stadium, img1, team1, team2, img2, localResult
                 awayResult: e.target.value
             }
             dispatch(putGameResult(resultado, setIsModify))
-            console.log('send')
+            console.log(resultado)
         }
     }
 
