@@ -1,8 +1,14 @@
 .all {
     display: grid;
-    grid-template-columns: 6fr 3fr 10fr 2fr 7fr 3fr 3fr 7fr 2fr;
+    grid-template-columns: 4.5fr 3fr 9fr 2fr 7fr 3.5fr 3.5fr 7fr 2fr;
     width: 100%;
     font-size: 12px;
+    border-radius: 0.5vw;
+    margin-top: 3px;
+    padding: 5px;
+    background-color: rgb(239, 177, 177);
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
 }
 
 .team {
@@ -28,6 +34,7 @@
 
 .flag {
     border-radius: 10%;
+    border-radius: 0.3vw;
     width: 30px;
     height: 22px;
     align-self: center;
@@ -45,12 +52,27 @@
     margin-right: 0.7vw;
 }
 
-.input {
-    width: 45px;
+.input1 {
+    width: 40px;
+    border-radius: 0.5vw;
+    border: 1px solid rgb(178, 91, 91);
+    margin-right: 2px;
+    margin-left: auto;
+
+}
+
+.input2 {
+    width: 40px;
+    border-radius: 0.5vw;
+    border: 1px solid rgb(178, 91, 91);
+    margin-left: 2px;
+    margin-right: auto;
 }
 
 .goals {
     display: flex;
+    border: none;
+    justify-items: flex-start;
 }
 
 .button {

@@ -5,19 +5,45 @@ import style from './Grupo.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGroupTeams, getGroupGames } from '../../redux/actions'
 
-function Grupo({group}) {
+function Grupo({group, setGroup}) {
 
   const games = useSelector(state=> state.games);
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
-  const teams = useSelector(state=> state.teams);
+  // const teams = useSelector(state=> state.teams);
 
   useEffect(() => {
     dispatch(getGroupGames(group));
     dispatch(getGroupTeams(group));
   }, [dispatch, group, isModify])
 
+  function toNextGroup() {
+    if(group === "A") setGroup("B");
+    if(group === "B") setGroup("C");
+    if(group === "C") setGroup("D");
+    if(group === "D") setGroup("E");
+    if(group === "E") setGroup("F");
+    if(group === "F") setGroup("G");
+    if(group === "G") setGroup("H");
+    if(group === "H") setGroup("Octavos de Final");
+    if(group === "Octavos de Final") setGroup("Cuartos de Final");
+    if(group === "Cuartos de Final") setGroup("Semifinales");
+    if(group === "Semifinales") setGroup("Final y Tercer Puesto");
+  }
 
+  function toPrevGroup() {
+    if(group === "B") setGroup("A");
+    if(group === "C") setGroup("B");
+    if(group === "D") setGroup("C");
+    if(group === "E") setGroup("D");
+    if(group === "F") setGroup("E");
+    if(group === "G") setGroup("F");
+    if(group === "H") setGroup("G");
+    if(group === "Octavos de Final") setGroup("H");
+    if(group === "Cuartos de Final") setGroup("Octavos de Final");
+    if(group === "Semifinales") setGroup("Cuartos de Final");
+    if(group === "Final y Tercer Puesto") setGroup("Semifinales");
+  }
 
   return (
     <div className={style.all}>
@@ -71,6 +97,8 @@ function Grupo({group}) {
                       date={game.date.slice(0,10)} 
                       hour={game.date.slice(11,16)}
                       stadium={game.stadium}
+                      group={game.group}
+                      penalties={game.penalties}
                       img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                       // img1={game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img}
                       team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
@@ -90,61 +118,61 @@ function Grupo({group}) {
           { group === 'A' &&
           <div>      
             <button className={style.hidden}>  </button>
-            <button className={style.next}> Ir a Grupo B </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo B </button>
           </div> }
           { group === 'B' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo A </button>
-            <button className={style.next}> Ir a Grupo C </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo A </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo C </button>
           </div> }       
           { group === 'C' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo B </button>
-            <button className={style.next}> Ir a Grupo D </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo B </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo D </button>
           </div> }      
           { group === 'D' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo C </button>
-            <button className={style.next}> Ir a Grupo E </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo C </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo E </button>
           </div> }   
           { group === 'E' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo D </button>
-            <button className={style.next}> Ir a Grupo F </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo D </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo F </button>
           </div> }     
           { group === 'F' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo E </button>
-            <button className={style.next}> Ir a Grupo G </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo E </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo G </button>
           </div> }    
           { group === 'G' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo F </button>
-            <button className={style.next}> Ir a Grupo H </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo F </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo H </button>
           </div> }   
           { group === 'H' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo G </button>
-            <button className={style.next}> Ir a Grupo H  </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo G </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Grupo H  </button>
           </div> }   
           { group === 'Octavos de Final' &&
           <div>      
-            <button className={style.prev}> Ir a Grupo H </button>
-            <button className={style.next}> Ir a Cuartos de Final  </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo H </button>
+            <button className={style.next} onClick={toNextGroup}> Ir a Cuartos de Final  </button>
           </div> }   
           { group === 'Cuartos de Final' &&
           <div>      
-            <button className={style.prev}> Ir a Octavos de Final </button>
-            <button className={style.next}> Ir a Semifinales  </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir a Octavos de Final </button>
+            <button className={style.next} onClick={toNextGroup}> Ir a Semifinales  </button>
           </div> }   
           { group === 'Semifinales' &&
           <div>      
-            <button className={style.prev}> Ir a Cuartos de Final </button>
-            <button className={style.next}> Ir a Final y Tercer Puesto  </button>
+            <button className={style.prev} onClick={toPrevGroup}> Ir a Cuartos de Final </button>
+            <button className={style.next} onClick={toNextGroup}> Ir a Final y Tercer Puesto  </button>
           </div> }  
           { group === 'Final y Tercer Puesto' &&
-          <div>      
-            <button className={style.prev}> Ir a Semifinales </button>
+          <div >      
+            <button className={style.prev} onClick={toPrevGroup}> Ir a Semifinales </button>
             <button className={style.hidden}>  </button>
           </div> }  
       </div>

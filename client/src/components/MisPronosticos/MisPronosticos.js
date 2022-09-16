@@ -1,52 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grupo from './Grupo';
 import style from './MisPronosticos.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../Loading/LoadingComponent';
 
 function MisPronosticos() {
 
   const [group, setGroup] = useState('A');
+ 
+  const userInfo = useSelector(state=> state.user);
+  let [isModify, setIsModify] = useState(false);
+
+  console.log(userInfo)
+  console.log(userInfo.points)
+  console.log(userInfo.totalPoints)
 
   const handleChangeGroup = (e) => {
     setGroup(e.target.value);
   };
 
+  useEffect(() => {
+  }, [userInfo.points])
+  
 
-  return (
-    <div className={style.all}>
-      <div className={style.page}>
-        <div className={style.filterbar}>
-              
-              {/* <select className={style.select} value={sort} onChange={handleSort}>
-                <option value="points-desc">Teach Points</option>
-                <option value="points-asc">Teach Points ascendente</option>
-                <option value="answ-desc">Respuestas</option>
-                <option value="answ-asc">Respuestas ascendente</option>
-                <option value="quest-desc">Preguntas</option>
-                <option value="quest-asc">Preguntas ascendente</option>
-              </select> */}
 
-              <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
-                  <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
-                  <Select value={group} sx={{color: 'whitesmoke'}} label="Grupo" onChange={handleChangeGroup}>
-                    <MenuItem value="A">Grupo A</MenuItem>
-                    <MenuItem value="B">Grupo B</MenuItem>
-                    <MenuItem value="C">Grupo C</MenuItem>
-                    <MenuItem value="D">Grupo D</MenuItem>
-                    <MenuItem value="E">Grupo E</MenuItem>
-                    <MenuItem value="F">Grupo F</MenuItem>
-                    <MenuItem value="G">Grupo G</MenuItem>
-                    <MenuItem value="H">Grupo H</MenuItem>
-                  </Select>
-              </FormControl>
+    return (
+      <div className={style.all}>
+        <div className={style.page}>
+          <div className={style.filterbar}>
+
+                <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
+                    <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
+                    <Select value={group} sx={{color: 'whitesmoke'}} label="Grupo" onChange={handleChangeGroup}>
+                      <MenuItem value="A">Grupo A</MenuItem>
+                      <MenuItem value="B">Grupo B</MenuItem>
+                      <MenuItem value="C">Grupo C</MenuItem>
+                      <MenuItem value="D">Grupo D</MenuItem>
+                      <MenuItem value="E">Grupo E</MenuItem>
+                      <MenuItem value="F">Grupo F</MenuItem>
+                      <MenuItem value="G">Grupo G</MenuItem>
+                      <MenuItem value="H">Grupo H</MenuItem>
+                      <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
+                      <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
+                      <MenuItem value="Semifinales">Semifinales</MenuItem>
+                      <MenuItem value="Final y Tercer Puesto">Final y 3er Puesto</MenuItem>
+                    </Select>
+                </FormControl>
+          </div>
+          <div className={style.title}>
+            {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
+            group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
+            <h2> Grupo {group}</h2> :
+            <h2> {group} </h2>
+            }
+          </div>
+          <Grupo group={group} setGroup={setGroup} userInfo={userInfo}/>
         </div>
-        <div className={style.title}>
-          <h2> Grupo {group}</h2>
-        </div>
-        <Grupo group={group}/>
       </div>
-    </div>
-  )
+    )
+  
 }
 
 export default MisPronosticos

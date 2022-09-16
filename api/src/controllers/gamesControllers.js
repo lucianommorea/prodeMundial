@@ -160,6 +160,91 @@ async function putAwayTeamGame(id, away) {
   }
 }
 
+async function putGamePenalties(id, penalties) {
+  
+  try {
+      let game = await Game.findOne({
+        where: {
+            id: id
+        }
+      });
+
+      if (game.id === 49) {
+        if(penalties === 'local') putLocalTeamGame(58, game.local);
+        if(penalties === 'away') putLocalTeamGame(58, game.away);
+      }
+      if (game.id === 50) {
+        if(penalties === 'local') putAwayTeamGame(58, game.local);
+        if(penalties === 'away') putAwayTeamGame(58, game.away);
+      }
+      if (game.id === 51) {
+        if(penalties === 'local') putLocalTeamGame(60, game.local);
+        if(penalties === 'away') putLocalTeamGame(60, game.away);
+      }
+      if (game.id === 52) {
+        if(penalties === 'local') putAwayTeamGame(60, game.local);
+        if(penalties === 'away') putAwayTeamGame(60, game.away);
+      }
+      if (game.id === 53) {
+        if(penalties === 'local') putLocalTeamGame(57, game.local);
+        if(penalties === 'away') putLocalTeamGame(57, game.away);
+      }
+      if (game.id === 54) {
+        if(penalties === 'local') putAwayTeamGame(57, game.local);
+        if(penalties === 'away') putAwayTeamGame(57, game.away);
+      }
+      if (game.id === 55 ) {
+        if(penalties === 'local') putLocalTeamGame(59, game.local);
+        if(penalties === 'away') putLocalTeamGame(59, game.away);
+      }
+      if (game.id === 56) {
+        if(penalties === 'local') putAwayTeamGame(59, game.local);
+        if(penalties === 'away') putAwayTeamGame(59, game.away);
+      }
+      if (game.id === 57) {
+        if(penalties === 'local') putLocalTeamGame(61, game.local);
+        if(penalties === 'away') putLocalTeamGame(61, game.away);
+      }
+      if (game.id === 58) {
+        if(penalties === 'local') putAwayTeamGame(61, game.local);
+        if(penalties === 'away') putAwayTeamGame(61, game.away);
+      }
+      if (game.id === 59) {
+        if(penalties === 'local') putLocalTeamGame(62, game.local);
+        if(penalties === 'away') putLocalTeamGame(62, game.away);
+      }
+      if (game.id === 60) {
+        if(penalties === 'local') putAwayTeamGame(62, game.local);
+        if(penalties === 'away') putAwayTeamGame(62, game.away);
+      }
+      if (game.id === 61) {
+        if(penalties === 'local') {
+          putLocalTeamGame(63, game.away);
+          putLocalTeamGame(64, game.local);
+        }
+        if(penalties === 'away') {
+          putLocalTeamGame(63, game.local);
+          putLocalTeamGame(64, game.away);
+        }
+      }
+      if (game.id === 62) {
+        if(penalties === 'local') {
+          putAwayTeamGame(63, game.away);
+          putAwayTeamGame(64, game.local);
+        }
+        if(penalties === 'away') {
+          putAwayTeamGame(63, game.local);
+          putAwayTeamGame(64, game.away);
+        }
+      }
+
+      await game.update({penalties: penalties})
+    }
+    catch (error) {
+      console.log('Error putGamePenalties', error)
+  }
+}
+
 async function putGameResult(id, localGoals, awayGoals) {
   
     try {
@@ -177,20 +262,16 @@ async function putGameResult(id, localGoals, awayGoals) {
           },
             order: [
               ['points', 'DESC'],
+              ['difGoals', 'DESC'],
+              ['goalsF', 'DESC'],
+              ['goalsC', 'DESC'],
+              ['id', 'DESC'],
             ],  
         })
 
         if(game.group === 'A' || game.group === 'B' || game.group === 'C' || game.group === 'D' || 
            game.group === 'E' || game.group === 'F' || game.group === 'G' || game.group === 'H') {
 
-            // if (localGoals === null || awayGoals === null) {
-            //   await game.update({localResult: null, awayResult: null})
-              // await putTeam(game.local, null, null, game.position)
-              // await putTeam(game.away, null, null, game.position)
-              // await updateGoals(game.local)
-              // await updateGoals(game.away)
-              // await putUsersPoints(id, null, null)
-            // }
             if (localGoals === null || awayGoals === null) {
               if(prevAwayResult === null || prevLocalResult === null) return 
             }
@@ -209,6 +290,10 @@ async function putGameResult(id, localGoals, awayGoals) {
               },
                 order: [
                   ['points', 'DESC'],
+                  ['difGoals', 'DESC'],
+                  ['goalsF', 'DESC'],
+                  ['goalsC', 'DESC'],
+                  ['id', 'DESC'],
                 ],  
             })
     
@@ -228,14 +313,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game49.local !== teams[0].id) {
                   putLocalTeamGame(49, teams[0].id);
                   putGameResult(49, null, null);
-                  putGameResult(58, null, null);
-                  putLocalTeamGame(58, null);
-                  putGameResult(61, null, null);
-                  putAwayTeamGame(61, null);
-                  putGameResult(63, null, null);
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putLocalTeamGame(64, null);
                 }
 
                 let game52 = await Game.findOne({
@@ -247,14 +324,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game52.away !== teams[1].id) {
                   putAwayTeamGame(52, teams[1].id)
                   putGameResult(52, null, null);
-                  putGameResult(60, null, null);
-                  putAwayTeamGame(60, null);
-                  putGameResult(62, null, null);
-                  putAwayTeamGame(62, null);
-                  putGameResult(63, null, null);
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putAwayTeamGame(64, null);
                 }
               }
               if (game.group === 'B') {
@@ -267,14 +336,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game52.local !== teams[0].id) {
                   putLocalTeamGame(52, teams[0].id);
                   putGameResult(52, null, null);
-                  putGameResult(60, null, null);
-                  putAwayTeamGame(60, null);
-                  putGameResult(62, null, null);
-                  putAwayTeamGame(62, null);
-                  putGameResult(63, null, null);
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putAwayTeamGame(64, null);
                 }
 
                 let game49 = await Game.findOne({
@@ -286,15 +347,7 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game49.away !== teams[1].id) {
                   putAwayTeamGame(49, teams[1].id)
-                  putGameResult(49, null, null);
-                  putGameResult(58, null, null);
-                  putLocalTeamGame(58, null);
-                  putGameResult(61, null, null);
-                  putAwayTeamGame(61, null);
-                  putGameResult(63, null, null);
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putLocalTeamGame(64, null);                  
+                  putGameResult(49, null, null);               
                 }
               }
 
@@ -310,14 +363,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game50.local !== teams[0].id) {
                   putLocalTeamGame(50, teams[0].id);
                   putGameResult(50, null, null)
-                  putGameResult(58, null, null)
-                  putAwayTeamGame(58, null);
-                  putGameResult(61, null, null)
-                  putAwayTeamGame(61, null);
-                  putGameResult(63, null, null)
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putLocalTeamGame(64, null);
                 }
 
                 let game51 = await Game.findOne({
@@ -329,15 +374,7 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game51.away !== teams[1].id) {
                   putAwayTeamGame(51, teams[1].id)
-                  putGameResult(51, null, null)
-                  putGameResult(60, null, null)
-                  putLocalTeamGame(60, null);
-                  putGameResult(62, null, null)
-                  putAwayTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null); 
+                  putGameResult(51, null, null) 
                 }
               }
               if (game.group === 'D') {
@@ -352,14 +389,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game51.local !== teams[0].id) {
                   putLocalTeamGame(51, teams[0].id);
                   putGameResult(51, null, null)
-                  putGameResult(60, null, null)
-                  putLocalTeamGame(60, null);
-                  putGameResult(62, null, null)
-                  putAwayTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null);      
                 }
 
                 let game50 = await Game.findOne({
@@ -372,14 +401,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game50.away !== teams[1].id) {
                   putAwayTeamGame(50, teams[1].id)
                   putGameResult(50, null, null)
-                  putGameResult(58, null, null)
-                  putAwayTeamGame(58, null);
-                  putGameResult(61, null, null)
-                  putAwayTeamGame(61, null);
-                  putGameResult(63, null, null)
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putLocalTeamGame(64, null);
                 }
 
               }
@@ -395,14 +416,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game53.local !== teams[0].id) {
                   putLocalTeamGame(53, teams[0].id);
                   putGameResult(53, null, null)
-                  putGameResult(57, null, null)
-                  putLocalTeamGame(57, null)
-                  putGameResult(61, null, null)
-                  putLocalTeamGame(61, null);
-                  putGameResult(63, null, null)
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putLocalTeamGame(64, null);
                 }
 
                 let game55 = await Game.findOne({
@@ -415,14 +428,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game55.away !== teams[1].id) {
                   putAwayTeamGame(55, teams[1].id)
                   putGameResult(55, null, null)
-                  putGameResult(59, null, null)
-                  putLocalTeamGame(59, null);
-                  putGameResult(62, null, null)
-                  putLocalTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null);
                 }
               }
 
@@ -438,14 +443,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game55.local !== teams[0].id) {
                   putLocalTeamGame(55, teams[0].id);
                   putGameResult(55, null, null)
-                  putGameResult(59, null, null)
-                  putLocalTeamGame(59, null);
-                  putGameResult(62, null, null)
-                  putLocalTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null);
                 }
 
                 let game53 = await Game.findOne({
@@ -458,14 +455,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game53.away !== teams[1].id) {
                   putAwayTeamGame(53, teams[1].id)
                   putGameResult(53, null, null)
-                  putGameResult(57, null, null)
-                  putLocalTeamGame(57, null)
-                  putGameResult(61, null, null)
-                  putLocalTeamGame(61, null);
-                  putGameResult(63, null, null)
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putLocalTeamGame(64, null);
                 }
 
               }
@@ -481,14 +470,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game54.local !== teams[0].id) {
                   putLocalTeamGame(54, teams[0].id);
                   putGameResult(54, null, null);
-                  putGameResult(57, null, null);
-                  putAwayTeamGame(57, null);
-                  putGameResult(61, null, null);
-                  putLocalTeamGame(61, null);
-                  putGameResult(63, null, null);
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putLocalTeamGame(64, null);
                 }
 
                 let game56 = await Game.findOne({
@@ -501,14 +482,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game56.away !== teams[1].id) {
                   putAwayTeamGame(56, teams[1].id)
                   putGameResult(56, null, null)
-                  putGameResult(59, null, null)
-                  putAwayTeamGame(59, null);
-                  putGameResult(62, null, null)
-                  putLocalTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null);
                 }
 
               }
@@ -524,14 +497,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game56.local !== teams[0].id) {
                   putLocalTeamGame(56, teams[0].id);
                   putGameResult(56, null, null)
-                  putGameResult(59, null, null)
-                  putAwayTeamGame(59, null);
-                  putGameResult(62, null, null)
-                  putLocalTeamGame(62, null);
-                  putGameResult(63, null, null)
-                  putAwayTeamGame(63, null);
-                  putGameResult(64, null, null)
-                  putAwayTeamGame(64, null);
                 }
 
                 let game54 = await Game.findOne({
@@ -544,14 +509,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game54.away !== teams[1].id) {
                   putAwayTeamGame(54, teams[1].id)
                   putGameResult(54,null, null);
-                  putGameResult(57, null, null);
-                  putAwayTeamGame(57, null);
-                  putGameResult(61, null, null);
-                  putLocalTeamGame(61, null);
-                  putGameResult(63, null, null);
-                  putLocalTeamGame(63, null);
-                  putGameResult(64, null, null);
-                  putLocalTeamGame(64, null);
                 }
               }
             }
@@ -601,296 +558,146 @@ async function putGameResult(id, localGoals, awayGoals) {
           }
           if (game.group === 'Octavos de Final') {
 
-            // if (localGoals === '' || awayGoals === '') {
-            //   await game.update({localResult: null, awayResult: null})
-            // }
-
             if (game.id === 49) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) { 
+              if(localGoals > awayGoals) { 
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
-                    putGameResult(58, null, null)
-                    // putGameResult(61, null, null)
-                    // putAwayTeamGame(61, null);
-                    // putGameResult(63, null, null)
-                    // putLocalTeamGame(63, null);
-                    // putGameResult(64, null, null)
-                    // putLocalTeamGame(64, null);
+                    await putGameResult(58, null, null)
                 }
-                putLocalTeamGame(58, game.local);
+                await putLocalTeamGame(58, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
-                  putGameResult(58, null, null)
-                  // putGameResult(61, null, null)
-                  // putAwayTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
+                  await putGameResult(58, null, null)
               }
-                putLocalTeamGame(58, game.away)
+                await putLocalTeamGame(58, game.away)
               }
-              if (localGoals === null || awayGoals === null){
-                  putGameResult(58, null, null)
-                  putLocalTeamGame(58, null)
-                  // putGameResult(61, null, null)
-                  // putAwayTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
+              if (localGoals === awayGoals){
+                await putGameResult(58, null, null)
+                await putLocalTeamGame(58, null)
               }
             }
             if (game.id === 50) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) { 
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(58, null, null)
-                  // putGameResult(61, null, null) 
-                  // putAwayTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(58, game.local);
-              } 
+              }
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(58, null, null)
-                  // putGameResult(61, null, null)
-                  // putAwayTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(58, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                   putGameResult(58, null, null);
                   putAwayTeamGame(58, null);
-                  // putGameResult(61, null, null);
-                  // putAwayTeamGame(61, null);
-                  // putGameResult(63, null, null);
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null);
-                  // putLocalTeamGame(64, null);
               }
             }
             if (game.id === 51) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) { 
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(60, null, null)
-                  // putGameResult(62, null, null)
-                  // putAwayTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(60, game.local);
-              } 
+              }
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(60, null, null)
-                  // putGameResult(62, null, null)
-                  // putAwayTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(60, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(60, null, null)
                 putLocalTeamGame(60, null)
-                // putGameResult(62, null, null)
-                // putAwayTeamGame(62, null);
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             if (game.id === 52) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
-                if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
+              if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(60, null, null)
-                  // putGameResult(62, null, null)
-                  // putAwayTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(60, game.local);
-              } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(60, null, null)
-                  // putGameResult(62, null, null)
-                  // putAwayTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(60, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(60, null, null)
                 putAwayTeamGame(60, null)
-                // putGameResult(62, null, null)
-                // putAwayTeamGame(62, null);
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             if (game.id === 53) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(57, null, null)
-                  // putGameResult(61, null, null)
-                  // putLocalTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putLocalTeamGame(57, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(57, null, null)
-                  // putGameResult(61, null, null)
-                  // putLocalTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putLocalTeamGame(57, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(57, null, null);
                 putLocalTeamGame(57, null)
-                // putGameResult(61, null, null)
-                // putLocalTeamGame(61, null);
-                // putGameResult(63, null, null)
-                // putLocalTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putLocalTeamGame(64, null);
               }
             }
             if (game.id === 54) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(57, null, null)
-                  // putGameResult(61, null, null)
-                  // putLocalTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(57, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(57, null, null)
-                  // putGameResult(61, null, null)
-                  // putLocalTeamGame(61, null);
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(57, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(57, null, null)
                 putAwayTeamGame(57, null)
-                // putGameResult(61, null, null)
-                // putLocalTeamGame(61, null);
-                // putGameResult(63, null, null)
-                // putLocalTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putLocalTeamGame(64, null);
               }
             }
             if (game.id === 55 ) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(59, null, null)
-                  // putGameResult(62, null, null)
-                  // putLocalTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(59, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(59, null, null)
-                  // putGameResult(62, null, null)
-                  // putLocalTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(59, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(59, null, null)
                 putLocalTeamGame(59, null)
-                // putGameResult(62, null, null)
-                // putLocalTeamGame(62, null);
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             if (game.id === 56) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(59, null, null)
-                  // putGameResult(62, null, null)
-                  // putLocalTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(59, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(59, null, null)
-                  // putGameResult(62, null, null)
-                  // putLocalTeamGame(62, null);
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(59, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(59, null, null)
                 putAwayTeamGame(59, null)
-                // putGameResult(62, null, null)
-                // putLocalTeamGame(62, null);
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             await game.update({localResult: localGoals, awayResult: awayGoals}) 
@@ -898,128 +705,76 @@ async function putGameResult(id, localGoals, awayGoals) {
 
           if (game.group === 'Cuartos de Final') {
 
-            // if (localGoals === '' || awayGoals === '') {
-            //   await game.update({localResult: null, awayResult: null})
-            // }
-
             if (game.id === 57) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(61, null, null)
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putLocalTeamGame(61, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(61, null, null)
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putLocalTeamGame(61, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(61, null, null)
                 putLocalTeamGame(61, null)
-                // putGameResult(63, null, null)
-                // putLocalTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putLocalTeamGame(64, null);
               }
             }
             if (game.id === 58) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(61, null, null)
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(61, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(61, null, null)
-                  // putGameResult(63, null, null)
-                  // putLocalTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putLocalTeamGame(64, null);
                 }
                 putAwayTeamGame(61, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(61,null, null)
                 putAwayTeamGame(61, null)
-                // putGameResult(63, null, null)
-                // putLocalTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putLocalTeamGame(64, null);
               }
             }
             if (game.id === 59) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(62, null, null)
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(62, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(62, null, null)
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putLocalTeamGame(62, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(62, null, null)
                 putLocalTeamGame(62, null)
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             if (game.id === 60) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(62, null, null)
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(62, game.local);
               } 
               if (awayGoals > localGoals){
                 if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
                   putGameResult(62, null, null)
-                  // putGameResult(63, null, null)
-                  // putAwayTeamGame(63, null);
-                  // putGameResult(64, null, null)
-                  // putAwayTeamGame(64, null);
                 }
                 putAwayTeamGame(62, game.away)
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(62, null, null);
                 putAwayTeamGame(62, null)
-                // putGameResult(63, null, null)
-                // putAwayTeamGame(63, null);
-                // putGameResult(64, null, null)
-                // putAwayTeamGame(64, null);
               }
             }
             await game.update({localResult: localGoals, awayResult: awayGoals}) 
@@ -1027,12 +782,9 @@ async function putGameResult(id, localGoals, awayGoals) {
 
           if (game.group === 'Semifinales') {
             
-            // if (localGoals === '' || awayGoals === '') {
-            //   await game.update({localResult: null, awayResult: null})
-            // }
 
             if (game.id === 61) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(63, null, null)
                   putGameResult(64, null, null)
@@ -1048,7 +800,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 putLocalTeamGame(63, game.local)
                 putLocalTeamGame(64, game.away);
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(63, null, null)
                 putGameResult(64, null, null)
                 putLocalTeamGame(63, null)
@@ -1056,7 +808,7 @@ async function putGameResult(id, localGoals, awayGoals) {
               }
             }
             if (game.id === 62) {
-              if(localGoals > awayGoals || (localGoals !== null && localGoals === awayGoals)) {
+              if(localGoals > awayGoals) {
                 if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
                   putGameResult(63, null, null)
                   putGameResult(64, null, null)
@@ -1072,7 +824,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 putAwayTeamGame(63, game.local)
                 putAwayTeamGame(64, game.away);
               }
-              if (localGoals === null || awayGoals === null){
+              if (localGoals === awayGoals){
                 putGameResult(63, null, null)
                 putGameResult(64, null, null)
                 putAwayTeamGame(63, null)
@@ -1091,8 +843,7 @@ async function putGameResult(id, localGoals, awayGoals) {
             }
 
           }
-
-        
+ 
     }
     catch (error) {
         console.log('Error putGameResult', error)
@@ -1124,7 +875,7 @@ async function getGroupGames(group) {
               ['id', 'ASC'],
             ],             
       }) 
-
+      
       return groupGames
   } catch (error) {
           console.log('Error in getGameById', error)
@@ -1151,7 +902,7 @@ const populateGames = async () => {
     const games = [
     {
         id: 1,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/11/20 13:00:00.59",
         local: "QAT",
         away: "ECU",
@@ -1160,7 +911,7 @@ const populateGames = async () => {
     },
     {
         id: 2,
-        stadium: "Khalifa Inernational Stadium",
+        stadium: "Khalifa Inernational",
         date: "2022/11/21 10:00:00.59",
         local: "ENG",
         away: "IRN",
@@ -1169,7 +920,7 @@ const populateGames = async () => {
       },
       {
         id: 3,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/11/21 13:00:00.59",
         local: "SEN",
         away: "NED",
@@ -1178,7 +929,7 @@ const populateGames = async () => {
       },
       {
         id: 4,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/21 16:00:00.59",
         local: "USA",
         away: "WAL",
@@ -1196,7 +947,7 @@ const populateGames = async () => {
       },
       {
         id: 6,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/11/22 10:00:00.59",
         local: "DEN",
         away: "TUN",
@@ -1214,7 +965,7 @@ const populateGames = async () => {
       },
       {
         id: 8,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/11/22 16:00:00.59",
         local: "FRA",
         away: "AUS",
@@ -1223,7 +974,7 @@ const populateGames = async () => {
       },
       {
         id: 9,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/11/23 07:00:00.59",
         local: "MAR",
         away: "CRO",
@@ -1232,7 +983,7 @@ const populateGames = async () => {
       },
       {
         id: 10,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/11/23 10:00:00.59",
         local: "GER",
         away: "JPN",
@@ -1241,7 +992,7 @@ const populateGames = async () => {
       },
       {
         id: 11,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/11/23 13:00:00.59",
         local: "ESP",
         away: "CRC",
@@ -1250,7 +1001,7 @@ const populateGames = async () => {
       },
       {
         id: 12,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/23 16:00:00.59",
         local: "BEL",
         away: "CAN",
@@ -1259,7 +1010,7 @@ const populateGames = async () => {
       },
       {
         id: 13,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/11/24 07:00:00.59",
         local: "SUI",
         away: "CMR",
@@ -1268,7 +1019,7 @@ const populateGames = async () => {
       },
       {
         id: 14,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/11/24 10:00:00.59",
         local: "URU",
         away: "KOR",
@@ -1295,7 +1046,7 @@ const populateGames = async () => {
       },
       {
         id: 17,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/25 07:00:00.59",
         local: "WAL",
         away: "IRN",
@@ -1304,7 +1055,7 @@ const populateGames = async () => {
       },
       {
         id: 18,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/11/25 10:00:00.59",
         local: "QAT",
         away: "SEN",
@@ -1313,7 +1064,7 @@ const populateGames = async () => {
       },
       {
         id: 19,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/11/25 13:00:00.59",
         local: "NED",
         away: "ECU",
@@ -1322,7 +1073,7 @@ const populateGames = async () => {
       },
       {
         id: 20,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/25 16:00:00.59",
         local: "ENG",
         away: "USA",
@@ -1331,7 +1082,7 @@ const populateGames = async () => {
       },
       {
         id: 21,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/11/26 07:00:00.59",
         local: "TUN",
         away: "AUS",
@@ -1340,7 +1091,7 @@ const populateGames = async () => {
       },
       {
         id: 22,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/11/26 10:00:00.59",
         local: "POL",
         away: "KSA",
@@ -1367,7 +1118,7 @@ const populateGames = async () => {
       },
       {
         id: 25,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/27 07:00:00.59",
         local: "JPN",
         away: "CRC",
@@ -1376,7 +1127,7 @@ const populateGames = async () => {
       },
       {
         id: 26,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/11/27 10:00:00.59",
         local: "BEL",
         away: "MAR",
@@ -1385,7 +1136,7 @@ const populateGames = async () => {
       },
       {
         id: 27,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/11/27 13:00:00.59",
         local: "CRO",
         away: "CAN",
@@ -1394,7 +1145,7 @@ const populateGames = async () => {
       },
       {
         id: 28,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/11/27 16:00:00.59",
         local: "ESP",
         away: "GER",
@@ -1403,7 +1154,7 @@ const populateGames = async () => {
       },
       {
         id: 29,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/11/28 07:00:00.59",
         local: "CMR",
         away: "SRB",
@@ -1412,7 +1163,7 @@ const populateGames = async () => {
       },
       {
         id: 30,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/11/28 10:00:00.59",
         local: "KOR",
         away: "GHA",
@@ -1439,7 +1190,7 @@ const populateGames = async () => {
       },
       {
         id: 33,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/11/29 12:00:00.59",
         local: "NED",
         away: "QAT",
@@ -1448,7 +1199,7 @@ const populateGames = async () => {
       },
       {
         id: 34,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/11/29 12:00:00.59",
         local: "ECU",
         away: "SEN",
@@ -1457,7 +1208,7 @@ const populateGames = async () => {
       },
       {
         id: 35,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/11/29 16:00:00.59",
         local: "WAL",
         away: "ENG",
@@ -1466,7 +1217,7 @@ const populateGames = async () => {
       },
       {
         id: 36,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/11/29 16:00:00.59",
         local: "IRN",
         away: "USA",
@@ -1475,7 +1226,7 @@ const populateGames = async () => {
       },
       {
         id: 37,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/11/30 12:00:00.59",
         local: "AUS",
         away: "DEN",
@@ -1484,7 +1235,7 @@ const populateGames = async () => {
       },
       {
         id: 38,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/11/30 12:00:00.59",
         local: "TUN",
         away: "FRA",
@@ -1511,7 +1262,7 @@ const populateGames = async () => {
       },
       {
         id: 41,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/12/01 12:00:00.59",
         local: "CRO",
         away: "BEL",
@@ -1520,7 +1271,7 @@ const populateGames = async () => {
       },
       {
         id: 42,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/12/01 12:00:00.59",
         local: "CAN",
         away: "MAR",
@@ -1529,7 +1280,7 @@ const populateGames = async () => {
       },
       {
         id: 43,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/12/01 16:00:00.59",
         local: "JPN",
         away: "ESP",
@@ -1538,7 +1289,7 @@ const populateGames = async () => {
       },
       {
         id: 44,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/12/01 16:00:00.59",
         local: "CRC",
         away: "GER",
@@ -1547,7 +1298,7 @@ const populateGames = async () => {
       },
       {
         id: 45,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/12/02 12:00:00.59",
         local: "GHA",
         away: "URU",
@@ -1556,7 +1307,7 @@ const populateGames = async () => {
       },
       {
         id: 46,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/12/02 12:00:00.59",
         local: "KOR",
         away: "POR",
@@ -1583,35 +1334,35 @@ const populateGames = async () => {
       },
       {
         id: 49,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/12/03 12:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
       },
       {
         id: 50,
-        stadium: "Ahmad Bin Ali Stadium",
+        stadium: "Ahmad Bin Ali",
         date: "2022/12/03 16:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
       },
       {
         id: 51,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/12/04 12:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
       },
       {
         id: 52,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/12/04 16:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
       },
       {
         id: 53,
-        stadium: "Al Janoub Stadium",
+        stadium: "Al Janoub",
         date: "2022/12/05 12:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
@@ -1625,7 +1376,7 @@ const populateGames = async () => {
       },
       {
         id: 55,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/12/06 12:00:00.59",
         position: 'Octavos de Final',
         group: 'Octavos de Final',
@@ -1639,7 +1390,7 @@ const populateGames = async () => {
       },
       {
         id: 57,
-        stadium: "Education City Stadium",
+        stadium: "Education City",
         date: "2022/12/09 12:00:00.59",
         position: 'Cuartos de Final',
         group: 'Cuartos de Final',
@@ -1653,14 +1404,14 @@ const populateGames = async () => {
       },
       {
         id: 59,
-        stadium: "Al Thumama Stadium",
+        stadium: "Al Thumama",
         date: "2022/12/10 12:00:00.59",
         position: 'Cuartos de Final',
         group: 'Cuartos de Final',
       },
       {
         id: 60,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/12/10 16:00:00.59",
         position: 'Cuartos de Final',
         group: 'Cuartos de Final',
@@ -1674,14 +1425,14 @@ const populateGames = async () => {
       },
       {
         id: 62,
-        stadium: "Al Bayt Stadium",
+        stadium: "Al Bayt",
         date: "2022/12/14 16:00:00.59",
         position: 'Semifinales',
         group: 'Semifinales',
       },
       {
         id: 63,
-        stadium: "Khalifa International Stadium",
+        stadium: "Khalifa International",
         date: "2022/12/17 12:00:00.59",
         position: 'Final y Tercer Puesto',
         group: 'Final y Tercer Puesto',
@@ -1763,56 +1514,6 @@ const populateGames = async () => {
         postGame(games[62].id, games[62].stadium, games[62].date, games[62].position, games[62].group);
         postGame(games[63].id, games[63].stadium, games[63].date, games[63].position, games[63].group);
 
-        // putGameResult(1, 2, 1);
-        // putGameResult(2, 1, 1);
-        // putGameResult(3, 3, 1);
-        // putGameResult(4, 1, 2);
-        // putGameResult(5, 2, 1);
-        // putGameResult(6, 1, 1);
-        // putGameResult(7, 3, 1);
-        // putGameResult(8, 1, 2);
-        // putGameResult(9, 2, 1);
-        // putGameResult(10, 1, 1);
-        // putGameResult(11, 3, 1);
-        // putGameResult(12, 1, 2);
-        // putGameResult(13, 2, 1);
-        // putGameResult(14, 1, 1);
-        // putGameResult(15, 3, 1);
-        // putGameResult(16, 1, 2);
-        // putGameResult(17, 2, 1);
-        // putGameResult(18, 1, 1);
-        // putGameResult(19, 3, 1);
-        // putGameResult(20, 1, 2);
-        // putGameResult(21, 2, 1);
-        // putGameResult(22, 1, 1);
-        // putGameResult(23, 3, 1);
-        // putGameResult(24, 1, 2);
-        // putGameResult(25, 2, 1);
-        // putGameResult(26, 1, 1);
-        // putGameResult(27, 3, 1);
-        // putGameResult(28, 1, 2);
-        // putGameResult(29, 2, 1);
-        // putGameResult(30, 1, 1);
-        // putGameResult(31, 3, 1);
-        // putGameResult(32, 1, 2);
-        // putGameResult(33, 2, 1);
-        // putGameResult(34, 1, 1);
-        // putGameResult(35, 3, 1);
-        // putGameResult(36, 1, 2);
-        // putGameResult(37, 2, 1);
-        // putGameResult(38, 1, 1);
-        // putGameResult(39, 3, 1);
-        // putGameResult(40, 1, 2);
-        // putGameResult(41, 2, 1);
-        // putGameResult(42, 1, 1);
-        // putGameResult(43, 3, 1);
-        // putGameResult(44, 1, 2);
-        // putGameResult(45, 2, 1);
-        // putGameResult(46, 1, 1);
-        // putGameResult(47, 3, 1);
-        
-
-    
         console.log("DB Games populated correctly");
       } catch (error) {
         console.log(error.message);
@@ -1825,6 +1526,7 @@ module.exports = {
     putLocalTeamGame,
     putAwayTeamGame,
     putGameResult,
+    putGamePenalties,
     getAllGames,
     getGroupGames,
     getGameById,

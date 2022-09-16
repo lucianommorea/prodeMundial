@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { postGame, putGame, putLocalTeamGame, putAwayTeamGame, putGameResult, getAllGames, getGameById, getGroupGames } = require('../controllers/gamesControllers')
+const { postGame, putGame, putLocalTeamGame, putAwayTeamGame, putGameResult, getAllGames, getGameById, getGroupGames, putGamePenalties } = require('../controllers/gamesControllers')
 // const { Game, Team } = require('../db');
 // // const Activity = require('../models/Activity');
 // Importar todos los routers;
@@ -89,6 +89,28 @@ router.put('/result', async (req,res) => {
         console.log('Error putGameResult' + error)
     }
 })
+
+router.put('/penalties', async (req,res) => {
+    const {id, penalties} = req.body
+    try {
+        // if(name){
+        //     const nameActivity = await getActivityByName(name)
+        //     if(nameActivity){
+        //         res.status(200).send(nameActivity)
+        //     }
+        //     else{
+        //         res.status(404).send('Activity not found')
+        //     }
+        // }
+        // else{
+        let setPenaltiesGame = await putGamePenalties(id, penalties)
+        res.status(200).send(setPenaltiesGame)
+        // }
+    } catch (error) {
+        console.log('Error putGameResult' + error)
+    }
+})
+
 
 
 router.get('/', async (req,res) => {

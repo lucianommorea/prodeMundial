@@ -54,7 +54,7 @@ const Headerlogin = () => {
     return (
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.row1}`}>
-          <div className={`col-lg-3 ${style.col1}`}>
+          <div className={`col-lg ${style.col1}`}>
             <Link to="/">
               <img
                 className={style.logo}

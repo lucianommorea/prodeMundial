@@ -216,6 +216,7 @@ function getTeamsBygroup(group) {
                 ['difGoals', 'DESC'],
                 ['goalsF', 'DESC'],
                 ['goalsC', 'DESC'],
+                ['id', 'DESC'],
             ],         
         }) 
         return teamsGroup

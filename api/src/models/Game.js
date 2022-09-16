@@ -38,6 +38,9 @@ module.exports = (sequelize) => {
     },
     group: {
       type: DataTypes.STRING,
+    },
+    penalties: {
+      type: DataTypes.ENUM('local', 'away'),
     }
   });
 };

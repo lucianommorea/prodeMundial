@@ -76,7 +76,7 @@ async function getUserById(id) {
     try {
         const idUser = await User.findAll({
             where: {
-                id: id
+                sub: id
             }
         }) 
         return idUser

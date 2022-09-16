@@ -12,5 +12,6 @@ export const GET_ALL_TEAMS = "GET_ALL_TEAMS";
 export const GET_ID_TEAM = "GET_ID_TEAM";
 export const GET_GROUP_TEAMS = "GET_GROUP_TEAMS";
 export const PUT_ID_TEAM = "PUT_ID_TEAM";
-export const GET_GROUP_GAMES = "GET_GROUP_GAMES"
+export const GET_GROUP_GAMES = "GET_GROUP_GAMES";
+export const PUT_GAME_PENALTIES = "PUT_GAME_PENALTIES";
 

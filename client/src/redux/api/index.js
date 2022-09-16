@@ -11,6 +11,7 @@ export const getUserId = (sub) => axios.get(`/user/${sub}`);
 export const putGameLocalTeam = (id, modify) => axios.put(`/game/local/${id}`, modify);
 export const putGameAwayTeam = (id, modify) => axios.put(`/game/away/${id}`, modify);
 export const putGameResult = (modify) => axios.put(`/games/result`, modify);
+export const putGamePenalties = (modify) => axios.put(`/games/penalties`, modify);
 export const getAllGames = () => axios.get(`/games/`);
 export const getIdGame = (id) => axios.get(`/games?id=${id}`);
 export const getGroupGames = (group) => axios.get(`/games/group/${group}`);

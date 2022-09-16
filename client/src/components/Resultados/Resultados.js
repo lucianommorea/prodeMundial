@@ -42,7 +42,7 @@ function Resultados() {
           <h2> {group} </h2>
           }
         </div>
-        <Grupo group={group}/>
+        <Grupo group={group} setGroup={setGroup}/>
       </div>
     </div>
   )

@@ -28,7 +28,7 @@ router.put('/:sub', putUserInfo)
 router.put('/result/:sub', async function (req, res){
     const {sub} = req.params;
     const {idGame, localGoals, awayGoals} = req.body;
-    if (!sub || !idGame || !(localGoals+1) || !(awayGoals+1) || localGoals < 0 || awayGoals < 0) {
+    if (!sub || !idGame) {
         res.status(404).send({error: "Parameters needed to modify user were not received"})
     }
     
