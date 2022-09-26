@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 4.5fr 3fr 9fr 2fr 7fr 3.5fr 3.5fr 7fr 2fr;
     width: 100%;
-    font-size: 12px;
+    font-size: 13.2px;
     border-radius: 0.5vw;
     margin-top: 3px;
     padding: 5px;
@@ -89,4 +89,39 @@
 
 .none {
     visibility: hidden;
+}
+
+.none2 {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .all {
+        display: grid;
+        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
+        font-size: 12px;
+    }
+    .input1 {
+        width: 32px;
+    }
+    .input2 {
+        width: 32px;
+        border-radius: 0.5vw;
+        border: 1px solid rgb(178, 91, 91);
+        margin-left: 2px;
+        margin-right: auto;
+    }
+
+    .flag {
+        width: 26px;
+        height: 19px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .all {
+        display: grid;
+        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
+        font-size: 10px;
+    }
 }

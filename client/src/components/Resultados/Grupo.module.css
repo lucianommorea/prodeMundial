@@ -11,19 +11,23 @@
 .games {
     /* margin-top: 50px; */
     /* border: 1px solid black; */
-    width: 90%;
+    width: 100%;
     max-width: 700px;
-    min-width: 320px;
+    min-width: 340px;
     margin-left: auto;
     margin-right: auto;
     /* background-color: rgb(239, 177, 177); */
+}
+
+.tabla{
+    width: 100%;
 }
 
 .barra {
     margin-top: 30px;
     width: 90%;
     max-width: 700px;
-    min-width: 320px;
+    min-width: 340px;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -103,14 +107,11 @@
     background-color: transparent;
     padding-left: 15px;
     padding-right: 15px;
-    float:left;
+    float: left;
     border-radius: 0.5vw;
-    /* border: 1px solid rgb(205, 145, 145); */
-    border: 1px solid white;
+    border: 1px solid rgb(205, 145, 145);
     background-color: transparent;
-    /* color: rgb(205, 145, 145); */
-    color: whitesmoke;
-    font-size: 14px;
+    color: rgb(205, 145, 145);
 }
 
 .next {
@@ -119,10 +120,32 @@
     padding-right: 15px;
     float: right;
     border-radius: 0.5vw;
-    /* border: 1px solid rgb(205, 145, 145); */
-    border: 1px solid white;
+    border: 1px solid rgb(205, 145, 145);
     background-color: transparent;
-    /* color: rgb(205, 145, 145); */
-    color: whitesmoke;
-    font-size: 14px;
+    color: rgb(205, 145, 145);
 }
+
+.none{
+    display: none;
+}
+
+
+@media screen and (max-width: 800px) {
+    .barra {
+        display: grid;
+        grid-template-columns: 2.5fr 3fr 2fr 7fr 3fr 3fr 7fr 2fr;
+    }
+}
+
+/* @media screen and (max-width: 400px) {
+    .barra {
+        width: 100%;
+    }
+    .games{
+        width: 100%;
+    }
+    .tabla{
+        width: 100%;
+    }
+} */
+

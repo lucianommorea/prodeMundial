@@ -22,10 +22,10 @@ function PublicProde() {
         <div className={style.page}>
           <div className={style.filterbar}>
 
-                <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
-                    <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
+               <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
+                  <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
                     <Select value={group} sx={{color: 'whitesmoke'}} label="Grupo" onChange={handleChangeGroup}>
-                      <MenuItem  value="A">Grupo A</MenuItem>
+                      <MenuItem value="A">Grupo A</MenuItem>
                       <MenuItem value="B">Grupo B</MenuItem>
                       <MenuItem value="C">Grupo C</MenuItem>
                       <MenuItem value="D">Grupo D</MenuItem>
@@ -38,14 +38,14 @@ function PublicProde() {
                       <MenuItem value="Semifinales">Semifinales</MenuItem>
                       <MenuItem value="Final y Tercer Puesto">Final y 3er Puesto</MenuItem>
                     </Select>
-                </FormControl>
+                </FormControl> 
       
           </div>
           <div className={style.title}>
             {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
             group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
-            <h2> Grupo {group}</h2> :
-            <h2> {group} </h2>
+            <h1> Grupo {group}</h1> :
+            <h1> {group} </h1>
             }
           </div>
           <Grupo group={group} setGroup={setGroup} />

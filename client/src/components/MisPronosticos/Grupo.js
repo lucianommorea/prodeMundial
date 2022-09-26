@@ -16,6 +16,15 @@ function Grupo({group, setGroup}) {
   const [loading, setLoading] = useState(true);
   const userInfo = useSelector(state=> state.user);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
 
   let [teams2, setTeams2] = useState([
@@ -622,7 +631,7 @@ function Grupo({group, setGroup}) {
   else 
     return (
       <div className={style.all}>
-        <div>
+        <div className={style.tabla}>
           <BasicTable group={group} teams2={teams2} isModify={isModify}/>
         </div>
         <div className={style.barra}>
@@ -636,7 +645,7 @@ function Grupo({group, setGroup}) {
                           Hora
                       </span>
                   </div>
-                  <div className={style.stadium}>
+                  <div className={width > 800 ? style.stadium : style.none}>
                       <span className={style.stadium}>
                           Estadio
                       </span>

@@ -12,6 +12,16 @@ function Grupo({group, setGroup}) {
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
   // const teams = useSelector(state=> state.teams);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
 
   function toNextGroup() {
     if(group === "A") setGroup("B");
@@ -1144,11 +1154,9 @@ let [games2, setGames2] = useState([
 
 
 
-
-
     return (
       <div className={style.all}>
-        <div>
+        <div className={style.tabla}>
           <BasicTable group={group} teams2={teams2} isModify={isModify}/>
         </div>
         <div className={style.barra}>
@@ -1162,7 +1170,7 @@ let [games2, setGames2] = useState([
                           Hora
                       </span>
                   </div>
-                  <div className={style.stadium}>
+                  <div className={width > 800 ? style.stadium : style.none}>
                       <span className={style.stadium}>
                           Estadio
                       </span>

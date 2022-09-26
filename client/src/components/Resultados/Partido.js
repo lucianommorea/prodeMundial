@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { putGamePenalties, putGameResult } from '../../redux/actions';
 import style from './Partido.module.css';
@@ -8,7 +8,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2, img2, localResult, awayResult, setIsModify}) {
 
     const { isAuthenticated } = useAuth0();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      window.addEventListener("resize", handleResize, false);
+    }, []);
+
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+
     const [goals, setGoals] = useState({
         localResult: localResult || null,
         awayResult: awayResult || null
@@ -85,7 +96,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
             <div className={style.all}>
                 <div>
                     <span className={style.date}>
-                        {date}
+                        {width > 800 ? date : date.slice(-5)}
                     </span>
                 </div>
                 <div className={style.hour}>
@@ -93,7 +104,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
                         {hour}
                     </span>
                 </div>
-                <div className={style.stadium}>
+                <div className={width > 800 ? style.stadium : style.none2}>
                     <span className={style.stadium}>
                         {stadium}
                     </span>

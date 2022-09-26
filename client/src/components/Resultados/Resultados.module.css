@@ -18,29 +18,48 @@
 .filterbar {
     position: absolute;
     margin-left: 2%;
-    margin-top: 1%;
+    margin-top: 25px;
 }
 
 .title {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     height: 40px;
     text-align: center;
 }
 
-h2 {
-    /* color: rgb(178, 91, 91); */
-    color: whitesmoke;
+h1 {
+    color: rgb(178, 91, 91);
     height: 100%;
-}
-
-.dark{
-    background-color: black;
 }
 
 
 @media screen and (max-width: 600px) {
     .all {
         width: 100%;
+    }
+    .page {
+        width: 90%;
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        width: 96%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .filterbar {
+        margin-left: 0%;
+
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .filterbar {
+        margin-left: -2%;
+
     }
 }

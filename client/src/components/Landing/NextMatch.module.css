@@ -37,13 +37,14 @@
 
 .next{
     margin-bottom: 8px;
-    font-size: large;
+    font-size: 20px;
     font-weight: 600;
     padding-top: 5px;
 }
 
 .hour{
     margin-bottom: 10px;
+    color: rgb(198, 198, 198);
 }
 
 .calendar {

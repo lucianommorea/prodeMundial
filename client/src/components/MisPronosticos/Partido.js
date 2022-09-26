@@ -11,6 +11,15 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     const dispatch = useDispatch();
     const userInfo = useSelector(state=> state.user);
     const { isAuthenticated, isLoading } = useAuth0();
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      window.addEventListener("resize", handleResize, false);
+    }, []);
+
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
 
  
     const [goals, setGoals] = useState({
@@ -1179,7 +1188,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
             <div className={style.all}>
                 <div>
                     <span className={style.date}>
-                        {date}
+                        {width > 800 ? date : date.slice(-5)}
                     </span>
                 </div>
                 <div className={style.hour}>
@@ -1187,7 +1196,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                         {hour}
                     </span>
                 </div>
-                <div className={style.stadium}>
+                <div className={width > 800 ? style.stadium : style.none2}>
                     <span className={style.stadium}>
                         {stadium}
                     </span>

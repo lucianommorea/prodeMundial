@@ -1,6 +1,4 @@
 import react, { useState, useEffect } from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from 'react-redux';
 import style from './Tabla.module.css'
 
 

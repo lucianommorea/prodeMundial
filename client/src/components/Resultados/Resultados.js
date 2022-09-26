@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Grupo from './Grupo';
 import style from './Resultados.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Resultados() {
 
@@ -11,21 +10,6 @@ function Resultados() {
   const handleChangeGroup = (e) => {
     setGroup(e.target.value);
   };
-
-  const theme = createTheme({
-    components: {
-      // Name of the component
-      MuiButton: {
-        styleOverrides: {
-          // Name of the slot
-          root: {
-            // Some CSS
-            backgroundColor: 'gray',
-          },
-        },
-      },
-    },
-  });
 
 
   return (
@@ -54,8 +38,8 @@ function Resultados() {
         <div className={style.title}>
           {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
            group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
-          <h2> Grupo {group}</h2> :
-          <h2> {group} </h2>
+          <h1> Grupo {group}</h1> :
+          <h1> {group} </h1>
           }
         </div>
         <Grupo group={group} setGroup={setGroup}/>

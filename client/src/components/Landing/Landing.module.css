@@ -3,8 +3,8 @@
 } */
 
 .all{
-    background-image: url('../../images/messi3.jpg');
-    /* min-height: 90vh; */
+    background-image: url('../../images/messi31.jpg');
+    min-height: fit-content;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -12,12 +12,22 @@
 }
 
 .prode{
-    color: whitesmoke;
-    padding-top: 30px;
+    margin-top: 30px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    color:#a0346a;
+    background-color: rgb(198, 198, 198);
+    color: #601a3d;
+    font-size: 3.2rem;
+    /* color:#a0346a; */
+    height: fit-content;
+    width: fit-content;
+    border-radius: 0.5vw;
+    padding-left: 10px;
+    padding-right: 10px;
+    backdrop-filter: contrast(60%); 
+    background-color: transparent;
+    /* color: rgb(198, 198, 198); */
 }
 
 .top10{
@@ -64,16 +74,24 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+
 }
 
 .card2{
-    align-self: center;
+    margin-bottom: 20px;
 }
 
 
 
 @media screen and (max-width: 649px) {
+    /* .all{
+        height: fit-content;
+        height: max-content;
+    } */
+    .prode{
+        font-size: 2.6rem;
+    }
     .card {
       flex-direction: column;
     }

@@ -11,6 +11,15 @@ function Grupo({group, setGroup}) {
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
   // const teams = useSelector(state=> state.teams);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
   useEffect(() => {
     dispatch(getGroupGames(group));
@@ -47,7 +56,7 @@ function Grupo({group, setGroup}) {
 
   return (
     <div className={style.all}>
-      <div>
+      <div className={style.tabla}>
         {group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'
         ? <BasicTable group={group} />
         : null
@@ -64,7 +73,7 @@ function Grupo({group, setGroup}) {
                         Hora
                     </span>
                 </div>
-                <div className={style.stadium}>
+                <div className={width > 800 ? style.stadium : style.none}>
                     <span className={style.stadium}>
                         Estadio
                     </span>

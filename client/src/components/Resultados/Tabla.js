@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react';
+import react from 'react';
 import { useSelector } from 'react-redux';
 import style from './Tabla.module.css'
 
@@ -6,15 +6,6 @@ import style from './Tabla.module.css'
 export default function BasicTable({group}) {
 
   const teams = useSelector(state => state.teams);
-  const [width, setWidth] = useState(window.innerWitdh);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize, false);
-  }, []);
-
-  const handleResize = () => {
-    setWidth(window.innerWidth);
-  };
 
 
   return (

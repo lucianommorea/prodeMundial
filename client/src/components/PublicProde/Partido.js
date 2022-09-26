@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import style from './Partido.module.css';
 
@@ -11,6 +11,15 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         localResult: localResult > -1 ? localResult : null,
         awayResult: awayResult > -1 ? awayResult : null
     })
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      window.addEventListener("resize", handleResize, false);
+    }, []);
+
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
 
     function restartOctavos () {
         if (group === 'A') {
@@ -390,28 +399,28 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         }
 
         
-        if(id > 0 && id < 17) {
-            let prevGoalsF = teams2[localIndice].game1[0];
-            let prevGoalsC = teams2[localIndice].game1[1];
+        if(id > 0 && id < 49) {
+            let prevGoalsF = teams2[localIndice][position][0];
+            let prevGoalsC = teams2[localIndice][position][1];
             if( localResultado === undefined || typeof goals.awayResult !== 'number'){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].wins -= 1 ;
                     teams2[localIndice].points -= 3;
                     teams2[awayIndice].totalGames -= 1;
                     teams2[awayIndice].loses -= 1;
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].loses -= 1 ;
                     teams2[awayIndice].totalGames -= 1;
                     teams2[awayIndice].wins -= 1;
                     teams2[awayIndice].points -= 3;
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].draws -= 1 ;
                     teams2[localIndice].points -= 1 ;
@@ -419,18 +428,18 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].draws -= 1;
                     teams2[awayIndice].points -= 1;
                 }
-                teams2[localIndice].game1 = [null, null];
+                teams2[localIndice][position] = [null, null];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game1 = [null, null];
+                teams2[awayIndice][position] = [null, null];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
             }
 
             else if(localResultado === goals.awayResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].points += 1;
@@ -439,7 +448,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].points += 1;
 
                 }
-                if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].wins -= 1;
                     teams2[localIndice].points -= 2;
@@ -447,7 +456,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses -= 1
                     teams2[awayIndice].points += 1;
                 }
-                if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].loses -= 1;
                     teams2[localIndice].points += 1;
@@ -455,30 +464,30 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].wins -= 1;
                     teams2[awayIndice].points -= 2;
                 }
-                if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
 
                 }
-                teams2[localIndice].game1 = [localResultado, goals.awayResult];
+                teams2[localIndice][position] = [localResultado, goals.awayResult];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game1 = [goals.awayResult, localResultado];
+                teams2[awayIndice][position] = [goals.awayResult, localResultado];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
             }
             else if(localResultado > goals.awayResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 3;
                     teams2[awayIndice].totalGames += 1;
                     teams2[awayIndice].loses += 1;
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
 
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].loses -= 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 3;
@@ -486,7 +495,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].wins -= 1;
                     teams2[awayIndice].points -= 3;
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].draws -= 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 2;
@@ -494,24 +503,24 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses += 1;
                     teams2[awayIndice].points -= 1;
                 }
-                teams2[localIndice].game1 = [localResultado, goals.awayResult];
+                teams2[localIndice][position] = [localResultado, goals.awayResult];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game1 = [goals.awayResult, localResultado];
+                teams2[awayIndice][position] = [goals.awayResult, localResultado];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
             }
             else if(localResultado < goals.awayResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].loses += 1;
                     teams2[awayIndice].totalGames += 1;
                     teams2[awayIndice].wins += 1;
                     teams2[awayIndice].points += 3;
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].loses += 1;
                     teams2[localIndice].wins -= 1;
                     teams2[localIndice].points -= 3;
@@ -519,10 +528,10 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses -= 1;
                     teams2[awayIndice].points += 3;
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
 
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].draws -= 1;
                     teams2[localIndice].loses += 1;
                     teams2[localIndice].points -= 1;
@@ -530,311 +539,11 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].wins += 1;
                     teams2[awayIndice].points += 2;
                 }
-                teams2[localIndice].game1 = [localResultado, goals.awayResult];
+                teams2[localIndice][position] = [localResultado, goals.awayResult];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game1 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-        }
-        if(id > 16 && id < 33) {
-            let prevGoalsF = teams2[localIndice].game2[0];
-            let prevGoalsC = teams2[localIndice].game2[1];
-            if( localResultado === undefined || typeof goals.awayResult !== 'number'){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].wins -= 1 ;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].loses -= 1;
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].loses -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].draws -= 1 ;
-                    teams2[localIndice].points -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game2 = [null, null];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game2 = [null, null];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
-            }
-
-            else if(localResultado === goals.awayResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].points += 1;
-
-                }
-                if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 2;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].loses -= 1
-                    teams2[awayIndice].points += 1;
-                }
-                if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 2;
-                }
-                if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
-
-                }
-                teams2[localIndice].game2 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game2 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-            else if(localResultado > goals.awayResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].loses += 1;
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 2;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game2 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game2 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-            else if(localResultado < goals.awayResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].loses -= 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].points -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 2;
-                }
-                teams2[localIndice].game2 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game2 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-        }
-        if(id > 32 && id < 49) {
-            let prevGoalsF = teams2[localIndice].game3[0];
-            let prevGoalsC = teams2[localIndice].game3[1];
-            if( localResultado === undefined || typeof goals.awayResult !== 'number'){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].wins -= 1 ;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].loses -= 1;
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].loses -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].draws -= 1 ;
-                    teams2[localIndice].points -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game3 = [null, null];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game3 = [null, null];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
-            }
-
-            else if(localResultado === goals.awayResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].points += 1;
-
-                }
-                if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 2;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].loses -= 1
-                    teams2[awayIndice].points += 1;
-                }
-                if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 2;
-                }
-                if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
-
-                }
-                teams2[localIndice].game3 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game3 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-            else if(localResultado > goals.awayResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].loses += 1;
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 2;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game3 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game3 = [goals.awayResult, localResultado];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
-            }
-            else if(localResultado < goals.awayResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].loses -= 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].points -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 2;
-                }
-                teams2[localIndice].game3 = [localResultado, goals.awayResult];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + localResultado;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + goals.awayResult;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + localResultado - goals.awayResult;
-                teams2[awayIndice].game3 = [goals.awayResult, localResultado];
+                teams2[awayIndice][position] = [goals.awayResult, localResultado];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + goals.awayResult;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + localResultado;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
@@ -1763,30 +1472,30 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         }
         
         
-        if(id > 0 && id < 17) {
-            let prevGoalsF = teams2[localIndice].game1[0];
-            let prevGoalsC = teams2[localIndice].game1[1];
+        if(id > 0 && id < 49) {
+            let prevGoalsF = teams2[localIndice][position][0];
+            let prevGoalsC = teams2[localIndice][position][1];
 
 
             if( awayResultado === undefined || typeof goals.localResult !== 'number'){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].wins -= 1 ;
                     teams2[localIndice].points -= 3;
                     teams2[awayIndice].totalGames -= 1;
                     teams2[awayIndice].loses -= 1;
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].loses -= 1 ;
                     teams2[awayIndice].totalGames -= 1;
                     teams2[awayIndice].wins -= 1;
                     teams2[awayIndice].points -= 3;
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].totalGames -= 1;
                     teams2[localIndice].draws -= 1 ;
                     teams2[localIndice].points -= 1 ;
@@ -1794,18 +1503,18 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].draws -= 1;
                     teams2[awayIndice].points -= 1;
                 }
-                teams2[localIndice].game1 = [null, null];
+                teams2[localIndice][position] = [null, null];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game1 = [null, null];
+                teams2[awayIndice][position] = [null, null];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
             }
 
             else if(awayResultado === goals.localResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].points += 1;
@@ -1814,7 +1523,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].points += 1;
 
                 }
-                if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].wins -= 1;
                     teams2[localIndice].points -= 2;
@@ -1822,7 +1531,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses -= 1
                     teams2[awayIndice].points += 1;
                 }
-                if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].draws += 1;
                     teams2[localIndice].loses -= 1;
                     teams2[localIndice].points += 1;
@@ -1830,28 +1539,28 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].wins -= 1;
                     teams2[awayIndice].points -= 2;
                 }
-                if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
 
                 }
 
-                teams2[localIndice].game1 = [goals.localResult, awayResultado];
+                teams2[localIndice][position] = [goals.localResult, awayResultado];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game1 = [awayResultado, goals.localResult];
+                teams2[awayIndice][position] = [awayResultado, goals.localResult];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
             }
             else if(awayResultado > goals.localResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].loses += 1;
                     teams2[awayIndice].totalGames += 1;
                     teams2[awayIndice].wins += 1;
                     teams2[awayIndice].points += 3;
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
                     teams2[localIndice].loses += 1;
                     teams2[localIndice].wins -= 1;
                     teams2[localIndice].points -= 3;
@@ -1859,10 +1568,10 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses -= 1;
                     teams2[awayIndice].points += 3;
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
 
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].draws -= 1;
                     teams2[localIndice].loses += 1;
                     teams2[localIndice].points -= 1;
@@ -1870,27 +1579,27 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].wins += 1;
                     teams2[awayIndice].points += 2;
                 }
-                teams2[localIndice].game1 = [goals.localResult, awayResultado];
+                teams2[localIndice][position] = [goals.localResult, awayResultado];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game1 = [awayResultado, goals.localResult];
+                teams2[awayIndice][position] = [awayResultado, goals.localResult];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
             }
             else if(awayResultado < goals.localResult){
-                if (teams2[localIndice].game1[0] === null || teams2[localIndice].game1[1] === null) {
+                if (teams2[localIndice][position][0] === null || teams2[localIndice][position][1] === null) {
                     teams2[localIndice].totalGames += 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 3;
                     teams2[awayIndice].totalGames += 1;
                     teams2[awayIndice].loses += 1;
                 }
-                else if (teams2[localIndice].game1[0] > teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] > teams2[localIndice][position][1]) {
 
                 }
-                else if (teams2[localIndice].game1[0] < teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] < teams2[localIndice][position][1]) {
                     teams2[localIndice].loses -= 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 3;
@@ -1898,7 +1607,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses += 1;
                     teams2[awayIndice].points -= 3;
                 }
-                else if (teams2[localIndice].game1[0] === teams2[localIndice].game1[1]) {
+                else if (teams2[localIndice][position][0] === teams2[localIndice][position][1]) {
                     teams2[localIndice].draws -= 1;
                     teams2[localIndice].wins += 1;
                     teams2[localIndice].points += 2;
@@ -1906,313 +1615,11 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     teams2[awayIndice].loses += 1;
                     teams2[awayIndice].points -= 1;
                 }
-                teams2[localIndice].game1 = [goals.localResult, awayResultado];
+                teams2[localIndice][position] = [goals.localResult, awayResultado];
                 teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
                 teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
                 teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game1 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-        }
-        if(id > 16 && id < 33) {
-            let prevGoalsF = teams2[localIndice].game2[0];
-            let prevGoalsC = teams2[localIndice].game2[1];
-            if( awayResultado === undefined || typeof goals.localResult !== 'number'){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].wins -= 1 ;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].loses -= 1;
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].loses -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].draws -= 1 ;
-                    teams2[localIndice].points -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game2 = [null, null];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game2 = [null, null];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
-            }
-
-            else if(awayResultado === goals.localResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].points += 1;
-
-                }
-                if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 2;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].loses -= 1
-                    teams2[awayIndice].points += 1;
-                }
-                if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 2;
-                }
-                if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-
-                }
-
-                teams2[localIndice].game2 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game2 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-            else if(awayResultado > goals.localResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].loses -= 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].points -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 2;
-                }
-                teams2[localIndice].game2 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game2 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-            else if(awayResultado < goals.localResult){
-                if (teams2[localIndice].game2[0] === null || teams2[localIndice].game2[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].loses += 1;
-                }
-                else if (teams2[localIndice].game2[0] > teams2[localIndice].game2[1]) {
-
-                }
-                else if (teams2[localIndice].game2[0] < teams2[localIndice].game2[1]) {
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game2[0] === teams2[localIndice].game2[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 2;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game2 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game2 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-        }
-        if(id > 32 && id < 49) {
-            let prevGoalsF = teams2[localIndice].game3[0];
-            let prevGoalsC = teams2[localIndice].game3[1];
-            if( awayResultado === undefined || typeof goals.localResult !== 'number'){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].wins -= 1 ;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].loses -= 1;
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].loses -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].totalGames -= 1;
-                    teams2[localIndice].draws -= 1 ;
-                    teams2[localIndice].points -= 1 ;
-                    teams2[awayIndice].totalGames -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game3 = [null, null];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC;
-                teams2[awayIndice].game3 = [null, null];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF;
-            }
-
-            else if(awayResultado === goals.localResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].points += 1;
-
-                }
-                if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 2;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].loses -= 1
-                    teams2[awayIndice].points += 1;
-                }
-                if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws += 1;
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].points += 1;
-                    teams2[awayIndice].draws += 1;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].points -= 2;
-                }
-                if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-
-                }
-
-                teams2[localIndice].game3 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game3 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-            else if(awayResultado > goals.localResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].wins -= 1;
-                    teams2[localIndice].points -= 3;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].loses -= 1;
-                    teams2[awayIndice].points += 3;
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].loses += 1;
-                    teams2[localIndice].points -= 1;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].wins += 1;
-                    teams2[awayIndice].points += 2;
-                }
-                teams2[localIndice].game3 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game3 = [awayResultado, goals.localResult];
-                teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
-                teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
-                teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
-            }
-            else if(awayResultado < goals.localResult){
-                if (teams2[localIndice].game3[0] === null || teams2[localIndice].game3[1] === null) {
-                    teams2[localIndice].totalGames += 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].totalGames += 1;
-                    teams2[awayIndice].loses += 1;
-                }
-                else if (teams2[localIndice].game3[0] > teams2[localIndice].game3[1]) {
-
-                }
-                else if (teams2[localIndice].game3[0] < teams2[localIndice].game3[1]) {
-                    teams2[localIndice].loses -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 3;
-                    teams2[awayIndice].wins -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 3;
-                }
-                else if (teams2[localIndice].game3[0] === teams2[localIndice].game3[1]) {
-                    teams2[localIndice].draws -= 1;
-                    teams2[localIndice].wins += 1;
-                    teams2[localIndice].points += 2;
-                    teams2[awayIndice].draws -= 1;
-                    teams2[awayIndice].loses += 1;
-                    teams2[awayIndice].points -= 1;
-                }
-                teams2[localIndice].game3 = [goals.localResult, awayResultado];
-                teams2[localIndice].goalsF = teams2[localIndice].goalsF - prevGoalsF + goals.localResult;
-                teams2[localIndice].goalsC = teams2[localIndice].goalsC - prevGoalsC + awayResultado;
-                teams2[localIndice].difGoals = teams2[localIndice].difGoals - prevGoalsF + prevGoalsC + goals.localResult - awayResultado;
-                teams2[awayIndice].game3 = [awayResultado, goals.localResult];
+                teams2[awayIndice][position] = [awayResultado, goals.localResult];
                 teams2[awayIndice].goalsF = teams2[awayIndice].goalsF - prevGoalsC + awayResultado;
                 teams2[awayIndice].goalsC = teams2[awayIndice].goalsC - prevGoalsF + goals.localResult;
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
@@ -3223,7 +2630,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
             <div className={style.all}>
                 <div>
                     <span className={style.date}>
-                        {date}
+                        {width > 800 ? date : date.slice(-5)}
                     </span>
                 </div>
                 <div className={style.hour}>
@@ -3231,7 +2638,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                         {hour}
                     </span>
                 </div>
-                <div className={style.stadium}>
+                <div className={width > 800 ? style.stadium : style.none2}>
                     <span className={style.stadium}>
                         {stadium}
                     </span>

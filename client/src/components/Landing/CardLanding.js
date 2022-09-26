@@ -20,7 +20,7 @@ function CardLanding({pointsUser, myPosition}) {
               {myPosition}°
             </div>
             <div className={style.myPoints}>
-                Mi Ranking
+                Mi posición
             </div>
           </div>
             <Link to='/ranking'>
