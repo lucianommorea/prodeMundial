@@ -153,7 +153,7 @@ function Grupo({group, setGroup}) {
           { group === 'H' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo G </button>
-            <button className={style.next} onClick={toNextGroup}> Ir al Grupo H  </button>
+            <button className={style.next} onClick={toNextGroup}> Ir al Octavos de Final  </button>
           </div> }   
           { group === 'Octavos de Final' &&
           <div>      

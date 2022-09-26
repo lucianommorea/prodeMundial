@@ -3,7 +3,9 @@ import MisPronosticos from "./components/MisPronosticos/MisPronosticos";
 import Headerlogin from "./components/NavBar/HeaderLogin";
 import Landing from "./components/Landing/Landing";
 import Resultados from "./components/Resultados/Resultados";
+import Ranking from "./components/Ranking/Ranking";
 import './App.css';
+import PublicProde from "./components/PublicProde/PublicProde";
 
 //importacion de páginas
 
@@ -15,6 +17,8 @@ function App() {
         <Route path={"/"} element={<Landing />} />
         <Route path={"/mispronosticos"} element={<MisPronosticos />} />
         <Route path={"/resultados"} element={<Resultados />} />
+        <Route path={"/ranking"} element={<Ranking />} />
+        <Route path={"/prode"} element={<PublicProde />} />
         {/* <Route path={"/pagolisto"} element={<PagoListo />} />
         <Route path={"*"} element={<NotFound />} />
         <Route path={"/easter"} element={<Easter />} />

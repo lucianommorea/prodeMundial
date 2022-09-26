@@ -1,16 +1,12 @@
 import react, { useState, useEffect } from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 import style from './Tabla.module.css'
 
 
 export default function BasicTable({group}) {
 
-  const teams = useSelector(state => state.teams)
+  const teams = useSelector(state => state.teams);
   const [width, setWidth] = useState(window.innerWitdh);
-  const dispatch = useDispatch()
-  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -19,11 +15,6 @@ export default function BasicTable({group}) {
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
-
-  // useEffect(() => {
-  //   dispatch(getGroupTeams(group));
-  // }, [dispatch, group]);
-
 
 
   return (

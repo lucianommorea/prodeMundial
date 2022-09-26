@@ -8,7 +8,7 @@ import { sendUserInfo } from "../../redux/actions/index";
 import Header from "./Header";
 // import HeaderLoading from "./HeaderLoading";
 // import HeaderBanned from "./HeaderBanned";
-import logoQatar from '../../images/qatar2022.jpg'
+import logoQatar from '../../images/qatar2022.png'
 
 const Headerlogin = () => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
@@ -47,7 +47,7 @@ const Headerlogin = () => {
     return (
       <>
         {/* <HeaderBanned /> */} 
-        baneado
+        Baneado
       </>
     )
   } else if (isAuthenticated) {
@@ -64,14 +64,14 @@ const Headerlogin = () => {
             </Link>
           </div>
           <div className={`col-lg-3 ${style.colPreg}`}>
-            {/* <NavLink to="/preguntar" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}> */}
-              Preguntar
-            {/* </NavLink> */}
+            <NavLink to="/prode" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
+              Prode
+            </NavLink>
           </div>
           <div className={`col-lg-3 ${style.colRank}`}>
-            {/* <NavLink to="/ranking" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}> */}
+            <NavLink to="/ranking" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
               Ranking
-            {/* </NavLink> */}
+            </NavLink>
           </div>
 
           <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
@@ -92,9 +92,10 @@ const Headerlogin = () => {
                   className={`
                     ${
                       width > 600
-                        ? "btn btn-warning btn-secondary dropdown-toggle"
-                        : "btn btn-warning btn-secondary btn-sm"
+                        ? "btn btn-dark btn-secondary dropdown-toggle"
+                        : "btn btn-dark btn-secondary btn-sm"
                     }
+                    ${style.dropdown}
                   `}
                   type="button"
                   id="dropdownMenuButton2"

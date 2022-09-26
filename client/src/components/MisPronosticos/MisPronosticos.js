@@ -8,20 +8,27 @@ import Loading from '../Loading/LoadingComponent';
 function MisPronosticos() {
 
   const [group, setGroup] = useState('A');
- 
   const userInfo = useSelector(state=> state.user);
-  let [isModify, setIsModify] = useState(false);
 
-  console.log(userInfo)
-  console.log(userInfo.points)
-  console.log(userInfo.totalPoints)
+  // console.log(userInfo)
+  // console.log(userInfo.points)
+  // console.log(userInfo.totalPoints)
 
   const handleChangeGroup = (e) => {
     setGroup(e.target.value);
   };
 
-  useEffect(() => {
-  }, [userInfo.points])
+
+
+  let fecha = new Date()
+  let dateOctavos = new Date("2022, 09, 18");
+  let dateCuartos = new Date("2022, 09, 18");
+  let dateSemis = new Date("2022, 09, 18");
+  let dateFinales = new Date("2022, 09, 18");
+  // let dateOctavos = new Date("2022, 11, 29");
+  // let dateCuartos = new Date("2022, 12, 04");
+  // let dateSemis = new Date("2022, 12, 04");
+  // let dateFinales = new Date("2022, 12, 04");
   
 
 
@@ -41,10 +48,26 @@ function MisPronosticos() {
                       <MenuItem value="F">Grupo F</MenuItem>
                       <MenuItem value="G">Grupo G</MenuItem>
                       <MenuItem value="H">Grupo H</MenuItem>
-                      <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
-                      <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
-                      <MenuItem value="Semifinales">Semifinales</MenuItem>
-                      <MenuItem value="Final y Tercer Puesto">Final y 3er Puesto</MenuItem>
+                      {
+                        dateOctavos < fecha &&
+                        <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
+                      }
+                      {/* <MenuItem value="Octavos de Final">Octavos de Final</MenuItem> */}
+                      {
+                        dateCuartos < fecha &&
+                        <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
+                      }
+                      {/* <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem> */}
+                      {
+                        dateSemis < fecha &&
+                        <MenuItem value="Semifinales">Semifinales</MenuItem>
+                      }
+                      {/* <MenuItem value="Semifinales">Semifinales</MenuItem> */}
+                      {
+                        dateFinales < fecha &&
+                        <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
+                      }
+                      {/* <MenuItem value="Final y Tercer Puesto">Final y 3er Puesto</MenuItem> */}
                     </Select>
                 </FormControl>
           </div>

@@ -11,42 +11,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.all2 {
-    display: grid;
-    /* grid-template-columns: 17.5fr 2fr 7fr 3.5fr 3.5fr 7fr 2fr; */
-    grid-template-columns: 17.5fr 2fr 8.5fr 2.5fr 2fr 7.5fr 2fr;
-    width: 100%;
-    font-size: 15px;
-    border-radius: 0.5vw;
-    border: 1px solid rgb(185, 110, 110);
-    margin-top: 3px;
-    padding: 5px;
-    background-color: rgb(185, 110, 110);
-    font-family: 'Montserrat', sans-serif;
-    height: min-content;
-    line-height: 0;
-    align-items: center;
-    color: rgb(78, 9, 9);
-}
-
-.all3 {
-    display: grid;
-    grid-template-columns: 17.5fr 2fr 8.5fr 2.5fr 2fr 7.5fr 2fr;
-    width: 100%;
-    font-size: 15px;
-    border-radius: 0.5vw;
-    border: 1px solid rgb(85, 141, 105);
-    margin-top: 3px;
-    padding: 5px;
-    background-color: rgb(85, 141, 105);
-    font-family: 'Montserrat', sans-serif;
-    height: min-content;
-    line-height: 0;
-    align-items: center;
-    color: rgb(5, 47, 5)
-}
-
-
 .team {
     flex-direction: column;
 }
@@ -125,16 +89,4 @@
 
 .none {
     visibility: hidden;
-}
-
-.points {
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-}
-
-.goals1 {
-    display: flex;
-    border: none;
-    justify-items: flex-start;
 }

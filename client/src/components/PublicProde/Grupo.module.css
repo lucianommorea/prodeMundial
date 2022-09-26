@@ -86,10 +86,6 @@
     visibility: hidden;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 .buttons {
     margin-top: 40px;
     /* border: 1px solid black; */
@@ -107,14 +103,11 @@
     background-color: transparent;
     padding-left: 15px;
     padding-right: 15px;
-    float:left;
+    float: left;
     border-radius: 0.5vw;
-    /* border: 1px solid rgb(205, 145, 145); */
-    border: 1px solid white;
+    border: 1px solid rgb(205, 145, 145);
     background-color: transparent;
-    /* color: rgb(205, 145, 145); */
-    color: whitesmoke;
-    font-size: 14px;
+    color: rgb(205, 145, 145);
 }
 
 .next {
@@ -123,10 +116,7 @@
     padding-right: 15px;
     float: right;
     border-radius: 0.5vw;
-    /* border: 1px solid rgb(205, 145, 145); */
-    border: 1px solid white;
+    border: 1px solid rgb(205, 145, 145);
     background-color: transparent;
-    /* color: rgb(205, 145, 145); */
-    color: whitesmoke;
-    font-size: 14px;
+    color: rgb(205, 145, 145);
 }

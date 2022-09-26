@@ -43,7 +43,9 @@ module.exports = (sequelize) => {
     },
     points: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: [],
+      defaultValue: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
+        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
+        null, null, null, null, null, null],
     },
     userResults: {
       type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.INTEGER)),
@@ -54,6 +56,9 @@ module.exports = (sequelize) => {
       [null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],
       [null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],
       [null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null]]
+    },
+    myPosition: {
+      type: DataTypes.INTEGER,
     }
   });
 };

@@ -14,6 +14,26 @@ async function getAllUsers(){
     }
 }
 
+async function getUsersRanking(){
+
+    try {
+        let allUsers = await User.findAll({
+            order: [
+                ['totalPoints', 'DESC'],
+                ['name', 'DESC'],
+            ],     
+        })
+
+        allUsers.forEach((e, i) => e.myPosition =  i + 1)
+
+        return allUsers
+    }
+    
+    catch (error){
+        console.log('Error in getAllUsers', error)
+    }
+}
+
 
 async function updatePoints(user, idGame, localGoals, awayGoals) {
             let prevPoints = user.points[idGame-1]
@@ -30,7 +50,6 @@ async function updatePoints(user, idGame, localGoals, awayGoals) {
                 await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
             }
             else if (parseInt(localGoals) === user.userResults[idGame-1][0] && parseInt(awayGoals) === user.userResults[idGame-1][1]) {
-                console.log('5pts')
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = 5;
                 let pointsTotal = user.totalPoints
@@ -38,28 +57,24 @@ async function updatePoints(user, idGame, localGoals, awayGoals) {
                 return
             }
             else if (localGoals > awayGoals && user.userResults[idGame-1][0] > user.userResults[idGame-1][1]) {
-                console.log('3pts')
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = 3;
                 let pointsTotal = user.totalPoints
                 await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 3)}) 
             }
             else if (localGoals === awayGoals && user.userResults[idGame-1][0] === user.userResults[idGame-1][1]) {
-                console.log('3pts')
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = 3;
                 let pointsTotal = user.totalPoints
                 await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 3)}) 
             } 
             else if (localGoals < awayGoals && user.userResults[idGame-1][0] < user.userResults[idGame-1][1]){
-                console.log('3pts')
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = 3;
                 let pointsTotal = user.totalPoints
                 await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 3)}) 
             } 
             else {
-                console.log('0pts')
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = 0;
                 let pointsTotal = user.totalPoints
@@ -73,8 +88,10 @@ async function putUsersPoints(idGame, localGoals, awayGoals) {
         const users = await User.findAll() 
 
         for(let i = 0; i < users.length; i++) {
-            updatePoints(users[i], idGame, localGoals, awayGoals)
+            await updatePoints(users[i], idGame, localGoals, awayGoals)
         }
+
+        await getUsersRanking()
         
         return users
 
@@ -85,5 +102,6 @@ async function putUsersPoints(idGame, localGoals, awayGoals) {
 
 module.exports = {
     getAllUsers,
+    getUsersRanking,
     putUsersPoints
 }

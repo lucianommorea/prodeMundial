@@ -6,6 +6,7 @@ export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify);
 export const putUserResult = (sub, modify) => axios.put(`/user/result/${sub}`, modify);
 export const getAllUsers = () => axios.get(`/users`);
 export const getUserId = (sub) => axios.get(`/user/${sub}`);
+export const getUsersRanking = () => axios.get('/users/ranking')
 
 // RUTAS GAMES
 export const putGameLocalTeam = (id, modify) => axios.put(`/game/local/${id}`, modify);

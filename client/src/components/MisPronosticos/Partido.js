@@ -1,412 +1,49 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIdGame, putUserResult } from '../../redux/actions';
+import { putUserResult, getGroupTeams, getGroupGames } from '../../redux/actions';
 import style from './Partido.module.css';
+import Loading from '../Loading/LoadingComponent';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
-function Partido({id, date, hour, stadium, group, position, penalties, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, setTeams2, games2}) {
+function Partido({id, date, hour, stadium, group, position, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, localResult, awayResult, loading, setLoading}) {
 
     const dispatch = useDispatch();
     const userInfo = useSelector(state=> state.user);
-    const game = useSelector(state=> state.game);
+    const { isAuthenticated, isLoading } = useAuth0();
+
  
     const [goals, setGoals] = useState({
-        localResult: userInfo.userResults[id-1][0],
-        awayResult: userInfo.userResults[id-1][1]
+        localResult: userInfo ? userInfo.userResults[id-1][0] : null,
+        awayResult: userInfo ? userInfo.userResults[id-1][1] : null
     })
 
-    useEffect(() => {
-        if(id > 0 && id < 49)
-      dispatch(getIdGame(id))
-    }, [dispatch, id])
+
+    // useEffect(() => {
+    //     if(id > 0 && id < 49){
+    //         dispatch(getIdGame(id, setLoading);
+    //     }
+    // }, [dispatch, id])
 
     useEffect(() => {
+        // if(isAuthenticated){
+        //     setGoals({
+        //                 localResult: userInfo.userResults[id-1][0],
+        //                 awayResult: userInfo.userResults[id-1][1]
+        //             });
+        // }
         handleResult();
-        // assignOctavos();
-    }, [])
+        dispatch(getGroupGames(group, setLoading));
+        dispatch(getGroupTeams(group, setLoading));
+    }, [userInfo])
     
-
-
-    // function restartOctavos () {
-    //     if (game.group === 'A') {
-    //             games2[0].local = null;
-    //             games2[0].localResult = null;
-    //             games2[0].awayResult = null;
-    //             games2[3].away = null;
-    //             games2[3].localResult = null;
-    //             games2[3].awayResult = null;
-    //         }
-    //     else if (game.group === 'B') {
-    //             games2[3].local = null;
-    //             games2[3].localResult = null;
-    //             games2[3].awayResult = null;
-    //             games2[0].away = null;
-    //             games2[0].localResult = null;
-    //             games2[0].awayResult = null;
-    //     }
-    //     else if (game.group === 'C') {
-    //             games2[1].local = null;
-    //             games2[1].localResult = null;
-    //             games2[1].awayResult = null;
-    //             games2[2].away = null;
-    //             games2[2].localResult = null;
-    //             games2[2].awayResult = null;
-    //     }
-    //     else if (game.group === 'D') {
-    //             games2[2].local = null;
-    //             games2[2].localResult = null;
-    //             games2[2].awayResult = null;
-    //             games2[1].away = null;
-    //             games2[1].localResult = null;
-    //             games2[1].awayResult = null;
-    //     }
-    //     else if (game.group === 'E') {
-    //             games2[4].local = null;
-    //             games2[4].localResult = null;
-    //             games2[4].awayResult = null;
-    //             games2[6].away = null;
-    //             games2[6].localResult = null;
-    //             games2[6].awayResult = null;
-    //     }
-    //     else if (game.group === 'F') {
-    //             games2[6].local = null;
-    //             games2[6].localResult = null;
-    //             games2[6].awayResult = null;
-    //             games2[4].away = null;
-    //             games2[4].localResult = null;
-    //             games2[4].awayResult = null;
-    //     }
-    //     else if (game.group === 'G') {
-    //             games2[5].local = null;
-    //             games2[5].localResult = null;
-    //             games2[5].awayResult = null;
-    //             games2[7].away = null;
-    //             games2[7].localResult = null;
-    //             games2[7].awayResult = null;
-    //     }
-    //     else if (game.group === 'H') {
-    //             games2[7].local = null;
-    //             games2[7].localResult = null;
-    //             games2[7].awayResult = null;
-    //             games2[5].away = null;
-    //             games2[5].localResult = null;
-    //             games2[5].awayResult = null;
-    //     }
-    // }
-
-    // function assignOctavos () {
-    //     let teamsA = teams2.filter(team => team.group === 'A');
-    //     let teamsB = teams2.filter(team => team.group === 'B');
-    //     let teamsC = teams2.filter(team => team.group === 'C');
-    //     let teamsD = teams2.filter(team => team.group === 'D');
-    //     let teamsE = teams2.filter(team => team.group === 'E');
-    //     let teamsF = teams2.filter(team => team.group === 'F');
-    //     let teamsG = teams2.filter(team => team.group === 'G');
-    //     let teamsH = teams2.filter(team => team.group === 'H');
-    //     if(teamsA[0].totalGames === 3 && teamsA[1].totalGames === 3 && teamsA[2].totalGames === 3 && teamsA[3].totalGames === 3) {
-    //         teamsA.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[0].local = teamsA[0];
-    //         games2[3].away = teamsA[1];
-    //     }
-    //     if(teamsB[0].totalGames === 3 && teamsB[1].totalGames === 3 && teamsB[2].totalGames === 3 && teamsB[3].totalGames === 3) {
-    //         teamsB.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[3].local = teamsB[0];
-    //         games2[0].away = teamsB[1];
-    //     }
-    //     if(teamsC[0].totalGames === 3 && teamsC[1].totalGames === 3 && teamsC[2].totalGames === 3 && teamsC[3].totalGames === 3) {
-    //         teamsC.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[1].local = teamsC[0];
-    //         games2[2].away = teamsC[1];
-    //     }
-    //     if(teamsD[0].totalGames === 3 && teamsD[1].totalGames === 3 && teamsD[2].totalGames === 3 && teamsD[3].totalGames === 3) {
-    //         teamsD.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[2].local = teamsD[0];
-    //         games2[1].away = teamsD[1];
-    //     }
-    //     if(teamsE[0].totalGames === 3 && teamsE[1].totalGames === 3 && teamsE[2].totalGames === 3 && teamsE[3].totalGames === 3) {
-    //         teamsE.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[4].local = teamsE[0];
-    //         games2[6].away = teamsE[1];
-    //     }
-    //     if(teamsF[0].totalGames === 3 && teamsF[1].totalGames === 3 && teamsF[2].totalGames === 3 && teamsF[3].totalGames === 3) {
-    //         teamsF.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[6].local = teamsF[0];
-    //         games2[4].away = teamsF[1];
-    //     }
-    //     if(teamsG[0].totalGames === 3 && teamsG[1].totalGames === 3 && teamsG[2].totalGames === 3 && teamsG[3].totalGames === 3) {
-    //         teamsG.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[5].local = teamsG[0];
-    //         games2[7].away = teamsG[1];
-    //     }
-    //     if(teamsH[0].totalGames === 3 && teamsH[1].totalGames === 3 && teamsH[2].totalGames === 3 && teamsH[3].totalGames === 3) {
-    //         teamsH.sort(function (a, b) {
-    //             if (a.points > b.points) {
-    //               return -1;
-    //             }
-    //             if (a.points < b.points) {
-    //               return 1;
-    //             }
-    //             if (a.points === b.points){
-    //               if (a.difGoals > b.difGoals) {
-    //                 return -1;
-    //               }
-    //               if (a.difGoals < b.difGoals) {
-    //                 return 1;
-    //               }
-    //               if (a.difGoals === b.difGoals) {
-    //                 if (a.goalsF > b.goalsF) {
-    //                   return -1;
-    //                 }
-    //                 if (a.goalsF < b.goalsF) {
-    //                   return 1;
-    //                 }
-    //                 if (a.goalsF === b.goalsF) {
-    //                   if (a.name > b.name) {
-    //                     return -1;
-    //                   }
-    //                   if (a.name < b.name) {
-    //                     return 1;
-    //                   }
-    //                   return 0;
-    //                 }
-    //               }
-    //             }
-    //         })
-    //         games2[7].local = teamsH[0];
-    //         games2[5].away = teamsH[1];
-    //     }
-    // }
 
 
     function handleResult() {
 
         if(id > 0 && id < 49) {
         let localIndice = teams2.findIndex(e=>e.id===id1);
-        let awayIndice = teams2.findIndex(e=>e.id===id2);
+        let awayIndice = teams2.findIndex(e=>e.id===id2); 
 
         let prevGoalsF = teams2[localIndice][position][0];
         let prevGoalsC = teams2[localIndice][position][1];
@@ -1028,161 +665,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + goals.awayResult - localResultado;
             }
         }
-        // if(teamsGroup[0].totalGames === 3 && teamsGroup[1].totalGames === 3 && teamsGroup[2].totalGames === 3 && teamsGroup[3].totalGames === 3){
-        //     teamsGroup.sort(function (a, b) {
-        //         if (a.points > b.points) {
-        //           return -1;
-        //         }
-        //         if (a.points < b.points) {
-        //           return 1;
-        //         }
-        //         if (a.points === b.points){
-        //           if (a.difGoals > b.difGoals) {
-        //             return -1;
-        //           }
-        //           if (a.difGoals < b.difGoals) {
-        //             return 1;
-        //           }
-        //           if (a.difGoals === b.difGoals) {
-        //             if (a.goalsF > b.goalsF) {
-        //               return -1;
-        //             }
-        //             if (a.goalsF < b.goalsF) {
-        //               return 1;
-        //             }
-        //             if (a.goalsF === b.goalsF) {
-        //               if (a.name > b.name) {
-        //                 return -1;
-        //               }
-        //               if (a.name < b.name) {
-        //                 return 1;
-        //               }
-        //               return 0;
-        //             }
-        //           }
-        //         }
-        //     })
-        //     if (game.group === 'A') {
 
-        //         if(games2[0].local !== teamsGroup[0]) {
-        //           games2[0].local = teamsGroup[0];
-        //           games2[0].localResult = null;
-        //           games2[0].awayResult = null;
-        //         }
-
-        //         if(games2[3].away !== teamsGroup[1]) {
-        //             games2[3].away = teamsGroup[1];
-        //             games2[3].localResult = null;
-        //             games2[3].awayResult = null;
-        //         }
-
-        //     }
-        //     else if (game.group === 'B') {
-                
-        //         if(games2[3].local !== teamsGroup[0]) {
-        //             games2[3].local = teamsGroup[0];
-        //             games2[3].localResult = null;
-        //             games2[3].awayResult = null;
-        //         }
-
-        //         if(games2[0].away !== teamsGroup[1]) {
-        //             games2[0].away = teamsGroup[1];
-        //             games2[0].localResult = null;
-        //             games2[0].awayResult = null;
-        //         }
-        //     }
-        //     else if (game.group === 'C') {
-
-        //         if(games2[1].local !== teamsGroup[0]) {
-        //             games2[1].local = teamsGroup[0];
-        //             games2[1].localResult = null;
-        //             games2[1].awayResult = null;
-        //         }
-
-        //         if(games2[2].away !== teamsGroup[1]) {
-        //             games2[2].away = teamsGroup[1];
-        //             games2[2].localResult = null;
-        //             games2[2].awayResult = null;
-        //           }
-
-        //     }
-        //     else if (game.group === 'D') {
-
-        //         if(games2[2].local !== teamsGroup[0]) {
-        //             games2[2].local = teamsGroup[0];
-        //             games2[2].localResult = null;
-        //             games2[2].awayResult = null;
-        //         }
-
-        //         if(games2[1].away !== teamsGroup[1]) {
-        //             games2[1].away = teamsGroup[1];
-        //             games2[1].localResult = null;
-        //             games2[1].awayResult = null;
-        //           }
-
-        //     }
-        //     else if (game.group === 'E') {
-
-        //         if(games2[4].local !== teamsGroup[0]) {
-        //             games2[4].local = teamsGroup[0];
-        //             games2[4].localResult = null;
-        //             games2[4].awayResult = null;
-        //         }
-
-        //         if(games2[6].away !== teamsGroup[1]) {
-        //             games2[6].away = teamsGroup[1];
-        //             games2[6].localResult = null;
-        //             games2[6].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'F') {
-                
-        //         if(games2[6].local !== teamsGroup[0]) {
-        //             games2[6].local = teamsGroup[0];
-        //             games2[6].localResult = null;
-        //             games2[6].awayResult = null;
-        //         }
-
-        //         if(games2[4].away !== teamsGroup[1]) {
-        //             games2[4].away = teamsGroup[1];
-        //             games2[4].localResult = null;
-        //             games2[4].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'G') {
-
-        //         if(games2[5].local !== teamsGroup[0]) {
-        //             games2[5].local = teamsGroup[0];
-        //             games2[5].localResult = null;
-        //             games2[5].awayResult = null;
-        //         }
-
-        //         if(games2[7].away !== teamsGroup[1]) {
-        //             games2[7].away = teamsGroup[1];
-        //             games2[7].localResult = null;
-        //             games2[7].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'H') {
-
-        //         if(games2[7].local !== teamsGroup[0]) {
-        //             games2[7].local = teamsGroup[0];
-        //             games2[7].localResult = null;
-        //             games2[7].awayResult = null;
-        //         }
-
-        //         if(games2[5].away !== teamsGroup[1]) {
-        //             games2[5].away = teamsGroup[1];
-        //             games2[5].localResult = null;
-        //             games2[5].awayResult = null;
-        //           }
-        //     }
-        //     flag = false
-        // }
-        // if(flag){
-        //     restartOctavos();
-        //     flag = false
-        // }
         let resultado={
             idGame: id,
             localGoals: localResultado,
@@ -1205,12 +688,6 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         });
         let localIndice = teams2.findIndex(e=>e.id===id1);
         let awayIndice = teams2.findIndex(e=>e.id===id2);
-
-        // let teamsGroup = teams2.filter(team=>team.group === group);
-
-        // if(teamsGroup[0].totalGames === 3 && teamsGroup[1].totalGames === 3 && teamsGroup[2].totalGames === 3 && teamsGroup[3].totalGames === 3){
-        //     var flag = true;
-        // }
         
         
         if(id > 0 && id < 17) {
@@ -1668,161 +1145,6 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                 teams2[awayIndice].difGoals = teams2[awayIndice].difGoals - prevGoalsC + prevGoalsF + awayResultado - goals.localResult;
             }
         }
-        // if(teamsGroup[0].totalGames === 3 && teamsGroup[1].totalGames === 3 && teamsGroup[2].totalGames === 3 && teamsGroup[3].totalGames === 3){
-        //     teamsGroup.sort(function (a, b) {
-        //         if (a.points > b.points) {
-        //           return -1;
-        //         }
-        //         if (a.points < b.points) {
-        //           return 1;
-        //         }
-        //         if (a.points === b.points){
-        //           if (a.difGoals > b.difGoals) {
-        //             return -1;
-        //           }
-        //           if (a.difGoals < b.difGoals) {
-        //             return 1;
-        //           }
-        //           if (a.difGoals === b.difGoals) {
-        //             if (a.goalsF > b.goalsF) {
-        //               return -1;
-        //             }
-        //             if (a.goalsF < b.goalsF) {
-        //               return 1;
-        //             }
-        //             if (a.goalsF === b.goalsF) {
-        //               if (a.name > b.name) {
-        //                 return -1;
-        //               }
-        //               if (a.name < b.name) {
-        //                 return 1;
-        //               }
-        //               return 0;
-        //             }
-        //           }
-        //         }
-        //     })
-        //     if (game.group === 'A') {
-
-        //         if(games2[0].local !== teamsGroup[0]) {
-        //           games2[0].local = teamsGroup[0];
-        //           games2[0].localResult = null;
-        //           games2[0].awayResult = null;
-        //         }
-
-        //         if(games2[3].away !== teamsGroup[1]) {
-        //             games2[3].away = teamsGroup[1];
-        //             games2[3].localResult = null;
-        //             games2[3].awayResult = null;
-        //         }
-
-        //     }
-        //     else if (game.group === 'B') {
-                
-        //         if(games2[3].local !== teamsGroup[0]) {
-        //             games2[3].local = teamsGroup[0];
-        //             games2[3].localResult = null;
-        //             games2[3].awayResult = null;
-        //         }
-
-        //         if(games2[0].away !== teamsGroup[1]) {
-        //             games2[0].away = teamsGroup[1];
-        //             games2[0].localResult = null;
-        //             games2[0].awayResult = null;
-        //         }
-        //     }
-        //     else if (game.group === 'C') {
-
-        //         if(games2[1].local !== teamsGroup[0]) {
-        //             games2[1].local = teamsGroup[0];
-        //             games2[1].localResult = null;
-        //             games2[1].awayResult = null;
-        //         }
-
-        //         if(games2[2].away !== teamsGroup[1]) {
-        //             games2[2].away = teamsGroup[1];
-        //             games2[2].localResult = null;
-        //             games2[2].awayResult = null;
-        //           }
-
-        //     }
-        //     else if (game.group === 'D') {
-
-        //         if(games2[2].local !== teamsGroup[0]) {
-        //             games2[2].local = teamsGroup[0];
-        //             games2[2].localResult = null;
-        //             games2[2].awayResult = null;
-        //         }
-
-        //         if(games2[1].away !== teamsGroup[1]) {
-        //             games2[1].away = teamsGroup[1];
-        //             games2[1].localResult = null;
-        //             games2[1].awayResult = null;
-        //           }
-
-        //     }
-        //     else if (game.group === 'E') {
-
-        //         if(games2[4].local !== teamsGroup[0]) {
-        //             games2[4].local = teamsGroup[0];
-        //             games2[4].localResult = null;
-        //             games2[4].awayResult = null;
-        //         }
-
-        //         if(games2[6].away !== teamsGroup[1]) {
-        //             games2[6].away = teamsGroup[1];
-        //             games2[6].localResult = null;
-        //             games2[6].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'F') {
-                
-        //         if(games2[6].local !== teamsGroup[0]) {
-        //             games2[6].local = teamsGroup[0];
-        //             games2[6].localResult = null;
-        //             games2[6].awayResult = null;
-        //         }
-
-        //         if(games2[4].away !== teamsGroup[1]) {
-        //             games2[4].away = teamsGroup[1];
-        //             games2[4].localResult = null;
-        //             games2[4].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'G') {
-
-        //         if(games2[5].local !== teamsGroup[0]) {
-        //             games2[5].local = teamsGroup[0];
-        //             games2[5].localResult = null;
-        //             games2[5].awayResult = null;
-        //         }
-
-        //         if(games2[7].away !== teamsGroup[1]) {
-        //             games2[7].away = teamsGroup[1];
-        //             games2[7].localResult = null;
-        //             games2[7].awayResult = null;
-        //           }
-        //     }
-        //     else if (game.group === 'H') {
-
-        //         if(games2[7].local !== teamsGroup[0]) {
-        //             games2[7].local = teamsGroup[0];
-        //             games2[7].localResult = null;
-        //             games2[7].awayResult = null;
-        //         }
-
-        //         if(games2[5].away !== teamsGroup[1]) {
-        //             games2[5].away = teamsGroup[1];
-        //             games2[5].localResult = null;
-        //             games2[5].awayResult = null;
-        //           }
-        //     }
-        //     flag = false
-        // }
-        // if(flag){
-        //     restartOctavos();
-        //     flag = false
-        // }
         let resultado={
             idGame: id,
             localGoals: goals.localResult,
@@ -1833,24 +1155,27 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
     }
 
 
-        // function handleCheckLocal() {
-        // const penaltiesLocal = {
-        //     id: id,
-        //     penalties: 'local'
-        // }
-        // console.log(penaltiesLocal)
-        // dispatch(putGamePenalties(penaltiesLocal, setIsModify))
-        // }
-
-        // function handleCheckAway() {
-        //     const penaltiesAway = {
-        //         id: id,
-        //         penalties: 'away'
-        //     }
-        //     dispatch(putGamePenalties(penaltiesAway, setIsModify))
-        //     }
+    let fecha = new Date()
+    // let dateGrupos = new Date("2022, 09, 19");
+    // let dateOctavos = new Date("2022, 09, 19");
+    // let dateCuartos = new Date("2022, 09, 19");
+    // let dateSemis = new Date("2022, 09, 19");
+    // let dateFinales = new Date("2022, 09, 19");
+    let dateGrupos = new Date("2022, 11, 20");
+    let dateOctavos = new Date("2022, 11, 29");
+    let dateCuartos = new Date("2022, 12, 04");
+    let dateSemis = new Date("2022, 12, 04");
+    let dateFinales = new Date("2022, 12, 04");
         
+    if(loading) {
+        return <Loading />
+      }
+    if(isLoading) {
+        return <Loading />
+      }
+    else if (isAuthenticated) {   
         return (
+            <>
             <div className={style.all}>
                 <div>
                     <span className={style.date}>
@@ -1879,14 +1204,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                     </span>
                 </div>
                 <div className={style.goals}>
-                     {/* { (group === 'Octavos de Final' || group === "Cuartos de Final" || group === 'Semifinales' || group === "Final y Tercer Puesto") &&
-                      localResult === awayResult && localResult !== null ?
-                      <input    type='radio' 
-                                defaultChecked={penalties === 'local' ? true : false} 
-                                name={id}
-                                onClick={handleCheckLocal} /> :
-                      null
-                    } */}
+
                     <input  type='number'
                             min='0'
                             max='9'
@@ -1897,7 +1215,13 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             autoComplete='off'
                             onChange={handleChangeGoalsLocal}
                             className={style.input1}
-                            disabled={!team1 || !team2} />  
+                            disabled={!team1 || !team2
+                             || (group === "Octavos de Final" && fecha > dateOctavos)
+                             || (group === "Cuartos de Final" && fecha > dateCuartos)
+                             || (group === "Semifinales" && fecha > dateSemis)
+                             || (group === "Final y Tercer Puesto" && fecha > dateFinales)
+                             || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
+                                group === "E" || group === "F" ||  group === "G" || group === "H") && fecha > dateGrupos) } />  
   
                 </div>
                 <div className={style.goals}>
@@ -1907,20 +1231,17 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             maxLength="1"
                             pattern="[0-9(\-)]"
                             defaultValue={goals.awayResult} 
-                            // defaultValue={userInfo.userResults[id-1][1]} 
                             name='awayResult' 
                             autoComplete='off'
                             onChange={handleChangeGoalsAway}
                             className={style.input2}
-                            disabled={!team1 || !team2} />  
-                    {/* { (group === 'Octavos de Final' || group === "Cuartos de Final" || group === 'Semifinales' || group === "Final y Tercer Puesto") &&
-                       localResult === awayResult && localResult !== null ?
-                      <input    type='radio' 
-                                defaultChecked={penalties === 'away' ? true : false}  
-                                name={id} 
-                                onClick={handleCheckAway} /> :
-                      null
-                    }                    */}
+                            disabled={!team1 || !team2
+                                    || (group === "Octavos de Final" && fecha > dateOctavos)
+                                    || (group === "Cuartos de Final" && fecha > dateCuartos)
+                                    || (group === "Semifinales" && fecha > dateSemis)
+                                    || (group === "Final y Tercer Puesto" && fecha > dateFinales)
+                                    || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
+                                    group === "E" || group === "F" ||  group === "G" || group === "H") && fecha > dateGrupos) } />  
                 </div>
                 <div className={style.team}>
                     <span className={style.team2}>
@@ -1935,7 +1256,47 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                 </div>
 
             </div>
+            { localResult !== null && awayResult !== null ?
+            <div className={!userInfo.points[id-1] ? style.all2 : style.all3}>
+
+
+                <div className={style.points}>
+                    <span className={style.team2}>
+                         Puntos: {userInfo.points[id-1] ? userInfo.points[id-1] : 0}
+                    </span>
+                </div>
+
+                <div className={style.flag}>
+
+                </div>
+                <div>
+
+                </div>
+
+                <div className={style.goals1}>
+
+                    <span >
+                         {localResult}
+                    </span>  
+  
+                </div>
+                <div className={style.goals1}>
+                    <span >
+                         {awayResult}
+                    </span>  
+                </div>
+                <div className={style.team}>
+
+                </div>
+                <div className={style.flag}>
+
+                </div>
+            </div> :
+            null
+            }
+            </>
         )
+        }
     }
 
 

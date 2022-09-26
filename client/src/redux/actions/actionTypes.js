@@ -2,6 +2,7 @@ export const SEND_USER_INFO = "SEND_USER_INFO";
 export const PUT_USER_INFO = "PUT_USER_INFO";
 export const PUT_USER_RESULT = "PUT_USER_RESULT";
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_USERS_RANKING = "GET_USERS_RANKING";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const PUT_GAME_LOCAL_TEAM = "PUT_GAME_LOCAL_TEAM";
 export const PUT_GAME_AWAY_TEAM = "PUT_GAME_AWAY_TEAM";

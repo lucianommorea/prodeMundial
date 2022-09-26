@@ -107,12 +107,6 @@ async function putLocalTeamGame(id, local) {
       } 
         return updatedGame;
       
-      // if (prevLocalTeam) {
-      //   await updatedGame.removeTeam(prevLocalTeam)
-      // }
-      // await updatedGame.addTeam(localTeam);
-      // await updatedGame.update({local: localTeam.id});
-      // return updatedGame;
   }
   catch (error) {
       console.log('Error putLocalGame', error)
@@ -148,12 +142,7 @@ async function putAwayTeamGame(id, away) {
         }
       } 
         return updatedGame;
-      // if (prevAwayTeam) {
-      //   await updatedGame.removeTeam(prevAwayTeam)
-      // }
-      // await updatedGame.addTeam(awayTeam);
-      // await updatedGame.update({away: awayTeam.id});
-      // return updatedGame;
+
   }
   catch (error) {
       console.log('Error putAwayGame', error)
@@ -269,6 +258,8 @@ async function putGameResult(id, localGoals, awayGoals) {
             ],  
         })
 
+        if(game.penalties) await game.update({penalties: null})    
+
         if(game.group === 'A' || game.group === 'B' || game.group === 'C' || game.group === 'D' || 
            game.group === 'E' || game.group === 'F' || game.group === 'G' || game.group === 'H') {
 
@@ -307,8 +298,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   },
                   attributes: ['local']
                 });
-
-                console.log(game49)
 
                 if(game49.local !== teams[0].id) {
                   putLocalTeamGame(49, teams[0].id);
@@ -556,6 +545,7 @@ async function putGameResult(id, localGoals, awayGoals) {
             return game
 
           }
+          await putUsersPoints(id, localGoals, awayGoals)
           if (game.group === 'Octavos de Final') {
 
             if (game.id === 49) {
@@ -571,7 +561,7 @@ async function putGameResult(id, localGoals, awayGoals) {
               }
                 await putLocalTeamGame(58, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 await putGameResult(58, null, null)
                 await putLocalTeamGame(58, null)
               }
@@ -589,7 +579,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putAwayTeamGame(58, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                   putGameResult(58, null, null);
                   putAwayTeamGame(58, null);
               }
@@ -607,26 +597,28 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putLocalTeamGame(60, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(60, null, null)
                 putLocalTeamGame(60, null)
               }
             }
             if (game.id === 52) {
-              if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
-                  putGameResult(60, null, null)
+              if(localGoals > awayGoals) { 
+                if(prevLocalResult === prevAwayResult || prevLocalResult < prevAwayResult){
+                    putGameResult(60, null, null)
+                  }
+                  putAwayTeamGame(60, game.local);
                 }
-                putAwayTeamGame(60, game.local);
-              if (awayGoals > localGoals){
-                if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
-                  putGameResult(60, null, null)
+                if (awayGoals > localGoals){
+                  if(prevLocalResult === prevAwayResult || prevLocalResult > prevAwayResult){
+                    putGameResult(60, null, null)
+                  }
+                  putAwayTeamGame(60, game.away)
                 }
-                putAwayTeamGame(60, game.away)
-              }
-              if (localGoals === awayGoals){
-                putGameResult(60, null, null)
-                putAwayTeamGame(60, null)
-              }
+                if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
+                  putGameResult(60, null, null)
+                  putAwayTeamGame(60, null)
+                }
             }
             if (game.id === 53) {
               if(localGoals > awayGoals) {
@@ -641,7 +633,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putLocalTeamGame(57, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(57, null, null);
                 putLocalTeamGame(57, null)
               }
@@ -659,7 +651,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putAwayTeamGame(57, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(57, null, null)
                 putAwayTeamGame(57, null)
               }
@@ -677,7 +669,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putLocalTeamGame(59, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(59, null, null)
                 putLocalTeamGame(59, null)
               }
@@ -695,7 +687,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putAwayTeamGame(59, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(59, null, null)
                 putAwayTeamGame(59, null)
               }
@@ -718,7 +710,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putLocalTeamGame(61, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(61, null, null)
                 putLocalTeamGame(61, null)
               }
@@ -736,7 +728,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putAwayTeamGame(61, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(61,null, null)
                 putAwayTeamGame(61, null)
               }
@@ -754,7 +746,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putLocalTeamGame(62, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(62, null, null)
                 putLocalTeamGame(62, null)
               }
@@ -772,7 +764,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 }
                 putAwayTeamGame(62, game.away)
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(62, null, null);
                 putAwayTeamGame(62, null)
               }
@@ -800,7 +792,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 putLocalTeamGame(63, game.local)
                 putLocalTeamGame(64, game.away);
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(63, null, null)
                 putGameResult(64, null, null)
                 putLocalTeamGame(63, null)
@@ -824,7 +816,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 putAwayTeamGame(63, game.local)
                 putAwayTeamGame(64, game.away);
               }
-              if (localGoals === awayGoals){
+              if (parseInt(localGoals) === parseInt(awayGoals) || localGoals === null || awayGoals === null){
                 putGameResult(63, null, null)
                 putGameResult(64, null, null)
                 putAwayTeamGame(63, null)
@@ -843,7 +835,6 @@ async function putGameResult(id, localGoals, awayGoals) {
             }
 
           }
- 
     }
     catch (error) {
         console.log('Error putGameResult', error)

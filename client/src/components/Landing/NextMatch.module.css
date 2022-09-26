@@ -1,0 +1,88 @@
+.card {
+    border: none;
+    backdrop-filter: contrast(60%); 
+    color: #6C1D45;
+    /* border: 1px solid #6C1D45; */
+    min-width: 250px;
+    max-width: 300px; 
+    background: transparent; 
+    text-align: center; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.flag {
+    border-radius: 10%;
+    border-radius: 0.3vw;
+    width: 30px;
+    height: 22px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.flag2 {
+    border-radius: 10%;
+    border-radius: 0.3vw;
+    width: 30px;
+    height: 22px;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.nextGame{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.next{
+    margin-bottom: 8px;
+    font-size: large;
+    font-weight: 600;
+    padding-top: 5px;
+}
+
+.hour{
+    margin-bottom: 10px;
+}
+
+.calendar {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.points {
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    justify-self: center;
+    font-weight: 550;
+    font-size: larger;
+}
+
+.btn{
+    text-decoration: none;
+    margin-top: 0px;
+    font-weight: 450;
+    background-color: #6C1D45;
+    color: whitesmoke;
+
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: 100%;
+}
+
+.btn:visited{
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #c36494;
+    color:#6C1D45;
+    font-weight: 500;
+    cursor: pointer
+}
+
+.btn:link{
+    text-decoration: none;
+}

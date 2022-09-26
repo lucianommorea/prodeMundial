@@ -14,7 +14,8 @@ import {
     GET_ID_TEAM,
     GET_GROUP_TEAMS,
     PUT_ID_TEAM,
-    PUT_GAME_PENALTIES
+    PUT_GAME_PENALTIES,
+    GET_USERS_RANKING
   } from "./actionTypes";
 
   
@@ -60,10 +61,20 @@ export const getAllUsers = () => async (dispatch) => {
     }
 };
 
-export const getUserId = (sub) => async (dispatch) => {
+export const getUsersRanking = () => async (dispatch) => {
+  try {
+    const { data } = await api.getUsersRanking();
+    dispatch({ type: GET_USERS_RANKING, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getUserId = (sub, setLoading) => async (dispatch) => {
     try {
       const { data } = await api.getUserId(sub);
       dispatch({ type: GET_USER_INFO, payload: data });
+      setLoading && setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -113,28 +124,31 @@ export const putGamePenalties = (modify, setIsModify) => async (dispatch) => {
   }
 };
   
-export const getAllGames = () => async (dispatch) => {
+export const getAllGames = (setLoading) => async (dispatch) => {
     try {
       const { data } = await api.getAllGames();
       dispatch({ type: GET_ALL_GAMES, payload: data });
+      setLoading && setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
 };
 
-export const getIdGame = (id) => async (dispatch) => {
+export const getIdGame = (id, setLoading) => async (dispatch) => {
     try {
       const { data } = await api.getIdGame(id);
       dispatch({ type: GET_ID_GAME, payload: data });
+      setLoading && setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
 };
 
-export const getGroupGames = (group) => async (dispatch) => {
+export const getGroupGames = (group, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getGroupGames(group);
     dispatch({ type: GET_GROUP_GAMES, payload: data });
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -158,10 +172,11 @@ export const getIdTeam = (id) => async (dispatch) => {
     }
 };
 
-export const getGroupTeams = (group) => async (dispatch) => {
+export const getGroupTeams = (group, setLoading) => async (dispatch) => {
     try {
       const { data } = await api.getGroupTeams(group);
       dispatch({ type: GET_GROUP_TEAMS, payload: data });
+      setLoading && setLoading(false);
     } catch (error) {
       console.log(error.message);
     }

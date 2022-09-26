@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllUsers } = require('../controllers/usersControllers');
+const { getAllUsers, getUsersRanking, putUsersPoints } = require('../controllers/usersControllers');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -13,6 +13,20 @@ router.get("/", async function(req, res){
             const allUsers = await getAllUsers()
             if(allUsers){
                 res.status(200).send(allUsers)         
+            }
+            else{
+                res.status(404).send('Users not found')
+            }
+    } catch (error) {
+        console.log('Error getAllUsersRoute', error)
+    }
+});
+
+router.get("/ranking", async function(req, res){
+    try {
+            const allUsersRanking = await getUsersRanking()
+            if(allUsersRanking){
+                res.status(200).send(allUsersRanking)         
             }
             else{
                 res.status(404).send('Users not found')

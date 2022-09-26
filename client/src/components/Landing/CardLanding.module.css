@@ -1,0 +1,51 @@
+.card {
+    border: none;
+    backdrop-filter: contrast(60%); 
+    color: #6C1D45;
+    /* border: 1px solid #6C1D45; */
+    min-width: 250px;
+    max-width: 300px; 
+    background: transparent; 
+    text-align: center; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.points{
+    padding-top: 5px;
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.myPoints{
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+
+
+.btn{
+    text-decoration: none;
+    margin-top: 0px;
+    font-weight: 450;
+    background-color: #6C1D45;
+    color: whitesmoke;
+
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: 100%;
+}
+
+.btn:visited{
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #c36494;
+    color:#6C1D45;
+    font-weight: 500;
+    cursor: pointer
+}
+
+.btn:link{
+    text-decoration: none;
+}

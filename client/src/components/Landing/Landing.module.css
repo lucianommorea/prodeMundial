@@ -1,0 +1,92 @@
+/* html{
+    min-height: 90vh;
+} */
+
+.all{
+    background-image: url('../../images/messi3.jpg');
+    /* min-height: 90vh; */
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+}
+
+.prode{
+    color: whitesmoke;
+    padding-top: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color:#a0346a;
+}
+
+.top10{
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 280px;
+    width: fit-content;
+    color:#6C1D45;
+    text-align: center;
+}
+
+.title{
+    font-size: x-large;
+    font-weight: 600;
+    background-color: #6C1D45;
+    color: whitesmoke;
+    margin: 0;
+}
+
+
+.card{
+    /* margin-top: 13%;
+    margin-right: 2%;
+    gap: 20px; */
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+    /* border: 5px solid blueviolet; */
+}
+
+.left{
+    justify-content: space-evenly;
+}
+
+.card1{
+    margin: inherit;
+    /* margin-right: 10vw; */
+    /* margin-top: 5vh; */
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.card2{
+    align-self: center;
+}
+
+
+
+@media screen and (max-width: 649px) {
+    .card {
+      flex-direction: column;
+    }
+    .top10{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        min-height: 25vh;
+    }
+    .card1 {
+        margin-left: auto;
+        margin-right: auto;
+        height: fit-content;
+        gap: 30px;
+    }
+  }

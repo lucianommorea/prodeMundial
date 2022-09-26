@@ -3,9 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames} from '../../redux/actions';
-import Loading from '../Loading/LoadingComponent';
-import { useAuth0 } from "@auth0/auth0-react";
+import { getGroupTeams, getGroupGames } from '../../redux/actions';
 
 
 function Grupo({group, setGroup}) {
@@ -13,9 +11,35 @@ function Grupo({group, setGroup}) {
   const games = useSelector(state=> state.games);
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const userInfo = useSelector(state=> state.user);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  // const teams = useSelector(state=> state.teams);
+
+  function toNextGroup() {
+    if(group === "A") setGroup("B");
+    if(group === "B") setGroup("C");
+    if(group === "C") setGroup("D");
+    if(group === "D") setGroup("E");
+    if(group === "E") setGroup("F");
+    if(group === "F") setGroup("G");
+    if(group === "G") setGroup("H");
+    if(group === "H") setGroup("Octavos de Final");
+    if(group === "Octavos de Final") setGroup("Cuartos de Final");
+    if(group === "Cuartos de Final") setGroup("Semifinales");
+    if(group === "Semifinales") setGroup("Final y Tercer Puesto");
+  }
+
+  function toPrevGroup() {
+    if(group === "B") setGroup("A");
+    if(group === "C") setGroup("B");
+    if(group === "D") setGroup("C");
+    if(group === "E") setGroup("D");
+    if(group === "F") setGroup("E");
+    if(group === "G") setGroup("F");
+    if(group === "H") setGroup("G");
+    if(group === "Octavos de Final") setGroup("H");
+    if(group === "Cuartos de Final") setGroup("Octavos de Final");
+    if(group === "Semifinales") setGroup("Cuartos de Final");
+    if(group === "Final y Tercer Puesto") setGroup("Semifinales");
+  }
 
 
   let [teams2, setTeams2] = useState([
@@ -565,61 +589,563 @@ function Grupo({group, setGroup}) {
   }
 ])
 
-  useEffect(() => {
-    if(isAuthenticated){
-      dispatch(getGroupGames(group, setLoading));
-      dispatch(getGroupTeams(group, setLoading));
+let [games2, setGames2] = useState([
+  {
+    id: 1,
+    stadium: "Al Bayt",
+    date: "2022/11/20 13:00:00.59",
+    local: "QAT",
+    away: "ECU",
+    position: 'game1',
+    group: 'A'
+},
+{
+    id: 2,
+    stadium: "Khalifa Inernational",
+    date: "2022/11/21 10:00:00.59",
+    local: "ENG",
+    away: "IRN",
+    position: 'game1',
+    group: 'B',
+  },
+  {
+    id: 3,
+    stadium: "Al Thumama",
+    date: "2022/11/21 13:00:00.59",
+    local: "SEN",
+    away: "NED",
+    position: 'game1',
+    group: 'A',
+  },
+  {
+    id: 4,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/21 16:00:00.59",
+    local: "USA",
+    away: "WAL",
+    position: 'game1',
+    group: 'B',
+  },
+  {
+    id: 5,
+    stadium: "Lusail Stadium",
+    date: "2022/11/22 07:00:00.59",
+    local: "ARG",
+    away: "KSA",
+    position: 'game1',
+    group: 'C',
+  },
+  {
+    id: 6,
+    stadium: "Education City",
+    date: "2022/11/22 10:00:00.59",
+    local: "DEN",
+    away: "TUN",
+    position: 'game1',
+    group: 'D',
+  },
+  {
+    id: 7,
+    stadium: "Stadium 974",
+    date: "2022/11/22 13:00:00.59",
+    local: "MEX",
+    away: "POL",
+    position: 'game1',
+    group: 'C',
+  },
+  {
+    id: 8,
+    stadium: "Al Janoub",
+    date: "2022/11/22 16:00:00.59",
+    local: "FRA",
+    away: "AUS",
+    position: 'game1',
+    group: 'D',
+  },
+  {
+    id: 9,
+    stadium: "Al Bayt",
+    date: "2022/11/23 07:00:00.59",
+    local: "MAR",
+    away: "CRO",
+    position: 'game1',
+    group: 'F',
+  },
+  {
+    id: 10,
+    stadium: "Khalifa International",
+    date: "2022/11/23 10:00:00.59",
+    local: "GER",
+    away: "JPN",
+    position: 'game1',
+    group: 'E',
+  },
+  {
+    id: 11,
+    stadium: "Al Thumama",
+    date: "2022/11/23 13:00:00.59",
+    local: "ESP",
+    away: "CRC",
+    position: 'game1',
+    group: 'E',
+  },
+  {
+    id: 12,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/23 16:00:00.59",
+    local: "BEL",
+    away: "CAN",
+    position: 'game1',
+    group: 'F',
+  },
+  {
+    id: 13,
+    stadium: "Al Janoub",
+    date: "2022/11/24 07:00:00.59",
+    local: "SUI",
+    away: "CMR",
+    position: 'game1',
+    group: 'G',
+  },
+  {
+    id: 14,
+    stadium: "Education City",
+    date: "2022/11/24 10:00:00.59",
+    local: "URU",
+    away: "KOR",
+    position: 'game1',
+    group: 'H',
+  },
+  {
+    id: 15,
+    stadium: "Stadium 974",
+    date: "2022/11/24 13:00:00.59",
+    local: "POR",
+    away: "GHA",
+    position: 'game1',
+    group: 'H',
+  },
+  {
+    id: 16,
+    stadium: "Lusail Stadium",
+    date: "2022/11/24 16:00:00.59",
+    local: "BRA",
+    away: "SRB",
+    position: 'game1',
+    group: 'G',
+  },
+  {
+    id: 17,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/25 07:00:00.59",
+    local: "WAL",
+    away: "IRN",
+    position: 'game2',
+    group: 'B',
+  },
+  {
+    id: 18,
+    stadium: "Al Thumama",
+    date: "2022/11/25 10:00:00.59",
+    local: "QAT",
+    away: "SEN",
+    position: 'game2',
+    group: 'A',
+  },
+  {
+    id: 19,
+    stadium: "Khalifa International",
+    date: "2022/11/25 13:00:00.59",
+    local: "NED",
+    away: "ECU",
+    position: 'game2',
+    group: 'A',
+  },
+  {
+    id: 20,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/25 16:00:00.59",
+    local: "ENG",
+    away: "USA",
+    position: 'game2',
+    group: 'B',
+  },
+  {
+    id: 21,
+    stadium: "Al Janoub",
+    date: "2022/11/26 07:00:00.59",
+    local: "TUN",
+    away: "AUS",
+    position: 'game2',
+    group: 'D',
+  },
+  {
+    id: 22,
+    stadium: "Education City",
+    date: "2022/11/26 10:00:00.59",
+    local: "POL",
+    away: "KSA",
+    position: 'game2',
+    group: 'C',
+  },
+  {
+    id: 23,
+    stadium: "Stadium 974",
+    date: "2022/11/26 13:00:00.59",
+    local: "FRA",
+    away: "DEN",
+    position: 'game2',
+    group: 'D',
+  },
+  {
+    id: 24,
+    stadium: "Lusail Stadium",
+    date: "2022/11/26 16:00:00.59",
+    local: "ARG",
+    away: "MEX",
+    position: 'game2',
+    group: 'C',
+  },
+  {
+    id: 25,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/27 07:00:00.59",
+    local: "JPN",
+    away: "CRC",
+    position: 'game2',
+    group: 'E',
+  },
+  {
+    id: 26,
+    stadium: "Al Thumama",
+    date: "2022/11/27 10:00:00.59",
+    local: "BEL",
+    away: "MAR",
+    position: 'game2',
+    group: 'F',
+  },
+  {
+    id: 27,
+    stadium: "Khalifa International",
+    date: "2022/11/27 13:00:00.59",
+    local: "CRO",
+    away: "CAN",
+    position: 'game2',
+    group: 'F',
+  },
+  {
+    id: 28,
+    stadium: "Al Bayt",
+    date: "2022/11/27 16:00:00.59",
+    local: "ESP",
+    away: "GER",
+    position: 'game2',
+    group: 'E',
+  },
+  {
+    id: 29,
+    stadium: "Al Janoub",
+    date: "2022/11/28 07:00:00.59",
+    local: "CMR",
+    away: "SRB",
+    position: 'game2',
+    group: 'G',
+  },
+  {
+    id: 30,
+    stadium: "Education City",
+    date: "2022/11/28 10:00:00.59",
+    local: "KOR",
+    away: "GHA",
+    position: 'game2',
+    group: 'H',
+  },
+  {
+    id: 31,
+    stadium: "Stadium 974",
+    date: "2022/11/28 13:00:00.59",
+    local: "BRA",
+    away: "SUI",
+    position: 'game2',
+    group: 'G',
+  },
+  {
+    id: 32,
+    stadium: "Lusail Stadium",
+    date: "2022/11/28 16:00:00.59",
+    local: "POR",
+    away: "URU",
+    position: 'game2',
+    group: 'H',
+  },
+  {
+    id: 33,
+    stadium: "Al Bayt",
+    date: "2022/11/29 12:00:00.59",
+    local: "NED",
+    away: "QAT",
+    position: 'game3',
+    group: 'A',
+  },
+  {
+    id: 34,
+    stadium: "Khalifa International",
+    date: "2022/11/29 12:00:00.59",
+    local: "ECU",
+    away: "SEN",
+    position: 'game3',
+    group: 'A',
+  },
+  {
+    id: 35,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/11/29 16:00:00.59",
+    local: "WAL",
+    away: "ENG",
+    position: 'game3',
+    group: 'B',
+  },
+  {
+    id: 36,
+    stadium: "Al Thumama",
+    date: "2022/11/29 16:00:00.59",
+    local: "IRN",
+    away: "USA",
+    position: 'game3',
+    group: 'B',
+  },
+  {
+    id: 37,
+    stadium: "Al Janoub",
+    date: "2022/11/30 12:00:00.59",
+    local: "AUS",
+    away: "DEN",
+    position: 'game3',
+    group: 'D',
+  },
+  {
+    id: 38,
+    stadium: "Education City",
+    date: "2022/11/30 12:00:00.59",
+    local: "TUN",
+    away: "FRA",
+    position: 'game3',
+    group: 'D',
+  },
+  {
+    id: 39,
+    stadium: "Stadium 974",
+    date: "2022/11/30 16:00:00.59",
+    local: "POL",
+    away: "ARG",
+    position: 'game3',
+    group: 'C',
+  },
+  {
+    id: 40,
+    stadium: "Lusail Stadium",
+    date: "2022/11/30 16:00:00.59",
+    local: "KSA",
+    away: "MEX",
+    position: 'game3',
+    group: 'C',
+  },
+  {
+    id: 41,
+    stadium: "Ahmad Bin Ali",
+    date: "2022/12/01 12:00:00.59",
+    local: "CRO",
+    away: "BEL",
+    position: 'game3',
+    group: 'F',
+  },
+  {
+    id: 42,
+    stadium: "Al Thumama",
+    date: "2022/12/01 12:00:00.59",
+    local: "CAN",
+    away: "MAR",
+    position: 'game3',
+    group: 'F',
+  },
+  {
+    id: 43,
+    stadium: "Khalifa International",
+    date: "2022/12/01 16:00:00.59",
+    local: "JPN",
+    away: "ESP",
+    position: 'game3',
+    group: 'E',
+  },
+  {
+    id: 44,
+    stadium: "Al Bayt",
+    date: "2022/12/01 16:00:00.59",
+    local: "CRC",
+    away: "GER",
+    position: 'game3',
+    group: 'E',
+  },
+  {
+    id: 45,
+    stadium: "Al Janoub",
+    date: "2022/12/02 12:00:00.59",
+    local: "GHA",
+    away: "URU",
+    position: 'game3',
+    group: 'H',
+  },
+  {
+    id: 46,
+    stadium: "Education City",
+    date: "2022/12/02 12:00:00.59",
+    local: "KOR",
+    away: "POR",
+    position: 'game3',
+    group: 'H',
+  },
+  {
+    id: 47,
+    stadium: "Stadium 974",
+    date: "2022/12/02 16:00:00.59",
+    local: "SRB",
+    away: "SUI",
+    position: 'game3',
+    group: 'G',
+  },
+  {
+    id: 48,
+    stadium: "Lusail Stadium",
+    date: "2022/12/02 16:00:00.59",
+    local: "CMR",
+    away: "BRA",
+    position: 'game3',
+    group: 'G',
+  },
+    {
+      id: 49,
+      stadium: "Khalifa International",
+      date: "2022/12/03 12:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 50,
+      stadium: "Ahmad Bin Ali",
+      date: "2022/12/03 16:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 51,
+      stadium: "Al Thumama",
+      date: "2022/12/04 12:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 52,
+      stadium: "Al Bayt",
+      date: "2022/12/04 16:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 53,
+      stadium: "Al Janoub",
+      date: "2022/12/05 12:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 54,
+      stadium: "Stadium 974",
+      date: "2022/12/05 16:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 55,
+      stadium: "Education City",
+      date: "2022/12/06 12:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 56,
+      stadium: "Lusail Stadium",
+      date: "2022/12/06 16:00:00.59",
+      position: 'Octavos de Final',
+      group: 'Octavos de Final',
+    },
+    {
+      id: 57,
+      stadium: "Education City",
+      date: "2022/12/09 12:00:00.59",
+      position: 'Cuartos de Final',
+      group: 'Cuartos de Final',
+    },
+    {
+      id: 58,
+      stadium: "Lusail Stadium",
+      date: "2022/12/09 16:00:00.59",
+      position: 'Cuartos de Final',
+      group: 'Cuartos de Final',
+    },
+    {
+      id: 59,
+      stadium: "Al Thumama",
+      date: "2022/12/10 12:00:00.59",
+      position: 'Cuartos de Final',
+      group: 'Cuartos de Final',
+    },
+    {
+      id: 60,
+      stadium: "Al Bayt",
+      date: "2022/12/10 16:00:00.59",
+      position: 'Cuartos de Final',
+      group: 'Cuartos de Final',
+    },
+    {
+      id: 61,
+      stadium: "Lusail Stadium",
+      date: "2022/12/13 16:00:00.59",
+      position: 'Semifinales',
+      group: 'Semifinales',
+    },
+    {
+      id: 62,
+      stadium: "Al Bayt",
+      date: "2022/12/14 16:00:00.59",
+      position: 'Semifinales',
+      group: 'Semifinales',
+    },
+    {
+      id: 63,
+      stadium: "Khalifa International",
+      date: "2022/12/17 12:00:00.59",
+      position: 'Final y Tercer Puesto',
+      group: 'Final y Tercer Puesto',
+    },
+    {
+      id: 64,
+      stadium: "Lusail Stadium",
+      date: "2022/12/18 12:00:00.59",
+      position: 'Final y Tercer Puesto',
+      group: 'Final y Tercer Puesto',
     }
+  ]);
 
-  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo, setLoading]);
+
+  useEffect(() => {
+    dispatch(getGroupGames(group));
+    dispatch(getGroupTeams(group));
+  }, [dispatch, group, isModify]);
 
 
-    
-  function toNextGroup() {
-    if(group === "A") setGroup("B");
-    if(group === "B") setGroup("C");
-    if(group === "C") setGroup("D");
-    if(group === "D") setGroup("E");
-    if(group === "E") setGroup("F");
-    if(group === "F") setGroup("G");
-    if(group === "G") setGroup("H");
-    if(group === "H") setGroup("Octavos de Final");
-    if(group === "Octavos de Final") setGroup("Cuartos de Final");
-    if(group === "Cuartos de Final") setGroup("Semifinales");
-    if(group === "Semifinales") setGroup("Final y Tercer Puesto");
-  }
 
-  function toPrevGroup() {
-    if(group === "B") setGroup("A");
-    if(group === "C") setGroup("B");
-    if(group === "D") setGroup("C");
-    if(group === "E") setGroup("D");
-    if(group === "F") setGroup("E");
-    if(group === "G") setGroup("F");
-    if(group === "H") setGroup("G");
-    if(group === "Octavos de Final") setGroup("H");
-    if(group === "Cuartos de Final") setGroup("Octavos de Final");
-    if(group === "Semifinales") setGroup("Cuartos de Final");
-    if(group === "Final y Tercer Puesto") setGroup("Semifinales");
-  }
 
-  let fecha = new Date()
-  let dateOctavos = new Date("2022, 09, 18");
-  let dateCuartos = new Date("2022, 09, 18");
-  let dateSemis = new Date("2022, 09, 18");
-  let dateFinales = new Date("2022, 09, 18");
-  // let dateOctavos = new Date("2022, 11, 29");
-  // let dateCuartos = new Date("2022, 12, 04");
-  // let dateSemis = new Date("2022, 12, 04");
-  // let dateFinales = new Date("2022, 12, 04");
 
-  if(loading) {
-    return <Loading />
-  }
-  if(isLoading) {
-    return <Loading />
-  }
-  else 
     return (
       <div className={style.all}>
         <div>
@@ -662,7 +1188,8 @@ function Grupo({group, setGroup}) {
               </div>
   
         <div className={style.games}>
-          { games.map(game => {
+          { (group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H') &&
+            games.map(game => {
               return (
               <Partido  key={game.id} 
                         id={game.id} 
@@ -675,16 +1202,38 @@ function Grupo({group, setGroup}) {
                         team2={game.away ? game.away === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
                         id1={game.local ? game.local === game.teams[0].id ? game.teams[0].id : game.teams[1].id : null}
                         id2={game.away ? game.away === game.teams[0].id ? game.teams[0].id : game.teams[1].id : null}
-                        localResult={game.localResult}
-                        awayResult={game.awayResult}
+                        localResult={games2[game.id-1].localResult !== null ? games2[game.id-1].localResult : null }
+                        awayResult={games2[game.id-1].awayResult !== null ? games2[game.id-1].awayResult : null }
                         setIsModify={setIsModify}
                         isModify={isModify}
                         teams2={teams2}
-                        setTeams2={setTeams2}
                         group={group}
-                        position={game.position}
-                        loading={loading}
-                        setLoading={setLoading} />
+                        games2={games2} 
+                        position={game.position} />
+            )})
+          }
+           { (group === 'Octavos de Final' || group === 'Cuartos de Final' || group === 'Semifinales' || group === 'Final y Tercer Puesto') &&
+              games2.filter(game=> game.group === group).map(game => {
+              return (
+              <Partido  key={game.id} 
+                        id={game.id} 
+                        date={game.date.slice(0,10)} 
+                        hour={game.date.slice(11,16)}
+                        stadium={game.stadium}
+                        group={game.group}
+                        penalties={game.penalties}
+                        img1={game.local ? game.local.img : null}
+                        img2={game.away ? game.away.img : null}
+                        team1={game.local ? game.local.name : null}
+                        team2={game.away ? game.away.name : null}
+                        id1={game.local ? game.local.id : null}
+                        id2={game.away ? game.away.id : null}
+                        localResult={game.localResult !== null ? game.localResult : null}
+                        awayResult={game.awayResult !== null ? game.awayResult : null}
+                        setIsModify={setIsModify}
+                        isModify={isModify}
+                        teams2={teams2}
+                        games2={games2} />
             )})
           }
         </div>
@@ -727,34 +1276,22 @@ function Grupo({group, setGroup}) {
           { group === 'H' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo G </button>
-            {
-              dateOctavos < fecha &&
-              <button className={style.next} onClick={toNextGroup}> Ir al Octavos de Final  </button>
-            }
+            <button className={style.next} onClick={toNextGroup}> Ir al Octavos de Final  </button>
           </div> }   
           { group === 'Octavos de Final' &&
           <div>      
-            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo H </button> 
-            {
-              dateCuartos < fecha &&
-              <button className={style.next} onClick={toNextGroup}> Ir a Cuartos de Final  </button>
-            }
+            <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo H </button>
+            <button className={style.next} onClick={toNextGroup}> Ir a Cuartos de Final  </button>
           </div> }   
           { group === 'Cuartos de Final' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Octavos de Final </button>
-            {
-              dateSemis < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Semifinales  </button>
-            }
           </div> }   
           { group === 'Semifinales' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Cuartos de Final </button>
-            {
-              dateFinales < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Final y Tercer Puesto  </button>
-            }
           </div> }  
           { group === 'Final y Tercer Puesto' &&
           <div >      
@@ -768,7 +1305,7 @@ function Grupo({group, setGroup}) {
     )
 
   }
-    
+  
 
 export default Grupo
 

@@ -6,20 +6,21 @@ import style from './Tabla.module.css'
 
 export default function BasicTable({group, teams2, isModify}) {
 
-  // const teams = useSelector(state => state.teams)
-  // const [width, setWidth] = useState(window.innerWitdh);
-  // const { isAuthenticated, user } = useAuth0();
+  const teams = useSelector(state => state.teams)
+  const [width, setWidth] = useState(window.innerWitdh);
+  const { isAuthenticated, user } = useAuth0();
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize, false);
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
 
-  // const handleResize = () => {
-  //   setWidth(window.innerWidth);
-  // };
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
   useEffect(() => {
   }, [teams2, isModify]);
+
 
 
   return (
@@ -37,6 +38,8 @@ export default function BasicTable({group, teams2, isModify}) {
               <div className={`col ${style.stat}`}>DG</div>
               <div className={`col ${style.stat}`}>Pts</div>
             </div>
+
+            {/* {teams2.filter(team => team.group === group).map((team) => ( */}
 
             {teams2.filter(team => team.group === group).sort(function (a, b) {
               if (a.points > b.points) {

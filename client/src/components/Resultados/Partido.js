@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { putGamePenalties, putGameResult } from '../../redux/actions';
 import style from './Partido.module.css';
@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2, img2, localResult, awayResult, setIsModify}) {
 
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated } = useAuth0();
     const dispatch = useDispatch()
     const [goals, setGoals] = useState({
         localResult: localResult || null,
@@ -18,7 +18,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
         e.preventDefault()
         setGoals({
             ...goals,
-            localResult: e.target.value
+            localResult: parseInt(e.target.value)
         })
         if(e.target.value === '' || goals.awayResult === '' || goals.awayResult === null){
             const resultado1 = {
@@ -31,7 +31,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
         else {
             const resultado = {
                 id: id,
-                localResult: e.target.value,
+                localResult: parseInt(e.target.value),
                 awayResult: goals.awayResult
             }
             dispatch(putGameResult(resultado, setIsModify))
@@ -42,7 +42,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
         e.preventDefault()
         setGoals({
             ...goals,
-            awayResult: e.target.value
+            awayResult: parseInt(e.target.value)
         })
         if(e.target.value === '' || goals.localResult === '' || goals.localResult === null){
             const resultado1 = {
@@ -56,7 +56,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
             const resultado = {
                 id: id,
                 localResult: goals.localResult,
-                awayResult: e.target.value
+                awayResult: parseInt(e.target.value)
             }
             dispatch(putGameResult(resultado, setIsModify))
         }
