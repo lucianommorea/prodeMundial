@@ -1,0 +1,73 @@
+.all{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
+    /* background-color: #6C1D45; */
+    color: #bebebe;
+    border-radius: 0.5vw;
+}
+
+.team{
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    width: 40%;
+}
+
+.team2{
+    font-size: 1.2rem;
+    /* margin-right: 0.5rem; */
+    width: 40%;
+    text-align: end;
+}
+
+.result{
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    border: 1px solid white;
+    border-radius: 0.5vw;
+    min-width: 1.2rem;
+    text-align: center;
+    width: 10%
+}
+
+@media screen and (max-width: 600px) {
+    .team{
+        font-size: 0.9rem;
+    }
+    
+    .team2{
+        font-size: 0.9rem;
+    }
+    
+    .result{
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .team{
+        font-size: 0.8rem;
+    }
+    
+    .team2{
+        font-size: 0.8rem;
+    }
+    
+    .result{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .team{
+        font-size: 0.75rem;
+    }
+    
+    .team2{
+        font-size: 0.75rem;
+    }
+    
+    .result{
+        font-size: 0.75rem;
+    }
+}

@@ -1,9 +1,8 @@
 const { Router } = require('express');
-const { getUserById, postUser, putUserInfo, putUserResult } = require('../controllers/userControllers');
+const { getUserById, postUser, putUserInfo, putUserResult, putUserOctavos } = require('../controllers/userControllers');
 
 
 const router = Router()
-
 
 
 // router.post('/', async function (req, res){
@@ -40,6 +39,26 @@ router.put('/result/:sub', async function (req, res){
         console.log('Error putUserResultRoute', error)
     }
 })
+
+router.put('/octavos/:sub', async function (req, res){
+    const {sub} = req.params;
+    const {position, team} = req.body;
+    if (!position) {
+        res.status(404).send({error: "Parameters needed to modify userOctavos were not received"})
+    }
+    if (position > 16){
+        res.status(404).send({error: "Position cannot be greatest than 16"})
+    }
+    
+    try {
+        let changeUserOctavos = await putUserOctavos(sub, position, team)
+        res.status(200).send(changeUserOctavos)
+    } 
+    catch (error) {
+        console.log('Error putUserOctavosRoute', error)
+    }
+})
+
 
 router.get('/:sub', async function(req,res){
     const {sub} = req.params;

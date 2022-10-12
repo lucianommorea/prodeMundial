@@ -14,7 +14,7 @@ const Headerlogin = () => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const [width, setWidth] = useState(window.innerWitdh);
+  const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -54,21 +54,39 @@ const Headerlogin = () => {
     return (
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.row1}`}>
-          <div className={`col-lg ${style.col1}`}>
-            <Link to="/">
-              <img
-                className={style.logo}
-                src={logoQatar}
-                alt="logo"
-              />
-            </Link>
+          <div className={`col-lg`}>
+            {
+                      width > 991
+                        ? <Link to="/">
+                            <img
+                              className={style.logo}
+                              src={logoQatar}
+                              alt="logo"
+                            />
+                          </Link>
+                        : <div className={`col-lg-3 ${style.colPreg}`}>
+                            <NavLink to="/" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
+                              Inicio
+                            </NavLink>
+                          </div>
+            }
+            
           </div>
-          <div className={`col-lg-3 ${style.colPreg}`}>
+          <div className={`col-lg-2 ${style.colPreg}`}>
+          {
+            width > 991 ?
+            <NavLink to="/reglas" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
+              Reglas
+            </NavLink> :
+            null
+          }
+          </div>
+          <div className={`col-lg-2 ${style.colPreg}`}>
             <NavLink to="/prode" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
               Prode
             </NavLink>
           </div>
-          <div className={`col-lg-3 ${style.colRank}`}>
+          <div className={`col-lg-2 ${style.colRank}`}>
             <NavLink to="/ranking" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
               Ranking
             </NavLink>
@@ -76,17 +94,17 @@ const Headerlogin = () => {
 
           <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
             <div className={style.padreDivs}>
-              {/* <Link
+              <Link
                 to={`/configuracion/${userInfo.sub}`}
                 className={style.contImagen}
-              > */}
+              >
                 <img
                   className={style.userImage}
                   src={userInfo.picture}
                   alt={userInfo.name}
                   referrerPolicy="no-referrer"
                 />
-              {/* </Link> */}
+              </Link>
               <div className="dropdown">
                 <button
                   className={`
@@ -116,39 +134,52 @@ const Headerlogin = () => {
                     </Link>
                   </li>
                   <li>
-                    {/* <Link className={style.linkDesp} to="/misrespuestas"> */}
+                    <Link className={style.linkDesp} to="/mispremios">
                       <p className="dropdown-item" href="#">
-                        Mis respuestas
-                      </p>
-                    {/* </Link> */}
-                  </li>
-                  <li>
-                    <Link className={style.linkDesp} to="/resultados">
-                      <p className="dropdown-item" href="#">
-                        Resultados
+                        Mis premios
                       </p>
                     </Link>
                   </li>
                   <li>
                     {userInfo.statusAdmin ? (
-                    //   <Link className={style.linkDesp} to="/codenothere">
+                      <Link className={style.linkDesp} to="/resultados">
+                        <p className="dropdown-item" href="#">
+                          Resultados
+                        </p>
+                      </Link> ) :
+                      null
+                    }
+                  </li>
+                  <li>
+                    {userInfo.statusAdmin ? (
+                      <Link className={style.linkDesp} to="/premios">
+                        <p className="dropdown-item" href="#">
+                          Premios
+                        </p>
+                      </Link> ) :
+                      null
+                    }
+                  </li>
+                  <li>
+                    {userInfo.statusAdmin ? (
+                      <Link className={style.linkDesp} to="/statusAdm">
                         <p className="dropdown-item" href="#">
                           Admin
                         </p>
-                    //   </Link>
+                      </Link>
                     ) : (
                       ""
                     )}
                   </li>
                   <li>
-                    {/* <Link
+                    <Link
                       className={style.linkDesp}
                       to={`/configuracion/${userInfo.sub}`}
-                    > */}
+                    >
                       <p className="dropdown-item" href="#">
                         Configuración
                       </p>
-                    {/* </Link> */}
+                    </Link>
                   </li>
 
                   <li>

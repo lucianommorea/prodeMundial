@@ -1,4 +1,5 @@
 const {User} = require('../db');
+const { checkEmailAdmin } = require('./generalControllers');
 
 
 async function postUser (req, res, next) {
@@ -6,8 +7,12 @@ async function postUser (req, res, next) {
             let user = await User.findByPk(req.body.sub);
 
             if(!user) {
-                let user1 = await User.create(req.body)
-    
+                if (checkEmailAdmin(req.body)){
+                    user1 = await User.create({ ...req.body, statusAdmin: true });
+                }
+                else{
+                    user1 = await User.create(req.body);
+                } 
                 res.send(user1);
             }
             else {
@@ -29,6 +34,10 @@ const putUserInfo = async (req, res, next) => {
       statusAdmin,
       statusBanned,
       statusDeleted,
+      first,
+      second, 
+      third,
+      bestPlayer
     } = req.body;
   
     try {
@@ -43,10 +52,14 @@ const putUserInfo = async (req, res, next) => {
             statusAdmin,
             statusBanned,
             statusDeleted,
+            first,
+            second, 
+            third,
+            bestPlayer
         });
   
       
-      res.send({ userUpdated });
+      res.send(userUpdated);
 
     } catch (error) {
       next(error);
@@ -57,7 +70,7 @@ async function putUserResult(sub, idGame, localGoals, awayGoals) {
     try {
         let userUpdated = await User.findByPk(sub);
 
-        let prevUserResults = userUpdated.userResults
+        let prevUserResults = userUpdated.userResults;
 
         let result = [localGoals, awayGoals]
         let newResults = [...prevUserResults]
@@ -72,9 +85,27 @@ async function putUserResult(sub, idGame, localGoals, awayGoals) {
     }
 }
 
+async function putUserOctavos(sub, position, team) {
+    try {
+        let userUpdated = await User.findByPk(sub);
+
+        let prevUserOctavos = userUpdated.octavos
+
+        let newOctavos = [...prevUserOctavos]
+        newOctavos[position-1] = team
+
+        await userUpdated.update({octavos: newOctavos});
+            
+        return userUpdated
+    } 
+    catch (error) {
+        console.log('error in putUserOctavos', error)
+    }
+}
+
 async function getUserById(id) {
     try {
-        const idUser = await User.findAll({
+        const idUser = await User.findOne({
             where: {
                 sub: id
             }
@@ -89,5 +120,6 @@ module.exports = {
     postUser,
     putUserInfo,
     putUserResult,
-    getUserById
+    getUserById,
+    putUserOctavos
 }

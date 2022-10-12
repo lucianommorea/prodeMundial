@@ -1,4 +1,4 @@
-const {Game, Team} = require('../db');
+const {Game, Team, User} = require('../db');
 // const {Op} = require('sequelize')
 const axios = require('axios');
 
@@ -226,6 +226,121 @@ function getTeamsBygroup(group) {
 }
 
 const populateTeams = async () => {
+      const users = [
+    {
+      sub: "1",
+      name: "Gonzalo",
+      nickname: "Gonza",
+      email: "gonza@gmail.com",
+      totalPoints: 20
+    },
+    {
+      sub: "2",
+      name: "Santiago",
+      nickname: "Santi",
+      email: "santi@gmail.com",
+      totalPoints: 150
+    },
+    {
+      sub: "3",
+      name: "Felipe",
+      nickname: "Feli",
+      email: "feli@gmail.com",
+      totalPoints: 140
+    },
+    {
+      sub: "4",
+      name: "David",
+      nickname: "Davo",
+      email: "davo@gmail.com",
+      totalPoints: 130
+    },
+    {
+      sub: "5",
+      name: "Luciano",
+      nickname: "Lucho",
+      email: "lucho@gmail.com",
+      totalPoints: 130
+    },
+    {
+      sub: "6",
+      name: "Gustavo",
+      nickname: "Gus",
+      email: "gus@gmail.com",
+      totalPoints: 120,
+    },
+    {
+      sub: "7",
+      name: "Patricio",
+      nickname: "Pato",
+      email: "pato@gmail.com",
+      totalPoints: 110,
+    },
+    {
+      sub: "8",
+      name: "Matias",
+      nickname: "Mati",
+      email: "mati@gmail.com",
+      totalPoints: 10,
+    },
+    {
+      sub: "9",
+      name: "Fabricio",
+      nickname: "Fabri",
+      email: "fabri@gmail.com",
+      totalPoints: 30,
+    },
+    {
+      sub: "10",
+      name: "Roberto",
+      nickname: "Rober",
+      email: "rober@gmail.com",
+      totalPoints: 0,
+    },
+    {
+      sub: "11",
+      name: "Patroclo",
+      nickname: "Patroclo",
+      email: "patroclo@gmail.com",
+      locale: "Argentina",
+      totalPoints: 0,
+    },
+    {
+      sub: "12",
+      name: "Aquiles",
+      nickname: "Aquiles",
+      email: "aquiles@gmail.com",
+      totalPoints: 50,
+    },
+    {
+      sub: "13",
+      name: "Julieta",
+      nickname: "Juli",
+      email: "juli@gmail.com",
+      totalPoints: 300,
+    },
+    {
+      sub: "14",
+      name: "Marcelo",
+      nickname: "Marce",
+      email: "marce@gmail.com",
+      totalPoints: 70,
+    },
+    {
+      sub: "15",
+      name: "Natalia",
+      nickname: "Nati",
+      email: "nati@gmail.com",
+      totalPoints: 10,
+    },
+    {
+      sub: "16",
+      name: "Camila",
+      nickname: "Cami",
+      email: "cami@gmail.com",
+      totalPoints: 50,
+    },
+  ];
     const teams = [
         {   
             id: "QAT",
@@ -422,6 +537,7 @@ const populateTeams = async () => {
     ]
     try {
         await Team.bulkCreate(teams);
+        await User.bulkCreate(users);
     
         console.log("DB Teams populated correctly");
       } catch (error) {

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Grupo from './Grupo';
 import style from './PublicProde.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
-import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Loading/LoadingComponent';
+import Footer from '.././Footer/Footer';
 
 function PublicProde() {
 
@@ -49,6 +49,9 @@ function PublicProde() {
             }
           </div>
           <Grupo group={group} setGroup={setGroup} />
+        </div>
+        <div className={style.footer}>
+          <Footer />
         </div>
       </div>
     )

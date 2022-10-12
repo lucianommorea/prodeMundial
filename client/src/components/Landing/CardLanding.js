@@ -1,8 +1,10 @@
 import React from 'react';
 import style from './CardLanding.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function CardLanding({pointsUser, myPosition}) {
+function CardLanding({ myPosition}) {
+
+  let location = useLocation();
 
   return (
     <div>
@@ -23,9 +25,15 @@ function CardLanding({pointsUser, myPosition}) {
                 Mi posición
             </div>
           </div>
+          {  
+            location.pathname === '/' ?
             <Link to='/ranking'>
-                <button className={style.btn} > IR AL RANKING </button>
-            </Link>
+              <button className={style.btn} > IR AL RANKING </button>
+            </Link>    :
+            null     
+
+          }
+
         </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { GET_USER_INFO, PUT_USER_INFO, PUT_USER_RESULT, SEND_USER_INFO} from "../actions/actionTypes"
+import { GET_USER_INFO, PUT_USER_INFO, PUT_USER_OCTAVOS, PUT_USER_RESULT, SEND_USER_INFO} from "../actions/actionTypes"
 
 export default function user (state = {}, action){
     switch(action.type){
@@ -9,6 +9,8 @@ export default function user (state = {}, action){
         case PUT_USER_RESULT:
             return action.payload
         case PUT_USER_INFO:
+            return action.payload
+        case PUT_USER_OCTAVOS:
             return action.payload
         default:
             return state            

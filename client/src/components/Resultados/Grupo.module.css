@@ -33,7 +33,7 @@
     display: grid;
     grid-template-columns: 4.5fr 3fr 9fr 2fr 7fr 3fr 3fr 7fr 2fr;
     width: 100%;
-    font-size: 11.5px;
+    font-size: 12px;
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(178, 91, 91);
     border: 1px solid black;

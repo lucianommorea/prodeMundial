@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import style from './Header.module.css'
 
 const Butlog = () => {
   const { loginWithRedirect } = useAuth0();
@@ -12,7 +13,7 @@ const Butlog = () => {
   }
 
   return (
-    <button type="button" onClick={handleClick}>
+    <button type="button" onClick={handleClick} className={style.btnLogIn}>
       Log in/Register
     </button>
   );

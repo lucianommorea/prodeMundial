@@ -1,186 +1,173 @@
 html {
-    min-height: 100%;
-    position: relative;
-  }
+  min-height: 100%;
+  position: relative;
+}
+
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../images/messi3.jpg');
+  background-size: cover;
+  min-height: 90vh;
+  /* padding-top: 2rem; */
+}
+
+.container {
+  background-color: transparent;
+  backdrop-filter: contrast(20%); 
+  border-radius: 0.5vh;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  margin-top: 3%;
+  width: 70%;
+  /* color: #6C1D45;
+  font-weight: 600; */
+}
+
+.userImageTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
   
-  .userImageTop {
-    display: flex;
-    justify-content: center;
-    margin-right: 2vh;
-  }
+.colunmNroTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2.5vh;
+}
   
+.colunmNickTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
+  
+.colunmTeachTop {
+  display: flex;
+  justify-content: center;
+  margin-left: 2vh;
+}
+  
+.colunmRespTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 0.5vh;
+}
+  
+.colunmPregTop {
+  display: flex;
+  justify-content: center;
+}
+  
+.userImage {
+  border-radius: 100%;
+  width: 6vh;
+  height: 6vh;
+  margin-left: 2vw;
+  padding: 0;
+  align-self: center;
+}
+  
+.colunmNro {
+  display: flex;
+  justify-content: center;
+}
+  
+.colunmNick {
+  display: flex;
+  justify-content: center;
+}
+  
+.colunmTeach {
+  display: flex;
+  justify-content: center;
+}
+  
+.colunmResp {
+  display: flex;
+  justify-content: center;
+}
+  
+.colunmPreg {
+  display: flex;
+  justify-content: center;
+}
+  
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+  
+.middleRow {
+  margin-bottom: 10vh;
+}
+  
+  
+@media screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+  }
+}
+  
+@media screen and (max-width: 700px) {
+  .container {
+    width: 96%;
+  }
+
   .colunmNroTop {
-    display: flex;
-    justify-content: center;
-    margin-right: 2.5vh;
+    font-size: small;
+    margin-right: 1vh;
+    margin-left: -1vh;
   }
-  
+ 
   .colunmNickTop {
-    display: flex;
-    justify-content: center;
-    margin-right: 2vh;
+    font-size: small;
+    margin-right: 1vh;
   }
   
   .colunmTeachTop {
-    display: flex;
-    justify-content: center;
-    margin-right: 2vh;
+    font-size: small;
+    margin-left: 1vh;
   }
   
   .colunmRespTop {
-    display: flex;
-    justify-content: center;
-    margin-right: 0.5vh;
+    font-size: small;
+    margin-right: 1vh;
   }
   
   .colunmPregTop {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .userImage {
-    border-radius: 100%;
-    width: 6vh;
-    height: 6vh;
-    margin-left: 2vw;
-    padding: 0;
-    align-self: center;
+    font-size: small;
+    margin-right: 1vh;
   }
   
   .colunmNro {
-    display: flex;
-    justify-content: center;
+    font-size: small;
   }
   
   .colunmNick {
-    display: flex;
-    justify-content: center;
+    font-size: small;
   }
   
   .colunmTeach {
-    display: flex;
-    justify-content: center;
+    font-size: small;
   }
   
   .colunmResp {
-    display: flex;
-    justify-content: center;
+    font-size: small;
   }
   
   .colunmPreg {
-    display: flex;
-    justify-content: center;
+    font-size: small;
   }
   
-  .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow: hidden;
+  .userImage {
+    width: 30px;
+    height: 30px;
   }
-  
-  .fullContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: lightyellow;
-  }
-  
-  .middleRow {
-    margin-bottom: 10vh;
-  }
-  
-  .filterbar {
-    display: flex;
-    justify-content: center;
-    background-color: #ffc107;
-    padding: 9px;
-  }
-  
-  .select {
-    background-color: transparent;
-    border: 1px solid transparent;
-    font-size: 20px;
-    /* color: #4e4e4e; */
-    margin-left: 5vh;
-    padding: 0.8vh;
-  }
-  
-  .select:focus {
-    outline: none;
-  }
-  
-  .container {
-    background-color: white;
-    border-radius: 0.5vh;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    padding: 2%;
-    margin-top: 1%;
-    width: 70%;
-  }
-  
-  @media screen and (max-width: 900px) {
-    .container {
-      width: 90%;
-    }
-  }
-  
-  @media screen and (max-width: 700px) {
-    .container {
-      width: 96%;
-    }
-  
-    .colunmNroTop {
-      font-size: small;
-      margin-right: 1vh;
-      margin-left: -1vh;
-    }
-  
-    .colunmNickTop {
-      font-size: small;
-      margin-right: 1vh;
-    }
-  
-    .colunmTeachTop {
-      font-size: small;
-      margin-right: 1vh;
-    }
-  
-    .colunmRespTop {
-      font-size: small;
-      margin-right: 1vh;
-    }
-  
-    .colunmPregTop {
-      font-size: small;
-      margin-right: 1vh;
-    }
-  
-    .colunmNro {
-      font-size: small;
-    }
-  
-    .colunmNick {
-      font-size: small;
-    }
-  
-    .colunmTeach {
-      font-size: small;
-    }
-  
-    .colunmResp {
-      font-size: small;
-    }
-  
-    .colunmPreg {
-      font-size: small;
-    }
-  
-    .userImage {
-      width: 30px;
-      height: 30px;
-    }
-  }
+}
   
   .columnsname {
     margin: 0px;
@@ -193,10 +180,16 @@ html {
     margin: 0px;
     margin-left: 1vw;
     padding: 0px;
-    border-top: 1px solid grey;
+    /* border-width: 2px 1px; */
+    /* border-style: solid; */
+    /* border-color: #6C1D45;; */
+    border-radius: 0.5vh;
+    background-color: rgb(143, 127, 127);
+    opacity: 0.8;
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
+    margin-top: 2px;
   }
   
   .info:hover {
@@ -208,7 +201,7 @@ html {
     margin: 0px;
     margin-left: 1vw;
     padding: 0px;
-    border: 2px solid black;
+    border: 2px solid #6C1D45;
     border-radius: 0.5vh;
     transition-property: all;
     transition-duration: 0.3s;
@@ -246,6 +239,7 @@ html {
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
+    margin-top: 2px;
   }
   
   .info2sub:hover {
@@ -263,6 +257,7 @@ html {
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
+    margin-top: 2px;
   }
   
   .info3sub:hover {
@@ -323,6 +318,7 @@ html {
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
+    margin-top: 2px;
   }
   
   .info2 p {
@@ -343,6 +339,7 @@ html {
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
+    margin-top: 2px;
   }
   
   .info3 p {

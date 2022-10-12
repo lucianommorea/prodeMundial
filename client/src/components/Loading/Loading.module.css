@@ -1,52 +1,19 @@
-.center{
-    background-image: url('../../images/darkmap3.jpg');
-    background-size: auto;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.all{
+    background-color: #6C1D45;
+    background-color: black;
+    min-height: 90vh;
+    display: grid;
+    place-content: center;
 }
 
-.ring{
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    animation: ring 2s linear infinite;
-    background: transparent;
+.load{
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@keyframes ring {
-    0%{
-        transform: rotate(0deg);
-        box-shadow: 1px 5px 2px #e65c00;
-    }
-    50%{
-        transform: rotate(180deg);
-        box-shadow: 1px 5px 2px #18b201;
-    }
-    100%{
-        transform: rotate(360deg);
-        box-shadow: 1px 5px 2px #0456c8;
-    }
-}
-
-.ring:before{
-    position: absolute;
-    content:'';
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255,255,255, 0.3);
-}
-
-.center span{
-    font-family: 'Source Serif Pro', serif;
-    color: #737373;
-    font-size: 20px;
-    letter-spacing: 1px;
-    line-height: 200px;
+.gif{
+    width: 25%;
+    height: 25%;
+    min-width: 250px;
+    min-height: 250px;
 }

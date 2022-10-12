@@ -4,20 +4,34 @@ import style from './MisPronosticos.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Loading/LoadingComponent';
+import { getWorldCup } from '../../redux/actions';
+import Footer from '../Footer/Footer';
 
 function MisPronosticos() {
 
+  const dispatch = useDispatch()
   const [group, setGroup] = useState('A');
   const userInfo = useSelector(state=> state.user);
+  const worldcup = useSelector(state=> state.worldcup)
 
-  // console.log(userInfo)
-  // console.log(userInfo.points)
-  // console.log(userInfo.totalPoints)
+  console.log(userInfo);
+  console.log(userInfo.points);
+  console.log(userInfo.totalPoints);
+  console.log(userInfo.octavos);
+  console.log(worldcup.octavos)
 
   const handleChangeGroup = (e) => {
     setGroup(e.target.value);
   };
 
+  useEffect(() => {
+    dispatch(getWorldCup())
+  }, [dispatch])
+  
+
+  // console.log(userInfo.octavos);
+  // console.log(userInfo.points)
+  // console.log(userInfo.totalPoints)
 
 
   let fecha = new Date()
@@ -79,6 +93,9 @@ function MisPronosticos() {
             }
           </div>
           <Grupo group={group} setGroup={setGroup} userInfo={userInfo}/>
+        </div>
+        <div className={style.footer}>
+          <Footer />
         </div>
       </div>
     )

@@ -1,0 +1,120 @@
+.bar{
+    width: 100%;
+    align-items:center;
+    display:inline-flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    /* color: whitesmoke; */
+}
+
+.bar button{
+    height:25px;
+    min-height: max-content;
+    width:2.1vw;
+    min-width: fit-content;
+    margin-left: 0.3vh;
+    border-radius: 0.5vh;
+    /* color: #601a3d; */
+    /* border: 1px solid grey; */
+}
+
+.number{
+    border-radius: 0.5vh;
+    text-align: center;
+    background-color: #e0bcce;
+    color: #601a3d;
+    border: 2px solid #601a3d;
+}
+
+.number:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+
+.active{
+    background-color: #601a3d;
+    color: white;
+    border: 1px solid #e0bcce;
+}
+
+.prev{
+    border-radius: 0.5vh;
+    margin-right: 0.5vh;
+    align-content: flex-start;
+    background-color: #e0bcce;
+    border: 2px solid #601a3d;
+}
+
+.one{
+    border-radius: 0.5vh;
+    text-align: center;
+    margin-left: 1px;
+    background-color: #e0bcce;
+    border: 2px solid #601a3d;
+}
+
+.one:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+
+.firstDot{
+    background-color: transparent;
+    color:#e0bcce;
+    border: none;
+}
+
+.lastDot{
+    background-color: transparent;
+    color:#e0bcce;
+    border: none;
+}
+
+.firstDot:hover{
+    cursor: auto
+}
+
+.lastDot:hover{
+    cursor: auto
+}
+
+.last{
+    border-radius: 0.5vh;
+    margin-right: 2px;
+    text-align: center;
+    background-color: #e0bcce;
+    border: 2px solid #601a3d;
+}
+
+.last:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+
+.next{
+    border-radius: 0.5vh;
+    background-color: #e0bcce;
+    margin-left: 1px;
+    border: 2px solid #601a3d;
+}
+
+.next:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+.prev:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+
+.notDisplay {
+    display: none;
+}
+
+@media screen and (max-width: 900px){
+    .bar{
+        font-size: 0.7rem;
+    }
+}
+

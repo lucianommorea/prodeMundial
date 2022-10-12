@@ -15,7 +15,21 @@ import {
     GET_GROUP_TEAMS,
     PUT_ID_TEAM,
     PUT_GAME_PENALTIES,
-    GET_USERS_RANKING
+    GET_USERS_RANKING,
+    PUT_USER_OCTAVOS,
+    GET_WORLD_CUP,
+    PUT_CHAMPION,
+    PUT_SECOND,
+    PUT_THIRD,
+    PUT_BEST_PLAYER,
+    PUT_OCTAVOS_TEAM,
+    GET_TOP_FIVE,
+    GET_ALL_USERS_RANKING,
+    GET_USER_INFO2,
+    GET_ALL_USERS_NOADMIN,
+    GET_ALL_ADMINS,
+    GET_SEARCH_USERS,
+    TOGGLE_DARKMODE
   } from "./actionTypes";
 
   
@@ -30,12 +44,12 @@ export const sendUserInfo = (user) => async (dispatch) => {
     }
 };
 
-export const putUserInfo = (sub, modify) => async (dispatch) => {
+export const putUserInfo = (sub, modify, setLoading, setIsModify) => async (dispatch) => {
     try {
       const {data} = await api.putUserInfo(sub, modify);
       dispatch({ type: PUT_USER_INFO, payload: data})
-    //   setLoading && setLoading(false);
-    //   setIsModify && setIsModify(prevState => !prevState);
+      setLoading && setLoading(false);
+      setIsModify && setIsModify(prevState => !prevState);
     } catch (error) {
       console.log(error.message);
     }
@@ -52,6 +66,17 @@ export const putUserResult = (sub, modify) => async (dispatch) => {
     }
 };
 
+export const putUserOctavos = (sub, modify) => async (dispatch) => {
+  try {
+    const {data} = await api.putUserOctavos(sub, modify);
+    dispatch({ type: PUT_USER_OCTAVOS, payload: data})
+  //   setLoading && setLoading(false);
+  //   setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const getAllUsers = () => async (dispatch) => {
     try {
       const { data } = await api.getAllUsers();
@@ -61,10 +86,55 @@ export const getAllUsers = () => async (dispatch) => {
     }
 };
 
-export const getUsersRanking = () => async (dispatch) => {
+export const getUsersRanking = (page) => async (dispatch) => {
   try {
-    const { data } = await api.getUsersRanking();
+    const { data } = await api.getUsersRanking(page);
     dispatch({ type: GET_USERS_RANKING, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllUsersRanking = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllUsersRanking();
+    dispatch({ type: GET_ALL_USERS_RANKING, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllUsersNoAdmin = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllUsersNoAdmin(page);
+    dispatch({ type: GET_ALL_USERS_NOADMIN, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllAdmins = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllAdmins(page);
+    dispatch({ type: GET_ALL_ADMINS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getSearchUsers = (page, search) => async (dispatch) => {
+  try {
+    const { data } = await api.getSearchUsers(page, search);
+    dispatch({ type: GET_SEARCH_USERS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getTopFive = () => async (dispatch) => {
+  try {
+    const { data } = await api.getTopFive();
+    dispatch({ type: GET_TOP_FIVE, payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -78,6 +148,16 @@ export const getUserId = (sub, setLoading) => async (dispatch) => {
     } catch (error) {
       console.log(error.message);
     }
+};
+
+export const getUserId2 = (sub, setLoading) => async (dispatch) => {
+  try {
+    const { data } = await api.getUserId(sub);
+    dispatch({ type: GET_USER_INFO2, payload: data });
+    setLoading && setLoading(false);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
   
 export const putGameLocalTeam = (id, modify) => async (dispatch) => {
@@ -182,7 +262,6 @@ export const getGroupTeams = (group, setLoading) => async (dispatch) => {
     }
 };
 
-
 export const putIdTeam = (id, modify) => async (dispatch) => {
     try {
       const { data } = await api.putIdTeam(id, modify);
@@ -192,4 +271,73 @@ export const putIdTeam = (id, modify) => async (dispatch) => {
     } catch (error) {
       console.log(error.message);
     }
+};
+
+export const getWorldCup = () => async (dispatch) => {
+  try {
+    const { data } = await api.getWorldCup();
+    dispatch({ type: GET_WORLD_CUP, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putChampion = (modify) => async (dispatch) => {
+  try {
+    const { data } = await api.putChampion(modify);
+    dispatch({ type: PUT_CHAMPION, payload: data})
+    // setLoading && setLoading(false);
+    // setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putSecond = (modify) => async (dispatch) => {
+  try {
+    const { data } = await api.putSecond(modify);
+    dispatch({ type: PUT_SECOND, payload: data})
+    // setLoading && setLoading(false);
+    // setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putThird = (modify) => async (dispatch) => {
+  try {
+    const { data } = await api.putThird(modify);
+    dispatch({ type: PUT_THIRD, payload: data})
+    // setLoading && setLoading(false);
+    // setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putBestPlayer = (modify) => async (dispatch) => {
+  try {
+    const { data } = await api.putBestPlayer(modify);
+    dispatch({ type: PUT_BEST_PLAYER, payload: data})
+    // setLoading && setLoading(false);
+    // setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putOctavosTeam = (position, modify) => async (dispatch) => {
+  try {
+    const { data } = await api.putOctavosTeam(position, modify);
+    dispatch({ type: PUT_OCTAVOS_TEAM, payload: data})
+    // setLoading && setLoading(false);
+    // setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+export const toggleDarkmode = () => {
+  return { type: TOGGLE_DARKMODE, payload: null };
 };

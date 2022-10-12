@@ -1,14 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import style from "./Top10Rank.module.css";
-// import { getTopTenRanking } from "../redux/actions";
-// import { useEffect } from "react";
-import Top10Card from "./Top10Card";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import style from "./Top5Rank.module.css";
+import Top5Card from "./Top5Card";
+import { getTopFive } from "../../redux/actions";
 
 
-const Top10Rank = () => {
+const Top5Rank = () => {
   
-  const users = useSelector((state) => state.users);
+  const topfive = useSelector((state) => state.topfive);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTopFive())
+  }, [dispatch])
+  
 
 
   return (
@@ -22,11 +27,13 @@ const Top10Rank = () => {
           </div>
         </div>
 
-        {users ?
+        {topfive ?
           <>
-            { users?.map((e) => 
+            {     
+              topfive?.map((e) => 
                 <div className={`row ${style.mapeando} `} key={e.sub}>
-                  <Top10Card
+                  <Top5Card
+                    sub={e.sub}
                     position={e.myPosition}
                     nickname={e.nickname}
                     points={e.totalPoints}
@@ -41,4 +48,4 @@ const Top10Rank = () => {
   );
 };
 
-export default Top10Rank;
+export default Top5Rank;

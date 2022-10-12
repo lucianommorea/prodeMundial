@@ -1,0 +1,99 @@
+.all{
+    background-color: #6C1D45;
+    background-image: url('../../images/fondoqatar.jpg');
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(211, 204, 204);
+    color: rgb(190, 187, 187);
+}
+
+.title{
+    width: 85%;
+    margin: auto;
+    padding-top: 2%;
+    align-items: flex-end;
+}
+
+.title h2{
+    /* justify-self: center; */
+    text-align: center;
+    /* border: 1px solid white; */
+}
+
+.up{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid white; */
+    text-align: center;
+    margin: auto;
+    margin-top: 2%;
+    padding-bottom: 2%;
+}
+
+.left{
+    width: 50%;
+    /* border: 1px solid white; */
+}
+
+.right{
+    width: 50%;
+}
+
+.subtitle h4{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    /* border: 1px solid black; */
+}
+
+.clasificados{
+    margin-bottom: 2%;
+}
+
+.complete{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid white; */
+}
+
+.top{
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.down{
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.acordeon{
+    backdrop-filter: contrast(60%); 
+    background-color: transparent;
+}
+
+@media screen and (max-width: 900px) {
+    .up {
+        margin-top: 2rem;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .down {
+        margin-top: 2rem;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 2rem;
+    }
+    .left{
+        width: 100%;
+        /* border: 1px solid white; */
+    }
+    
+    .right{
+        width: 100%;
+    }
+}

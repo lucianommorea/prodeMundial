@@ -1,8 +1,14 @@
+html {
+    min-height: 100vh;
+    /* position: relative; */
+}
+
 .all {
     background-color: #6C1D45;
     /* background-image: url('../../images/6535007_.jpg'); */
     /* background-color: #f9f9c5; */
-    min-height: 100vh;
+    /* height: 85vh; */
+    min-height: 100%;
     /* background-size: cover; */
     /* opacity: 0.8; */
     font-family: 'Montserrat', sans-serif;
@@ -13,6 +19,7 @@
     flex-direction: column;
     width: 80%;
     margin: auto;
+    margin-bottom: 5vh;
 }
 
 .filterbar {
@@ -31,6 +38,14 @@
 h1 {
     color: rgb(178, 91, 91);
     height: 100%;
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 

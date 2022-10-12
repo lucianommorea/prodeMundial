@@ -49,9 +49,6 @@ module.exports = (sequelize) => {
     difGoals:{
       type: DataTypes.INTEGER,
       defaultValue: 0,
-      // get(){
-      //   return `${this.goalsF} - ${this.goalsC}`
-      // }
     },
     wins: {
       type: DataTypes.INTEGER,

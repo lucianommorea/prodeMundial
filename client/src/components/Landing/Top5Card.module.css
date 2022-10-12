@@ -22,3 +22,15 @@
     text-align: center;
     color: whitesmoke;
 }
+
+.toUser {
+    text-decoration: none;
+    color: whitesmoke;
+    /* color: black; */
+}
+
+.toUser:hover {
+    text-decoration: none;
+    color: #bebebe;
+    /* color: black; */
+}

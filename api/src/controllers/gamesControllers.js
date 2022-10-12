@@ -1,6 +1,7 @@
 const {Game, Team} = require('../db');
 const { putTeam, updateGoals } = require('./teamsControllers');
 const { putUsersPoints } = require('./usersControllers');
+const { putOctavosTeam } = require('./worldcupControllers');
 
 async function postGame(id, stadium, date, position, group, local, away) {
     
@@ -302,6 +303,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game49.local !== teams[0].id) {
                   putLocalTeamGame(49, teams[0].id);
                   putGameResult(49, null, null);
+                  await putOctavosTeam(1, 1, teams[0].name);
                 }
 
                 let game52 = await Game.findOne({
@@ -313,6 +315,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game52.away !== teams[1].id) {
                   putAwayTeamGame(52, teams[1].id)
                   putGameResult(52, null, null);
+                  await putOctavosTeam(1, 2, teams[1].name);
                 }
               }
               if (game.group === 'B') {
@@ -325,6 +328,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game52.local !== teams[0].id) {
                   putLocalTeamGame(52, teams[0].id);
                   putGameResult(52, null, null);
+                  await putOctavosTeam(1, 3, teams[0].name);
                 }
 
                 let game49 = await Game.findOne({
@@ -336,7 +340,8 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game49.away !== teams[1].id) {
                   putAwayTeamGame(49, teams[1].id)
-                  putGameResult(49, null, null);               
+                  putGameResult(49, null, null);    
+                  await putOctavosTeam(1, 4, teams[1].name);           
                 }
               }
 
@@ -351,7 +356,8 @@ async function putGameResult(id, localGoals, awayGoals) {
                 
                 if(game50.local !== teams[0].id) {
                   putLocalTeamGame(50, teams[0].id);
-                  putGameResult(50, null, null)
+                  putGameResult(50, null, null);
+                  await putOctavosTeam(1, 5, teams[0].name);
                 }
 
                 let game51 = await Game.findOne({
@@ -362,8 +368,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
 
                 if(game51.away !== teams[1].id) {
-                  putAwayTeamGame(51, teams[1].id)
-                  putGameResult(51, null, null) 
+                  putAwayTeamGame(51, teams[1].id);
+                  putGameResult(51, null, null);
+                  await putOctavosTeam(1, 6, teams[1].name);
                 }
               }
               if (game.group === 'D') {
@@ -377,7 +384,8 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game51.local !== teams[0].id) {
                   putLocalTeamGame(51, teams[0].id);
-                  putGameResult(51, null, null)
+                  putGameResult(51, null, null);
+                  await putOctavosTeam(1, 7, teams[0].name);
                 }
 
                 let game50 = await Game.findOne({
@@ -388,8 +396,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
           
                 if(game50.away !== teams[1].id) {
-                  putAwayTeamGame(50, teams[1].id)
-                  putGameResult(50, null, null)
+                  putAwayTeamGame(50, teams[1].id);
+                  putGameResult(50, null, null);
+                  await putOctavosTeam(1, 8, teams[1].name);
                 }
 
               }
@@ -404,7 +413,8 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game53.local !== teams[0].id) {
                   putLocalTeamGame(53, teams[0].id);
-                  putGameResult(53, null, null)
+                  putGameResult(53, null, null);
+                  await putOctavosTeam(1, 9, teams[0].name);
                 }
 
                 let game55 = await Game.findOne({
@@ -415,8 +425,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
 
                 if(game55.away !== teams[1].id) {
-                  putAwayTeamGame(55, teams[1].id)
-                  putGameResult(55, null, null)
+                  putAwayTeamGame(55, teams[1].id);
+                  putGameResult(55, null, null);
+                  await putOctavosTeam(1, 10, teams[1].name);
                 }
               }
 
@@ -431,7 +442,8 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game55.local !== teams[0].id) {
                   putLocalTeamGame(55, teams[0].id);
-                  putGameResult(55, null, null)
+                  putGameResult(55, null, null);
+                  await putOctavosTeam(1, 11, teams[0].name);
                 }
 
                 let game53 = await Game.findOne({
@@ -442,8 +454,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
 
                 if(game53.away !== teams[1].id) {
-                  putAwayTeamGame(53, teams[1].id)
-                  putGameResult(53, null, null)
+                  putAwayTeamGame(53, teams[1].id);
+                  putGameResult(53, null, null);
+                  await putOctavosTeam(1, 12, teams[1].name);
                 }
 
               }
@@ -459,6 +472,7 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game54.local !== teams[0].id) {
                   putLocalTeamGame(54, teams[0].id);
                   putGameResult(54, null, null);
+                  await putOctavosTeam(1, 13, teams[0].name);
                 }
 
                 let game56 = await Game.findOne({
@@ -469,8 +483,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
 
                 if(game56.away !== teams[1].id) {
-                  putAwayTeamGame(56, teams[1].id)
-                  putGameResult(56, null, null)
+                  putAwayTeamGame(56, teams[1].id);
+                  putGameResult(56, null, null);
+                  await putOctavosTeam(1, 14, teams[1].name);
                 }
 
               }
@@ -485,7 +500,8 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game56.local !== teams[0].id) {
                   putLocalTeamGame(56, teams[0].id);
-                  putGameResult(56, null, null)
+                  putGameResult(56, null, null);
+                  await putOctavosTeam(1, 15, teams[0].name);
                 }
 
                 let game54 = await Game.findOne({
@@ -496,8 +512,9 @@ async function putGameResult(id, localGoals, awayGoals) {
                 });
 
                 if(game54.away !== teams[1].id) {
-                  putAwayTeamGame(54, teams[1].id)
+                  putAwayTeamGame(54, teams[1].id);
                   putGameResult(54,null, null);
+                  await putOctavosTeam(1, 16, teams[1].name);
                 }
               }
             }
@@ -508,38 +525,69 @@ async function putGameResult(id, localGoals, awayGoals) {
                 
                 if (game.group === 'A') {
                   putLocalTeamGame(49, null);
-                  putAwayTeamGame(52, null)
+                  putAwayTeamGame(52, null);
+                  putGameResult(49, null, null);
+                  putGameResult(52, null, null);
+                  await putOctavosTeam(1, 1, null);
+                  await putOctavosTeam(1, 2, null);
                 }
                 if (game.group === 'B') {
                   putLocalTeamGame(52, null);
-                  putAwayTeamGame(49, null)
+                  putAwayTeamGame(49, null);
+                  putGameResult(49, null, null);
+                  putGameResult(52, null, null);
+                  await putOctavosTeam(1, 3, null);
+                  await putOctavosTeam(1, 4, null);
                 }
                 if (game.group === 'C') {
                   putLocalTeamGame(50, null);
-                  putAwayTeamGame(51, null)
+                  putAwayTeamGame(51, null);
+                  putGameResult(50, null, null);
+                  putGameResult(51, null, null);
+                  await putOctavosTeam(1, 5, null);
+                  await putOctavosTeam(1, 6, null);
                 }
                 if (game.group === 'D') {
                   putLocalTeamGame(51, null);
-                  putAwayTeamGame(50, null)
+                  putAwayTeamGame(50, null);
+                  putGameResult(50, null, null);
+                  putGameResult(51, null, null);
+                  await putOctavosTeam(1, 7, null);
+                  await putOctavosTeam(1, 8, null);
                 }
                 if (game.group === 'E') {
                   putLocalTeamGame(53, null);
-                  putAwayTeamGame(55, null)
+                  putAwayTeamGame(55, null);
+                  putGameResult(53, null, null);
+                  putGameResult(55, null, null);
+                  await putOctavosTeam(1, 9, null);
+                  await putOctavosTeam(1, 10, null);
                 }
                 if (game.group === 'F') {
                   putLocalTeamGame(55, null);
-                  putAwayTeamGame(53, null)
+                  putAwayTeamGame(53, null);
+                  putGameResult(53, null, null);
+                  putGameResult(55, null, null);
+                  await putOctavosTeam(1, 11, null);
+                  await putOctavosTeam(1, 12, null);
                 }
                 if (game.group === 'G') {
                   putLocalTeamGame(54, null);
-                  putAwayTeamGame(56, null)
+                  putAwayTeamGame(56, null);
+                  putGameResult(54, null, null);
+                  putGameResult(56, null, null);
+                  await putOctavosTeam(1, 13, null);
+                  await putOctavosTeam(1, 14, null);
                 }
                 if (game.group === 'H') {
                   putLocalTeamGame(56, null);
-                  putAwayTeamGame(54, null)
+                  putAwayTeamGame(54, null);
+                  putGameResult(54, null, null);
+                  putGameResult(56, null, null);
+                  await putOctavosTeam(1, 15, null);
+                  await putOctavosTeam(1, 16, null);
                 }
-              }
-              
+              }      
             }
     
             return game

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import notFoundImage from '../../images/error.jpg'
-import s from './NotFound.module.css';
+import style from './NotFound.module.css';
 import Loading from '../Loading/LoadingComponent';
 
 
@@ -20,11 +19,11 @@ export default function NotFound() {
     }
     
     return (
-        <div className={s.back}>
-            <div id={s.notFoundCountry} > 
-                <img src={notFoundImage} alt='Not Found'/>
+        <div className={style.back}>
+            <div id={style.notFoundCountry} > 
+                Not Found
             </div>
-            <div id={s.btn}>
+            <div id={style.btn}>
                 <Link to='/home'>   
                         <button> Back to countries </button>
                 </Link> 

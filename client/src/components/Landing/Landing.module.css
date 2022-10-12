@@ -1,10 +1,12 @@
-/* html{
-    min-height: 90vh;
-} */
+html {
+    min-height: 100%;
+    position: relative;
+}
 
 .all{
     background-image: url('../../images/messi31.jpg');
-    min-height: fit-content;
+    /* min-height: fit-content;
+    height: max-content; */
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -27,7 +29,6 @@
     padding-right: 10px;
     backdrop-filter: contrast(60%); 
     background-color: transparent;
-    /* color: rgb(198, 198, 198); */
 }
 
 .top10{
@@ -48,6 +49,10 @@
     margin: 0;
 }
 
+.rules{
+    /* border: 1px solid white; */
+    margin-bottom: 30px;
+}
 
 .card{
     /* margin-top: 13%;
@@ -56,7 +61,7 @@
     display: flex;
     flex-direction: row;
     width: 80%;
-    height: 80vh;
+    min-height: 80vh;
     margin: auto;
     /* border: 5px solid blueviolet; */
 }
@@ -77,12 +82,36 @@
     /* margin-bottom: 20px; */
 
 }
-
+ 
 .card2{
-    margin-bottom: 20px;
+    padding-bottom: 2rem;
+} 
+
+.btn{
+    text-decoration: none;
+    margin-top: 0px;
+    font-weight: 450;
+    background-color: #6C1D45;
+    color: whitesmoke;
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: 100%;
 }
 
+.btn:visited{
+    text-decoration: none;
+}
 
+.btn:hover{
+    background-color: #c36494;
+    color:#6C1D45;
+    font-weight: 500;
+    cursor: pointer
+}
+
+.btn:link{
+    text-decoration: none;
+}
 
 @media screen and (max-width: 649px) {
     /* .all{
@@ -90,21 +119,24 @@
         height: max-content;
     } */
     .prode{
-        font-size: 2.6rem;
+        font-size: 2.4rem;
     }
     .card {
       flex-direction: column;
+      min-height: fit-content;
     }
     .top10{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 20px;
+        margin-top: 25px;
+        margin-bottom: 25px;
         min-height: 25vh;
     }
     .card1 {
         margin-left: auto;
         margin-right: auto;
         height: fit-content;
-        gap: 30px;
+        gap: 20px;
     }
+
   }

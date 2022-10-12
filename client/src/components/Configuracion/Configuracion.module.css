@@ -1,0 +1,357 @@
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../images/fondoqatar.jpg');
+    /* min-height: 90vh; */
+    font-size: 1.3rem;
+}
+
+.title{
+    display: grid;
+    place-content: center;
+    margin-top: 30px;
+    font-size: 3rem;
+    color: #BEBEBE;
+}
+
+.cuadro{
+    display: flex;
+    flex-direction: row;
+    margin-top: -10vh;
+    min-height: 30vh;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5vh;
+    backdrop-filter: contrast(70%);
+}
+
+.foto{
+    /* display: grid; */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-top: 2vh;
+    z-index: 1;
+}
+
+.picture{
+    border-radius: 100%;
+    height: 18vh;
+    width: 18vh;
+}
+
+.name{
+    min-width: 33%;
+}
+
+.changePhoto{
+    min-width: 34%;
+}
+
+.nickName{
+    min-width: 33%;
+}
+
+.top{
+    height: 33%;
+    display: grid;
+    place-content: center;
+}
+
+.middle{
+    height: 34%;
+    display: grid;
+    place-content: center;
+}
+
+.bottom{
+    height: 33%;
+    display: grid;
+    place-content: center;
+}
+
+.text {
+    font-weight: 700;
+}
+
+.col2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.colFile{
+    font-size: 0.8rem;
+}
+
+.col3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.col2modify {
+    display: none;
+}
+
+.error {
+    margin-top: 0.5vh;
+    font-size: 0.9rem;
+    /* color: #c36494; */
+    color: #cd75a1;
+    width: 100%;
+    text-align: center;
+}
+
+.errorInputs {
+    border-radius: 0.5vh;
+    border: solid 1.5px #BEBEBE;
+    width: 100%;
+    min-width: 150px;
+    height: 40px;
+    font-size: 1.2rem;
+    /* background-color:#6C1D45; */
+    background-color:#b27493;
+    color: #BEBEBE;
+    text-align: center;
+    border-radius: 0.5vh;
+    border: solid 2px #c36494;
+}
+
+.errorInputs:hover {
+    border-radius: 0.5vh;
+    border: solid 2px #c36494;
+}
+
+.inputs {
+    border-radius: 0.5vh;
+    border: solid 1.5px #BEBEBE;
+    width: 100%;
+    min-width: 150px;
+    height: 40px;
+    font-size: 1.2rem;
+    /* background-color:#6C1D45; */
+    background-color:#b27493;
+    color: #46132c;
+    text-align: center;
+}
+
+.inputs:active{
+    border: solid 1.5px #BEBEBE;
+}
+
+.btn{
+    text-decoration: none;
+    margin-top: 0px;
+    font-weight: 350;
+    background-color: #6C1D45;
+    color: whitesmoke;
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: 100%;
+}
+
+.btn:visited{
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #c36494;
+    color:#6C1D45;
+    /* font-weight: 500; */
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background-color: #c36494;
+    color: #c0c0c0;
+    cursor: text;
+    border: black solid 0.5px;
+}
+
+.btn1{
+    margin-top: 0px;
+    font-weight: 350;
+    background-color: #6C1D45;
+    color: whitesmoke;
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: min-content;
+}
+
+.btn1:hover{
+    background-color: #c36494;
+    color:#6C1D45;
+    cursor: pointer;
+}
+
+.check {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: auto;
+    gap: 10px;
+}
+
+.cuadro2{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5vh;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    /* backdrop-filter: contrast(70%);  */
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .fullContainer{
+        font-size: 1.1rem;
+    }
+
+    .picture{
+        border-radius: 100%;
+        height: 8rem;
+        width: 8rem;
+    }
+
+    .colFile{
+        font-size: 0.7rem;
+    }
+
+    .foto{
+        /* display: grid; */
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        margin-top: 30px;
+        margin-bottom: 0px;
+        z-index: 1;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .fullContainer{
+        font-size: 1.2rem;
+    }
+
+    .cuadro{
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 10px;
+    }
+
+    .name{
+        border-bottom: 1px solid #b27493;
+    }
+
+    .changePhoto{
+        border-bottom: 1px solid #b27493;
+        /* max-width: 45%; */
+    }
+
+    .top{
+        margin-bottom: 15px;
+    }
+
+    .middle{
+        margin-bottom: 15px;
+    }
+
+    .bottom{
+        margin-bottom: 15px;
+    }
+
+    .picture{
+        border-radius: 100%;
+        height: 8rem;
+        width: 8rem;
+    }
+
+    .colFile{
+        font-size: 0.9rem;
+    }
+
+    .foto{
+        /* display: none; */
+        margin-bottom: 10px;
+    }
+
+    .cuadro2{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 0.5vh;
+        margin-top: 50px;
+        gap: 30px;
+        align-items: center;
+        /* backdrop-filter: contrast(70%);  */
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .cuadro{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        width: 75%;
+    }
+
+    .picture{
+        border-radius: 100%;
+        height: 5rem;
+        width: 5rem;
+    }
+
+    .colFile{
+        font-size: 0.6rem;
+    }
+
+    .errorInputs {
+        max-width: 170px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .inputs {
+        max-width: 170px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .error {
+        font-size: 0.75rem;
+    }
+
+    .btn{
+       font-size: 1rem;
+    }
+
+
+}

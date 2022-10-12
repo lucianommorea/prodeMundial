@@ -6,20 +6,18 @@
     padding: 0.5%;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    height: 10vh;
+    min-height: 10vh;
+    color: grey
 }
   
-
 .logo {
   height: 64px; 
   width: 50px;
   /* border: 1px solid black;; */
   background-color: transparent;
+  width: 45%;
+  margin-left: 25%;
 }
-
-/* .colPreg{
-  color: grey;
-} */
 
 .dropdown{
   background-color: #6C1D45;
@@ -37,165 +35,126 @@
 
 
 .col1 {
-    margin-top: 0;
-    padding-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
-  .col2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .col3 {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  .col4 {
+.col4 {
     display: flex;
     align-items: center;
     justify-content: right;
     gap: 8%;
+}
+
+
+.linksInt {
+  font-weight: 500;
+  width: 30%;
+  font-size: 100%;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.linksIntActive {
+  font-weight: bold;
+  width: 30%;
+  font-size: 100%;
+  text-decoration: none;
+  color: #6C1D45;
+  text-align: center;
+}
+
+.linksInt:hover,
+.linksIntActive:hover {
+  color: #6C1D45;
+}
+
+.name {
+  font-size: 1.2vw;
+}
+
+.userImage {
+  border-radius: 100%;
+  height: 7vh;
+  border-style: solid;
+  border-color: #6C1D45;
+  border-width: 0.9vh;
+  padding: 0;
+  align-self: center;
+}
+
+.linkDesp {
+  text-decoration: none;
+}
+
+.imgNameLogOut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colPreg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colRank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.padreDivs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 7%;
+}
+
+.logOut {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .container{
+    height: fit-content;
   }
-
-  @media screen and (max-width: 991px) {
-
-    .container{
-      height: fit-content;
-    }
 
   .col1 {
       display: flex;
       justify-content: center;
-    }
+  }
+
+  .linksInt,
+  .linksIntActive {
+      font-size: 2vw;
   }
 
   .logo {
-    width: 45%;
-    margin-left: 25%;
-  }
-
-  .linksInt {
-    font-weight: 500;
-    width: 30%;
-    font-size: 100%;
-    text-decoration: none;
-    color: black;
-    text-align: center;
-  }
-
-  .linksIntActive {
-    font-weight: bold;
-    width: 30%;
-    font-size: 100%;
-    text-decoration: none;
-    color: #6C1D45;
-    text-align: center;
-  }
-
-  .linksInt:hover,
-  .linksIntActive:hover {
-    color: #6C1D45;
-  }
-
-  @media screen and (max-width: 991px) {
-    .linksInt {
-      font-size: 2vw;
-    }
-    .logo {
       display: none
-    }
   }
-  @media screen and (max-width: 720px) {
-    .linksInt {
-      font-size: 2.5vw;
-    }
+}
 
+@media screen and (max-width: 720px) {
+  .linksInt,
+  .linksIntActive {
+    font-size: 2.5vw;
   }
-  @media screen and (max-width: 600px) {
-    .linksInt {
-      font-size: 3vw;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    .linksInt {
-      font-size: 4vw;
-    }
-  }
+}
 
-  .name {
-    font-size: 1.2vw;
+@media screen and (max-width: 600px) {
+  .linksInt,
+  .linksIntActive {
+    font-size: 3vw;
   }
+}
 
-  .userImage {
-    border-radius: 100%;
-    height: 7vh;
-    border-style: solid;
-    border-color: #6C1D45;
-    border-width: 0.9vh;
-    padding: 0;
-    align-self: center;
+@media screen and (max-width: 450px) {
+  .linksInt,
+  .linksIntActive {
+    font-size: 4vw;
   }
-
-  .cajaLogReg {
-    font-size: 20 px;
-  }
-
-  .middleRow {
-    height: 25vw;
-    color: blue;
-  }
-
-  .linkDesp {
-    text-decoration: none;
-  }
-  .imgNameLogOut {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .colPrin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .colPreg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .colRank {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .badgeNotifBox {
-    position: relative;
-  }
-  .badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .userImageNotif {
-    border-radius: 100%;
-    height: 5vh;
-  }
-
-
-  .padreDivs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin-right: 7%;
-  }
-
-  .logOut {
-    cursor: pointer;
-  }
+}

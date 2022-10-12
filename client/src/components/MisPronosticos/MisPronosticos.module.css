@@ -2,7 +2,7 @@
     background-color: #6C1D45;
     /* background-image: url('../../images/6535007_.jpg'); */
     /* background-color: #f9f9c5; */
-    min-height: 100vh;
+    min-height: max-content;
     /* background-size: cover; */
     /* opacity: 0.8; */
     font-family: 'Montserrat', sans-serif;

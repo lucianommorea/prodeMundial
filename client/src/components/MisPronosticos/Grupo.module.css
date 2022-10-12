@@ -5,6 +5,7 @@
     margin: auto;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
+    margin-bottom: 25px;
     /* font-family: 'Poppins', sans-serif; */
 }
 
@@ -91,7 +92,7 @@
 }
 
 .buttons {
-    margin-top: 40px;
+    margin-top: 20px;
     /* border: 1px solid black; */
     width: 90%;
     max-width: 700px;

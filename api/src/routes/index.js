@@ -3,6 +3,7 @@ const usersRoutes = require('./usersRoutes')
 const userRoute = require('./userRoutes')
 const teamsRoutes = require('./teamsRoutes')
 const gamesRoute = require('./gamesRoutes');
+const worldcupRoute = require ('./worldcupRoutes');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -16,5 +17,6 @@ router.use("/users", usersRoutes)
 router.use("/user", userRoute)
 router.use("/teams", teamsRoutes)
 router.use("/games", gamesRoute)
+router.use("/worldcup", worldcupRoute)
 
 module.exports = router;

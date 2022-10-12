@@ -59,7 +59,23 @@ module.exports = (sequelize) => {
     },
     myPosition: {
       type: DataTypes.INTEGER,
-    }
+    },
+    octavos:{
+      type: DataTypes.ARRAY(DataTypes.STRING),     
+      defaultValue: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    },
+    first: {
+      type: DataTypes.STRING,
+    },
+    second: {
+      type: DataTypes.STRING,
+    },
+    third: {
+      type: DataTypes.STRING,
+    },
+    bestPlayer: {
+      type: DataTypes.STRING,
+    },
   });
 };
 

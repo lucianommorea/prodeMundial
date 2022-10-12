@@ -1,27 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './Landing.module.css';
 import CardLanding from './CardLanding';
 import NextMatch from './NextMatch';
-import { getUsersRanking } from '../../redux/actions';
+import { getAllUsers, getUsersRanking, getWorldCup } from '../../redux/actions';
 import CardPoints from './CardPoints';
-import Top10Rank from './Top10Rank';
+import Top5Rank from './Top5Rank';
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from '../Loading/LoadingComponent';
+import Footer from '../Footer/Footer';
+import {Link} from 'react-router-dom';
 
 function Landing() {
 
   const userInfo= useSelector(state=> state.user);
   const users = useSelector(state=> state.users);
   const dispatch = useDispatch();
-
-  console.log(userInfo);
+  const { isAuthenticated, isLoading } = useAuth0();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getUsersRanking())
+    dispatch(getWorldCup());
+    dispatch(getAllUsers());
   }, [dispatch])
 
-  const index = users.findIndex(user => user.sub === userInfo.sub)
+  // console.log(userInfo.myPosition)
+  const index = users.findIndex(user => user.sub === userInfo.sub);
   
-    
+  if(isLoading) {
+    return <Loading />
+  }
+  if(loading){
+    setTimeout(() => {
+      setLoading(false)
+    }, 1500)
+    return <Loading />
+  }
   return (
     <div className={style.all}>
       <div className={style.top}>
@@ -30,24 +44,41 @@ function Landing() {
       <div className={style.down}>
         <div className={style.card}>
           <div className={style.top10}>
+            <div className={style.rules}>
+              <Link to='/reglas'>
+                  <button className={style.btn} > 
+                    VER REGLAS 
+                  </button>
+              </Link>
+            </div>
             <p className={style.title}>
-              Top 10
+              Top 5
             </p>
-            <Top10Rank />
+            <Top5Rank />
           </div>
+
           <div className={style.card1}>
-            <div className={style.card2}>
-              <CardPoints pointsUser={userInfo.totalPoints} />
-            </div>
-            <div className={style.card2}>
-              <CardLanding myPosition={index+1} />
-            </div>
+            {isAuthenticated
+            ? <div className={style.card2}>
+                <CardPoints pointsUser={userInfo.totalPoints} />
+              </div>
+            : null         
+            }
+
+            {isAuthenticated
+            ? <div className={style.card2}>
+                <CardLanding myPosition={index + 1} />
+              </div>
+            : null         
+            }
+            
             <div className={style.card2}>
               <NextMatch />
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

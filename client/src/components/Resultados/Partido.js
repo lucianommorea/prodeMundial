@@ -10,20 +10,28 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
     const { isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
     const [width, setWidth] = useState(window.innerWidth);
+    
+    const [goals, setGoals] = useState({
+        localResult: localResult || null,
+        awayResult: awayResult || null
+    })
 
     useEffect(() => {
-      window.addEventListener("resize", handleResize, false);
+      setGoals({
+        localResult: localResult || null,
+        awayResult: awayResult || null
+      })
     }, []);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize, false);
+      }, []);
 
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
 
 
-    const [goals, setGoals] = useState({
-        localResult: localResult || null,
-        awayResult: awayResult || null
-    })
 
     function handleChangeGoalsLocal(e) {
         e.preventDefault()

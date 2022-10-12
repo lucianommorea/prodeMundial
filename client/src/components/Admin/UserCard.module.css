@@ -1,0 +1,30 @@
+.container {
+  border: 1px black solid;
+  border-radius: 0.5vh;
+  margin-bottom: 0.2vh;
+}
+
+.unbanButton {
+  color: white;
+  background-color: green;
+  border-radius: 0.5vh;
+  border: 0px;
+  position: relative;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.banButton {
+  color: white;
+  background-color: rgb(255, 60, 60);
+  border-radius: 0.5vh;
+  border: 0px;
+  position: relative;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+}

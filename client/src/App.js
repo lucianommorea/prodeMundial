@@ -6,8 +6,16 @@ import Resultados from "./components/Resultados/Resultados";
 import Ranking from "./components/Ranking/Ranking";
 import './App.css';
 import PublicProde from "./components/PublicProde/PublicProde";
-
-//importacion de páginas
+import MisPremios from "./components/MisPremios/MisPremios";
+import Premios from "./components/Premios/Premios";
+import Rules from "./components/Rules/Rules";
+import UserPage from "./components/UserPage/UserPage";
+import Configuracion from "./components/Configuracion/Configuracion";
+import Admin from './components/Admin/Admin';
+import ListaUsuarios from './components/Admin/ListaUsuarios';
+import AgregarAdmin from './components/Admin/AgregarAdmin';
+import NotFound from "./components/NotFound/NotFound";
+import ProtectedRoute from "./components/Auth0/ProtectedRoute";
 
 function App() {
   return (
@@ -15,18 +23,19 @@ function App() {
       <Headerlogin />
       <Routes>
         <Route path={"/"} element={<Landing />} />
-        <Route path={"/mispronosticos"} element={<MisPronosticos />} />
-        <Route path={"/resultados"} element={<Resultados />} />
-        <Route path={"/ranking"} element={<Ranking />} />
         <Route path={"/prode"} element={<PublicProde />} />
-        {/* <Route path={"/pagolisto"} element={<PagoListo />} />
+        <Route path={"/reglas"} element={<Rules />} />
+        <Route path={"/mispronosticos"} element={<ProtectedRoute component={MisPronosticos} />} />
+        <Route path={"/resultados"} element={<ProtectedRoute component={Resultados}/>} />
+        <Route path={"/ranking"} element={<ProtectedRoute component={Ranking}/>} />
+        <Route path={"/mispremios"} element={<ProtectedRoute component={MisPremios}/>} />
+        <Route path={"/premios"} element={<ProtectedRoute component={Premios}/>} />
+        <Route path={"/configuracion/:sub"} element={<ProtectedRoute component={Configuracion}/>} />
+        <Route path={"/statusadm"} element={<ProtectedRoute component={Admin}/>} />
+        <Route path={"/statusadm/usuarios"} element={<ProtectedRoute component={ListaUsuarios}/>} />
+        <Route path={"/statusadm/admins"} element={<ProtectedRoute component={AgregarAdmin}/>} />
+        <Route path={"/user/:sub"} element={<ProtectedRoute component={UserPage}/>} />
         <Route path={"*"} element={<NotFound />} />
-        <Route path={"/easter"} element={<Easter />} />
-        <Route path={"/codenothere/alertas"} element={<ProtectedRoute component={Alertas}/>} />
-        <Route path={"/codenothere/usuarios"} element={<ProtectedRoute component={ListaUsuarios}/>} />
-        <Route path={"/codenothere/admins"} element={<ProtectedRoute component={AgregarAdmin}/>} />
-        <Route path={"/codenothere/mensajes"} element={<ProtectedRoute component={PreguntasDirectas}/>} />
-        <Route path={"/user/:sub"} element={<ProtectedRoute component={UserPage}/>} />  */}
       </Routes>
     </>
   );

@@ -1,0 +1,85 @@
+.foto{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    /* border-radius: 0.5vh; */
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+.loadingGif {
+    width: 100px;
+    height: 100px;
+}
+
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+    background-color: lightyellow;
+}
+
+.col2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-top: 1vh;
+    font-size: 0.6rem;
+}
+
+.btnPhoto{
+    border-radius: 0.5vh;
+    background-color: rgb(240, 238, 238);
+    margin-left: 2vh;
+}
+
+.btnPhoto:hover {
+    cursor: pointer;
+    background-color: rgb(215, 212, 212);
+}
+
+.btnCode {
+    width: fit-content;
+    height: 30px;
+    background-color: #f9bf00;
+    color: lightyellow;
+    border: #f9bf00 solid 1.5px;
+    border-radius: 0.5vh;
+    font-weight: 350;
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+    margin-left: 2vh;
+}
+  
+.btnCode:hover {
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(75, 71, 71);
+}
+
+
+@media screen and (max-width: 900px) {
+    .fullContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .btnPhoto{
+        margin-top: 2vh;
+    }
+}

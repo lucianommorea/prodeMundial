@@ -10,7 +10,7 @@ import { getAllGames } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import calendarC from '../../images/calendariocolor.png';
-import calendarW from '../../images/calendarionegro.png';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function NextMatch() {
@@ -20,12 +20,14 @@ function NextMatch() {
     const [loading, setLoading] = useState(true);
     let fecha = new Date()
     let nextGames = games.filter(game=> new Date(game.date) > fecha);
-    let newDate = new Date(games[0]?.date)
+    let newDate = new Date(games[0]?.date);
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    
 
-    console.log(newDate)
-    console.log(fecha < new Date(games[0]?.date))
-    console.log(fecha > new Date(games[0]?.date))
-    console.log(nextGames)
+    // console.log(newDate)
+    // console.log(fecha < new Date(games[0]?.date))
+    // console.log(fecha > new Date(games[0]?.date))
+    // console.log(nextGames)
 
 
     useEffect(() => {
@@ -74,9 +76,13 @@ function NextMatch() {
 
                 </div>
             </div>
-                <Link to='/mispronosticos'>
-                    <button className={style.btn} > IR A MIS PRONOSTICOS </button>
-                </Link>
+                {
+                    isAuthenticated ?
+                    <Link to='/mispronosticos'>
+                        <button className={style.btn} > IR A MIS PRONOSTICOS </button>
+                    </Link> :
+                        <button className={style.btn} onClick={() => loginWithRedirect()} > IR A MIS PRONOSTICOS </button>
+                }
             </div>
         </div>
     )
