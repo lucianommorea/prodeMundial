@@ -378,7 +378,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
 
 
     function handleChangeGoalsLocal(e) {
-        e.preventDefault()
+        e.preventDefault();
+        comprueba(e);
         if(e.target.value !== '') {
             var localResultado = parseInt(e.target.value);
         }
@@ -551,37 +552,37 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         }
         if((id > 0 && id < 49) && teamsGroup[0].totalGames === 3 && teamsGroup[1].totalGames === 3 && teamsGroup[2].totalGames === 3 && teamsGroup[3].totalGames === 3){
             teamsGroup.sort(function (a, b) {
-                if (a.points > b.points) {
+              if (a.points > b.points) {
+                return -1;
+              }
+              if (a.points < b.points) {
+                return 1;
+              }
+              else {
+                if (a.difGoals > b.difGoals) {
                   return -1;
                 }
-                if (a.points < b.points) {
+                if (a.difGoals < b.difGoals) {
                   return 1;
                 }
-                if (a.points === b.points){
-                  if (a.difGoals > b.difGoals) {
+                else {
+                  if (a.goalsF > b.goalsF) {
                     return -1;
                   }
-                  if (a.difGoals < b.difGoals) {
+                  if (a.goalsF < b.goalsF) {
                     return 1;
                   }
-                  if (a.difGoals === b.difGoals) {
-                    if (a.goalsF > b.goalsF) {
+                  else {
+                    if (a.name > b.name) {
                       return -1;
                     }
-                    if (a.goalsF < b.goalsF) {
+                    if (a.name < b.name) {
                       return 1;
                     }
-                    if (a.goalsF === b.goalsF) {
-                      if (a.name > b.name) {
-                        return -1;
-                      }
-                      if (a.name < b.name) {
-                        return 1;
-                      }
-                      return 0;
-                    }
+                    return 0;
                   }
                 }
+              } 
             })
 
             if (group === 'A') {
@@ -1452,6 +1453,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
 
     async function handleChangeGoalsAway(e) {
         e.preventDefault()
+        comprueba(e);
         if(e.target.value !== '') {
             var awayResultado = parseInt(e.target.value);
         }
@@ -1627,37 +1629,37 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         }
         if((id > 0 && id < 49) && teamsGroup[0].totalGames === 3 && teamsGroup[1].totalGames === 3 && teamsGroup[2].totalGames === 3 && teamsGroup[3].totalGames === 3){
             teamsGroup.sort(function (a, b) {
-                if (a.points > b.points) {
+              if (a.points > b.points) {
+                return -1;
+              }
+              if (a.points < b.points) {
+                return 1;
+              }
+              else {
+                if (a.difGoals > b.difGoals) {
                   return -1;
                 }
-                if (a.points < b.points) {
+                if (a.difGoals < b.difGoals) {
                   return 1;
                 }
-                if (a.points === b.points){
-                  if (a.difGoals > b.difGoals) {
+                else {
+                  if (a.goalsF > b.goalsF) {
                     return -1;
                   }
-                  if (a.difGoals < b.difGoals) {
+                  if (a.goalsF < b.goalsF) {
                     return 1;
                   }
-                  if (a.difGoals === b.difGoals) {
-                    if (a.goalsF > b.goalsF) {
+                  else {
+                    if (a.name > b.name) {
                       return -1;
                     }
-                    if (a.goalsF < b.goalsF) {
+                    if (a.name < b.name) {
                       return 1;
                     }
-                    if (a.goalsF === b.goalsF) {
-                      if (a.name > b.name) {
-                        return -1;
-                      }
-                      if (a.name < b.name) {
-                        return 1;
-                      }
-                      return 0;
-                    }
+                    return 0;
                   }
                 }
+              } 
             })
             if (group === 'A') {
 
@@ -2625,6 +2627,20 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
       }
       games2[id-1].penalties = 'away'
     }
+
+    function comprueba(e){
+      e.target.value = e.target.value.trim();
+      if(e.target.value.includes('.')){
+        e.target.value = null
+      }
+      if(e.target.value < 0){
+        e.target.value = 0;
+      }
+      else if(e.target.value > 9){
+        let stringNumber = e.target.value[0];
+        e.target.value = parseInt(stringNumber);
+      }
+    }
         
     return (
             <div className={style.all}>
@@ -2667,7 +2683,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             min='0'
                             max='9'
                             maxLength="1"
-                            pattern="[0-9(\-)]"
+                            // pattern="[0-9(\-)]"
+                            pattern="^[0-9]+"
                             defaultValue={localResult} 
                             name='localResult' 
                             autoComplete='off'
@@ -2681,7 +2698,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             min= '0'
                             max='9'
                             maxLength="1"
-                            pattern="[0-9(\-)]"
+                            // pattern="[0-9(\-)]"
+                            pattern="^[0-9]+"
                             defaultValue={awayResult} 
                             name='awayResult' 
                             autoComplete='off'

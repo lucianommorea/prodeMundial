@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./UserPage.module.css";
-// import Footer from "../components/Footer.js";
-// import { getUserInfo2 } from "../redux/actions";
 import Loading from "../Loading/LoadingComponent";
-// import NotVerified from "../components/NotVerified";
-// import BannedUser from "../components/BannedUser";
+import BannedUser from "../GeneralComponents/BannedUser";
+import Footer from '../Footer/Footer'
 import { useParams } from "react-router-dom";
-import { getAllGames, getUserId2 } from "../../redux/actions";
-// import NotFound from "./NotFound";
+import { getAllGames, getAllUsers, getUserId2 } from "../../redux/actions";
+import NotFound from "../NotFound/NotFound";
 import CardLanding from '../Landing/CardLanding';
 import CardPoints from '../Landing/CardPoints';
 import Pronostico from "./Pronostico";
@@ -18,6 +16,7 @@ import Pronostico from "./Pronostico";
 const UserPage = () => {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const userInfo = useSelector((state) => state.userProfile);
+  const userLogged = useSelector((state) => state.user);
   const users = useSelector(state=> state.users);
   const dispatch = useDispatch();
   const { sub } = useParams();
@@ -27,6 +26,7 @@ const UserPage = () => {
 
   useEffect(() => {
       dispatch(getAllGames());
+      dispatch(getAllUsers());
   }, [dispatch])
 
   useEffect(() => {
@@ -37,16 +37,16 @@ const UserPage = () => {
   }, [dispatch, user, isAuthenticated, sub]);
 
   let fecha = new Date()
-  let dateGrupos = new Date("2022, 09, 19");
-  // let dateOctavos = new Date("2022, 09, 19");
-  // let dateCuartos = new Date("2022, 09, 19");
-  // let dateSemis = new Date("2022, 09, 19");
-  // let dateFinales = new Date("2022, 09, 19");
+  let dateGrupos = new Date("2022, 10, 14");
+  // let dateOctavos = new Date("2022, 10, 13");
+  // let dateCuartos = new Date("2022, 10, 13");
+  // let dateSemis = new Date("2022, 10, 13");
+  // let dateFinales = new Date("2022, 10, 13");
   // let dateGrupos = new Date("2022, 11, 20");
-  let dateOctavos = new Date("2022, 12, 02");
-  let dateCuartos = new Date("2022, 12, 08");
-  let dateSemis = new Date("2022, 12, 12");
-  let dateFinales = new Date("2022, 12, 16");
+  let dateOctavos = new Date("2022, 12, 03");
+  let dateCuartos = new Date("2022, 12, 09");
+  let dateSemis = new Date("2022, 12, 13");
+  let dateFinales = new Date("2022, 12, 17");
 
   if (isLoading) {
     return (
@@ -55,26 +55,26 @@ const UserPage = () => {
       </div>
     );
   } 
-//   else if (user.email_verified === false) {
-//     return (
-//       <>
-//         <NotVerified />
-//         <div className={style.footer}>
-//           <Footer />
-//         </div>
-//       </>
-//     );
-//   } 
-//   else if (userInfo.statusBanned === true) {
-//     return (
-//       <>
-//         <BannedUser />
-//         <div className={style.footer}>
-//           <Footer />
-//         </div>
-//       </>
-//     );
-//   } 
+  // else if (user.email_verified === false) {
+  //   return (
+  //     <>
+  //       <NotVerified />
+  //       <div className={style.footer}>
+  //         <Footer />
+  //       </div>
+  //     </>
+  //   );
+  // } 
+  else if (userLogged.statusBanned === true) {
+    return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } 
   else if(loading) {
     return (
       <div>
@@ -82,9 +82,9 @@ const UserPage = () => {
       </div>
     );
   }
-//   if(!userInfo.sub) {
-//     return <NotFound />
-//   }
+  if(!userInfo.sub) {
+    return <NotFound />
+  }
    else
     return (
         <div className={`container-fluid ${style.fullContainer}`}>
@@ -103,9 +103,9 @@ const UserPage = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       {userInfo.name}
                     </div>
-                 </div>
+                  </div>
 
-                 <div className={`row ${style.row}`}>
+                  <div className={`row ${style.row}`}>
                     <div className={`col-lg-6 ${style.col2} ${style.text}`}>
                         Foto:
                     </div>
@@ -257,9 +257,31 @@ const UserPage = () => {
                 </div>
             </div>
 
-            
+            <div className={`row ${fecha > dateGrupos ? style.resultados : style.none }`}> 
+                <div>
+                    {   
+                        fecha > dateGrupos ?
+                        <div className={style.fase}>Premios</div> :
+                        null
+                    }
+                    {   
+                        fecha > dateGrupos ?
+                        <>
+                        <div className={style.pos}> Campeon: {userInfo.first} </div>
+                        <div className={style.pos}> Subcampeon: {userInfo.second} </div>
+                        <div className={style.pos}> Tercero: {userInfo.third} </div>
+                        <div className={style.pos}> Mejor Jugador: {userInfo.bestPlayer} </div>
+                        </> :
+                        null
+                    }
+                </div>
+            </div>
+            <div className={style.fantasma}>
 
-
+            </div>
+            <div className={style.footer}>
+              <Footer />
+            </div>
         </div>
     );
 };

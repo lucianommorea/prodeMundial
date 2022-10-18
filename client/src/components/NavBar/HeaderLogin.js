@@ -6,8 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./HeaderLogin.module.css";
 import { sendUserInfo } from "../../redux/actions/index";
 import Header from "./Header";
-// import HeaderLoading from "./HeaderLoading";
-// import HeaderBanned from "./HeaderBanned";
+import HeaderLoading from "./HeaderLoading";
+import HeaderBanned from "./HeaderBanned";
 import logoQatar from '../../images/qatar2022.png'
 
 const Headerlogin = () => {
@@ -37,8 +37,7 @@ const Headerlogin = () => {
   if (isLoading) {
     return (
       <div>
-        {/* <HeaderLoading /> */}
-        <div> Loading ... </div>
+        <HeaderLoading />
       </div>
     );
   } 
@@ -46,8 +45,7 @@ const Headerlogin = () => {
   if(isAuthenticated && userInfo.statusBanned === true){
     return (
       <>
-        {/* <HeaderBanned /> */} 
-        Baneado
+        <HeaderBanned />
       </>
     )
   } else if (isAuthenticated) {
@@ -83,7 +81,7 @@ const Headerlogin = () => {
           </div>
           <div className={`col-lg-2 ${style.colPreg}`}>
             <NavLink to="/prode" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
-              Prode
+              Simulador
             </NavLink>
           </div>
           <div className={`col-lg-2 ${style.colRank}`}>

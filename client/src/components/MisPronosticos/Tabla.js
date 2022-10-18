@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import style from './Tabla.module.css'
 
 
@@ -43,21 +43,21 @@ export default function BasicTable({group, teams2, isModify}) {
                 if (a.points < b.points) {
                   return 1;
                 }
-                if (a.points === b.points){
+                else {
                   if (a.difGoals > b.difGoals) {
                     return -1;
                   }
                   if (a.difGoals < b.difGoals) {
                     return 1;
                   }
-                  if (a.difGoals === b.difGoals) {
+                  else {
                     if (a.goalsF > b.goalsF) {
                       return -1;
                     }
                     if (a.goalsF < b.goalsF) {
                       return 1;
                     }
-                    if (a.goalsF === b.goalsF) {
+                    else {
                       if (a.name > b.name) {
                         return -1;
                       }
@@ -67,7 +67,7 @@ export default function BasicTable({group, teams2, isModify}) {
                       return 0;
                     }
                   }
-                }
+                } 
               }).map((team) => ( 
                   <div
                     className={`row align-items-center ${style.columnsteams}`}

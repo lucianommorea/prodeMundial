@@ -1,6 +1,7 @@
 const {Team, User, Game} = require('../db');
 const {Op} = require('sequelize');
 const { paginate } = require('./generalControllers');
+const e = require('express');
 
 async function getAllUsers(){
 
@@ -109,7 +110,8 @@ async function updatePoints(user, idGame, localGoals, awayGoals) {
             if (user.userResults[idGame-1][0] === null || user.userResults[idGame-1][1] === null) {
                 let newPoints = [...user.points];   
                 newPoints[idGame-1] = null;
-                await user.update({points: newPoints}) 
+                let pointsTotal = user.totalPoints
+                await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
             }
             else if (localGoals === null || awayGoals === null) {
                 let newPoints = [...user.points];   
@@ -172,12 +174,12 @@ async function updatePointsChampion(user, champion) {
     let prevPoints = user.points[64];
     let pointsTotal = user.totalPoints;
     if(prevPoints === undefined) prevPoints = 0;
-    if(user.first === null || user.first.toLowerCase() !== champion.toLowerCase()) {
+    if(user.first === null || champion === null || user.first?.toLowerCase() !== champion?.toLowerCase()) {
         let newPoints = [...user.points];   
         newPoints[64] = 0;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
     }
-    if(user.first.toLowerCase() === champion.toLowerCase()){
+    else if(user.first.toLowerCase() === champion.toLowerCase()){
         let newPoints = [...user.points];   
         newPoints[64] = 15;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 15)}) 
@@ -203,12 +205,12 @@ async function updatePointsSecond(user, second) {
     let prevPoints = user.points[65];
     let pointsTotal = user.totalPoints;
     if(prevPoints === undefined) prevPoints = 0;
-    if(user.second === null || user.second.toLowerCase() !== second.toLowerCase()) {
+    if(user.second === null || second === null || user.second?.toLowerCase() !== second?.toLowerCase()) {
         let newPoints = [...user.points];   
         newPoints[65] = 0;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
     }
-    if(user.second.toLowerCase() === second.toLowerCase()){
+    else if(user.second.toLowerCase() === second.toLowerCase()){
         let newPoints = [...user.points];   
         newPoints[65] = 10;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 10)}) 
@@ -234,12 +236,12 @@ async function updatePointsThird(user, third) {
     let prevPoints = user.points[66];
     let pointsTotal = user.totalPoints;
     if(prevPoints === undefined) prevPoints = 0;
-    if(user.third === null || user.third.toLowerCase() !== third.toLowerCase()) {
+    if(user.third === null || third === null || user.third?.toLowerCase() !== third?.toLowerCase()) {
         let newPoints = [...user.points];   
         newPoints[66] = 0;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
     }
-    if(user.third.toLowerCase() === third.toLowerCase()){
+    else if(user.third.toLowerCase() === third.toLowerCase()){
         let newPoints = [...user.points];   
         newPoints[66] = 5;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 5)}) 
@@ -265,12 +267,12 @@ async function updatePointsBestPlayer(user, bestPlayer) {
     let prevPoints = user.points[67];
     let pointsTotal = user.totalPoints;
     if(prevPoints === undefined) prevPoints = 0;
-    if(user.bestPlayer === null || user.bestPlayer.toLowerCase() !== bestPlayer.toLowerCase()) {
+    if(user.bestPlayer === null || bestPlayer === null || user.bestPlayer?.toLowerCase() !== bestPlayer?.toLowerCase()) {
         let newPoints = [...user.points];   
         newPoints[67] = 0;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
     }
-    if(user.bestPlayer.toLowerCase() === bestPlayer.toLowerCase()){
+    else if(user.bestPlayer.toLowerCase() === bestPlayer.toLowerCase()){
         let newPoints = [...user.points];   
         newPoints[67] = 10;
         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 10)}) 
@@ -292,30 +294,96 @@ async function putUsersBestPlayer(bestPlayer) {
     }
 };
 
-async function updatePointsOctavos(user, position, team) {
-    position = Number(position)
+// async function updatePointsOctavos(user, position, team) {
+//     position = Number(position)
+//     let prevPoints = user.points[67+position];
+//     let prevPoints2 = user.points[67+position+1];
+//     let pointsTotal = user.totalPoints;
+//     let team2 = team !== null ? team.toString().toLowerCase() : null
+//     // console.log(team2)
+//     if(prevPoints === undefined) prevPoints = 0;
+//     if(prevPoints2 === undefined) prevPoints = 0;
+//     if(team2 === null){
+//         let newPoints = [...user.points];   
+//         newPoints[67+position] = 0;
+//         newPoints[67+position+1] = 0;
+//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2)}) 
+//     }
+//     else if(user.octavos[position-1] === null){
+//         let newPoints = [...user.points];   
+//         newPoints[67+position] = 0;
+//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
+//     }
+//     else if(user.octavos[position-1]?.toLowerCase() === team2?.toLowerCase() || user.octavos[position]?.toLowerCase() === team2?.toLowerCase() || user.octavos[position-2]?.toLowerCase() === team2?.toLowerCase()){
+//         let newPoints = [...user.points];   
+//         newPoints[67+position] = 4;
+//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 4)}) 
+//     }
+//     // else if(user.octavos[position-1]?.toLowerCase() !== team2?.toLowerCase() && user.octavos[position]?.toLowerCase() !== team2?.toLowerCase() && user.octavos[position-2]?.toLowerCase() !== team2?.toLowerCase())  {
+//         else{
+//         let newPoints = [...user.points];   
+//         newPoints[67+position] = 0;
+//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
+//     }
+
+// };
+
+async function updatePointsOctavos(user, position, team, team2) {
+    position = Number(position);
     let prevPoints = user.points[67+position];
-    let pointsTotal = user.totalPoints;
-    let team2 = team !== null ? team.toString().toLowerCase() : null
+    let prevPoints2 = user.points[67+position+1];
     if(prevPoints === undefined) prevPoints = 0;
-    if(user.octavos[position-1] === null || team2 === null || user.octavos[position-1].toLowerCase() !== team2.toLowerCase()) {
+    if(prevPoints2 === undefined) prevPoints2 = 0;
+    let pointsTotal = user.totalPoints;
+    if(team === null || team2 === null){
         let newPoints = [...user.points];   
         newPoints[67+position] = 0;
-        await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
+        newPoints[67+position+1] = 0;
+        await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2)}) 
     }
-    if((user.octavos[position-1]?.toLowerCase() === team2.toLowerCase() || user.octavos[position]?.toLowerCase() === team2.toLowerCase() || user.octavos[position-2]?.toLowerCase() === team2.toLowerCase()) && team2 !== null){
+    else if(user.octavos[position] === null || user.octavos[position-1] === null ){
         let newPoints = [...user.points];   
-        newPoints[67+position] = 4;
-        await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 4)}) 
+        newPoints[67+position] = 0;
+        newPoints[67+position+1] = 0;
+        await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2)}) 
+    }
+    else{
+        let teamStr = team.toString().toLowerCase()
+        let teamStr2 = team2.toString().toLowerCase()
+        if(user.octavos[position-1]?.toLowerCase() === teamStr?.toLowerCase() || user.octavos[position]?.toLowerCase() === teamStr?.toLowerCase() ||
+                user.octavos[position-1]?.toLowerCase() === teamStr2?.toLowerCase() || user.octavos[position]?.toLowerCase() === teamStr2?.toLowerCase()){
+            if(user.octavos[position-1]?.toLowerCase() === teamStr?.toLowerCase() || user.octavos[position]?.toLowerCase() === teamStr?.toLowerCase()){
+                let newPoints = [...user.points];   
+                newPoints[67+position] = 4;
+                if(user.octavos[position-1]?.toLowerCase() === teamStr2?.toLowerCase() || user.octavos[position]?.toLowerCase() === teamStr2?.toLowerCase()){
+                    newPoints[67+position+1] = 4;
+                    await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2 + 4 + 4)}) 
+                } else {
+                await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2 + 4)}) 
+                }
+            }
+            else if(user.octavos[position-1]?.toLowerCase() === teamStr2?.toLowerCase() || user.octavos[position]?.toLowerCase() === teamStr2?.toLowerCase()){
+                let newPoints = [...user.points];   
+                newPoints[67+position] = 0;
+                newPoints[67+position+1] = 4;
+                await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2 + 4)}) 
+            }
+        }
+        else{
+            let newPoints = [...user.points];   
+            newPoints[67+position] = 0;
+            newPoints[67+position+1] = 0;
+            await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2)}) 
+        }
     }
 };
 
-async function putUsersOctavos(position, team) {
+async function putUsersOctavos(position, team, team2) {
     
     try {
         const users = await User.findAll() 
         for(let i = 0; i < users.length; i++) {
-            await updatePointsOctavos(users[i], position, team)
+            await updatePointsOctavos(users[i], position, team, team2)
         }
         await getUsersRanking();     
         return users

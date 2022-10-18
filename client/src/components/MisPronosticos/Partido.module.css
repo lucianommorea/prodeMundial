@@ -9,6 +9,7 @@
     background-color: rgb(239, 177, 177);
     /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .team {
@@ -30,7 +31,6 @@
     display: flex;
     justify-content: flex-start;
 }
-
 
 .flag {
     border-radius: 10%;
@@ -96,7 +96,8 @@
 }
 
 .all2{
-    background-color: rgb(220, 87, 87);
+    /* background-color: rgb(220, 87, 87); */
+    background-color: rgba(209, 76, 76, 0.764);
     display: grid;
     grid-template-columns: 16.5fr 9fr 4fr 3fr 3.5fr 7.5fr 2fr;
     align-items: center;
@@ -106,7 +107,8 @@
 }
 
 .all3{
-    background-color: rgb(88, 149, 69);
+    /* background-color: rgb(88, 149, 69); */
+    background-color: rgba(71, 177, 71, 0.764);
     display: grid;
     grid-template-columns: 16.5fr 9fr 4fr 3fr 3.5fr 7.5fr 2fr;
     align-items: center;
@@ -122,7 +124,7 @@
 @media screen and (max-width: 800px) {
     .all {
         display: grid;
-        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
+        grid-template-columns: 2.7fr 2.9fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
         font-size: 12px;
     }
     .input1 {
@@ -153,8 +155,6 @@
 
 @media screen and (max-width: 400px) {
     .all {
-        display: grid;
-        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
         font-size: 10px;
     }
 }

@@ -51,7 +51,7 @@ function Grupo({group, setGroup}) {
     if(group === "Final y Tercer Puesto") setGroup("Semifinales");
   }
 
-
+  // eslint-disable-next-line
   let [teams2, setTeams2] = useState([
     {   
       id: "QAT",
@@ -599,6 +599,7 @@ function Grupo({group, setGroup}) {
   }
 ])
 
+// eslint-disable-next-line
 let [games2, setGames2] = useState([
   {
     id: 1,

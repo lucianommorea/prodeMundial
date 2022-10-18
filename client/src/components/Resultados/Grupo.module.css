@@ -5,6 +5,7 @@
     margin: auto;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
+    margin-bottom: 25px;
     /* font-family: 'Poppins', sans-serif; */
 }
 
@@ -91,7 +92,7 @@
 }
 
 .buttons {
-    margin-top: 40px;
+    margin-top: 20px;
     /* border: 1px solid black; */
     width: 90%;
     max-width: 700px;
@@ -137,15 +138,35 @@
     }
 }
 
-/* @media screen and (max-width: 400px) {
-    .barra {
-        width: 100%;
+@media screen and (max-width: 600px) {
+    .tabla {
+        margin-bottom: 2vh;
     }
-    .games{
-        width: 100%;
+
+    .buttons{
+        margin-top: 30px;
+        margin-bottom: 9vh;
     }
-    .tabla{
-        width: 100%;
+}
+
+
+@media screen and (max-width: 440px) {
+    .buttons {
+        width: 92%;
     }
-} */
+}
+
+@media screen and (max-width: 400px) {
+    .buttons {
+        width: 98%;
+    }
+    .next {
+       padding-left: 8px;
+       padding-right: 8px;
+    }
+    .prev {
+        padding-left: 8px;
+        padding-right: 8px;
+     }
+}
 

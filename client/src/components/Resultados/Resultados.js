@@ -5,13 +5,14 @@ import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { getWorldCup } from '../../redux/actions';
 import NotFound from '../NotFound/NotFound'
+import Footer from '../Footer/Footer';
 
 
 function Resultados() {
 
   const dispatch = useDispatch()
   const [group, setGroup] = useState('A');
-  const worldcup = useSelector(state=> state.worldcup);
+  // const worldcup = useSelector(state=> state.worldcup);
   const userInfo = useSelector(state=> state.user);
 
   const handleChangeGroup = (e) => {
@@ -20,10 +21,8 @@ function Resultados() {
 
   useEffect(() => {
     dispatch(getWorldCup())
-  }, [])
+  }, [dispatch])
   
-
-  console.log(worldcup.octavos)
 
   if (userInfo.statusAdmin) {   
     return (
@@ -33,7 +32,7 @@ function Resultados() {
 
                 <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
                     <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
-                    <Select value={group} sx={{color: 'whitesmoke'}} label="Grupo" onChange={handleChangeGroup}>
+                    <Select value={group} sx={{color: 'whitesmoke', fontSize: 'small'}} label="Grupo" onChange={handleChangeGroup}>
                       <MenuItem className="menu-dark" value="A">Grupo A</MenuItem>
                       <MenuItem className="menu-dark" value="B">Grupo B</MenuItem>
                       <MenuItem value="C">Grupo C</MenuItem>
@@ -49,7 +48,7 @@ function Resultados() {
                     </Select>
                 </FormControl>
           </div>
-          <div className={style.title}>
+          <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.title2 : style.title}>
             {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
             group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
             <h1> Grupo {group}</h1> :
@@ -57,6 +56,9 @@ function Resultados() {
             }
           </div>
           <Grupo group={group} setGroup={setGroup}/>
+        </div>
+        <div className={style.footer}>
+          <Footer />
         </div>
       </div>
     )

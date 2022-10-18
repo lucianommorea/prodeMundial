@@ -1,7 +1,7 @@
 .fullContainer {
     background-color: #6C1D45;
     background-image: url('../../images/fondoqatar.jpg');
-    min-height: 100vh;
+    min-height: 82vh;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -16,7 +16,7 @@ html {
   
 .perfil{
     margin-bottom: 50px;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 .footer {
@@ -35,16 +35,13 @@ html {
     /* border-bottom: 1px #f9bf00 solid; */
 }
 
-/* .row span{
-    text-decoration: underline;
-} */
-
 .row1 {
     padding: 0vh;
     background-color: transparent;
     backdrop-filter: contrast(70%);
     display: grid;
     place-content: center;
+    /* gap: 20px; */
 }
   
 .rowTitle {
@@ -90,6 +87,7 @@ html {
 .first{
     /* margin-left: 0vw; */
     margin: 0px auto;
+    padding-bottom: 15px;
 }
 
 .resultados{
@@ -98,7 +96,7 @@ html {
     backdrop-filter: contrast(70%);
     width: 40%;
     margin: auto;
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
 }
 
 .fase{
@@ -106,6 +104,15 @@ html {
     text-align: center;
     margin-bottom: 10px;
     color: whitesmoke;
+}
+
+.fantasma{
+    height: 3vh
+}
+
+.pos{
+    color: #bebebe;
+    font-size: 1.2rem;
 }
 
 
@@ -123,9 +130,7 @@ html {
         width: 80%;
         border-radius: 0.5vh;
     }
-      
 }
-
 
 @media screen and (max-width: 600px) {
     .userImage {
@@ -133,6 +138,9 @@ html {
     }
     .resultados{
         width: 90%;
+    }
+    .perfil{
+        padding-top: 10px;
     }
 }
   

@@ -4,7 +4,7 @@ import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGroupTeams, getGroupGames} from '../../redux/actions';
-import Loading from '../Loading/LoadingComponent';
+import Loading2 from '../Loading/Loading2';
 import { useAuth0 } from "@auth0/auth0-react";
 
 
@@ -15,7 +15,7 @@ function Grupo({group, setGroup}) {
   const [isModify, setIsModify] = useState(false);
   const [loading, setLoading] = useState(true);
   const userInfo = useSelector(state=> state.user);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -618,23 +618,23 @@ function Grupo({group, setGroup}) {
   let dateSemis = new Date("2022, 09, 18");
   let dateFinales = new Date("2022, 09, 18");
   // let dateOctavos = new Date("2022, 11, 29");
-  // let dateCuartos = new Date("2022, 12, 04");
-  // let dateSemis = new Date("2022, 12, 04");
-  // let dateFinales = new Date("2022, 12, 04");
-
-  if(loading) {
-    return <Loading />
-  }
-  if(isLoading) {
-    return <Loading />
-  }
-  else 
+  // let dateCuartos = new Date("2022, 12, 03");
+  // let dateSemis = new Date("2022, 12, 09");
+  // let dateFinales = new Date("2022, 12, 13");
+  
+  // if(loading) {
+  //   return <Loading2 />
+  // }
+  // if(isLoading) {
+  //   return <Loading2 />
+  // }
+  // else 
     return (
       <div className={style.all}>
-        <div className={style.tabla}>
+        <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.none : style.tabla}>
           <BasicTable group={group} teams2={teams2} isModify={isModify}/>
         </div>
-        <div className={style.barra}>
+        <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.barra : style.barra2}>
                   <div>
                       <span className={style.date}>
                           Dia
@@ -671,7 +671,8 @@ function Grupo({group, setGroup}) {
               </div>
   
         <div className={style.games}>
-          { games.map(game => {
+
+          { loading ? <Loading2 /> : games.map(game => {
               return (
               <Partido  key={game.id} 
                         id={game.id} 

@@ -18,16 +18,11 @@ function NextMatch() {
     const games = useSelector(state=> state.games);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
-    let fecha = new Date()
+    // let fecha = new Date(2022,12,28);
+    let fecha = new Date();
     let nextGames = games.filter(game=> new Date(game.date) > fecha);
     let newDate = new Date(games[0]?.date);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
-    
-
-    // console.log(newDate)
-    // console.log(fecha < new Date(games[0]?.date))
-    // console.log(fecha > new Date(games[0]?.date))
-    // console.log(nextGames)
 
 
     useEffect(() => {
@@ -44,6 +39,8 @@ function NextMatch() {
       } else
     return (
         <div>
+        {
+            nextGames.length > 0 ?
             <div className={style.card} >
             <div className={style.game}>
                 <div className={style.next}>
@@ -83,7 +80,11 @@ function NextMatch() {
                     </Link> :
                         <button className={style.btn} onClick={() => loginWithRedirect()} > IR A MIS PRONOSTICOS </button>
                 }
-            </div>
+            </div> :
+            null
+            
+        }
+           
         </div>
     )
     }

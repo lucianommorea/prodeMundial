@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './CardLanding.module.css';
-import { Link } from 'react-router-dom';
 
 function CardPoints({pointsUser}) {
 
@@ -15,9 +14,6 @@ function CardPoints({pointsUser}) {
                 Mis puntos
             </div>
           </div>
-            {/* <Link to='/ranking'>
-                <button className={style.btn} > IR AL RANKING </button>
-            </Link> */}
         </div>
     </div>
   )

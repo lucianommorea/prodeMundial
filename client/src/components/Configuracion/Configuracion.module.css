@@ -2,15 +2,17 @@
     display: flex;
     flex-direction: column;
     background-image: url('../../images/fondoqatar.jpg');
-    /* min-height: 90vh; */
-    font-size: 1.3rem;
+    min-height: 82vh;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .title{
     display: grid;
     place-content: center;
     margin-top: 30px;
-    font-size: 3rem;
+    font-size: 2.8rem;
+    color: rgba(225, 153, 153, 0.863);
     color: #BEBEBE;
 }
 

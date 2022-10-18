@@ -1,6 +1,7 @@
 .footer {
-    /* background-color: rgba(109, 29, 69, 1); */
+    background-color: rgba(109, 29, 69, 0.5);
     min-height: 8vh;
+    max-height: 8vh;
     display: flex;
     flex-direction: column;
     backdrop-filter: contrast(50%); 
@@ -13,7 +14,7 @@
     justify-content:space-evenly;
     width: 30%;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: large;
     font-family: 'Montserrat', sans-serif;
     align-content: center;

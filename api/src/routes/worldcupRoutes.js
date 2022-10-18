@@ -58,21 +58,21 @@ router.put('/bestplayer', async (req,res) => {
     }
 });
 
-router.put('/octavos/:position', async (req,res) => {
-    const {position} = req.params
-    const {team} = req.body
-    try {
-        if(position > 16){
-            res.status(404).send({error: "Position cannot be greatest than 16"})
-        }
-        let worldCup = await putOctavosTeam(1, position, team);
-        await putUsersOctavos(position, team);
-        res.status(200).send(worldCup)
+// router.put('/octavos/:position', async (req,res) => {
+//     const {position} = req.params
+//     const {team, team2} = req.body
+//     try {
+//         if(position > 16){
+//             res.status(404).send({error: "Position cannot be greatest than 16"})
+//         }
+//         let worldCup = await putOctavosTeam(1, position, team, team2);
+//         // await putUsersOctavos(position, team, team2);
+//         res.status(200).send(worldCup)
 
-    } catch (error) {
-        console.log('Error putOctavosRoute' + error)
-    }
-})
+//     } catch (error) {
+//         console.log('Error putOctavosRoute' + error)
+//     }
+// })
 
 router.get("/", async function(req, res){
     try {

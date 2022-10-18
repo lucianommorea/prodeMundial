@@ -2,12 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./UserCard";
 import style from "./ListaUsuarios.module.css";
 import Paginated from "../Paginated/Paginated";
-import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
 import { getSearchUsers, getAllUsersNoAdmin } from "../../redux/actions";
 import NotFound from "../NotFound/NotFound";
-import Loading from "../Loading/LoadingComponent";
+
 
 const ListaUsuarios = () => {
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
@@ -18,25 +17,6 @@ const ListaUsuarios = () => {
   // eslint-disable-next-line
   const [usuariosOn, setListaUsuariosOn] = useState(true);
 
-  // const darkmode = {
-  //   backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow",
-  // };
-
-  // const darkSearchbar = {
-  //   border: dark ? "none" : null,
-  //   backgroundColor: dark ? "rgb(218, 219, 227)" : null,
-  // };
-
-  // const darkRefresh = {
-  //   border: dark ? "none" : null,
-  //   backgroundColor: dark ? "lightyellow" : null,
-  //   color: dark ? "black" : null,
-  // };
-
-  // const darkInfo = {
-  //   backgroundColor: dark ? "rgb(24, 27, 56)" : null,
-  //   color: dark ? "rgb(218, 219, 227)" : null,
-  // };
 
   const darkmode = {
     backgroundColor: dark ? "#6C1D45" : "#BEBEBE",
@@ -54,7 +34,7 @@ const ListaUsuarios = () => {
   };
 
   const darkInfo = {
-    backgroundColor: dark ? "#6C1D45" : "#e0bcce",
+    backgroundColor: dark ? "#6C1D45" : "#cd75a1",
     color: dark ? "rgb(218, 219, 227)" : null,
   };
 
@@ -146,9 +126,6 @@ const ListaUsuarios = () => {
            )} 
          </div>
        </div>
-       {/* <div className={style.footer}>
-         <Footer />
-       </div> */}
      </div>
    );
   } else {

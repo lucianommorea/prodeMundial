@@ -21,6 +21,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
         localResult: localResult || null,
         awayResult: awayResult || null
       })
+    // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
@@ -34,7 +35,8 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
 
 
     function handleChangeGoalsLocal(e) {
-        e.preventDefault()
+        e.preventDefault();
+        comprueba(e);
         setGoals({
             ...goals,
             localResult: parseInt(e.target.value)
@@ -58,7 +60,8 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
     }
 
     function handleChangeGoalsAway(e) {
-        e.preventDefault()
+        e.preventDefault();
+        comprueba(e);
         setGoals({
             ...goals,
             awayResult: parseInt(e.target.value)
@@ -81,22 +84,36 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
         }
     }
 
-
-        function handleCheckLocal() {
+    function handleCheckLocal() {
         const penaltiesLocal = {
             id: id,
             penalties: 'local'
         }
         dispatch(putGamePenalties(penaltiesLocal, setIsModify))
-        }
+    }
 
-        function handleCheckAway() {
+    function handleCheckAway() {
             const penaltiesAway = {
                 id: id,
                 penalties: 'away'
             }
             dispatch(putGamePenalties(penaltiesAway, setIsModify))
-            }
+    }
+
+    function comprueba(e){
+        e.target.value = e.target.value.trim();
+        if(e.target.value.includes('.')){
+          e.target.value = null
+        }
+        if(e.target.value < 0){
+          e.target.value = 0;
+        }
+        else if(e.target.value > 9){
+          let stringNumber = e.target.value[0];
+          e.target.value = parseInt(stringNumber);
+        }
+    }
+          
 
     if(isAuthenticated) {
 

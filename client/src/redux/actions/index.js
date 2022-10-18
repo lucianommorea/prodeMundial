@@ -86,10 +86,11 @@ export const getAllUsers = () => async (dispatch) => {
     }
 };
 
-export const getUsersRanking = (page) => async (dispatch) => {
+export const getUsersRanking = (page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getUsersRanking(page);
     dispatch({ type: GET_USERS_RANKING, payload: data });
+        setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -236,7 +237,7 @@ export const getGroupGames = (group, setLoading) => async (dispatch) => {
 
 export const getAllTeams = () => async (dispatch) => {
     try {
-      const { data } = await api.getAllGames();
+      const { data } = await api.getAllTeams();
       dispatch({ type: GET_ALL_TEAMS, payload: data });
     } catch (error) {
       console.log(error.message);

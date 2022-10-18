@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../Footer/Footer";
 import style from "./Admin.module.css";
 import { useSelector } from "react-redux";
 import BotonesAdmin from "./BotonesAdmin.js";
@@ -17,9 +16,6 @@ const Admin = () => {
             <BotonesAdmin />
           <p className={style.lowertitle}>Elegir la opción deseada</p>
         </div>
-        {/* <div className={style.footer}>
-          <Footer />
-        </div> */}
       </div> 
     )
   } else {

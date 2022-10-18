@@ -8,12 +8,13 @@ import oro from '../../images/oro.png';
 import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';
 import balondeoro from '../../images/balondeoro.png';
+import Footer from '../Footer/Footer';
 
 
 export default function Premios() {
 
     const dispatch = useDispatch();
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { isLoading } = useAuth0();
     let worldcup = useSelector(state=> state.worldcup);
     let [champion, setChampion] = useState(worldcup.first);
     let [second, setSecond] = useState(worldcup.second);
@@ -28,6 +29,7 @@ export default function Premios() {
 
     useEffect(() => {
         dispatch(getWorldCup())
+      // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -76,27 +78,27 @@ export default function Premios() {
         setBestPlayer(e.target.value);
     };
 
-    function handleConfirmChampion(){
+    async function handleConfirmChampion(){
         let newChampion = {first: champion};
-        dispatch(putChampion(newChampion));
+        await dispatch(putChampion(newChampion));
         setInput1(!input1)
     };
 
-    function handleConfirmSecond(){
+    async function handleConfirmSecond(){
         let newSecond = {second: second};
-        dispatch(putSecond(newSecond));
+        await dispatch(putSecond(newSecond));
         setInput2(!input2)
     };
 
-    function handleConfirmThird(){
+    async function handleConfirmThird(){
         let newThird = {third: third};
-        dispatch(putThird(newThird));
+        await dispatch(putThird(newThird));
         setInput3(!input3)
     };
 
-    function handleConfirmBestPlayer(){
+    async function handleConfirmBestPlayer(){
         let newBestPlayer = {bestPlayer: bestPlayer};
-        dispatch(putBestPlayer(newBestPlayer));
+        await dispatch(putBestPlayer(newBestPlayer));
         setInput4(!input4)
     };
 
@@ -115,7 +117,7 @@ export default function Premios() {
         return (
         <div className={style.back}>
             <div className={style.title}>
-                <h2>Premios</h2>
+                <h1>Premios</h1>
             </div>
             <div className={style.up}>
                 <div className={style.left}> 
@@ -247,6 +249,12 @@ export default function Premios() {
                     <div className={`col ${style.octavosCol}`}>{worldcup.octavos[14] ? worldcup.octavos[14] : 'Sin determinar'}</div>
                     <div className={`col ${style.octavosCol}`}>{worldcup.octavos[15] ? worldcup.octavos[15] : 'Sin determinar'}</div>
                 </div>
+            </div>
+            <div className={style.fantasma}>
+
+            </div>
+            <div className={style.footer}>
+                <Footer />
             </div>
         </div>
         )

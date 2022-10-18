@@ -1,0 +1,13 @@
+.button {
+    margin-top: 0.5vh;
+    border-radius: 0.5vh;
+    background: transparent;
+    color: #BEBEBE;
+    font-family: 'Montserrat', sans-serif;
+    /* border: #f9bf00 solid 2px; */
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    color: #c36494;
+  }

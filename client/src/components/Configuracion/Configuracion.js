@@ -50,7 +50,6 @@ function Configuracion() {
         return errors;
     }
 
-
     function handlerChange(e) {
         e.preventDefault();
         setInput({
@@ -141,6 +140,7 @@ function Configuracion() {
         dispatch(getUserId(user.sub));
         // setLoading(false)
       }
+    // eslint-disable-next-line
     }, [isModify])
 
     const handleClick = () => {
@@ -182,9 +182,6 @@ function Configuracion() {
     // INDEX RANKING
 
     const index = users.findIndex(user => user.sub === userInfo.sub);
-
-    console.log(users);
-    console.log(index)
 
     if(isLoading) {
         setTimeout(() => {
@@ -409,7 +406,7 @@ function Configuracion() {
                 <CardPoints pointsUser={userInfo.totalPoints} />
                 <CardLanding myPosition={index+1}/>
             </div>
-            <div>
+            <div className={style.footer}>
                 <Footer />
             </div>
         </div>

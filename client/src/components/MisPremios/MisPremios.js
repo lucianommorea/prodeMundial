@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './MisPremios.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
-import { putUserInfo } from '../../redux/actions';
+import { getWorldCup, putUserInfo } from '../../redux/actions';
 import oro from '../../images/oro.png';
 import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';
@@ -25,15 +25,17 @@ export default function MisPremios() {
     let [input3, setInput3] = useState(false);
     let [input4, setInput4] = useState(false);
     let [loading, setLoading] = useState(true);
+    let worldcup = useSelector(state=> state.worldcup);
 
-    console.log(userInfo);
 
     useEffect(() => {
         setChampion(userInfo.first);
         setSecond(userInfo.second);
         setThird(userInfo.third);
         setBestPlayer(userInfo.bestPlayer);
-    }, [])
+        dispatch(getWorldCup())
+    // eslint-disable-next-line
+    }, [dispatch])
 
 
     function handleInput1() {
@@ -114,7 +116,7 @@ export default function MisPremios() {
         return (
         <div className={style.back}>
             <div className={style.title}>
-                <h2>Mis Premios</h2>
+                <h1>Mis Premios</h1>
             </div>
             <div className={style.up}>
                 <div className={style.left}> 
@@ -129,7 +131,7 @@ export default function MisPremios() {
                         <input className={style.input} type='text' defaultValue={userInfo.first} onChange={handleChangeChampion} /> 
                     }
                     {   
-                        fecha < dateGrupos ?
+                        fecha < dateGrupos && (!input2 && !input3 && !input4) ?
                         <div>
                             <button className={ !input1 ? style.btn : style.none} onClick={handleInput1}>
                                 Modificar
@@ -155,7 +157,7 @@ export default function MisPremios() {
                             <input className={style.input} type='text' defaultValue={userInfo.second} onChange={handleChangeSecond} /> 
                         }
                         {   
-                            fecha < dateGrupos ?
+                            fecha < dateGrupos && (!input1 && !input3 && !input4) ?
                             <div>
                                 <button className={ !input2 ? style.btn : style.none} onClick={handleInput2}>
                                     Modificar
@@ -183,7 +185,7 @@ export default function MisPremios() {
                             <input className={style.input} type='text' defaultValue={userInfo.third} onChange={handleChangeThird} />
                         }
                         {   
-                            fecha < dateGrupos ?
+                            fecha < dateGrupos && (!input1 && !input2 && !input4) ?
                             <div>
                                 <button className={ !input3 ? style.btn : style.none} onClick={handleInput3}>
                                     Modificar
@@ -209,12 +211,12 @@ export default function MisPremios() {
                         <input className={style.input} type='text' defaultValue={userInfo.bestPlayer} onChange={handleChangeBestPlayer} />
                     }
                     {   
-                        fecha < dateGrupos ?
+                        fecha < dateGrupos && (!input1 && !input2 && !input3) ?
                         <div>
                             <button className={ !input4 ? style.btn : style.none} onClick={handleInput4}>
                                 Modificar
                             </button> 
-                            <button className={ !input4 ? style.none : style.btn } onClick={handleConfirmBestPlayer}>
+                            <button className={ !input4 ? style.none : style.btn} onClick={handleConfirmBestPlayer}>
                                 Confirmar
                             </button>
                         </div> :
@@ -229,46 +231,86 @@ export default function MisPremios() {
                 </div>
                 <div className={`row`}>
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo A </div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[0] ? userInfo.octavos[0] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[1] ? userInfo.octavos[1] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[0] ? ((userInfo.octavos[0] === worldcup.octavos[0] || userInfo.octavos[0] === worldcup.octavos[1]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[0] ? userInfo.octavos[0] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[0] ? ((userInfo.octavos[1] === worldcup.octavos[0] || userInfo.octavos[1] === worldcup.octavos[1]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[1] ? userInfo.octavos[1] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}>
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo B </div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[2] ? userInfo.octavos[2] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[3] ? userInfo.octavos[3] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[2] ? ((userInfo.octavos[2] === worldcup.octavos[2] || userInfo.octavos[2] === worldcup.octavos[3]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[2] ? userInfo.octavos[2] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[2] ? ((userInfo.octavos[3] === worldcup.octavos[2] || userInfo.octavos[3] === worldcup.octavos[3]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[3] ? userInfo.octavos[3] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}>
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo C </div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[4] ? userInfo.octavos[4] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[5] ? userInfo.octavos[5] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[4] ? ((userInfo.octavos[4] === worldcup.octavos[4] || userInfo.octavos[4] === worldcup.octavos[5]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[4] ? userInfo.octavos[4] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[4] ? ((userInfo.octavos[5] === worldcup.octavos[4] || userInfo.octavos[5] === worldcup.octavos[5]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[5] ? userInfo.octavos[5] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}>
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo D </div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[6] ? userInfo.octavos[6] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[7] ? userInfo.octavos[7] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[6] ? ((userInfo.octavos[6] === worldcup.octavos[6] || userInfo.octavos[6] === worldcup.octavos[7]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[6] ? userInfo.octavos[6] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[6] ? ((userInfo.octavos[7] === worldcup.octavos[6] || userInfo.octavos[7] === worldcup.octavos[7]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[7] ? userInfo.octavos[7] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}> 
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo E </div>               
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[8] ? userInfo.octavos[8] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[9] ? userInfo.octavos[9] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[8] ? ((userInfo.octavos[8] === worldcup.octavos[8] || userInfo.octavos[8] === worldcup.octavos[9]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[8] ? userInfo.octavos[8] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[8] ? ((userInfo.octavos[9] === worldcup.octavos[8] || userInfo.octavos[9] === worldcup.octavos[9]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[9] ? userInfo.octavos[9] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}> 
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo F </div>  
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[10] ? userInfo.octavos[10] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[11] ? userInfo.octavos[11] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[10] ? ((userInfo.octavos[10] === worldcup.octavos[10] || userInfo.octavos[10] === worldcup.octavos[11]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[10] ? userInfo.octavos[10] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[10] ? ((userInfo.octavos[11] === worldcup.octavos[10] || userInfo.octavos[11] === worldcup.octavos[11]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[11] ? userInfo.octavos[11] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}> 
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo G </div>  
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[12] ? userInfo.octavos[12] : 'Sin completar'}</div>
-                    <div className={`col ${style.octavosCol}`}>{userInfo.octavos[13] ? userInfo.octavos[13] : 'Sin completar'}</div>
+                    <div className={worldcup.octavos[12] ? ((userInfo.octavos[12] === worldcup.octavos[12] || userInfo.octavos[12] === worldcup.octavos[13]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[12] ? userInfo.octavos[12] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[12] ? ((userInfo.octavos[13] === worldcup.octavos[12] || userInfo.octavos[13] === worldcup.octavos[13]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[13] ? userInfo.octavos[13] : 'Sin completar'}
+                    </div>
                 </div>
                 <div className={`row`}> 
                     <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo H </div>  
+                    <div className={worldcup.octavos[14] ? ((userInfo.octavos[14] === worldcup.octavos[14] || userInfo.octavos[14] === worldcup.octavos[15]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[14] ? userInfo.octavos[14] : 'Sin completar'}
+                    </div>
+                    <div className={worldcup.octavos[14] ? ((userInfo.octavos[15] === worldcup.octavos[14] || userInfo.octavos[15] === worldcup.octavos[15]) ? `col ${style.octavosColY}` : `col ${style.octavosColN}`) : `col ${style.octavosCol}`}>
+                        {userInfo.octavos[15] ? userInfo.octavos[15] : 'Sin completar'}
+                    </div>
+                </div>
+                {/* <div className={`row`}> 
+                    <div className={`col-sm-2 ${style.octavosCol1}`}> Grupo H </div>  
                     <div className={`col ${style.octavosCol}`}>{userInfo.octavos[14] ? userInfo.octavos[14] : 'Sin completar'}</div>
                     <div className={`col ${style.octavosCol}`}>{userInfo.octavos[15] ? userInfo.octavos[15] : 'Sin completar'}</div>
-                </div>
+                </div> */}
             </div>
-            <div>
+            <div className={style.fantasma}>
+
+            </div>
+            <div className={style.footer}>
                 <Footer />
             </div>
         </div>

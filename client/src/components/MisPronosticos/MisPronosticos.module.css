@@ -1,10 +1,9 @@
 .all {
-    background-color: #6C1D45;
-    /* background-image: url('../../images/6535007_.jpg'); */
-    /* background-color: #f9f9c5; */
-    min-height: max-content;
+    /* background-color: #6C1D45; */
+    background-image: url('../../images/fondoqatar.jpg');
+    min-height: 90vh;
+    height: fit-content;
     /* background-size: cover; */
-    /* opacity: 0.8; */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -19,10 +18,15 @@
     position: absolute;
     margin-left: 2%;
     margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75%;
+    align-items: center;
 }
 
-.title {
-    margin-top: 40px;
+.title2 {
+    margin-top: 35px;
     margin-bottom: 20px;
     height: 40px;
     text-align: center;
@@ -33,33 +37,93 @@ h1 {
     height: 100%;
 }
 
+.btn{
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 0px;
+    font-weight: 450;
+    background-color: #6C1D45;
+    background-color: #c36494;
+    color: whitesmoke;
+    color: #6C1D45;
+    border-radius: 0.5vh;
+    border: 1px solid #6C1D45;
+    width: 100%;
+}
+
+.btn:visited{
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #c36494;
+    background-color: #6C1D45;
+    color:#6C1D45;
+    color: #c36494;
+    /* font-weight: 500; */
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background-color: #c36494;
+    color: #c0c0c0;
+    cursor: text;
+    border: black solid 0.5px;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .filterbar {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .title2{
+        margin-top: 85px;
+        margin-bottom: -25px;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .all {
         width: 100%;
     }
     .page {
-        width: 90%;
+        width: 96%;
         font-size: small;
     }
-}
+    .filterbar {
+        width: 85%;
+    }
 
-@media screen and (max-width: 600px) {
-    .page {
-        width: 96%;
+    .title2{
+        margin-top: 95px;
     }
 }
 
 @media screen and (max-width: 450px) {
     .filterbar {
         margin-left: 0%;
-
+        width: 92%;
+    }
+    .btn{
+        font-size: 12px;
     }
 }
 
 @media screen and (max-width: 400px) {
     .filterbar {
         margin-left: -2%;
-
+        width: 95%;
     }
 }

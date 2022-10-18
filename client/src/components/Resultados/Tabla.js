@@ -1,9 +1,9 @@
-import react from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import style from './Tabla.module.css'
 
 
-export default function BasicTable({group}) {
+export default function BasicTable() {
 
   const teams = useSelector(state => state.teams);
 

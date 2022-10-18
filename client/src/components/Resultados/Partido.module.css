@@ -32,7 +32,6 @@
     justify-content: flex-start;
 }
 
-
 .flag {
     border-radius: 10%;
     border-radius: 0.3vw;
@@ -99,7 +98,7 @@
 @media screen and (max-width: 800px) {
     .all {
         display: grid;
-        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
+        grid-template-columns: 2.7fr 2.9fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
         font-size: 12px;
     }
     .input1 {
@@ -121,8 +120,6 @@
 
 @media screen and (max-width: 400px) {
     .all {
-        display: grid;
-        grid-template-columns: 2.5fr 3fr 2fr 8fr 2.5fr 2.5fr 8fr 2fr;
         font-size: 10px;
     }
 }

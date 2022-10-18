@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./AgregarAdmin.module.css";
 import AdminCard from "./AdminCard";
 import Paginated from "../Paginated/Paginated";
-import Footer from "../Footer/Footer";
 import { getAllAdmins, getAllUsersNoAdmin, getSearchUsers} from "../../redux/actions";
 import UserAdminCard from "./UserAdminCard";
 import BotonesAdmin from "./BotonesAdmin";
@@ -181,9 +180,6 @@ const AgregarAdmin = () => {
             )}
           </div>
         </div>
-        {/* <div className={style.footer}>
-          <Footer />
-        </div> */}
       </div>
     );
   } else {

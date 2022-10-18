@@ -4,7 +4,8 @@
     display:inline-flex;
     justify-content: center;
     margin-top: 40px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
     /* color: whitesmoke; */
 }
 
@@ -22,9 +23,9 @@
 .number{
     border-radius: 0.5vh;
     text-align: center;
-    background-color: #e0bcce;
+    background-color: #e8dee3;
     color: #601a3d;
-    border: 2px solid #601a3d;
+    border: 1px solid #601a3d;
 }
 
 .number:hover{
@@ -35,23 +36,23 @@
 .active{
     background-color: #601a3d;
     color: white;
-    border: 1px solid #e0bcce;
+    border: 1px solid #e8dee3;
 }
 
 .prev{
     border-radius: 0.5vh;
     margin-right: 0.5vh;
     align-content: flex-start;
-    background-color: #e0bcce;
-    border: 2px solid #601a3d;
+    background-color: #e8dee3;
+    border: 1px solid #601a3d;
 }
 
 .one{
     border-radius: 0.5vh;
     text-align: center;
     margin-left: 1px;
-    background-color: #e0bcce;
-    border: 2px solid #601a3d;
+    background-color: #e8dee3;
+    border: 1px solid #601a3d;
 }
 
 .one:hover{
@@ -83,8 +84,8 @@
     border-radius: 0.5vh;
     margin-right: 2px;
     text-align: center;
-    background-color: #e0bcce;
-    border: 2px solid #601a3d;
+    background-color: #e8dee3;
+    border: 1px solid #601a3d;
 }
 
 .last:hover{
@@ -94,9 +95,9 @@
 
 .next{
     border-radius: 0.5vh;
-    background-color: #e0bcce;
+    background-color: #e8dee3;
     margin-left: 1px;
-    border: 2px solid #601a3d;
+    border: 1px solid #601a3d;
 }
 
 .next:hover{

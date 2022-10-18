@@ -1,71 +1,43 @@
 .all{
     background-color: #6C1D45;
     background-image: url('../../images/fondoqatar.jpg');
-    min-height: 100vh;
+    min-height: 82vh;
     font-family: 'Montserrat', sans-serif;
-    color: rgb(211, 204, 204);
     color: rgb(190, 187, 187);
 }
 
 .title{
     width: 85%;
     margin: auto;
-    padding-top: 2%;
+    padding-top: 4vh;
     align-items: flex-end;
+    color: #e0bcce;
 }
 
-.title h2{
-    /* justify-self: center; */
+.title h1{
     text-align: center;
     /* border: 1px solid white; */
 }
 
-.up{
-    width: 90%;
+.down{
+    width: 85%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* border: 1px solid white; */
     text-align: center;
     margin: auto;
-    margin-top: 2%;
-    padding-bottom: 2%;
-}
-
-.left{
-    width: 50%;
-    /* border: 1px solid white; */
-}
-
-.right{
-    width: 50%;
+    padding-bottom: 7vh;
 }
 
 .subtitle h4{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-decoration: underline;
     /* border: 1px solid black; */
 }
 
-.clasificados{
-    margin-bottom: 2%;
-}
-
-.complete{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* border: 1px solid white; */
-}
-
-.top{
-    width: 90%;
-    margin: auto;
-    margin-top: 1rem;
-}
-
-.down{
+.cuadro{
     width: 90%;
     margin: auto;
     margin-top: 2rem;
@@ -76,24 +48,17 @@
     background-color: transparent;
 }
 
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
 @media screen and (max-width: 900px) {
-    .up {
-        margin-top: 2rem;
-        flex-direction: column;
-        gap: 25px;
-    }
     .down {
-        margin-top: 2rem;
-        flex-direction: column;
-        gap: 25px;
-        margin-bottom: 2rem;
-    }
-    .left{
-        width: 100%;
-        /* border: 1px solid white; */
-    }
-    
-    .right{
-        width: 100%;
+        width: 90%;
+        padding-bottom: 6vh;
     }
 }

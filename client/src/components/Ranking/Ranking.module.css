@@ -1,15 +1,32 @@
-html {
-  min-height: 100%;
-  position: relative;
-}
-
 .fullContainer {
   display: flex;
   flex-direction: column;
-  background-image: url('../../images/messi3.jpg');
+  background-image: url('../../images/messi31.jpg');
   background-size: cover;
-  min-height: 90vh;
-  /* padding-top: 2rem; */
+  min-height: 82vh;
+  margin-bottom: -8vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title{
+  display: grid;
+  place-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: calc(18px + 5vmin);
+  /* font-size: 3rem; */
+  /* color: #BEBEBE; */
+  /* color: #e0bcce; */
+  color: #BEBEBE;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 0.5vw;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* backdrop-filter: contrast(60%); 
+  background-color: transparent; */
 }
 
 .container {
@@ -18,10 +35,10 @@ html {
   border-radius: 0.5vh;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 2%;
-  margin-top: 3%;
+  /* margin-top: 3%; */
   width: 70%;
-  /* color: #6C1D45;
-  font-weight: 600; */
+  font-size: 15px;
+  min-height: 51vh;
 }
 
 .userImageTop {
@@ -33,13 +50,13 @@ html {
 .colunmNroTop {
   display: flex;
   justify-content: center;
-  margin-right: 2.5vh;
+  margin-right: 3vh;
 }
   
 .colunmNickTop {
   display: flex;
   justify-content: center;
-  margin-right: 2vh;
+  margin-right: 1.5vh;
 }
   
 .colunmTeachTop {
@@ -94,7 +111,7 @@ html {
 }
   
 .footer {
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -102,7 +119,7 @@ html {
 }
   
 .middleRow {
-  margin-bottom: 10vh;
+  margin-bottom: 3vh;
 }
   
   
@@ -119,18 +136,18 @@ html {
 
   .colunmNroTop {
     font-size: small;
-    margin-right: 1vh;
+    margin-right: 1.5vh;
     margin-left: -1vh;
   }
  
   .colunmNickTop {
     font-size: small;
-    margin-right: 1vh;
+    margin-right: 0.5vh;
   }
   
   .colunmTeachTop {
     font-size: small;
-    margin-left: 1vh;
+    margin-left: 0vh;
   }
   
   .colunmRespTop {
@@ -180,12 +197,11 @@ html {
     margin: 0px;
     margin-left: 1vw;
     padding: 0px;
-    /* border-width: 2px 1px; */
-    /* border-style: solid; */
-    /* border-color: #6C1D45;; */
+    /* border-width: 2px 1px;
+    border-style: solid;
+    border-color: #6C1D45; */
     border-radius: 0.5vh;
-    background-color: rgb(143, 127, 127);
-    opacity: 0.8;
+    background-color: rgba(234, 221, 221, 0.204);
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: linear;
@@ -301,7 +317,7 @@ html {
   }
   
   .info1 p {
-    margin-top: 3vh;
+    margin-top: 2.5vh;
     margin-left: 1.5vw;
   }
   
@@ -322,7 +338,7 @@ html {
   }
   
   .info2 p {
-    margin-top: 3vh;
+    margin-top: 2.5vh;
     margin-left: 1.5vw;
   }
   
@@ -343,7 +359,7 @@ html {
   }
   
   .info3 p {
-    margin-top: 3vh;
+    margin-top: 2.5vh;
     margin-left: 1.5vw;
   }
   

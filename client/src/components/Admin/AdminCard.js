@@ -32,7 +32,7 @@ const AdminCard = ({ sub, nickname, email, setAdminFlag, setNoAdminFlag }) => {
   const dark = useSelector((state) => state.dark);
 
   const darkmode = {
-    backgroundColor: dark ? "rgb(11, 13, 43)" : null,
+    backgroundColor: dark ? "rgb(11, 13, 43)" : "#BEBECC",
     color: dark ? "rgb(199, 199, 201)" : null,
     boxShadow: "0px 0px 2px white",
     border: dark ? "none" : null,

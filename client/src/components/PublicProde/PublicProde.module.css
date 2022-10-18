@@ -1,16 +1,14 @@
-html {
+body {
     min-height: 100vh;
-    /* position: relative; */
+    position: relative;
+    padding-bottom: 8vh;
 }
 
 .all {
     background-color: #6C1D45;
     /* background-image: url('../../images/6535007_.jpg'); */
-    /* background-color: #f9f9c5; */
-    /* height: 85vh; */
-    min-height: 100%;
+    min-height: 90vh;
     /* background-size: cover; */
-    /* opacity: 0.8; */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -19,14 +17,25 @@ html {
     flex-direction: column;
     width: 80%;
     margin: auto;
-    margin-bottom: 5vh;
 }
+
+/* .filterbar {
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 25px;
+} */
 
 .filterbar {
     position: absolute;
     margin-left: 2%;
     margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75%;
+    align-items: center;
 }
+
 
 .title {
     margin-top: 40px;
@@ -35,17 +44,37 @@ html {
     text-align: center;
 }
 
+.title2 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    height: 40px;
+    text-align: center;
+}
+
 h1 {
-    color: rgb(178, 91, 91);
+    /* color: rgb(178, 91, 91); */
+    color: #bebEBE;
     height: 100%;
 }
 
 .footer {
-    position: relative;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     overflow: hidden;
+}
+
+@media screen and (max-width: 900px) {
+    .filterbar {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .filterbar {
+        width: 90%;
+    }
 }
 
 
@@ -60,21 +89,27 @@ h1 {
 }
 
 @media screen and (max-width: 600px) {
+    .all {
+        width: 100%;
+    }
     .page {
         width: 96%;
+        font-size: small;
+    }
+    .title2{
+        margin-top: 100px;
+        margin-bottom: -25px;
     }
 }
 
 @media screen and (max-width: 450px) {
     .filterbar {
         margin-left: 0%;
-
     }
 }
 
 @media screen and (max-width: 400px) {
     .filterbar {
         margin-left: -2%;
-
     }
 }

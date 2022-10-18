@@ -1,16 +1,13 @@
-html {
-    min-height: 100%;
-    position: relative;
-}
 
 .all{
-    background-image: url('../../images/messi31.jpg');
+    background-image: url('../../images/messi10.jpg');
     /* min-height: fit-content;
     height: max-content; */
     background-size: cover;
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
+    min-height: 82vh;
+    margin-bottom: -8vh;
 }
 
 .prode{
@@ -21,19 +18,22 @@ html {
     background-color: rgb(198, 198, 198);
     color: #601a3d;
     font-size: 3.2rem;
-    /* color:#a0346a; */
     height: fit-content;
     width: fit-content;
     border-radius: 0.5vw;
     padding-left: 10px;
     padding-right: 10px;
-    backdrop-filter: contrast(60%); 
+    backdrop-filter: contrast(40%); 
     background-color: transparent;
+}
+
+.top{
+    min-height: 17vh;
 }
 
 .top10{
     align-items: center;
-    margin-top: auto;
+    padding-top: 45px;
     margin-bottom: auto;
     min-width: 280px;
     width: fit-content;
@@ -55,15 +55,10 @@ html {
 }
 
 .card{
-    /* margin-top: 13%;
-    margin-right: 2%;
-    gap: 20px; */
     display: flex;
     flex-direction: row;
     width: 80%;
-    min-height: 80vh;
     margin: auto;
-    /* border: 5px solid blueviolet; */
 }
 
 .left{
@@ -72,20 +67,17 @@ html {
 
 .card1{
     margin: inherit;
-    /* margin-right: 10vw; */
-    /* margin-top: 5vh; */
+    margin-top: 25px;
     margin-right: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-evenly;
-    /* margin-bottom: 20px; */
-
+    /* min-height: 63vh; */
 }
  
 .card2{
     padding-bottom: 2rem;
-} 
+}  
 
 .btn{
     text-decoration: none;
@@ -96,6 +88,10 @@ html {
     border-radius: 0.5vh;
     border: 1px solid #6C1D45;
     width: 100%;
+}
+
+.down{
+    min-height: 65vh;
 }
 
 .btn:visited{
@@ -113,12 +109,17 @@ html {
     text-decoration: none;
 }
 
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
 @media screen and (max-width: 649px) {
-    /* .all{
-        height: fit-content;
-        height: max-content;
-    } */
     .prode{
+        margin-top: 40px;
         font-size: 2.4rem;
     }
     .card {
@@ -128,7 +129,8 @@ html {
     .top10{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 25px;
+        margin-top: 0px;
+        padding-top: 0px;
         margin-bottom: 25px;
         min-height: 25vh;
     }
@@ -138,5 +140,4 @@ html {
         height: fit-content;
         gap: 20px;
     }
-
   }

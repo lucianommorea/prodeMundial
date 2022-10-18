@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Ranking.module.css";
-// import BannedUser from "../components/BannedUser";
 import { useAuth0 } from "@auth0/auth0-react";
-// import oro from '../images/oro.png';
-// import plata from '../images/plata.png';
-// import bronce from '../images/bronce.png';
 import { getUsersRanking, getWorldCup } from "../../redux/actions";
-// import { Link } from "react-router-dom";
 import Loading from "../Loading/LoadingComponent";
 import { Link } from 'react-router-dom';
 import Paginated from "../Paginated/Paginated";
 import Footer from "../Footer/Footer";
+import Footer3 from "../Footer/Footer3";
+import BannedUser from '../GeneralComponents/BannedUser';
 
 const Ranking = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const userInfo = useSelector(state => state.user);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const { isAuthenticated, user } = useAuth0();
-  const [width, setWidth] = useState(window.innerWitdh);
+  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
+  const { isAuthenticated } = useAuth0();
+  const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    dispatch(getUsersRanking(page));
+    dispatch(getUsersRanking(page, setLoading));
     dispatch(getWorldCup())
   }, [dispatch, page]);
 
@@ -44,6 +42,12 @@ const Ranking = () => {
       </>
     );
   } 
+  if(isLoading) {
+    setTimeout(() => {
+          setIsLoading(false)
+    }, 1000)
+        return <Loading />
+  }
 //   else if (isAuthenticated && user.email_verified === false) {
 //     return (
 //       <>
@@ -54,20 +58,22 @@ const Ranking = () => {
 //       </>
 //     );
 //   }
-//    else if (isAuthenticated && userInfo.statusBanned === true) {
-//     return (
-//       <>
-//         <BannedUser />
-//         <div className={style.footer}>
-//           <Footer />
-//         </div>
-//       </>
-//     );
-//   } 
+   else if (isAuthenticated && userInfo.statusBanned === true) {
+    return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } 
   else return (
       <div className={style.fullContainer}>
         <div className={style.middleRow}>
-          {/* Acá el contenido para logueados */}
+          <div className={style.title}>
+                Ranking
+          </div>    
             
           <div className={`container-fluid ${style.container}`}>
             <div className={`row align-items-start ${style.columnsname}`}>
@@ -86,7 +92,8 @@ const Ranking = () => {
                     src={e.picture}
                     className={`col-2 ${style.userImage}`}
                     referrerPolicy="no-referrer"
-                    alt={e.name}
+                    alt=''
+                    // alt={e.name}
                   />
                 <p className={`col-3 ${style.colunmNro}`}>{e.myPosition}</p>
                 {width > 800 ? (
@@ -110,7 +117,8 @@ const Ranking = () => {
                   src={e.picture}
                   className={`col-2 ${style.userImage}`}
                   referrerPolicy="no-referrer"
-                  alt={e.name}
+                  // alt={e.name}
+                  alt=''
                 />
                 <p className={`col-3 ${style.colunmNro}`}>{e.myPosition}</p>
                 {width > 800 ? (
@@ -133,7 +141,8 @@ const Ranking = () => {
                   src={e.picture}
                   className={`col-2 ${style.userImage}`}
                   referrerPolicy="no-referrer"
-                  alt={e.name}
+                  alt=''
+                  // alt={e.name}
                 />
                 <p className={`col-3 ${style.colunmNro}`}>{e.myPosition}</p>
                 {width > 800 ? (
@@ -156,7 +165,8 @@ const Ranking = () => {
                     src={e.picture}
                     className={`col-2 ${style.userImage}`}
                     referrerPolicy="no-referrer"
-                    alt={e.name}
+                    alt=''
+                    // alt={e.name}
                   />
                   <p className={`col-3 ${style.colunmNro}`}>{e.myPosition}</p>
                   {width > 800 ? (
@@ -174,7 +184,7 @@ const Ranking = () => {
           <Paginated page={page} setPage={setPage} />
         </div>
         <div className={style.footer}>
-          <Footer />
+          <Footer3 />
         </div>
       </div>
     );

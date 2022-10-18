@@ -79,7 +79,7 @@ async function putBestPlayer(id, bestPlayer) {
     }
 }
 
-async function putOctavosTeam(id, position, team) {
+async function putOctavosTeam(id, position, team, team2) {
   
     try {
         const updatedWorldCup = await Worldcup.findOne({
@@ -89,8 +89,12 @@ async function putOctavosTeam(id, position, team) {
         });
         let newOctavos = [...updatedWorldCup.octavos];
         newOctavos[position-1] = team
+        newOctavos[position] = team2
+        // if(team === null) {
+        //     newOctavos[position] = team
+        // }
         await updatedWorldCup.update({octavos: newOctavos}); 
-        await putUsersOctavos(position, team);
+        await putUsersOctavos(position, team, team2);
         return updatedWorldCup;
     }
     catch (error) {

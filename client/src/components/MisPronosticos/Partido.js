@@ -26,13 +26,6 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         awayResult: userInfo ? userInfo.userResults[id-1][1] : null
     })
 
-
-    // useEffect(() => {
-    //     if(id > 0 && id < 49){
-    //         dispatch(getIdGame(id, setLoading);
-    //     }
-    // }, [dispatch, id])
-
     useEffect(() => {
         // if(isAuthenticated){
         //     setGoals({
@@ -43,9 +36,9 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         handleResult();
         dispatch(getGroupGames(group, setLoading));
         dispatch(getGroupTeams(group, setLoading));
+        // eslint-disable-next-line
     }, [userInfo])
     
-
 
     function handleResult() {
 
@@ -207,7 +200,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
 
     async function handleChangeGoalsLocal(e) {
         e.preventDefault();
-
+        comprueba(e);
         if(e.target.value !== '') {
             var localResultado = parseInt(e.target.value);
         }
@@ -488,21 +481,21 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                 if (a.points < b.points) {
                   return 1;
                 }
-                if (a.points === b.points){
+                else {
                   if (a.difGoals > b.difGoals) {
                     return -1;
                   }
                   if (a.difGoals < b.difGoals) {
                     return 1;
                   }
-                  if (a.difGoals === b.difGoals) {
+                  else {
                     if (a.goalsF > b.goalsF) {
                       return -1;
                     }
                     if (a.goalsF < b.goalsF) {
                       return 1;
                     }
-                    if (a.goalsF === b.goalsF) {
+                    else {
                       if (a.name > b.name) {
                         return -1;
                       }
@@ -512,7 +505,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                       return 0;
                     }
                   }
-                }
+                } 
             })
 
             if(group === "A"){
@@ -627,6 +620,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
 
     async function handleChangeGoalsAway(e) {
         e.preventDefault();
+        comprueba(e);
         if(e.target.value !== '') {
             var awayResultado = parseInt(e.target.value);
         }
@@ -908,21 +902,21 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                 if (a.points < b.points) {
                   return 1;
                 }
-                if (a.points === b.points){
+                else {
                   if (a.difGoals > b.difGoals) {
                     return -1;
                   }
                   if (a.difGoals < b.difGoals) {
                     return 1;
                   }
-                  if (a.difGoals === b.difGoals) {
+                  else {
                     if (a.goalsF > b.goalsF) {
                       return -1;
                     }
                     if (a.goalsF < b.goalsF) {
                       return 1;
                     }
-                    if (a.goalsF === b.goalsF) {
+                    else {
                       if (a.name > b.name) {
                         return -1;
                       }
@@ -932,7 +926,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                       return 0;
                     }
                   }
-                }
+                } 
             })
 
             if(group === "A"){
@@ -1045,18 +1039,33 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         setIsModify(!isModify)
     }
 
+    function comprueba(e){
+        e.target.value = e.target.value.trim();
+        if(e.target.value.includes('.')){
+          e.target.value = null
+        }
+        if(e.target.value < 0){
+          e.target.value = 0;
+        }
+        else if(e.target.value > 9){
+          let stringNumber = e.target.value[0];
+          e.target.value = parseInt(stringNumber);
+        }
+      }
+          
+
 
     let fecha = new Date()
-    // let dateGrupos = new Date("2022, 09, 19");
+    // let dateGrupos = new Date("2022, 10, 14");
     // let dateOctavos = new Date("2022, 09, 19");
     // let dateCuartos = new Date("2022, 09, 19");
     // let dateSemis = new Date("2022, 09, 19");
     // let dateFinales = new Date("2022, 09, 19");
     let dateGrupos = new Date("2022, 11, 20");
-    let dateOctavos = new Date("2022, 11, 29");
-    let dateCuartos = new Date("2022, 12, 04");
-    let dateSemis = new Date("2022, 12, 04");
-    let dateFinales = new Date("2022, 12, 04");
+    let dateOctavos = new Date("2022, 12, 03");
+    let dateCuartos = new Date("2022, 12, 09");
+    let dateSemis = new Date("2022, 12, 13");
+    let dateFinales = new Date("2022, 12, 17");
         
     if(loading) {
         return <Loading />
