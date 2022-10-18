@@ -38,6 +38,7 @@ console.log("BBDD que estas usando: " , URL)
 const options = process.env.NODE_ENV === "production" ? {
   logging: false,
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  connection: DATABASE_URL,
   dialectOptions: {
     ssl: {
       require: true,
