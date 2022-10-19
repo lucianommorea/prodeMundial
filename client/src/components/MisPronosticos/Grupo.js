@@ -577,6 +577,7 @@ function Grupo({group, setGroup}) {
 
   useEffect(() => {
     if(isAuthenticated){
+      setLoading(true);
       dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
     }

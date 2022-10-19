@@ -1152,6 +1152,7 @@ let [games2, setGames2] = useState([
 
 
   useEffect(() => {
+    setLoading(true);
     dispatch(getGroupGames(group, setLoading));
     dispatch(getGroupTeams(group, setLoading2));
     // return () => {
