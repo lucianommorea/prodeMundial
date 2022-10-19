@@ -29,4 +29,7 @@ export const TOGGLE_DARKMODE = "TOGGLE_DARKMODE";
 export const GET_ALL_ADMINS = "GET_ALL_ADMINS";
 export const GET_SEARCH_USERS = "GET_SEARCH_USERS";
 export const GET_ALL_USERS_NOADMIN = " GET_ALL_USERS_NOADMIN";
+export const CLEAN_GAMES = " CLEAN_GAMES";
+export const CLEAN_TEAMS = " CLEAN_TEAMS";
+
 

@@ -29,7 +29,9 @@ import {
     GET_ALL_USERS_NOADMIN,
     GET_ALL_ADMINS,
     GET_SEARCH_USERS,
-    TOGGLE_DARKMODE
+    TOGGLE_DARKMODE,
+    CLEAN_GAMES,
+    CLEAN_TEAMS
   } from "./actionTypes";
 
   
@@ -233,6 +235,14 @@ export const getGroupGames = (group, setLoading) => async (dispatch) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const cleanGames = () => {
+  return { type: CLEAN_GAMES };
+};
+
+export const cleanTeams = () => {
+  return { type: CLEAN_TEAMS };
 };
 
 export const getAllTeams = () => async (dispatch) => {

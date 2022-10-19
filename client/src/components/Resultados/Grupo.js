@@ -3,7 +3,7 @@ import BasicTable from './Tabla'
 import Partido from './Partido'
 import style from './Grupo.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getGroupTeams, getGroupGames } from '../../redux/actions'
+import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions'
 
 function Grupo({group, setGroup}) {
 
@@ -24,6 +24,10 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     dispatch(getGroupGames(group));
     dispatch(getGroupTeams(group));
+    return () => {
+      dispatch(cleanGames());
+      dispatch(cleanTeams());
+    }
   }, [dispatch, group, isModify])
 
   function toNextGroup() {

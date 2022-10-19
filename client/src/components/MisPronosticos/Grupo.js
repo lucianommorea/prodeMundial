@@ -3,7 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames} from '../../redux/actions';
+import { getGroupTeams, getGroupGames, cleanGames, cleanTeams} from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -579,6 +579,10 @@ function Grupo({group, setGroup}) {
       dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading));
     }
+    // return () => {
+    //   dispatch(cleanGames());
+    //   dispatch(cleanTeams());
+    // }
 
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo, setLoading]);
 
@@ -622,13 +626,13 @@ function Grupo({group, setGroup}) {
   // let dateSemis = new Date("2022, 12, 09");
   // let dateFinales = new Date("2022, 12, 13");
   
-  // if(loading) {
-  //   return <Loading2 />
-  // }
+  if(loading) {
+    return <Loading2 />
+  }
   // if(isLoading) {
   //   return <Loading2 />
   // }
-  // else 
+  else 
     return (
       <div className={style.all}>
         <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.none : style.tabla}>

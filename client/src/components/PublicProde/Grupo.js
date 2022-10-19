@@ -3,7 +3,8 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames } from '../../redux/actions';
+import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions';
+import Loading2 from '../Loading/Loading2';
 
 
 function Grupo({group, setGroup}) {
@@ -13,6 +14,7 @@ function Grupo({group, setGroup}) {
   const [isModify, setIsModify] = useState(false);
   // const teams = useSelector(state=> state.teams);
   const [width, setWidth] = useState(window.innerWidth);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -1149,12 +1151,18 @@ let [games2, setGames2] = useState([
 
 
   useEffect(() => {
-    dispatch(getGroupGames(group));
-    dispatch(getGroupTeams(group));
+    dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupTeams(group, setLoading));
+    // return () => {
+    //   dispatch(cleanGames());
+    //   dispatch(cleanTeams());
+    // }
   }, [dispatch, group, isModify]);
 
 
-
+  if(loading) {
+    return <Loading2 />
+  } 
     return (
       <div className={style.all}>
         <div className={style.tabla}>

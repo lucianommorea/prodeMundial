@@ -537,7 +537,7 @@ const populateTeams = async () => {
     ]
     try {
         await Team.bulkCreate(teams);
-        await User.bulkCreate(users);
+        // await User.bulkCreate(users);
     
         console.log("DB Teams populated correctly");
       } catch (error) {
