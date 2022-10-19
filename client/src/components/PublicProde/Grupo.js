@@ -1152,8 +1152,6 @@ let [games2, setGames2] = useState([
 
 
   useEffect(() => {
-    setLoading(true);
-    setLoading2(true);
     dispatch(getGroupGames(group, setLoading));
     dispatch(getGroupTeams(group, setLoading2));
     // return () => {
@@ -1162,10 +1160,18 @@ let [games2, setGames2] = useState([
     // }
   }, [dispatch, group, isModify]);
 
+  useEffect(() => {
+    setLoading(true);
+  //   setLoading2(true);
+    dispatch(getGroupGames(group, setLoading));
+  //   dispatch(getGroupTeams(group, setLoading2));
 
-  if(loading) {
-    return <Loading2 />
-  } 
+  }, [group]);
+
+
+  // if(loading) {
+  //   return <Loading2 />
+  // } 
   if(loading2) {
     return <Loading2 />
   } 
@@ -1213,6 +1219,9 @@ let [games2, setGames2] = useState([
         <div className={style.games}>
           { (group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H') &&
             games.map(game => {
+              if(loading) {
+                return <Loading2 />
+              } 
               return (
               <Partido  key={game.id} 
                         id={game.id} 

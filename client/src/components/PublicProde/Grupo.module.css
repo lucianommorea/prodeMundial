@@ -9,6 +9,13 @@
     /* font-family: 'Poppins', sans-serif; */
 }
 
+.load{
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
 .games {
     /* margin-top: 50px; */
     /* border: 1px solid black; */

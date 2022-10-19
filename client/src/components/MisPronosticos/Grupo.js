@@ -577,8 +577,8 @@ function Grupo({group, setGroup}) {
 
   useEffect(() => {
     if(isAuthenticated){
-      setLoading(true);
-      setLoading2(true);
+      // setLoading(true);
+      // setLoading2(true);
       dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
     }
@@ -589,6 +589,13 @@ function Grupo({group, setGroup}) {
 
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
+  useEffect(() => {
+    setLoading(true);
+  //   setLoading2(true);
+    dispatch(getGroupGames(group, setLoading));
+  //   dispatch(getGroupTeams(group, setLoading2));
+
+  }, [group]);
 
     
   function toNextGroup() {
@@ -629,11 +636,15 @@ function Grupo({group, setGroup}) {
   // let dateSemis = new Date("2022, 12, 09");
   // let dateFinales = new Date("2022, 12, 13");
   
-  if(loading) {
-    return <Loading2 className={style.load}/>
-  }
+  // if(loading) {
+  //   return <Loading2 className={style.load}/>
+  // }
   if(loading2) {
-    return <Loading2 className={style.load}/>
+    return(
+      <div>
+          <Loading2 className={style.load}/>
+      </div>
+    )
   }
   // if(isLoading) {
   //   return <Loading2 />
@@ -683,7 +694,15 @@ function Grupo({group, setGroup}) {
         <div className={style.games}>
 
           { loading ? <Loading2 /> : games.map(game => {
+              if(loading) {
+                return(
+                  <div>
+                      <Loading2 className={style.load}/>
+                  </div>
+                )
+              }
               return (
+                
               <Partido  key={game.id} 
                         id={game.id} 
                         date={game.date.slice(0,10)} 
