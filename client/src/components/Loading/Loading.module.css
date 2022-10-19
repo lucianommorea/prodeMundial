@@ -1,7 +1,8 @@
 .all{
-    background-color: #6C1D45;
+    /* background-color: #6C1D45; */
     background-color: black;
     min-height: 90vh;
+    width: 100%;
     display: grid;
     place-content: center;
 }

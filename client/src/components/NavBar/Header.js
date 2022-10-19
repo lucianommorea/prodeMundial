@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import style from "./Header.module.css";
 import Butlog from "./ButLog";
@@ -8,6 +8,7 @@ import logoQatar from '../../images/qatar2022.png'
 const HeaderLogout = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
+  const location = useLocation();
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -32,9 +33,9 @@ const HeaderLogout = () => {
                             />
                           </Link>
                         : <div className={`col-lg-3 ${style.colPreg}`}>
-                            <NavLink to="/" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
+                            <Link to="/" className={ location.pathname === '/' ? style.linksIntActive : style.linksInt}>
                               Inicio
-                            </NavLink>
+                            </Link>
                           </div>
             }
             
@@ -46,7 +47,7 @@ const HeaderLogout = () => {
           </div>
           <div className={`col-lg-3 ${style.colPreg}`}>
             <NavLink to="/prode" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
-              Prode
+              Simulador
             </NavLink>
           </div>
           {/* <div className={`col-lg-2 ${style.colRank}`}>

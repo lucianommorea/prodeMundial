@@ -627,7 +627,7 @@ function Grupo({group, setGroup}) {
   // let dateFinales = new Date("2022, 12, 13");
   
   if(loading) {
-    return <Loading2 />
+    return <Loading2 className={style.load}/>
   }
   // if(isLoading) {
   //   return <Loading2 />
