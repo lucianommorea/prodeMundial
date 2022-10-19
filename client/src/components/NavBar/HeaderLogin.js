@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -15,6 +15,7 @@ const Headerlogin = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWidth);
+  const location = useLocation();
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -63,9 +64,9 @@ const Headerlogin = () => {
                             />
                           </Link>
                         : <div className={`col-lg-3 ${style.colPreg}`}>
-                            <NavLink to="/" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
+                            <Link to="/" className={ location.pathname === '/' ? style.linksIntActive : style.linksInt}>
                               Inicio
-                            </NavLink>
+                            </Link>
                           </div>
             }
             
