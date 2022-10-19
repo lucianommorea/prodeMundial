@@ -1172,9 +1172,9 @@ let [games2, setGames2] = useState([
   // if(loading) {
   //   return <Loading2 />
   // } 
-  if(loading2) {
-    return <Loading2 />
-  } 
+  // if(loading2) {
+  //   return <Loading2 />
+  // } 
     return (
       <div className={style.all}>
         <div className={style.tabla}>

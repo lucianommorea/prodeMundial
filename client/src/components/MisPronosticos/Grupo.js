@@ -582,11 +582,6 @@ function Grupo({group, setGroup}) {
       dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
     }
-    // return () => {
-    //   dispatch(cleanGames());
-    //   dispatch(cleanTeams());
-    // }
-
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
   useEffect(() => {
@@ -641,8 +636,8 @@ function Grupo({group, setGroup}) {
   // }
   if(loading2) {
     return(
-      <div>
-          <Loading2 className={style.load}/>
+      <div className={style.load}>
+          <Loading2 />
       </div>
     )
   }
@@ -693,14 +688,11 @@ function Grupo({group, setGroup}) {
   
         <div className={style.games}>
 
-          { loading ? <Loading2 /> : games.map(game => {
-              if(loading) {
-                return(
-                  <div>
-                      <Loading2 className={style.load}/>
-                  </div>
-                )
-              }
+          { loading ?  
+            <div className={style.load}>
+              <Loading2 />
+            </div> 
+            : games.map(game => {
               return (
                 
               <Partido  key={game.id} 
