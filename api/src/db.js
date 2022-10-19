@@ -38,34 +38,32 @@ console.log("BBDD que estas usando: " , URL)
 const options = process.env.NODE_ENV === "production" ? {
   logging: false,
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  connection: DATABASE_URL,
+  database: DB_NAME,
+  dialect: "postgres",
+  hostname: DB_HOST,
+  port: 5432,
+  username: DB_USER,
+  password: DB_PASSWORD,
+  pool: {
+    max: 3,
+    min: 1,
+    idle: 10000,
+  },
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false
     }
   },
-  pool: {
-    min: 0,
-    max: 7,
-    acquireTimeoutMillis: 300000,
-    createTimeoutMillis: 300000,
-    destroyTimeoutMillis: 50000,
-    idleTimeoutMillis: 300000,
-    reapIntervalMillis: 10000,
-    createRetryIntervalMillis: 2000,
-    propagateCreateError: false,
-  },
-  acquireConnectionTimeout: 60000,
-} :
+
+}  :
 {
   logging: false,
   native: false,
 };
 
 const sequelize = new Sequelize(URL, options);
-
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prode`, {
 //   logging: false, // set to console.log to see the raw SQL queries
 //   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 // });
