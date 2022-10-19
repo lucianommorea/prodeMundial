@@ -36,11 +36,9 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DATABASE_URL, DB_PORT} = process
 const URL = process.env.NODE_ENV === "production" ?  DATABASE_URL : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 console.log("BBDD que estas usando: " , URL)
 const options = process.env.NODE_ENV === "production" ? {
-  logging: false,
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   database: DB_NAME,
   dialect: "postgres",
-  hostname: DB_HOST,
+  host: DB_HOST,
   port: 5432,
   username: DB_USER,
   password: DB_PASSWORD,
