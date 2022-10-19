@@ -586,7 +586,7 @@ function Grupo({group, setGroup}) {
     //   dispatch(cleanTeams());
     // }
 
-  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo, setLoading, setLoading2]);
+  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
 
     

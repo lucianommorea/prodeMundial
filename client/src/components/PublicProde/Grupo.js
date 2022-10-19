@@ -1159,7 +1159,7 @@ let [games2, setGames2] = useState([
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
     // }
-  }, [dispatch, group, isModify, setLoading, setLoading2]);
+  }, [dispatch, group, isModify]);
 
 
   if(loading) {
