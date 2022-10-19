@@ -14,6 +14,7 @@ function Grupo({group, setGroup}) {
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
@@ -577,14 +578,14 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     if(isAuthenticated){
       dispatch(getGroupGames(group, setLoading));
-      dispatch(getGroupTeams(group, setLoading));
+      dispatch(getGroupTeams(group, setLoading2));
     }
     // return () => {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
     // }
 
-  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo, setLoading]);
+  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo, setLoading, setLoading2]);
 
 
     
@@ -627,6 +628,9 @@ function Grupo({group, setGroup}) {
   // let dateFinales = new Date("2022, 12, 13");
   
   if(loading) {
+    return <Loading2 className={style.load}/>
+  }
+  if(loading2) {
     return <Loading2 className={style.load}/>
   }
   // if(isLoading) {

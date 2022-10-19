@@ -15,6 +15,7 @@ function Grupo({group, setGroup}) {
   // const teams = useSelector(state=> state.teams);
   const [width, setWidth] = useState(window.innerWidth);
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -1152,15 +1153,18 @@ let [games2, setGames2] = useState([
 
   useEffect(() => {
     dispatch(getGroupGames(group, setLoading));
-    dispatch(getGroupTeams(group, setLoading));
+    dispatch(getGroupTeams(group, setLoading2));
     // return () => {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
     // }
-  }, [dispatch, group, isModify]);
+  }, [dispatch, group, isModify, setLoading, setLoading2]);
 
 
   if(loading) {
+    return <Loading2 />
+  } 
+  if(loading2) {
     return <Loading2 />
   } 
     return (
