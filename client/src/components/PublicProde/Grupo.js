@@ -1219,15 +1219,13 @@ let [games2, setGames2] = useState([
               </div>
   
         <div className={style.games}>
-          { (group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H') &&
+          { (group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H') ?
+            loading ?  
+            <div className={style.load}>
+              <Loading2 />
+            </div> 
+            :
             games.map(game => {
-              if(loading) {
-                return(
-                  <div className={style.load}>
-                      <Loading2 />
-                  </div>
-                )
-              } 
               return (
               <Partido  key={game.id} 
                         id={game.id} 
@@ -1248,17 +1246,17 @@ let [games2, setGames2] = useState([
                         group={group}
                         games2={games2} 
                         position={game.position} />
-            )})
+            )}) :
+            null
           }
-           { (group === 'Octavos de Final' || group === 'Cuartos de Final' || group === 'Semifinales' || group === 'Final y Tercer Puesto') &&
+           { (group === 'Octavos de Final' || group === 'Cuartos de Final' || group === 'Semifinales' || group === 'Final y Tercer Puesto') ?
+              loading ?  
+              <div className={style.load}>
+                <Loading2 />
+              </div> 
+              :              
               games2.filter(game=> game.group === group).map(game => {
-                if(loading) {
-                  return(
-                    <div className={style.load}>
-                        <Loading2 />
-                    </div>
-                  )
-                }
+                
               return (
               <Partido  key={game.id} 
                         id={game.id} 
@@ -1279,7 +1277,8 @@ let [games2, setGames2] = useState([
                         isModify={isModify}
                         teams2={teams2}
                         games2={games2} />
-            )})
+            )}) :
+            null
           }
         </div>
         <div className={style.buttons}>
