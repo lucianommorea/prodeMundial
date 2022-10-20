@@ -1220,7 +1220,11 @@ let [games2, setGames2] = useState([
           { (group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H') &&
             games.map(game => {
               if(loading) {
-                return <Loading2 />
+                return(
+                  <div className={style.load}>
+                      <Loading2 />
+                  </div>
+                )
               } 
               return (
               <Partido  key={game.id} 

@@ -579,10 +579,18 @@ function Grupo({group, setGroup}) {
     if(isAuthenticated){
       // setLoading(true);
       // setLoading2(true);
-      dispatch(getGroupGames(group, setLoading));
+      // dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
     }
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
+
+  useEffect(() => {
+    if(isAuthenticated){
+      // setLoading(true);
+      // setLoading2(true);
+      dispatch(getGroupGames(group, setLoading));
+    }
+  }, [dispatch, isModify, isAuthenticated, userInfo]);
 
   useEffect(() => {
     setLoading(true);
