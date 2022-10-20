@@ -3,7 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions';
+import { getGroupTeams, getGroupGames } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
 import oro from '../../images/oro.png';
 import copa from '../../images/copa-mundial.png';
@@ -1158,15 +1158,15 @@ let [games2, setGames2] = useState([
   useEffect(() => {
     dispatch(getGroupGames(group, setLoading));
     dispatch(getGroupTeams(group, setLoading2));
+    // return () => {
+    //   dispatch(cleanGames());
+    //   dispatch(cleanTeams());
+    // }
   }, [dispatch, group, isModify]);
 
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
-    return () => {
-      dispatch(cleanGames());
-      dispatch(cleanTeams());
-    }
   }, [group]);
 
 
@@ -1354,7 +1354,7 @@ let [games2, setGames2] = useState([
                 <div className='col'>
                   <div className={style.team3}> 
                     { 
-                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
+                      ((games2[63].awayResult || games2[63].awayResult === 0) && (games2[63].localResult || games2[63].localResult === 0)) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
                       ? games2[63].away.name
                       : games2[63].local.name
                       : 'Sin completar'
@@ -1364,7 +1364,7 @@ let [games2, setGames2] = useState([
                 <div className='col'>
                   <div className={style.team3}>
                     { 
-                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
+                      ((games2[63].awayResult || games2[63].awayResult === 0) && (games2[63].localResult || games2[63].localResult === 0)) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
                       ? games2[63].local.name
                       : games2[63].away.name
                       : 'Sin completar'
@@ -1374,7 +1374,7 @@ let [games2, setGames2] = useState([
                 <div className='col'>
                   <div className={style.team3}>
                     { 
-                      (games2[62].awayResult && games2[62].localResult) && (games2[62].awayResult > games2[62].localResult || games2[62].awayResult < games2[62].localResult || (games2[62].awayResult === games2[62].localResult && games2[62].penalties)) ? (games2[62].localResult > games2[62].awayResult || games2[62].penalties === 'local') 
+                      ((games2[62].awayResult || games2[62].awayResult === 0) && (games2[62].localResult || games2[62].localResult === 0)) && (games2[62].awayResult > games2[62].localResult || games2[62].awayResult < games2[62].localResult || (games2[62].awayResult === games2[62].localResult && games2[62].penalties)) ? (games2[62].localResult > games2[62].awayResult || games2[62].penalties === 'local') 
                       ? games2[62].local.name
                       : games2[62].away.name
                       : 'Sin completar'

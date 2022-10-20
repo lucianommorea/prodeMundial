@@ -34,8 +34,8 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         //             });
         // }
         handleResult();
-        dispatch(getGroupGames(group, setLoading));
-        dispatch(getGroupTeams(group, setLoading));
+        // dispatch(getGroupGames(group, setLoading));
+        // dispatch(getGroupTeams(group, setLoading));
         // eslint-disable-next-line
     }, [userInfo])
     

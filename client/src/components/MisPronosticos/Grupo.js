@@ -583,16 +583,16 @@ function Grupo({group, setGroup}) {
       dispatch(getGroupTeams(group, setLoading2));
 
     }
-  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
+  }, [dispatch, group, isAuthenticated, teams2, userInfo]);
 
 
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
-    return () => {
-      dispatch(cleanGames());
-      dispatch(cleanTeams());
-    }
+    // return () => {
+    //   dispatch(cleanGames());
+    //   dispatch(cleanTeams());
+    // }
   }, [group]);
 
 
