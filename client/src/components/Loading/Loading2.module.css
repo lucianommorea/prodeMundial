@@ -7,6 +7,15 @@
     min-height: 100%;
 }
 
+.center2{
+    background-color: transparent;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
 .ring{
     position: absolute;
     width: 150px;
@@ -14,6 +23,16 @@
     border-radius: 50%;
     animation: ring 2s linear infinite;
     background: transparent;
+}
+
+.ring2{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    animation: ring 2s linear infinite;
+    background: transparent;
+    top: 20vh;
 }
 
 @keyframes ring {
