@@ -14,7 +14,7 @@ function Grupo({group, setGroup}) {
   const dispatch = useDispatch();
   const [isModify, setIsModify] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [loading2, setLoading2] = useState(true);
+  // const [loading2, setLoading2] = useState(true);
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
@@ -575,14 +575,14 @@ function Grupo({group, setGroup}) {
   }
 ])
 
-  useEffect(() => {
-    if(isAuthenticated){
-      // setLoading(true);
-      // setLoading2(true);
-      // dispatch(getGroupGames(group, setLoading));
-      dispatch(getGroupTeams(group, setLoading2));
-    }
-  }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
+  // useEffect(() => {
+  //   if(isAuthenticated){
+  //     // setLoading(true);
+  //     // setLoading2(true);
+  //     // dispatch(getGroupGames(group, setLoading));
+  //     dispatch(getGroupTeams(group, setLoading2));
+  //   }
+  // }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
 
 
@@ -592,7 +592,7 @@ function Grupo({group, setGroup}) {
     dispatch(getGroupGames(group, setLoading));
   //   dispatch(getGroupTeams(group, setLoading2));
 
-  }, [dispatch, group]);
+  }, [group]);
 
     
   function toNextGroup() {
@@ -636,17 +636,17 @@ function Grupo({group, setGroup}) {
   // if(loading) {
   //   return <Loading2 className={style.load}/>
   // }
-  if(loading2) {
-    return(
-      <div className={style.load}>
-          <Loading2 />
-      </div>
-    )
-  }
+  // if(loading2) {
+  //   return(
+  //     <div className={style.load}>
+  //         <Loading2 />
+  //     </div>
+  //   )
+  // }
   // if(isLoading) {
   //   return <Loading2 />
   // }
-  else 
+  // else 
     return (
       <div className={style.all}>
         <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.none : style.tabla}>

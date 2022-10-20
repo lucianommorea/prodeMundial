@@ -1357,11 +1357,11 @@ let [games2, setGames2] = useState([
                 <div className='col'>
                   <div className={style.team3}> 
                     { 
-                      (games2[62].awayResult && games2[62].localResult) && (games2[62].awayResult > games2[62].localResult || games2[62].awayResult < games2[62].localResult || (games2[62].awayResult === games2[62].localResult && games2[62].penalties)) ? (games2[62].localResult > games2[62].awayResult || games2[62].penalties === 'local') 
-                      ? games2[62].local.name
-                      : games2[62].away.name
+                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
+                      ? games2[63].away.name
+                      : games2[63].local.name
                       : 'Sin completar'
-                    } 
+                    }  
                   </div>
                 </div>
                 <div className='col'>
@@ -1377,11 +1377,11 @@ let [games2, setGames2] = useState([
                 <div className='col'>
                   <div className={style.team3}>
                     { 
-                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
-                      ? games2[63].away.name
-                      : games2[63].local.name
+                      (games2[62].awayResult && games2[62].localResult) && (games2[62].awayResult > games2[62].localResult || games2[62].awayResult < games2[62].localResult || (games2[62].awayResult === games2[62].localResult && games2[62].penalties)) ? (games2[62].localResult > games2[62].awayResult || games2[62].penalties === 'local') 
+                      ? games2[62].local.name
+                      : games2[62].away.name
                       : 'Sin completar'
-                    }  
+                    } 
                   </div>
                 </div>
               </div>
