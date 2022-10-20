@@ -3,8 +3,12 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions';
+import { getGroupTeams, getGroupGames } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
+import oro from '../../images/oro.png';
+import copa from '../../images/copa-mundial.png';
+import plata from '../../images/plata.png';
+import bronce from '../../images/bronce.png';
 
 
 function Grupo({group, setGroup}) {
@@ -1334,6 +1338,57 @@ let [games2, setGames2] = useState([
             <button className={style.prev} onClick={toPrevGroup}> Ir a Semifinales </button>
             <button className={style.hidden}>  </button>
           </div> }  
+          
+          {
+            group === 'Final y Tercer Puesto' ?
+            <div>
+              <div className={`row ${style.ultimo}`}>
+                <div className={`col ${style.medal2} ${style.plata}`}>
+                  <img src={plata} alt='Subcampeon' className={style.medal} />
+                </div>
+                <div className={`col ${style.medal2} ${style.oro}`}>
+                  <img src={copa} alt='Campeon' className={style.medal} />
+                </div>
+                <div className={`col ${style.medal2} ${style.bronce}`}>
+                  <img src={bronce} alt='Tercer Puesto' className={style.medal} />
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col'>
+                  <div className={style.team3}> 
+                    { 
+                      (games2[62].awayResult && games2[62].localResult) && (games2[62].awayResult > games2[62].localResult || games2[62].awayResult < games2[62].localResult || (games2[62].awayResult === games2[62].localResult && games2[62].penalties)) ? (games2[62].localResult > games2[62].awayResult || games2[62].penalties === 'local') 
+                      ? games2[62].local.name
+                      : games2[62].away.name
+                      : 'Sin completar'
+                    } 
+                  </div>
+                </div>
+                <div className='col'>
+                  <div className={style.team3}>
+                    { 
+                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
+                      ? games2[63].local.name
+                      : games2[63].away.name
+                      : 'Sin completar'
+                    } 
+                  </div>
+                </div>
+                <div className='col'>
+                  <div className={style.team3}>
+                    { 
+                      (games2[63].awayResult && games2[63].localResult) && (games2[63].awayResult > games2[63].localResult || games2[63].awayResult < games2[63].localResult || (games2[63].awayResult === games2[63].localResult && games2[63].penalties)) ? (games2[63].localResult > games2[63].awayResult || games2[63].penalties === 'local') 
+                      ? games2[63].away.name
+                      : games2[63].local.name
+                      : 'Sin completar'
+                    }  
+                  </div>
+                </div>
+              </div>
+            </div> :
+            null
+          } 
+
       </div>
   
       </div>

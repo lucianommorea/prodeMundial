@@ -2577,7 +2577,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
           games2[62].away = games2[61].away;
           games2[63].away = games2[61].local;
       }
-      games2[id-1].penalties = 'local'
+      games2[id-1].penalties = 'local';
+      setIsModify(!isModify)
     }
 
     function handleCheckAway() {
@@ -2625,7 +2626,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
           games2[62].away = games2[61].local;
           games2[63].away = games2[61].away;
       }
-      games2[id-1].penalties = 'away'
+      games2[id-1].penalties = 'away';
+      setIsModify(!isModify)
     }
 
     function comprueba(e){

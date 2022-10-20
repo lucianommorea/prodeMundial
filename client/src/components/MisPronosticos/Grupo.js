@@ -584,13 +584,7 @@ function Grupo({group, setGroup}) {
     }
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
-  useEffect(() => {
-    if(isAuthenticated){
-      // setLoading(true);
-      // setLoading2(true);
-      dispatch(getGroupGames(group, setLoading));
-    }
-  }, [dispatch, isModify, isAuthenticated, userInfo]);
+
 
   useEffect(() => {
     setLoading(true);
@@ -598,7 +592,7 @@ function Grupo({group, setGroup}) {
     dispatch(getGroupGames(group, setLoading));
   //   dispatch(getGroupTeams(group, setLoading2));
 
-  }, [group]);
+  }, [dispatch, group]);
 
     
   function toNextGroup() {
@@ -800,6 +794,7 @@ function Grupo({group, setGroup}) {
             <button className={style.prev} onClick={toPrevGroup}> Ir a Semifinales </button>
             <button className={style.hidden}>  </button>
           </div> }  
+
       </div>
   
       </div>
