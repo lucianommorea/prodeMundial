@@ -586,6 +586,7 @@ function Grupo({group, setGroup}) {
 
 
   useEffect(() => {
+    setGroup(group)
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
   }, [group]);
