@@ -577,22 +577,20 @@ function Grupo({group, setGroup}) {
 
   useEffect(() => {
     if(isAuthenticated){
-      setLoading(true);
-      setLoading2(true);
-      dispatch(getGroupGames(group, setLoading));
+      // setLoading(true);
+      // setLoading2(true);
+      // dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
     }
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
 
+  useEffect(() => {
+    setLoading(true);
+    dispatch(getGroupGames(group, setLoading));
+  }, [group]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  // //   setLoading2(true);
-  //   dispatch(getGroupGames(group, setLoading));
-  // //   dispatch(getGroupTeams(group, setLoading2));
 
-  // }, [group]);
 
     
   function toNextGroup() {
