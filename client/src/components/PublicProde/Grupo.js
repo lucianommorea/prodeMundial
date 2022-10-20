@@ -3,7 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames } from '../../redux/actions';
+import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
 import oro from '../../images/oro.png';
 import copa from '../../images/copa-mundial.png';
@@ -1158,18 +1158,15 @@ let [games2, setGames2] = useState([
   useEffect(() => {
     dispatch(getGroupGames(group, setLoading));
     dispatch(getGroupTeams(group, setLoading2));
-    // return () => {
-    //   dispatch(cleanGames());
-    //   dispatch(cleanTeams());
-    // }
   }, [dispatch, group, isModify]);
 
   useEffect(() => {
     setLoading(true);
-  //   setLoading2(true);
     dispatch(getGroupGames(group, setLoading));
-  //   dispatch(getGroupTeams(group, setLoading2));
-
+    return () => {
+      dispatch(cleanGames());
+      dispatch(cleanTeams());
+    }
   }, [group]);
 
 

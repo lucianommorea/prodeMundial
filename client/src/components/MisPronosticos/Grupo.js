@@ -581,14 +581,18 @@ function Grupo({group, setGroup}) {
       // setLoading2(true);
       // dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
+
     }
   }, [dispatch, group, isModify, isAuthenticated, teams2, userInfo]);
 
 
   useEffect(() => {
-    setGroup(group)
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
+    return () => {
+      dispatch(cleanGames());
+      dispatch(cleanTeams());
+    }
   }, [group]);
 
 
