@@ -694,15 +694,12 @@ function Grupo({group, setGroup}) {
   
         <div className={style.games}>
 
-          { games.map(game => {
-            if(loading) {
-              return(
-                <div className={style.load}>
-                    <Loading2 />
-                </div>
-              )
-            } 
-            return (
+          { loading ?  
+            <div className={style.load}>
+              <Loading2 />
+            </div> 
+            : games.map(game => {
+              return (
                 
               <Partido  key={game.id} 
                         id={game.id} 
