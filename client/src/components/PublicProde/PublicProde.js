@@ -4,10 +4,13 @@ import style from './PublicProde.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import Footer from '.././Footer/Footer';
 import InfoPopper from '../GeneralComponents/Popper';
+import { useSelector } from 'react-redux';
+import BannedUser from '../GeneralComponents/BannedUser';
 
 function PublicProde() {
 
   const [group, setGroup] = useState('A');
+  const userInfo = useSelector(state => state.user)
   // let [isModify, setIsModify] = useState(false);
 
 
@@ -15,6 +18,16 @@ function PublicProde() {
     setGroup(e.target.value);
   };
 
+  if (userInfo.statusBanned === true) {
+    return (
+    <>
+      <BannedUser />
+      <div className={style.footer}>
+        <Footer />
+      </div>
+    </>
+  );
+  }
 
   return (
       <div className={style.all}>

@@ -9,6 +9,7 @@ import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';
 import balondeoro from '../../images/balondeoro.png';
 import Footer from '../Footer/Footer';
+import BannedUser from '../GeneralComponents/BannedUser'
 
 
 export default function MisPremios() {
@@ -112,6 +113,16 @@ export default function MisPremios() {
     if(isLoading) {
         return <Loading />
       }
+    else if (userInfo.statusBanned === true) {
+        return (
+        <>
+          <BannedUser />
+          <div className={style.footer}>
+            <Footer />
+          </div>
+        </>
+      );
+    }
     else if (isAuthenticated) {   
         return (
         <div className={style.back}>

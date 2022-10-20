@@ -11,6 +11,7 @@ import Loading from '../Loading/LoadingComponent';
 import CardPoints from '../Landing/CardPoints';
 import CardLanding from '../Landing/CardLanding';
 import Footer from '../Footer/Footer';
+import BannedUser from '../GeneralComponents/BannedUser'
 require('dotenv').config();
 
 cloudinary.config({
@@ -189,7 +190,16 @@ function Configuracion() {
         }, 2000)
             return <Loading />
     }
-    
+    else if (userInfo.statusBanned === true) {
+        return (
+        <>
+          <BannedUser />
+          <div className={style.footer}>
+            <Footer />
+          </div>
+        </>
+      );
+    }  
     return (
         <div className={style.fullContainer}>
 

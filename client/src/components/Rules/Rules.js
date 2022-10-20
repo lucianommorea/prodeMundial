@@ -6,10 +6,23 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Footer from '../Footer/Footer';
+import { useSelector } from 'react-redux';
+import BannedUser from '../GeneralComponents/BannedUser';
 
 function Rules() {
 
+    const userInfo = useSelector(state=> state.user)
 
+    if (userInfo.statusBanned === true) {
+        return (
+        <>
+          <BannedUser />
+          <div className={style.footer}>
+            <Footer />
+          </div>
+        </>
+      );
+    }
   return (
     <div className={style.all}>
         <div className={style.title}>

@@ -3,7 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames, cleanGames, cleanTeams} from '../../redux/actions';
+import { getGroupTeams, getGroupGames } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -593,6 +593,7 @@ function Grupo({group, setGroup}) {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
     // }
+    // eslint-disable-next-line
   }, [group]);
 
 
@@ -627,14 +628,14 @@ function Grupo({group, setGroup}) {
   }
 
   let fecha = new Date()
-  let dateOctavos = new Date("2022, 09, 18");
-  let dateCuartos = new Date("2022, 09, 18");
-  let dateSemis = new Date("2022, 09, 18");
-  let dateFinales = new Date("2022, 09, 18");
-  // let dateOctavos = new Date("2022, 11, 29");
-  // let dateCuartos = new Date("2022, 12, 03");
-  // let dateSemis = new Date("2022, 12, 09");
-  // let dateFinales = new Date("2022, 12, 13");
+  // let dateOctavos = new Date("2022, 09, 18");
+  // let dateCuartos = new Date("2022, 09, 18");
+  // let dateSemis = new Date("2022, 09, 18");
+  // let dateFinales = new Date("2022, 09, 18");
+  let dateOctavos = new Date("2022, 11, 29");
+  let dateCuartos = new Date("2022, 12, 03");
+  let dateSemis = new Date("2022, 12, 09");
+  let dateFinales = new Date("2022, 12, 13");
   
   // if(loading) {
   //   return <Loading2 className={style.load}/>
@@ -798,8 +799,7 @@ function Grupo({group, setGroup}) {
             <button className={style.hidden}>  </button>
           </div> }  
 
-      </div>
-  
+        </div>
       </div>
       
     )

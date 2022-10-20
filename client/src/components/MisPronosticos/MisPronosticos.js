@@ -35,6 +35,7 @@ function MisPronosticos() {
   useEffect(() => {
     dispatch(getWorldCup());
     dispatch(getUserId(user.sub));
+    // eslint-disable-next-line
   }, [dispatch])
 
 

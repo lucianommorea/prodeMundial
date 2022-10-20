@@ -5,7 +5,6 @@ import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGroupTeams, getGroupGames } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
-import oro from '../../images/oro.png';
 import copa from '../../images/copa-mundial.png';
 import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';
@@ -19,6 +18,7 @@ function Grupo({group, setGroup}) {
   // const teams = useSelector(state=> state.teams);
   const [width, setWidth] = useState(window.innerWidth);
   const [loading, setLoading] = useState(true);
+    // eslint-disable-next-line
   const [loading2, setLoading2] = useState(true);
 
   useEffect(() => {
@@ -1167,15 +1167,16 @@ let [games2, setGames2] = useState([
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
+    // eslint-disable-next-line
   }, [group]);
 
 
   // if(loading) {
   //   return <Loading2 />
   // } 
-  // if(loading2) {
-  //   return <Loading2 />
-  // } 
+  if(loading2) {
+    return <Loading2 />
+  } 
     return (
       <div className={style.all}>
         <div className={style.tabla}>
@@ -1251,6 +1252,13 @@ let [games2, setGames2] = useState([
           }
            { (group === 'Octavos de Final' || group === 'Cuartos de Final' || group === 'Semifinales' || group === 'Final y Tercer Puesto') &&
               games2.filter(game=> game.group === group).map(game => {
+                if(loading) {
+                  return(
+                    <div className={style.load}>
+                        <Loading2 />
+                    </div>
+                  )
+                }
               return (
               <Partido  key={game.id} 
                         id={game.id} 

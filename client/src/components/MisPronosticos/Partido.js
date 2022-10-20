@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { putUserResult, getGroupTeams, getGroupGames, putUserOctavos } from '../../redux/actions';
+import { putUserResult, putUserOctavos } from '../../redux/actions';
 import style from './Partido.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
