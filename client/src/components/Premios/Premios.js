@@ -28,7 +28,7 @@ export default function Premios() {
     let userInfo = useSelector(state=> state.user);
 
     useEffect(() => {
-        dispatch(getWorldCup())
+        dispatch(getWorldCup(setLoading))
       // eslint-disable-next-line
     }, [])
 
@@ -105,9 +105,9 @@ export default function Premios() {
 
     
     if(loading) {
-        setTimeout(() => {
-              setLoading(false)
-        }, 3000)
+        // setTimeout(() => {
+        //       setLoading(false)
+        // }, 3000)
             return <Loading />
     }
     if(isLoading) {

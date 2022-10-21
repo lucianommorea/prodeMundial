@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import style from "./Top5Rank.module.css";
 import Top5Card from "./Top5Card";
-import { getTopFive } from "../../redux/actions";
 
 
 const Top5Rank = () => {
   
   const topfive = useSelector((state) => state.topfive);
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getTopFive())
-  }, [dispatch])
   
-
 
   return (
     <div className={style.all}>

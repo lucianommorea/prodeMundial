@@ -22,7 +22,7 @@ const Ranking = () => {
 
   useEffect(() => {
     dispatch(getUsersRanking(page, setLoading));
-    dispatch(getWorldCup())
+    dispatch(getWorldCup(setIsLoading))
   }, [dispatch, page]);
 
 
@@ -43,21 +43,11 @@ const Ranking = () => {
     );
   } 
   if(isLoading) {
-    setTimeout(() => {
-          setIsLoading(false)
-    }, 1000)
+    // setTimeout(() => {
+    //       setIsLoading(false)
+    // }, 1000)
         return <Loading />
   }
-//   else if (isAuthenticated && user.email_verified === false) {
-//     return (
-//       <>
-//         <NotVerified />
-//         <div className={style.footer}>
-//           <Footer />
-//         </div>
-//       </>
-//     );
-//   }
    else if (isAuthenticated && userInfo.statusBanned === true) {
     return (
       <>

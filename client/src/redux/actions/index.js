@@ -134,10 +134,11 @@ export const getSearchUsers = (page, search) => async (dispatch) => {
   }
 };
 
-export const getTopFive = () => async (dispatch) => {
+export const getTopFive = (setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getTopFive();
     dispatch({ type: GET_TOP_FIVE, payload: data });
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -284,10 +285,11 @@ export const putIdTeam = (id, modify) => async (dispatch) => {
     }
 };
 
-export const getWorldCup = () => async (dispatch) => {
+export const getWorldCup = (setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getWorldCup();
     dispatch({ type: GET_WORLD_CUP, payload: data });
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }

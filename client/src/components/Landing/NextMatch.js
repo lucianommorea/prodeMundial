@@ -1,13 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
 import style from './NextMatch.module.css'
-import { getAllGames } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import calendarC from '../../images/calendariocolor.png';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -16,8 +9,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 function NextMatch() {
 
     const games = useSelector(state=> state.games);
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
     // let fecha = new Date(2022,12,28);
     let fecha = new Date();
     let nextGames = games.filter(game=> new Date(game.date) > fecha);
@@ -25,18 +16,6 @@ function NextMatch() {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
 
-    useEffect(() => {
-        dispatch(getAllGames(setLoading))
-    }, [dispatch])
-  
-
-    if (loading) {
-        return (
-          <>
-            Loading
-          </>
-        );
-      } else
     return (
         <div>
         {

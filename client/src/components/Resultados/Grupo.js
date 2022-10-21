@@ -3,7 +3,7 @@ import BasicTable from './Tabla'
 import Partido from './Partido'
 import style from './Grupo.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getGroupTeams, getGroupGames, cleanGames, cleanTeams } from '../../redux/actions'
+import { getGroupTeams, getGroupGames } from '../../redux/actions'
 
 function Grupo({group, setGroup}) {
 
@@ -24,10 +24,10 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     dispatch(getGroupGames(group));
     dispatch(getGroupTeams(group));
-    return () => {
-      dispatch(cleanGames());
-      dispatch(cleanTeams());
-    }
+    // return () => {
+    //   dispatch(cleanGames());
+    //   dispatch(cleanTeams());
+    // }
   }, [dispatch, group, isModify])
 
   function toNextGroup() {
@@ -113,19 +113,14 @@ function Grupo({group, setGroup}) {
                       group={game.group}
                       penalties={game.penalties}
                       img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
-                      // img1={game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img}
                       team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
-                      // team1={game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name}
                       img2={game.away !== null ? game.away === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null}
-                      // img2={game.away === game.teams[0].id ? game.teams[0].img : game.teams[1].img}
                       team2={game.away !== null ? game.away === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
-                      // team2={game.away === game.teams[0].id ? game.teams[0].name : game.teams[1].name}
                       localResult={game.localResult}
                       awayResult={game.awayResult}
                       setIsModify={setIsModify} />
           )})
         }
-        {/* <Partido idGame={idGame}/> */}
       </div>
       <div className={style.buttons}>
           { group === 'A' &&

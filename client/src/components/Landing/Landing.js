@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import style from './Landing.module.css';
 import CardLanding from './CardLanding';
 import NextMatch from './NextMatch';
-import { getAllUsers, getWorldCup } from '../../redux/actions';
+import { getAllGames, getAllUsers, getTopFive, getWorldCup } from '../../redux/actions';
 import CardPoints from './CardPoints';
 import Top5Rank from './Top5Rank';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -22,10 +22,13 @@ function Landing() {
   const dispatch = useDispatch();
   const { isAuthenticated, isLoading } = useAuth0();
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
 
   useEffect(() => {
     dispatch(getWorldCup());
     dispatch(getAllUsers());
+    dispatch(getAllGames(setLoading2));
+    dispatch(getTopFive(setLoading))
   }, [dispatch])
 
   let fecha = new Date();
@@ -39,10 +42,10 @@ function Landing() {
   if(isLoading) {
     return <Loading />
   }
-  if(loading){
-    setTimeout(() => {
-      setLoading(false)
-    }, 1500)
+  if(loading || loading2){
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 1500)
     return <Loading />
   }
   else if (userInfo.statusBanned === true) {

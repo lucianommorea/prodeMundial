@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWorldCup } from '../../redux/actions';
 import NotFound from '../NotFound/NotFound'
 import Footer from '../Footer/Footer';
+import Loading from '../Loading/LoadingComponent';
 
 
 function Resultados() {
 
   const dispatch = useDispatch()
   const [group, setGroup] = useState('A');
+  const [loading, setLoading] = useState(true);
   // const worldcup = useSelector(state=> state.worldcup);
   const userInfo = useSelector(state=> state.user);
 
@@ -20,10 +22,14 @@ function Resultados() {
   };
 
   useEffect(() => {
-    dispatch(getWorldCup())
+    dispatch(getWorldCup(setLoading))
   }, [dispatch])
   
-
+  if(loading){
+    return (
+      <Loading />
+    )
+  }
   if (userInfo.statusAdmin) {   
     return (
       <div className={style.all}>

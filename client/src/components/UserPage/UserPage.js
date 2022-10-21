@@ -25,7 +25,7 @@ const UserPage = () => {
   let games = useSelector(state=> state.games);
 
   useEffect(() => {
-      dispatch(getAllGames());
+      dispatch(getAllGames(setLoading));
       dispatch(getAllUsers());
   }, [dispatch])
 

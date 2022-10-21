@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './MisPremios.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getWorldCup, putUserInfo } from '../../redux/actions';
+import { getUserId, getWorldCup, putUserInfo } from '../../redux/actions';
 import oro from '../../images/oro.png';
 import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';
@@ -34,7 +34,7 @@ export default function MisPremios() {
         setSecond(userInfo.second);
         setThird(userInfo.third);
         setBestPlayer(userInfo.bestPlayer);
-        dispatch(getWorldCup())
+        dispatch(getWorldCup(setLoading));
     // eslint-disable-next-line
     }, [dispatch])
 
@@ -105,9 +105,6 @@ export default function MisPremios() {
 
     
     if(loading) {
-        setTimeout(() => {
-              setLoading(false)
-        }, 3000)
             return <Loading />
     }
     if(isLoading) {

@@ -33,7 +33,7 @@ function MisPronosticos() {
   };
 
   useEffect(() => {
-    dispatch(getWorldCup());
+    dispatch(getWorldCup(setLoading));
     dispatch(getUserId(user.sub));
     // eslint-disable-next-line
   }, [dispatch])
@@ -53,9 +53,9 @@ function MisPronosticos() {
     return <Loading />
   }
   if(loading){
-    setTimeout(() => {
-      setLoading(false)
-    }, 1500)
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 1500)
     return <Loading />
   }
   else if (userInfo.statusBanned === true) {
