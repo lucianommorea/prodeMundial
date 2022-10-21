@@ -3,7 +3,7 @@ import Grupo from './Grupo';
 import style from './MisPronosticos.module.css'
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserId, getWorldCup } from '../../redux/actions';
+import { getGroupGames, getUserId, getWorldCup } from '../../redux/actions';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -35,6 +35,7 @@ function MisPronosticos() {
   useEffect(() => {
     dispatch(getWorldCup(setLoading));
     dispatch(getUserId(user.sub));
+    dispatch(getGroupGames(group, setLoading));
     // eslint-disable-next-line
   }, [dispatch])
 
