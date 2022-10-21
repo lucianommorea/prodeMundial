@@ -19,6 +19,7 @@ function Grupo({group, setGroup}) {
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
+  let group2 = group
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -719,6 +720,7 @@ function Grupo({group, setGroup}) {
                         teams2={teams2}
                         setTeams2={setTeams2}
                         group={group}
+                        group2={group2}
                         position={game.position}
                         loading={loading}
                         setLoading={setLoading} />
