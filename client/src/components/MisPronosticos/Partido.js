@@ -6,7 +6,7 @@ import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-function Partido({id, date, hour, stadium, group, group2, position, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, localResult, awayResult, loading, setLoading}) {
+function Partido({id, date, hour, stadium, group, position, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, localResult, awayResult, loading, setLoading}) {
 
     const dispatch = useDispatch();
     const userInfo = useSelector(state=> state.user);
@@ -34,10 +34,10 @@ function Partido({id, date, hour, stadium, group, group2, position, img1, team1,
         //             });
         // }
         handleResult();
-        dispatch(getGroupGames(group2, setLoading));
+        // dispatch(getGroupGames(group, setLoading));
         // dispatch(getGroupTeams(group, setLoading));
         // eslint-disable-next-line
-    }, [])
+    }, [teams2])
     
 
     function handleResult() {

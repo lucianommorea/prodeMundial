@@ -4,6 +4,7 @@ import Partido from './Partido'
 import style from './Grupo.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGroupTeams, getGroupGames } from '../../redux/actions'
+import Loading from '../Loading/LoadingComponent'
 
 function Grupo({group, setGroup}) {
 
@@ -12,6 +13,7 @@ function Grupo({group, setGroup}) {
   const [isModify, setIsModify] = useState(false);
   // const teams = useSelector(state=> state.teams);
   const [width, setWidth] = useState(window.innerWidth);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -21,14 +23,28 @@ function Grupo({group, setGroup}) {
     setWidth(window.innerWidth);
   };
 
+  // useEffect(() => {
+  //   dispatch(getGroupGames(group));
+  //   dispatch(getGroupTeams(group));
+  //   // return () => {
+  //   //   dispatch(cleanGames());
+  //   //   dispatch(cleanTeams());
+  //   // }
+  // }, [dispatch, group, isModify])
+
   useEffect(() => {
-    dispatch(getGroupGames(group));
-    dispatch(getGroupTeams(group));
-    // return () => {
-    //   dispatch(cleanGames());
-    //   dispatch(cleanTeams());
-    // }
-  }, [dispatch, group, isModify])
+      // setLoading(true);
+      // setLoading2(true);
+      // dispatch(getGroupGames(group, setLoading));
+      dispatch(getGroupTeams(group, setLoading));
+  }, [dispatch, group, isModify]);
+
+
+  useEffect(() => {
+    setLoading(true);
+    dispatch(getGroupGames(group, setLoading));
+    // eslint-disable-next-line
+  }, [group]);
 
   function toNextGroup() {
     if(group === "A") setGroup("B");
@@ -58,6 +74,13 @@ function Grupo({group, setGroup}) {
     if(group === "Final y Tercer Puesto") setGroup("Semifinales");
   }
 
+  if(loading) {
+    return(
+      <div className={style.load}>
+          <Loading />
+      </div>
+    )
+  }
   return (
     <div className={style.all}>
       <div className={style.tabla}>

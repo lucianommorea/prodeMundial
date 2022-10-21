@@ -8,7 +8,6 @@ import Loading2 from '../Loading/Loading2';
 import Loading3 from '../Loading/Loading3';
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 function Grupo({group, setGroup}) {
 
   const games = useSelector(state=> state.games);
@@ -19,7 +18,6 @@ function Grupo({group, setGroup}) {
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
-  let group2 = group
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -590,6 +588,9 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupGames(group, setLoading));
     // return () => {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
@@ -720,7 +721,6 @@ function Grupo({group, setGroup}) {
                         teams2={teams2}
                         setTeams2={setTeams2}
                         group={group}
-                        group2={group2}
                         position={game.position}
                         loading={loading}
                         setLoading={setLoading} />
