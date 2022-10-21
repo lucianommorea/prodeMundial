@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { putUserResult, putUserOctavos } from '../../redux/actions';
+import { putUserResult, putUserOctavos, getGroupGames, getGroupTeams } from '../../redux/actions';
 import style from './Partido.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -34,8 +34,8 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         //             });
         // }
         handleResult();
-        // dispatch(getGroupGames(group, setLoading));
-        // dispatch(getGroupTeams(group, setLoading));
+        dispatch(getGroupGames(group, setLoading));
+        dispatch(getGroupTeams(group, setLoading));
         // eslint-disable-next-line
     }, [userInfo])
     

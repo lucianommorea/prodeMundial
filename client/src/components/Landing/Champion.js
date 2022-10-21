@@ -9,16 +9,13 @@ function Champion() {
 
     const worldcup = useSelector(state=> state.worldcup);
     const teams = useSelector(state=> state.teams)
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     let champion = teams?.find(team => team.name.toUpperCase() === worldcup.first.toUpperCase());
-    console.log(champion);
-    console.log(teams)
-    console.log(worldcup.first);
 
-    useEffect(() => {
-        dispatch(getWorldCup());
-        dispatch(getAllTeams())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getWorldCup());
+    //     dispatch(getAllTeams())
+    // }, [dispatch])
     
 
     return (

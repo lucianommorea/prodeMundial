@@ -105,7 +105,7 @@ export default function MisPremios() {
 
     
     if(loading) {
-            return <Loading />
+        return <Loading />
     }
     if(isLoading) {
         return <Loading />

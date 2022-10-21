@@ -90,9 +90,6 @@ async function putOctavosTeam(id, position, team, team2) {
         let newOctavos = [...updatedWorldCup.octavos];
         newOctavos[position-1] = team
         newOctavos[position] = team2
-        // if(team === null) {
-        //     newOctavos[position] = team
-        // }
         await updatedWorldCup.update({octavos: newOctavos}); 
         await putUsersOctavos(position, team, team2);
         return updatedWorldCup;
