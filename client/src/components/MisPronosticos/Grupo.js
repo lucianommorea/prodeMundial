@@ -581,6 +581,7 @@ function Grupo({group, setGroup}) {
       // setLoading2(true);
       // dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
+      dispatch(getGroupGames(group, setLoading));
     }
   }, [dispatch, group, isAuthenticated, teams2, userInfo]);
 

@@ -122,7 +122,7 @@ function MisPronosticos() {
             <h1> {group} </h1>
             }
           </div>
-          <Grupo group={group} setGroup={setGroup} userInfo={userInfo} />
+          <Grupo group={group} setGroup={setGroup} />
         </div>
         <div className={style.footer}>
           <Footer />

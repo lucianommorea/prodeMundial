@@ -37,7 +37,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         // dispatch(getGroupGames(group, setLoading));
         // dispatch(getGroupTeams(group, setLoading));
         // eslint-disable-next-line
-    }, [teams2])
+    }, [])
     
 
     function handleResult() {
