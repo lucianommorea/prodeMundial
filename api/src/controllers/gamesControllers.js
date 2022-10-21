@@ -1112,7 +1112,7 @@ const populateGames = async () => {
       },
       {
         id: 20,
-        stadium: "Ahmad Bin Ali",
+        stadium: "Al Bayt Stadium",
         date: "2022/11/25 16:00:00.59",
         local: "ENG",
         away: "USA",
