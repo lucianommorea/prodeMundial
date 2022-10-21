@@ -632,14 +632,14 @@ function Grupo({group, setGroup}) {
   }
 
   let fecha = new Date()
-  // let dateOctavos = new Date("2022, 09, 18");
-  // let dateCuartos = new Date("2022, 09, 18");
-  // let dateSemis = new Date("2022, 09, 18");
-  // let dateFinales = new Date("2022, 09, 18");
-  let dateOctavos = new Date("2022, 11, 29");
-  let dateCuartos = new Date("2022, 12, 03");
-  let dateSemis = new Date("2022, 12, 09");
-  let dateFinales = new Date("2022, 12, 13");
+  let dateOctavos = new Date("2022, 09, 18");
+  let dateCuartos = new Date("2022, 09, 18");
+  let dateSemis = new Date("2022, 09, 18");
+  let dateFinales = new Date("2022, 09, 18");
+  // let dateOctavos = new Date("2022, 11, 29");
+  // let dateCuartos = new Date("2022, 12, 03");
+  // let dateSemis = new Date("2022, 12, 09");
+  // let dateFinales = new Date("2022, 12, 13");
   
   // if(loading) {
   //   return <Loading2 className={style.load}/>
@@ -696,7 +696,7 @@ function Grupo({group, setGroup}) {
                   </div>
               </div>
   
-        <div className={style.games}>
+        <div className={games.length > 10 ? style.none : style.games}>
 
           { loading ?  
             <div className={style.load}>
