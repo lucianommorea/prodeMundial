@@ -5,7 +5,7 @@ import style from './Partido.module.css';
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2, img2, localResult, awayResult, setIsModify}) {
+function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2, img2, localResult, awayResult, isModify, setIsModify}) {
 
     const { isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
@@ -89,7 +89,8 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
             id: id,
             penalties: 'local'
         }
-        dispatch(putGamePenalties(penaltiesLocal, setIsModify))
+        dispatch(putGamePenalties(penaltiesLocal, setIsModify));
+        setIsModify(!isModify)
     }
 
     function handleCheckAway() {
@@ -98,6 +99,7 @@ function Partido({id, date, hour, stadium, group, penalties, img1, team1, team2,
                 penalties: 'away'
             }
             dispatch(putGamePenalties(penaltiesAway, setIsModify))
+            setIsModify(!isModify)
     }
 
     function comprueba(e){

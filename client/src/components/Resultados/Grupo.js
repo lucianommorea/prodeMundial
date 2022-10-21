@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import BasicTable from './Tabla'
-import Partido from './Partido'
-import style from './Grupo.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { getGroupTeams, getGroupGames } from '../../redux/actions'
-import Loading from '../Loading/LoadingComponent'
+import React, { useEffect, useState } from 'react';
+import BasicTable from './Tabla';
+import Partido from './Partido';
+import style from './Grupo.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGroupTeams, getGroupGames } from '../../redux/actions';
+import Loading2 from '../Loading/Loading2';
 
 function Grupo({group, setGroup}) {
 
@@ -13,7 +13,7 @@ function Grupo({group, setGroup}) {
   const [isModify, setIsModify] = useState(false);
   // const teams = useSelector(state=> state.teams);
   const [width, setWidth] = useState(window.innerWidth);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -77,7 +77,7 @@ function Grupo({group, setGroup}) {
   if(loading) {
     return(
       <div className={style.load}>
-          <Loading />
+          <Loading2 />
       </div>
     )
   }
@@ -141,6 +141,7 @@ function Grupo({group, setGroup}) {
                       team2={game.away !== null ? game.away === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
                       localResult={game.localResult}
                       awayResult={game.awayResult}
+                      isModify={isModify}
                       setIsModify={setIsModify} />
           )})
         }
