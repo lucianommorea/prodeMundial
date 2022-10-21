@@ -612,7 +612,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
             awayGoals: goals.awayResult
         }
 
-        dispatch(putUserResult(userInfo.sub, resultado))
+        await dispatch(putUserResult(userInfo.sub, resultado))
         setIsModify(!isModify)
     }
         
@@ -1035,7 +1035,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
         }
 
 
-        dispatch(putUserResult(userInfo.sub, resultado))
+        await dispatch(putUserResult(userInfo.sub, resultado))
         setIsModify(!isModify)
     }
 
