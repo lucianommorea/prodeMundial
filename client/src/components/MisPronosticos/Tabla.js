@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getGroupGames } from '../../redux/actions';
 import style from './Tabla.module.css'
 
 
@@ -7,6 +9,7 @@ export default function BasicTable({group, teams2, isModify}) {
   // const teams = useSelector(state => state.teams)
   // const [width, setWidth] = useState(window.innerWitdh);
   // const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch()
 
   // useEffect(() => {
   //   window.addEventListener("resize", handleResize, false);
@@ -17,7 +20,8 @@ export default function BasicTable({group, teams2, isModify}) {
   // };
 
   useEffect(() => {
-  }, [teams2, isModify]);
+    dispatch(getGroupGames(group));
+  }, [group, teams2, isModify]);
 
   if(group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'){
     return (

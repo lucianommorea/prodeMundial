@@ -3,7 +3,7 @@ import BasicTable from './Tabla';
 import Partido from './Partido';
 import style from './Grupo.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGroupTeams, getGroupGames } from '../../redux/actions';
+import { getGroupTeams, getGroupGames, getAllGames } from '../../redux/actions';
 import Loading2 from '../Loading/Loading2';
 import Loading3 from '../Loading/Loading3';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -588,9 +588,9 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
-    dispatch(getGroupGames(group, setLoading));
-    dispatch(getGroupGames(group, setLoading));
-    dispatch(getGroupGames(group, setLoading));
+    // dispatch(getGroupGames(group, setLoading));
+    // dispatch(getGroupGames(group, setLoading));
+    // dispatch(getGroupGames(group, setLoading));
     // return () => {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());
@@ -598,7 +598,9 @@ function Grupo({group, setGroup}) {
     // eslint-disable-next-line
   }, [group]);
 
-
+  useEffect(() => {
+    dispatch(getAllGames());
+  }, []);
 
     
   function toNextGroup() {
@@ -727,7 +729,7 @@ function Grupo({group, setGroup}) {
             )})
           }
         </div>
-        <div className={style.buttons}>
+        <div className={loading ? style.none : style.buttons}>
           { group === 'A' &&
           <div>      
             <button className={style.hidden}>  </button>
