@@ -99,6 +99,26 @@ async function putOctavosTeam(id, position, team, team2) {
     }
 }
 
+async function restartOctavosTeam() {
+  
+    try {
+        const updatedWorldCup = await Worldcup.findOne({
+          where: {
+              id: 1
+          }
+        });
+        for(let i=0; i < updatedWorldCup.octavos.length; i++){
+            updatedWorldCup.octavos[i] = null
+        }
+
+        // return updatedWorldCup;
+    }
+    catch (error) {
+        console.log('Error restartOctavosTeam', error)
+    }
+}
+
+
 async function getWorldCup(id){
 
     try {
@@ -136,5 +156,6 @@ module.exports = {
     putBestPlayer,
     putOctavosTeam,
     getWorldCup,
-    createWC
+    createWC,
+    restartOctavosTeam
 }

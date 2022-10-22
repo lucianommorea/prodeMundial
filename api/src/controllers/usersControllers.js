@@ -294,39 +294,6 @@ async function putUsersBestPlayer(bestPlayer) {
     }
 };
 
-// async function updatePointsOctavos(user, position, team) {
-//     position = Number(position)
-//     let prevPoints = user.points[67+position];
-//     let prevPoints2 = user.points[67+position+1];
-//     let pointsTotal = user.totalPoints;
-//     let team2 = team !== null ? team.toString().toLowerCase() : null
-//     // console.log(team2)
-//     if(prevPoints === undefined) prevPoints = 0;
-//     if(prevPoints2 === undefined) prevPoints = 0;
-//     if(team2 === null){
-//         let newPoints = [...user.points];   
-//         newPoints[67+position] = 0;
-//         newPoints[67+position+1] = 0;
-//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints - prevPoints2)}) 
-//     }
-//     else if(user.octavos[position-1] === null){
-//         let newPoints = [...user.points];   
-//         newPoints[67+position] = 0;
-//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
-//     }
-//     else if(user.octavos[position-1]?.toLowerCase() === team2?.toLowerCase() || user.octavos[position]?.toLowerCase() === team2?.toLowerCase() || user.octavos[position-2]?.toLowerCase() === team2?.toLowerCase()){
-//         let newPoints = [...user.points];   
-//         newPoints[67+position] = 4;
-//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints + 4)}) 
-//     }
-//     // else if(user.octavos[position-1]?.toLowerCase() !== team2?.toLowerCase() && user.octavos[position]?.toLowerCase() !== team2?.toLowerCase() && user.octavos[position-2]?.toLowerCase() !== team2?.toLowerCase())  {
-//         else{
-//         let newPoints = [...user.points];   
-//         newPoints[67+position] = 0;
-//         await user.update({points: newPoints, totalPoints: (pointsTotal - prevPoints)}) 
-//     }
-
-// };
 
 async function updatePointsOctavos(user, position, team, team2) {
     position = Number(position);
@@ -393,6 +360,24 @@ async function putUsersOctavos(position, team, team2) {
     }
 };
 
+
+async function restartAllPoints() {
+    try {
+        const allUsers = await User.findAll() 
+        for(let i = 0; i < allUsers.length; i++) {
+            allUsers[i].totalPoints = 0
+        }
+        for(let i = 0; i < allUsers.length; i++) {
+            for(let j = 0; j < allUsers[i].points.length; i++){
+                allUsers[i].points[j] = 0
+            }
+        }
+        return allUsers
+    } catch (error) {
+        console.log('error in putUsersOctavos', error)
+    }
+};
+
 module.exports = {
     getAllUsers,
     getUsersRanking,
@@ -403,5 +388,6 @@ module.exports = {
     putUsersSecond,
     putUsersThird,
     putUsersBestPlayer,
-    putUsersOctavos
+    putUsersOctavos,
+    restartAllPoints
 }

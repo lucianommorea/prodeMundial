@@ -31,7 +31,8 @@ import {
     GET_SEARCH_USERS,
     TOGGLE_DARKMODE,
     CLEAN_GAMES,
-    CLEAN_TEAMS
+    CLEAN_TEAMS,
+    RESET_GAMES
   } from "./actionTypes";
 
   
@@ -233,6 +234,15 @@ export const getGroupGames = (group, setLoading) => async (dispatch) => {
     const { data } = await api.getGroupGames(group);
     dispatch({ type: GET_GROUP_GAMES, payload: data });
     setLoading && setLoading(false);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const resetAllGames = () => async (dispatch) => {
+  try {
+    const { data } = await api.resetAllGames();
+    dispatch({ type: RESET_GAMES, payload: data });
   } catch (error) {
     console.log(error.message);
   }

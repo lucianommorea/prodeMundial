@@ -4,8 +4,10 @@ import style from "./ListaUsuarios.module.css";
 import Paginated from "../Paginated/Paginated";
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
-import { getSearchUsers, getAllUsersNoAdmin } from "../../redux/actions";
+import { getSearchUsers, getAllUsersNoAdmin, resetAllGames } from "../../redux/actions";
 import NotFound from "../NotFound/NotFound";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 
 const ListaUsuarios = () => {
@@ -59,6 +61,26 @@ const ListaUsuarios = () => {
 
   const handlerRefresh = (e) => {};
 
+  async function resetAllResults(e){
+    await dispatch(resetAllGames());
+  }
+
+  const confirmChange = (e) => {
+    confirmAlert({
+      title: "Resetear todos los resultados",
+      message: "¿Está seguro?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: () => resetAllResults(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
 
   if(user.statusAdmin) {
     return (
@@ -88,6 +110,9 @@ const ListaUsuarios = () => {
              </button>
            </form>
          </div>
+          <div className={style.divBtnRestart}>
+            <button className={style.btnRestart} onClick={confirmChange}> Resetar Resultados </button>
+          </div>
          <div className={`container-fluid ${style.container}`}>
            <div className={`row ${style.info}`} style={darkInfo}>
              <p className={`col-2 ${style.col}`}>Nickname</p>

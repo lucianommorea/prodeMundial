@@ -26,7 +26,7 @@ function Configuracion() {
     let users = useSelector(state=> state.users);
     const dispatch = useDispatch();
     const [nameUser, setNameUser] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [loading2, setLoading2] = useState(true);
     const [input, setInput] = useState({
       name: "",
       nickname: "",
@@ -128,7 +128,7 @@ function Configuracion() {
     
 // Upload Image
 
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user, isLoading } = useAuth0();
     const [ image, setImage ] = useState(null);
     const [ loading, setLoading ] = useState(false)
     const [ isModify, setIsModify ] = useState(false);
@@ -184,10 +184,13 @@ function Configuracion() {
 
     const index = users.findIndex(user => user.sub === userInfo.sub);
 
-    if(isLoading) {
+    if(loading2) {
         setTimeout(() => {
-              setIsLoading(false)
+              setLoading2(false)
         }, 2000)
+            return <Loading />
+    }
+    if(isLoading) {
             return <Loading />
     }
     else if (userInfo.statusBanned === true) {

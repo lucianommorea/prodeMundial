@@ -1,7 +1,7 @@
 const {Game, Team} = require('../db');
 const { putTeam, updateGoals } = require('./teamsControllers');
-const { putUsersPoints } = require('./usersControllers');
-const { putOctavosTeam } = require('./worldcupControllers');
+const { putUsersPoints, restartAllPoints } = require('./usersControllers');
+const { putOctavosTeam, restartOctavosTeam } = require('./worldcupControllers');
 
 async function postGame(id, stadium, date, position, group, local, away) {
   
@@ -937,6 +937,23 @@ async function getGameById(id) {
     }
 }
 
+async function restartAllResults(){
+  try{
+    const allGames = await Game.findAll()
+
+    for(let i=0; i < allGames.length; i++){
+      await putGameResult(allGames[i].id, null, null)
+    }
+    // await restartOctavosTeam();
+    // await restartAllPoints();
+
+    return allGames
+  }
+  catch (error) {
+    console.log('Error in restartAllResults', error)
+  }
+}
+
 const populateGames = async () => {
     const games = [
     {
@@ -1536,7 +1553,6 @@ const populateGames = async () => {
         postGame(games[46].id, games[46].stadium, games[46].date, games[46].position, games[46].group, games[46].local, games[46].away);
         postGame(games[47].id, games[47].stadium, games[47].date, games[47].position, games[47].group, games[47].local, games[47].away);
         postGame(games[48].id, games[48].stadium, games[48].date, games[48].position, games[48].group);
-        // postGame(games[48].id, games[48].stadium, games[48].date, games[48].position, games[48].local, games[48].away, games[48].group);
         postGame(games[49].id, games[49].stadium, games[49].date, games[49].position, games[49].group);
         postGame(games[50].id, games[50].stadium, games[50].date, games[50].position, games[50].group);
         postGame(games[51].id, games[51].stadium, games[51].date, games[51].position, games[51].group);
@@ -1569,5 +1585,6 @@ module.exports = {
     getAllGames,
     getGroupGames,
     getGameById,
-    populateGames
+    populateGames,
+    restartAllResults
 }

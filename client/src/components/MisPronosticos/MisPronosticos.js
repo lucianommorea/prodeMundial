@@ -69,6 +69,7 @@ function MisPronosticos() {
     </>
   );
 }
+else if (isAuthenticated) {
     return (
       <div className={style.all}>
         <div className={style.page}>
@@ -129,7 +130,7 @@ function MisPronosticos() {
         </div>
       </div>
     )
-  
+  }
 }
 
 export default MisPronosticos

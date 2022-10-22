@@ -23,6 +23,8 @@ export const putGamePenalties = (modify) => axios.put(`/games/penalties`, modify
 export const getAllGames = () => axios.get(`/games/`);
 export const getIdGame = (id) => axios.get(`/games?id=${id}`);
 export const getGroupGames = (group) => axios.get(`/games/group/${group}`);
+export const resetAllGames = () => axios.put(`/games/restartAll`);
+
 
 //RUTAS TEAMS
 export const getAllTeams = () => axios.get(`/teams`);

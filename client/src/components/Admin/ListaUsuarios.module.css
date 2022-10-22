@@ -70,3 +70,29 @@ html {
 .notFound {
   margin-left: 2.5vh;
 }
+
+.divBtnRestart{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 90%;
+}
+
+.btnRestart{
+  text-decoration: none;
+  margin-top: 0px;
+  font-weight: 400;
+  background-color: #c36494;
+  color: whitesmoke;
+  border-radius: 0.5vh;
+  border: 1px solid #c36494;
+  /* width: 100%; */
+}
+
+.btnRestart:hover{
+  background-color: whitesmoke;
+  color:#6C1D45;
+  /* font-weight: 500; */
+  cursor: pointer;
+}

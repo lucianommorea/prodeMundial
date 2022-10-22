@@ -31,5 +31,6 @@ export const GET_SEARCH_USERS = "GET_SEARCH_USERS";
 export const GET_ALL_USERS_NOADMIN = " GET_ALL_USERS_NOADMIN";
 export const CLEAN_GAMES = " CLEAN_GAMES";
 export const CLEAN_TEAMS = " CLEAN_TEAMS";
+export const RESET_GAMES = " RESET_GAMES";
 
 
