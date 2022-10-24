@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getGroupGames } from '../../redux/actions';
+import { getGroupGames, getGroupTeams } from '../../redux/actions';
 import style from './Tabla.module.css'
 
 
@@ -20,6 +20,8 @@ export default function BasicTable({group, teams2, isModify}) {
   // };
 
   useEffect(() => {
+    dispatch(getGroupGames(group));
+    dispatch(getGroupGames(group));
     dispatch(getGroupGames(group));
   }, [group, teams2, isModify]);
 
