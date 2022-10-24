@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from '../Loading/LoadingComponent';
+import Loading3 from '../Loading/Loading3';
 import BannedUser from '../GeneralComponents/BannedUser';
 
 function MisPronosticos() {
@@ -17,6 +18,7 @@ function MisPronosticos() {
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated, isLoading, user } = useAuth0();
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
   // eslint-disable-next-line
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -49,6 +51,12 @@ function MisPronosticos() {
   let dateCuartos = new Date("2022, 12, 03");
   let dateSemis = new Date("2022, 12, 09");
   let dateFinales = new Date("2022, 12, 13");
+
+  if(loading2) {
+      setTimeout(() => {
+        setLoading2(false)
+      }, 1500)
+  }
   
   if(isLoading) {
     return <Loading />
@@ -72,7 +80,10 @@ function MisPronosticos() {
 else if (isAuthenticated) {
     return (
       <div className={style.all}>
-        <div className={style.page}>
+        {
+          loading2 ?
+          <Loading3 /> :
+          <div className={style.page}>
           <div className={style.filterbar}>
               <div>
                 <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
@@ -125,6 +136,7 @@ else if (isAuthenticated) {
           </div>
           <Grupo group={group} setGroup={setGroup} />
         </div>
+        }
         <div className={style.footer}>
           <Footer />
         </div>
