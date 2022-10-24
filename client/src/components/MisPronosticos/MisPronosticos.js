@@ -84,58 +84,58 @@ else if (isAuthenticated) {
           loading2 ?
           <Loading3 /> :
           <div className={style.page}>
-          <div className={style.filterbar}>
-              <div>
-                <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
-                    <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
-                    <Select value={group} sx={{color: 'whitesmoke', fontSize: 'small'}} label="Grupo" onChange={handleChangeGroup}>
-                      <MenuItem value="A">Grupo A</MenuItem>
-                      <MenuItem value="B">Grupo B</MenuItem>
-                      <MenuItem value="C">Grupo C</MenuItem>
-                      <MenuItem value="D">Grupo D</MenuItem>
-                      <MenuItem value="E">Grupo E</MenuItem>
-                      <MenuItem value="F">Grupo F</MenuItem>
-                      <MenuItem value="G">Grupo G</MenuItem>
-                      <MenuItem value="H">Grupo H</MenuItem>
-                      {
-                        dateOctavos < fecha &&
-                        <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
-                      }
-                      {
-                        dateCuartos < fecha &&
-                        <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
-                      }
-                      {
-                        dateSemis < fecha &&
-                        <MenuItem value="Semifinales">Semifinales</MenuItem>
-                      }
-                      {
-                        dateFinales < fecha &&
-                        <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
-                      }
-                    </Select>
-                </FormControl>
-              </div>
-              <div>
-                <Link to="/reglas">
-                  <button className={style.btn}>
-                      Ver Reglas
-                  </button>
-                </Link>
+            <div className={style.filterbar}>
+                <div>
+                  <FormControl sx={{width: 120, margin: 0.5, fontSize: 'small'}}>
+                      <InputLabel sx={{color: 'whitesmoke'}} id="demo-simple-select-label">Grupo</InputLabel>
+                      <Select value={group} sx={{color: 'whitesmoke', fontSize: 'small'}} label="Grupo" onChange={handleChangeGroup}>
+                        <MenuItem value="A">Grupo A</MenuItem>
+                        <MenuItem value="B">Grupo B</MenuItem>
+                        <MenuItem value="C">Grupo C</MenuItem>
+                        <MenuItem value="D">Grupo D</MenuItem>
+                        <MenuItem value="E">Grupo E</MenuItem>
+                        <MenuItem value="F">Grupo F</MenuItem>
+                        <MenuItem value="G">Grupo G</MenuItem>
+                        <MenuItem value="H">Grupo H</MenuItem>
+                        {
+                          dateOctavos < fecha &&
+                          <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
+                        }
+                        {
+                          dateCuartos < fecha &&
+                          <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
+                        }
+                        {
+                          dateSemis < fecha &&
+                          <MenuItem value="Semifinales">Semifinales</MenuItem>
+                        }
+                        {
+                          dateFinales < fecha &&
+                          <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
+                        }
+                      </Select>
+                  </FormControl>
+                </div>
+                <div>
+                  <Link to="/reglas">
+                    <button className={style.btn}>
+                        Ver Reglas
+                    </button>
+                  </Link>
 
-              </div>
-                
+                </div>
+                  
+            </div>
+            {/* <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.title2 : style.title}> */}
+            <div className={style.title2}>
+              {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
+              group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
+              <h1> Grupo {group}</h1> :
+              <h1> {group} </h1>
+              }
+            </div>
+            <Grupo group={group} setGroup={setGroup} />
           </div>
-          {/* <div className={group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ? style.title2 : style.title}> */}
-          <div className={style.title2}>
-            {group === 'A' || group === 'B' || group === 'C' || group === 'D' || 
-            group === 'E' || group === 'F' || group === 'G' || group === 'H' ?
-            <h1> Grupo {group}</h1> :
-            <h1> {group} </h1>
-            }
-          </div>
-          <Grupo group={group} setGroup={setGroup} />
-        </div>
         }
         <div className={style.footer}>
           <Footer />

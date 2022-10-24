@@ -581,7 +581,7 @@ function Grupo({group, setGroup}) {
       // setLoading2(true);
       // dispatch(getGroupGames(group, setLoading));
       dispatch(getGroupTeams(group, setLoading2));
-      dispatch(getGroupGames(group, setLoading));
+      // dispatch(getGroupGames(group, setLoading));
     }
   }, [dispatch, group, isAuthenticated, teams2, userInfo]);
 
@@ -589,8 +589,8 @@ function Grupo({group, setGroup}) {
   useEffect(() => {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
-    // dispatch(getGroupGames(group, setLoading));
-    // dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupGames(group, setLoading));
+    dispatch(getGroupGames(group, setLoading));
     // dispatch(getGroupGames(group, setLoading));
     // return () => {
     //   dispatch(cleanGames());
@@ -633,14 +633,14 @@ function Grupo({group, setGroup}) {
   }
 
   let fecha = new Date()
-  let dateOctavos = new Date("2022, 09, 18");
-  let dateCuartos = new Date("2022, 09, 18");
-  let dateSemis = new Date("2022, 09, 18");
-  let dateFinales = new Date("2022, 09, 18");
-  // let dateOctavos = new Date("2022, 11, 29");
-  // let dateCuartos = new Date("2022, 12, 03");
-  // let dateSemis = new Date("2022, 12, 09");
-  // let dateFinales = new Date("2022, 12, 13");
+  // let dateOctavos = new Date("2022, 09, 18");
+  // let dateCuartos = new Date("2022, 09, 18");
+  // let dateSemis = new Date("2022, 09, 18");
+  // let dateFinales = new Date("2022, 09, 18");
+  let dateOctavos = new Date("2022, 11, 29");
+  let dateCuartos = new Date("2022, 12, 03");
+  let dateSemis = new Date("2022, 12, 09");
+  let dateFinales = new Date("2022, 12, 13");
   
   // if(loading) {
   //   return <Loading2 className={style.load}/>
@@ -704,8 +704,7 @@ function Grupo({group, setGroup}) {
               <Loading2 />
             </div> 
             : games.map(game => {
-              return (
-                
+              return (     
               <Partido  key={game.id} 
                         id={game.id} 
                         date={game.date.slice(0,10)} 
@@ -803,12 +802,10 @@ function Grupo({group, setGroup}) {
             <button className={style.prev} onClick={toPrevGroup}> Ir a Semifinales </button>
             <button className={style.hidden}>  </button>
           </div> }  
-
         </div>
       </div>
       
     )
-
   }
     
 
