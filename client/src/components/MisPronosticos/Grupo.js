@@ -729,7 +729,7 @@ function Grupo({group, setGroup}) {
             )})
           }
         </div>
-        <div className={loading ? style.none : style.buttons}>
+        <div className={loading || loading2 ? style.none : style.buttons}>
           { group === 'A' &&
           <div>      
             <button className={style.hidden}>  </button>
