@@ -1,10 +1,10 @@
 # Prode Mundial Qatar 2022
 
-<img src='./client/src/images/Prode1.png' width='33%'/>
-<img src='./client/src/images/Prode2.png' width='33%'/>
-<img src='./client/src/images/Prode3.png' width='33%'/>
-<img src='./client/src/images/Prode4.png' width='33%'/>
-<img src='./client/src/images/Prode5.png' width='33%'/>
+<img src='./client/src/images/Prode1.png' width='50%'/>
+<img src='./client/src/images/Prode2.png' width='50%'/>
+<!-- <img src='./client/src/images/Prode3.png' width='33%'/> -->
+<img src='./client/src/images/Prode4.png' width='50%'/>
+<!-- <img src='./client/src/images/Prode5.png' width='33%'/> -->
 
 ## Introducción
 
