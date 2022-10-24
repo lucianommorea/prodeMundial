@@ -590,8 +590,6 @@ function Grupo({group, setGroup}) {
     setLoading(true);
     dispatch(getGroupGames(group, setLoading));
     // dispatch(getGroupGames(group, setLoading));
-    // dispatch(getGroupGames(group, setLoading));
-    // dispatch(getGroupGames(group, setLoading));
     // return () => {
     //   dispatch(cleanGames());
     //   dispatch(cleanTeams());

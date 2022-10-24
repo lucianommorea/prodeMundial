@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getGroupGames, getGroupTeams } from '../../redux/actions';
+import Loading3 from '../Loading/Loading3';
 import style from './Tabla.module.css'
 
 
@@ -9,6 +11,7 @@ export default function BasicTable({group, teams2, isModify}) {
   // const teams = useSelector(state => state.teams)
   // const [width, setWidth] = useState(window.innerWitdh);
   // const { isAuthenticated, user } = useAuth0();
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   // useEffect(() => {
@@ -20,12 +23,15 @@ export default function BasicTable({group, teams2, isModify}) {
   // };
 
   useEffect(() => {
-    dispatch(getGroupGames(group));
-    dispatch(getGroupGames(group));
-    dispatch(getGroupGames(group));
+    setTimeout(() => {
+      dispatch(getGroupGames(group, setLoading))
+    }, 0)
   }, [group, teams2, isModify]);
 
   if(group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'){
+    if(loading) {
+      return null
+    }
     return (
       <div className={style.all}>
         <div className={`container-fluid ${style.container}`}>
