@@ -590,7 +590,7 @@ function Grupo({group, setGroup}) {
     setLoading(true);
     setTimeout(() => {
       dispatch(getGroupGames(group, setLoading))
-    }, 0)
+    }, 10)
     // dispatch(getGroupGames(group, setLoading));
     // return () => {
     //   dispatch(cleanGames());
