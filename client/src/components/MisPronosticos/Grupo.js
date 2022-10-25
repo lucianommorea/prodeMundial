@@ -587,7 +587,7 @@ function Grupo({group, setGroup}) {
 
 
   useEffect(() => {
-    // setLoading(true);
+    setLoading(true);
     setTimeout(() => {
       dispatch(getGroupGames(group, setLoading))
     }, 0)
@@ -600,7 +600,6 @@ function Grupo({group, setGroup}) {
   }, [group]);
 
   useEffect(() => {
-    setLoading(true);
     dispatch(getAllGames());
   }, []);
 
