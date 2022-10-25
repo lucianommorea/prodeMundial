@@ -23,10 +23,10 @@ export default function BasicTable({group, teams2, isModify}) {
   // };
 
   useEffect(() => {
-    setLoading(true)
+    // setLoading(true)
     setTimeout(() => {
       dispatch(getGroupGames(group, setLoading))
-    }, 10)
+    }, 100)
   }, [group, teams2, isModify]);
 
   if(group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'){
