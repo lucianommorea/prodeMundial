@@ -25,7 +25,7 @@ export default function BasicTable({group, teams2, isModify}) {
   useEffect(() => {
     setTimeout(() => {
       dispatch(getGroupGames(group, setLoading))
-    }, 0)
+    }, 100)
   }, [group, teams2, isModify]);
 
   if(group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'){
