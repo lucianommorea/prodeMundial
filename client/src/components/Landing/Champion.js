@@ -9,23 +9,23 @@ function Champion() {
 
     const worldcup = useSelector(state=> state.worldcup);
     const teams = useSelector(state=> state.teams)
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     let champion = teams?.find(team => team.name.toUpperCase() === worldcup.first.toUpperCase());
 
-    // useEffect(() => {
-    //     dispatch(getWorldCup());
-    //     dispatch(getAllTeams())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(getWorldCup());
+        dispatch(getAllTeams())
+    }, [dispatch])
     
 
     return (
-        <div>
+        <div className={style.all}>
         {
             worldcup.first && worldcup.bestPlayer ?
             <div className={style.card} >
             <div className={style.game}>
                 <div className={style.next}>
-                    Campeon del Mundo
+                    Campeón
                 </div>
             
                 <div className={style.points}>
@@ -36,7 +36,7 @@ function Champion() {
                                     alt=''
                                     className={style.flag}
                             />
-                            <div className={style.premio}>
+                            <div className={style.premio1}>
                             {champion.name}
                             </div>
                             <img src={cup}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './MisPremios.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserId, getWorldCup, putUserInfo } from '../../redux/actions';
+import { getWorldCup, putUserInfo } from '../../redux/actions';
 import oro from '../../images/oro.png';
 import plata from '../../images/plata.png';
 import bronce from '../../images/bronce.png';

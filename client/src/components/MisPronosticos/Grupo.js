@@ -599,6 +599,7 @@ function Grupo({group, setGroup}) {
 
   useEffect(() => {
     dispatch(getAllGames());
+    // eslint-disable-next-line
   }, []);
 
     

@@ -39,8 +39,6 @@ export default function Premios() {
         setBestPlayer(worldcup.bestPlayer);
     }, [worldcup])
 
-    console.log(worldcup);
-
     function handleInput1() {
         setInput1(!input1)
     }

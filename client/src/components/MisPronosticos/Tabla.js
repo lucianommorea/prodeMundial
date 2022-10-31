@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getGroupGames, getGroupTeams } from '../../redux/actions';
-import Loading3 from '../Loading/Loading3';
+import { getGroupGames } from '../../redux/actions';
 import style from './Tabla.module.css'
 
 
@@ -27,6 +26,7 @@ export default function BasicTable({group, teams2, isModify}) {
     setTimeout(() => {
       dispatch(getGroupGames(group, setLoading))
     }, 100)
+    // eslint-disable-next-line
   }, [group, teams2, isModify]);
 
   if(group === 'A' || group === 'B' || group === 'C' || group === 'D' || group === 'E' || group === 'F' || group === 'G' || group === 'H'){

@@ -1,6 +1,12 @@
+.all{
+    /* border: 1px solid gold; */
+    /* border-style:ridge ; */
+    border-radius: 0.5vh;
+}
+
 .card {
     border: none;
-    backdrop-filter: contrast(60%); 
+    backdrop-filter: contrast(50%); 
     color: #6C1D45;
     /* border: 1px solid #6C1D45; */
     min-width: 250px;
@@ -10,6 +16,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
+
 
 .flag {
     border-radius: 10%;
@@ -22,6 +29,7 @@
 
 .cup{
     justify-content: flex-end;
+    height: 40px;
 }
 
 .balon{
@@ -38,6 +46,13 @@
     font-weight: 550;
 }
 
+.premio1{
+    font-size: 1.5rem;
+    font-weight: 550;
+    display: grid;
+    place-content: center;
+}
+
 .nextGame{
     display: flex;
     flex-direction: row;
@@ -49,12 +64,8 @@
     font-size: 20px;
     font-weight: 600;
     padding-top: 5px;
-    color: #BEBEBE
-}
-
-.hour{
-    margin-bottom: 10px;
     color: #BEBEBE;
+    text-decoration: underline;
 }
 
 .points {
