@@ -1,7 +1,9 @@
 .bar{
-    width: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     align-items:center;
-    display:inline-flex;
+    display: flex;
     justify-content: center;
     margin-top: 40px;
     font-size: 0.85rem;
