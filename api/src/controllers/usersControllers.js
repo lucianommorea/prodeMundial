@@ -20,6 +20,10 @@ async function getUsersRanking(){
 
     try {
         let allUsers = await User.findAll({
+            where:{
+                statusDeleted: false,
+                statusBanned: false
+            },
             order: [
                 ['totalPoints', 'DESC'],
                 ['name', 'DESC'],
