@@ -3,9 +3,8 @@ const { putUsersChampions, putUsersSecond, putUsersThird, putUsersBestPlayer, pu
 const { getWorldCup, putChampion, putSecond, putThird, putBestPlayer, putOctavosTeam } = require('../controllers/worldcupControllers');
 
 // const { Game, Team } = require('../db');
-// // const Activity = require('../models/Activity');
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+
 
 const router = Router();
 

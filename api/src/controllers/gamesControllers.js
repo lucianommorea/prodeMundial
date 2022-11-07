@@ -315,7 +315,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game52.away !== teams[1].id) {
                   putAwayTeamGame(52, teams[1].id)
                   putGameResult(52, null, null);
-                  // await putOctavosTeam(1, 2, teams[1].name);
                 }
               }
               if (game.group === 'B') {
@@ -340,8 +339,7 @@ async function putGameResult(id, localGoals, awayGoals) {
 
                 if(game49.away !== teams[1].id) {
                   putAwayTeamGame(49, teams[1].id)
-                  putGameResult(49, null, null);    
-                  // await putOctavosTeam(1, 4, teams[1].name);           
+                  putGameResult(49, null, null);         
                 }
               }
 
@@ -370,7 +368,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game51.away !== teams[1].id) {
                   putAwayTeamGame(51, teams[1].id);
                   putGameResult(51, null, null);
-                  // await putOctavosTeam(1, 6, teams[1].name);
                 }
               }
               if (game.group === 'D') {
@@ -398,7 +395,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game50.away !== teams[1].id) {
                   putAwayTeamGame(50, teams[1].id);
                   putGameResult(50, null, null);
-                  // await putOctavosTeam(1, 8, teams[1].name);
                 }
 
               }
@@ -427,7 +423,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game55.away !== teams[1].id) {
                   putAwayTeamGame(55, teams[1].id);
                   putGameResult(55, null, null);
-                  // await putOctavosTeam(1, 10, teams[1].name);
                 }
               }
 
@@ -456,7 +451,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game53.away !== teams[1].id) {
                   putAwayTeamGame(53, teams[1].id);
                   putGameResult(53, null, null);
-                  // await putOctavosTeam(1, 12, teams[1].name);
                 }
 
               }
@@ -485,7 +479,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game56.away !== teams[1].id) {
                   putAwayTeamGame(56, teams[1].id);
                   putGameResult(56, null, null);
-                  // await putOctavosTeam(1, 14, teams[1].name);
                 }
 
               }
@@ -514,7 +507,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                 if(game54.away !== teams[1].id) {
                   putAwayTeamGame(54, teams[1].id);
                   putGameResult(54,null, null);
-                  // await putOctavosTeam(1, 16, teams[1].name);
                 }
               }
             }
@@ -529,7 +521,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(49, null, null);
                   putGameResult(52, null, null);
                   await putOctavosTeam(1, 1, null);
-                  // await putOctavosTeam(1, 2, null);
                 }
                 if (game.group === 'B') {
                   putLocalTeamGame(52, null);
@@ -537,7 +528,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(49, null, null);
                   putGameResult(52, null, null);
                   await putOctavosTeam(1, 3, null);
-                  // await putOctavosTeam(1, 4, null);
                 }
                 if (game.group === 'C') {
                   putLocalTeamGame(50, null);
@@ -545,7 +535,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(50, null, null);
                   putGameResult(51, null, null);
                   await putOctavosTeam(1, 5, null);
-                  // await putOctavosTeam(1, 6, null);
                 }
                 if (game.group === 'D') {
                   putLocalTeamGame(51, null);
@@ -553,7 +542,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(50, null, null);
                   putGameResult(51, null, null);
                   await putOctavosTeam(1, 7, null);
-                  // await putOctavosTeam(1, 8, null);
                 }
                 if (game.group === 'E') {
                   putLocalTeamGame(53, null);
@@ -561,7 +549,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(53, null, null);
                   putGameResult(55, null, null);
                   await putOctavosTeam(1, 9, null);
-                  // await putOctavosTeam(1, 10, null);
                 }
                 if (game.group === 'F') {
                   putLocalTeamGame(55, null);
@@ -569,7 +556,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(53, null, null);
                   putGameResult(55, null, null);
                   await putOctavosTeam(1, 11, null);
-                  // await putOctavosTeam(1, 12, null);
                 }
                 if (game.group === 'G') {
                   putLocalTeamGame(54, null);
@@ -577,7 +563,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(54, null, null);
                   putGameResult(56, null, null);
                   await putOctavosTeam(1, 13, null);
-                  // await putOctavosTeam(1, 14, null);
                 }
                 if (game.group === 'H') {
                   putLocalTeamGame(56, null);
@@ -585,7 +570,6 @@ async function putGameResult(id, localGoals, awayGoals) {
                   putGameResult(54, null, null);
                   putGameResult(56, null, null);
                   await putOctavosTeam(1, 15, null);
-                  // await putOctavosTeam(1, 16, null);
                 }
               }      
             }

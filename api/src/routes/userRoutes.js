@@ -5,21 +5,6 @@ const { getUserById, postUser, putUserInfo, putUserResult, putUserOctavos } = re
 const router = Router()
 
 
-// router.post('/', async function (req, res){
-//     const {sub, name, nickname, email, picture} = req.body;
-//     if (!sub || !name || !nickname || !email || !picture) {
-//         res.status(404).send({error: "Parameters needed to create user were not received"})
-//     }
-    
-//     try {
-//         let newUser = await postUser(sub, name, nickname, email, picture)
-//         res.status(200).send(newUser)
-//     } 
-//     catch (error) {
-//         console.log('Error postGameRoute', error)
-//     }
-// })
-
 router.post('/', postUser)
 
 router.put('/:sub', putUserInfo)

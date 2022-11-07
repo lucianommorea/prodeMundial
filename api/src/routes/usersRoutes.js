@@ -3,7 +3,6 @@ const { paginate } = require('../controllers/generalControllers');
 const { getAllUsers, getUsersRanking, putUsersPoints, getTopFive, getUsers } = require('../controllers/usersControllers');
 
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 
 const router = Router();

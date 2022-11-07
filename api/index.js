@@ -21,7 +21,6 @@ const server = require('./src/app.js');
 const { populateGames } = require('./src/controllers/gamesControllers.js');
 const { populateTeams } = require('./src/controllers/teamsControllers.js');
 const { createWC } = require('./src/controllers/worldcupControllers.js');
-// const { getAllCountries } = require('./src/controllers/countriesControllers.js');
 const { conn } = require('./src/db.js');
 
 

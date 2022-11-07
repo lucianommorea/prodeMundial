@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { postTeam, putTeam, getAllTeams, getTeamById, getTeamsBygroup} = require('../controllers/teamsControllers')
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
 
@@ -53,22 +52,10 @@ router.get("/group/:group", async function(req, res){
 
 router.put('/team/:id', async (req,res) => {
     const {id} = req.params
-    // const {goalsFA, goalsCO} = req.query
     const {goalsFA, goalsCO} = req.body
     try {
-        // if(name){
-        //     const nameActivity = await getActivityByName(name)
-        //     if(nameActivity){
-        //         res.status(200).send(nameActivity)
-        //     }
-        //     else{
-        //         res.status(404).send('Activity not found')
-        //     }
-        // }
-        // else{
         let putGoalsTeam = await putTeam(id, goalsFA, goalsCO)
         res.status(200).send(putGoalsTeam)
-        // }
     } catch (error) {
         console.log('Error putTeamRoute' + error)
     }
