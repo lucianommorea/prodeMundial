@@ -7,7 +7,6 @@ async function getAllUsers(){
 
     try {
         let allUsers = await User.findAll()
-
         return allUsers
     }
     
