@@ -42,11 +42,21 @@ const options = process.env.NODE_ENV === "production" ? {
   port: 5432,
   username: DB_USER,
   password: DB_PASSWORD,
+  acquireConnectionTimeout: 5000,
   pool: {
-    max: 3,
-    min: 1,
-    idle: 10000,
+    min: 0,
+    max: 10,
+    createTimeoutMillis: 8000,
+    acquireTimeoutMillis: 8000,
+    idleTimeoutMillis: 8000,
+    reapIntervalMillis: 1000,
+    createRetryIntervalMillis: 100,
   },
+  // pool: {
+  //   max: 3,
+  //   min: 1,
+  //   idle: 10000,
+  // },
   dialectOptions: {
     ssl: {
       require: true,
