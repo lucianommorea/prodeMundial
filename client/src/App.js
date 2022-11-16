@@ -16,6 +16,7 @@ import ListaUsuarios from './components/Admin/ListaUsuarios';
 import AgregarAdmin from './components/Admin/AgregarAdmin';
 import NotFound from "./components/NotFound/NotFound";
 import ProtectedRoute from "./components/Auth0/ProtectedRoute";
+import Ranking2 from "./components/Ranking/Ranking2";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path={"/mispronosticos"} element={<ProtectedRoute component={MisPronosticos} />} />
         <Route path={"/resultados"} element={<ProtectedRoute component={Resultados}/>} />
         <Route path={"/ranking"} element={<ProtectedRoute component={Ranking}/>} />
+        <Route path={"/rankingprode"} element={<ProtectedRoute component={Ranking2}/>} />
         <Route path={"/mispremios"} element={<ProtectedRoute component={MisPremios}/>} />
         <Route path={"/premios"} element={<ProtectedRoute component={Premios}/>} />
         <Route path={"/configuracion/:sub"} element={<ProtectedRoute component={Configuracion}/>} />

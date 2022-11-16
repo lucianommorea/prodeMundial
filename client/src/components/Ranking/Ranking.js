@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Ranking.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUsersRanking, getWorldCup } from "../../redux/actions";
+import { getUserId, getUsersRanking, getWorldCup } from "../../redux/actions";
 import Loading from "../Loading/LoadingComponent";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paginated from "../Paginated/Paginated";
 import Footer from "../Footer/Footer";
 import Footer3 from "../Footer/Footer3";
@@ -17,12 +17,14 @@ const Ranking = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true)
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const [width, setWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUsersRanking(page, setLoading));
-    dispatch(getWorldCup(setIsLoading))
+    dispatch(getWorldCup(setIsLoading));
+    dispatch(getUserId(user.sub))
   }, [dispatch, page]);
 
 
@@ -33,6 +35,10 @@ const Ranking = () => {
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
+
+  function navigateTo() {
+    navigate('/rankingprode');
+  }
 
 
   if (loading) {
@@ -61,6 +67,15 @@ const Ranking = () => {
   else return (
       <div className={style.fullContainer}>
         <div className={style.middleRow}>
+          {
+            user.sub === 'google-oauth2|106876270763901161911' || user.sub === 'google-oauth2|108300164928062839224' ||
+            user.sub === 'google-oauth2|117925862186927959268' || user.sub === 'google-oauth2|103062773572419589423' ||
+            user.sub === 'google-oauth2|100839931877560686273' || user.sub === 'auth0|6372bfc832de0084d4edb6a6' ||
+            user.sub === 'google-oauth2|104390713065538550530' || user.sub === 'google-oauth2|112846913444083067920' ||
+            user.sub === 'auth0|636052f4a717e709647d29f7' || user.sub === 'google-oauth2|102464354659192285279' ?
+            <button type="button" className={`btn btn-warning ${style.btnHide}`} onClick={navigateTo}>Prode</button> :
+            null
+          }
           <div className={style.title}>
                 Ranking
           </div>    

@@ -8,6 +8,12 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.btnHide{
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+
 .title{
   display: grid;
   place-content: center;
@@ -15,7 +21,7 @@
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  font-size: calc(18px + 5vmin);
+  font-size: calc(17px + 4.5vmin);
   /* font-size: 3rem; */
   /* color: #BEBEBE; */
   /* color: #e0bcce; */
@@ -183,6 +189,13 @@
   .userImage {
     width: 30px;
     height: 30px;
+  }
+
+  .btnHide{
+    position: absolute;
+    top: 150px;
+    right: 10px;
+    font-size: small;
   }
 }
   
