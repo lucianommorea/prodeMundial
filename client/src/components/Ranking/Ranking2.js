@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Ranking.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUsersRanking, getWorldCup } from "../../redux/actions";
+import { getAllUsersRanking, getWorldCup } from "../../redux/actions";
 import Loading from "../Loading/LoadingComponent";
 import { Link } from 'react-router-dom';
-import Paginated from "../Paginated/Paginated";
 import Footer from "../Footer/Footer";
 import Footer3 from "../Footer/Footer3";
 import BannedUser from '../GeneralComponents/BannedUser';
@@ -14,7 +13,6 @@ const Ranking = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const userInfo = useSelector(state => state.user);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true)
   const { isAuthenticated } = useAuth0();
@@ -28,9 +26,9 @@ const Ranking = () => {
   );
 
   useEffect(() => {
-    dispatch(getUsersRanking(page, setLoading));
+    dispatch(getAllUsersRanking(setLoading));
     dispatch(getWorldCup(setIsLoading))
-  }, [dispatch, page]);
+  }, [dispatch]);
 
 
   useEffect(() => {
@@ -105,7 +103,6 @@ const Ranking = () => {
                </Link> 
             )}
           </div>
-          <Paginated page={page} setPage={setPage} />
         </div>
         <div className={style.footer}>
           <Footer3 />

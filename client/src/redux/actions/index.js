@@ -99,10 +99,11 @@ export const getUsersRanking = (page, setLoading) => async (dispatch) => {
   }
 };
 
-export const getAllUsersRanking = () => async (dispatch) => {
+export const getAllUsersRanking = (setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getAllUsersRanking();
     dispatch({ type: GET_ALL_USERS_RANKING, payload: data });
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
