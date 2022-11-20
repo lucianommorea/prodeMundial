@@ -68,11 +68,25 @@ const Ranking = () => {
       <div className={style.fullContainer}>
         <div className={style.middleRow}>
           {
-            user.sub === 'google-oauth2|106876270763901161911' || user.sub === 'google-oauth2|108300164928062839224' ||
-            user.sub === 'google-oauth2|117925862186927959268' || user.sub === 'google-oauth2|103062773572419589423' ||
-            user.sub === 'google-oauth2|100839931877560686273' || user.sub === 'auth0|6372bfc832de0084d4edb6a6' ||
-            user.sub === 'google-oauth2|104390713065538550530' || user.sub === 'google-oauth2|112846913444083067920' ||
-            user.sub === 'auth0|636052f4a717e709647d29f7' || user.sub === 'google-oauth2|102464354659192285279' ?
+            user.sub === "google-oauth2|112846913444083067920" || user.sub === "google-oauth2|104390713065538550530" ||  
+            user.sub === "google-oauth2|100839931877560686273" || user.sub === "google-oauth2|117925862186927959268" ||  
+            user.sub === "google-oauth2|102464354659192285279" || user.sub === "auth0|6372bfc832de0084d4edb6a6" ||
+            user.sub === "auth0|637a2cae9b9c4feffbf6ddbc" || user.sub === "google-oauth2|113854506073878706366" ||
+            user.sub === "google-oauth2|112059618905832159120" || user.sub === "auth0|6376b8cc32de0084d4edcf6e" ||
+            user.sub === "auth0|637975c937595e4c9956735d" || user.sub === "google-oauth2|104833078696717606825" ||
+            user.sub === "google-oauth2|106630260573000607895" || user.sub === "auth0|637a302ac0f8aabff64a5a46" ||
+            user.sub === "auth0|637a2be437595e4c995674af" || user.sub === "google-oauth2|108300164928062839224" ||     
+            user.sub === "google-oauth2|113301474339683192139" || user.sub === "google-oauth2|102654642075479264023" ||
+            user.sub === "google-oauth2|110039047134883705915" || user.sub === "google-oauth2|113235571860404907654" ||
+            user.sub === "google-oauth2|106876270763901161911" || user.sub === "auth0|6372a8dc9b9c4feffbf6b5bf" ||
+            user.sub === "google-oauth2|103062773572419589423" || user.sub === "google-oauth2|108291660713821019132" ||
+            user.sub === "google-oauth2|106307466001353733048" || user.sub === "google-oauth2|116052921635554878557" ||
+            user.sub === "google-oauth2|111136597433280594146" || user.sub === "auth0|63755d65c0f8aabff64a44d1" ||
+            user.sub === "auth0|6378d6cec3cfed678ac0d96b" || user.sub === "auth0|63756f0ea8b2c2ec60b2eb01" ||
+            user.sub === "auth0|6360709688fc27a1c8a6f246" || user.sub === "google-oauth2|106181968528748102349" ||
+            user.sub === "google-oauth2|105429461518880619446" || user.sub === "google-oauth2|107871195702048147770" ||  
+            user.sub === "google-oauth2|116575952033160991892" || user.sub === "auth0|6379632aa8b2c2ec60b2ffe1" ||  
+            user.sub === "auth0|637a2f508d21b4f604c91765" ?
             <button type="button" className={`btn btn-warning ${style.btnHide}`} onClick={navigateTo}>Prode</button> :
             null
           }
