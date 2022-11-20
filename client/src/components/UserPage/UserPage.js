@@ -149,15 +149,15 @@ const UserPage = () => {
             
             <div className={style.allResults}>
               <h4 className={style.title}>Pronosticos </h4>
-              <div className={`row ${fecha.toString() > dateFinales.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateFinales ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          fecha.toString() > dateFinales.toString() ?
+                          fecha > dateFinales ?
                           <div className={style.fase}>Final y Tercer Puesto</div> :
                           null
                       }
                       {   
-                          fecha.toString() > dateFinales.toString() ?
+                          fecha > dateFinales ?
                           games.filter(g => g.id > 62 && g.id < 65).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
@@ -171,15 +171,15 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateSemis.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateSemis ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          fecha.toString() > dateSemis.toString() ?
+                          fecha > dateSemis ?
                           <div className={style.fase}>Semifinales</div> :
                           null
                       }
                       {   
-                          fecha.toString() > dateSemis.toString() ?
+                          fecha > dateSemis ?
                           games.filter(g => g.id > 60 && g.id < 63).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
@@ -193,15 +193,15 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateCuartos.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateCuartos ? style.resultados : style.none }`}> 
                   <div >
                       {   
-                          fecha.toString() > dateCuartos.toString() ?
+                          fecha > dateCuartos ?
                           <div className={style.fase}>Cuartos de Final</div> :
                           null
                       }
                       {   
-                          fecha.toString() > dateCuartos.toString() ?
+                          fecha > dateCuartos ?
                           games.filter(g => g.id > 56 && g.id < 61).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
@@ -215,15 +215,15 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateOctavos.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateOctavos ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          fecha.toString() > dateOctavos.toString() ?
+                          fecha > dateOctavos ?
                           <div className={style.fase}>Octavos de Final</div> :
                           null
                       }
                       {   
-                          fecha.toString() > dateOctavos.toString() ?
+                          fecha > dateOctavos ?
                           games.filter(g => g.id > 48 && g.id < 57).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}

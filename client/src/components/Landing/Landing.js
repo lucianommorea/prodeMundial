@@ -94,7 +94,7 @@ function Landing() {
               : null         
               }
               {
-                dateFinales.toString() > fecha.toString() && !worldcup.first ?
+                dateFinales > fecha && !worldcup.first ?
                 <div className={style.card2}>
                   <NextMatch />
                 </div> :
