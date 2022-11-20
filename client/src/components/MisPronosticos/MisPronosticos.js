@@ -98,19 +98,19 @@ else if (isAuthenticated) {
                         <MenuItem value="G">Grupo G</MenuItem>
                         <MenuItem value="H">Grupo H</MenuItem>
                         {
-                          dateOctavos < fecha &&
+                          dateOctavos.toString() < fecha.toString() &&
                           <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
                         }
                         {
-                          dateCuartos < fecha &&
+                          dateCuartos.toString() < fecha.toString() &&
                           <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
                         }
                         {
-                          dateSemis < fecha &&
+                          dateSemis.toString() < fecha.toString() &&
                           <MenuItem value="Semifinales">Semifinales</MenuItem>
                         }
                         {
-                          dateFinales < fecha &&
+                          dateFinales.toString() < fecha.toString() &&
                           <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
                         }
                       </Select>

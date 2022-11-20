@@ -11,7 +11,7 @@ function NextMatch() {
     const games = useSelector(state=> state.games);
     // let fecha = new Date(2022,12,28);
     let fecha = new Date();
-    let nextGames = games.filter(game=> new Date(game.date) > fecha);
+    let nextGames = games.filter(game=> new Date(game.date).toString() > fecha.toString());
     let newDate = new Date(games[0]?.date);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 

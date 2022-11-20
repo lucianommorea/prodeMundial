@@ -1116,10 +1116,10 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                             onChange={handleChangeGoalsLocal}
                             className={style.input1}
                             disabled={!team1 || !team2
-                             || (group === "Octavos de Final" && fecha > dateOctavos)
-                             || (group === "Cuartos de Final" && fecha > dateCuartos)
-                             || (group === "Semifinales" && fecha > dateSemis)
-                             || (group === "Final y Tercer Puesto" && fecha > dateFinales)
+                             || (group === "Octavos de Final" && fecha.toString() > dateOctavos.toString())
+                             || (group === "Cuartos de Final" && fecha.toString() > dateCuartos.toString())
+                             || (group === "Semifinales" && fecha.toString() > dateSemis.toString())
+                             || (group === "Final y Tercer Puesto" && fecha.toString() > dateFinales.toString())
                              || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
                                 group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toString() > dateGrupos.toString()) } />  
   
@@ -1136,12 +1136,12 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                             onChange={handleChangeGoalsAway}
                             className={style.input2}
                             disabled={!team1 || !team2
-                                    || (group === "Octavos de Final" && fecha > dateOctavos)
-                                    || (group === "Cuartos de Final" && fecha > dateCuartos)
-                                    || (group === "Semifinales" && fecha > dateSemis)
-                                    || (group === "Final y Tercer Puesto" && fecha > dateFinales)
+                                    || (group === "Octavos de Final" && fecha.toString() > dateOctavos.toString())
+                                    || (group === "Cuartos de Final" && fecha.toString() > dateCuartos.toString())
+                                    || (group === "Semifinales" && fecha.toString() > dateSemis.toString())
+                                    || (group === "Final y Tercer Puesto" && fecha.toString() > dateFinales.toString())
                                     || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                    group === "E" || group === "F" ||  group === "G" || group === "H") && fecha > dateGrupos) } />  
+                                    group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toString() > dateGrupos.toString()) } />  
                 </div>
                 <div className={style.team}>
                     <span className={style.team2}>
