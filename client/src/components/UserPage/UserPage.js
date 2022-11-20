@@ -149,7 +149,7 @@ const UserPage = () => {
             
             <div className={style.allResults}>
               <h4 className={style.title}>Pronosticos </h4>
-              <div className={`row ${fecha.toString() > dateFinales.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateFinales ? style.resultados : style.none }`}> 
                   <div>
                       {   
                           fecha.toString() > dateFinales.toString() ?
@@ -171,7 +171,7 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateSemis.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateSemis ? style.resultados : style.none }`}> 
                   <div>
                       {   
                           fecha.toString() > dateSemis.toString() ?
@@ -193,7 +193,7 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateCuartos.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateCuartos ? style.resultados : style.none }`}> 
                   <div >
                       {   
                           fecha.toString() > dateCuartos.toString() ?
@@ -215,7 +215,7 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha.toString() > dateOctavos.toString() ? style.resultados : style.none }`}> 
+              <div className={`row ${fecha > dateOctavos ? style.resultados : style.none }`}> 
                   <div>
                       {   
                           fecha.toString() > dateOctavos.toString() ?
