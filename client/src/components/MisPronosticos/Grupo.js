@@ -768,7 +768,7 @@ function Grupo({group, setGroup}) {
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo G </button>
             {
-              dateOctavos.toString() < fecha.toString() &&
+              dateOctavos < fecha &&
               <button className={style.next} onClick={toNextGroup}> Ir al Octavos de Final  </button>
             }
           </div> }   
@@ -776,7 +776,7 @@ function Grupo({group, setGroup}) {
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir al Grupo H </button> 
             {
-              dateCuartos.toString() < fecha.toString() &&
+              dateCuartos < fecha &&
               <button className={style.next} onClick={toNextGroup}> Ir a Cuartos de Final  </button>
             }
           </div> }   
@@ -784,7 +784,7 @@ function Grupo({group, setGroup}) {
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Octavos de Final </button>
             {
-              dateSemis.toString() < fecha.toString() &&
+              dateSemis < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Semifinales  </button>
             }
           </div> }   
@@ -792,7 +792,7 @@ function Grupo({group, setGroup}) {
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Cuartos de Final </button>
             {
-              dateFinales.toString() < fecha.toString() &&
+              dateFinales < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Final y Tercer Puesto  </button>
             }
           </div> }  
