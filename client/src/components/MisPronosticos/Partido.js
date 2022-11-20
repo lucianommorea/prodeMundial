@@ -1121,7 +1121,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                              || (group === "Semifinales" && fecha > dateSemis)
                              || (group === "Final y Tercer Puesto" && fecha > dateFinales)
                              || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                group === "E" || group === "F" ||  group === "G" || group === "H") && fecha > dateGrupos) } />  
+                                group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toString() > dateGrupos.toString()) } />  
   
                 </div>
                 <div className={style.goals}>
