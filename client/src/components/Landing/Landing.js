@@ -94,7 +94,7 @@ function Landing() {
               : null         
               }
               {
-                dateFinales > fecha && !worldcup.first ?
+                dateFinales.toLocaleDateString() > fecha.toLocaleDateString() && !worldcup.first ?
                 <div className={style.card2}>
                   <NextMatch />
                 </div> :

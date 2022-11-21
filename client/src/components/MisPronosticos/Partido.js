@@ -1066,6 +1066,9 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     let dateCuartos = new Date("2022, 12, 09");
     let dateSemis = new Date("2022, 12, 13");
     let dateFinales = new Date("2022, 12, 17");
+    console.log(fecha);
+    console.log(dateGrupos)
+    console.log(dateGrupos < fecha)
         
     if(loading) {
         return <Loading />
@@ -1116,12 +1119,12 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                             onChange={handleChangeGoalsLocal}
                             className={style.input1}
                             disabled={!team1 || !team2
-                             || (group === "Octavos de Final" && fecha.toString() > dateOctavos.toString())
-                             || (group === "Cuartos de Final" && fecha.toString() > dateCuartos.toString())
-                             || (group === "Semifinales" && fecha.toString() > dateSemis.toString())
-                             || (group === "Final y Tercer Puesto" && fecha.toString() > dateFinales.toString())
+                             || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                             || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                             || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
+                             || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
                              || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toString() > dateGrupos.toString()) } />  
+                                group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toLocaleDateString() > dateGrupos.toLocaleDateString()) } />  
   
                 </div>
                 <div className={style.goals}>
@@ -1136,12 +1139,12 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                             onChange={handleChangeGoalsAway}
                             className={style.input2}
                             disabled={!team1 || !team2
-                                    || (group === "Octavos de Final" && fecha.toString() > dateOctavos.toString())
-                                    || (group === "Cuartos de Final" && fecha.toString() > dateCuartos.toString())
-                                    || (group === "Semifinales" && fecha.toString() > dateSemis.toString())
-                                    || (group === "Final y Tercer Puesto" && fecha.toString() > dateFinales.toString())
+                                    || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                                    || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                                    || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
+                                    || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
                                     || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                    group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toString() > dateGrupos.toString()) } />  
+                                    group === "E" || group === "F" ||  group === "G" || group === "H") && fecha.toLocaleDateString() > dateGrupos.toLocaleDateString()) } />  
                 </div>
                 <div className={style.team}>
                     <span className={style.team2}>
