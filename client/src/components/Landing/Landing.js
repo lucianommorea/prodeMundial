@@ -35,6 +35,8 @@ function Landing() {
   // let fecha = new Date(2022,12,19);
   let dateFinales = new Date("2022, 12, 19");
   // let dateFinales = new Date("2022, 10, 15");
+
+  console.log(dateFinales.toLocaleDateString() > fecha.toLocaleDateString())
   
 
   const index = users.findIndex(user => user.sub === userInfo.sub);
@@ -95,10 +97,10 @@ function Landing() {
               }
               {
                 dateFinales.toLocaleDateString() > fecha.toLocaleDateString() && !worldcup.first ?
+                null :
                 <div className={style.card2}>
                   <NextMatch />
-                </div> :
-                null        
+                </div>      
               }
 
               {
