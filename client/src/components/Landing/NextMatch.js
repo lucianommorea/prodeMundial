@@ -15,6 +15,7 @@ function NextMatch() {
     let localDate = moment(fecha).subtract(3, 'h');
     let nextGames = games.filter(game=> new Date(game.date) > localDate);
     let newDate = new Date(nextGames[0]?.date);
+    let newDate2 = moment(newDate).add(3, 'h');
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
 
@@ -32,7 +33,7 @@ function NextMatch() {
                         alt=''
                         className={style.calendar}
                         />
-                    {newDate.toString().slice(0, 21)}
+                    {newDate2.toString().slice(0, 21)}
                 </div>
                 <div className={style.points}>
                     {
