@@ -116,10 +116,79 @@ async function getUserById(id) {
     }
 }
 
+
+async function putUserChampion(id, champion) {
+    try {
+        const idUser = await User.findOne({
+            where: {
+                sub: id
+            }
+        }) 
+
+        await idUser.update({first: champion});
+
+        return 
+    } catch (error) {
+        console.log('error in putUserChampion', error)
+    }
+}
+
+async function putUserSecond(id, second) {
+    try {
+        const idUser = await User.findOne({
+            where: {
+                sub: id
+            }
+        }) 
+
+        await idUser.update({second: second});
+
+        return 
+    } catch (error) {
+        console.log('error in putUserSecond', error)
+    }
+}
+
+async function putUserThird(id, third) {
+    try {
+        const idUser = await User.findOne({
+            where: {
+                sub: id
+            }
+        }) 
+
+        await idUser.update({third: third});
+
+        return 
+    } catch (error) {
+        console.log('error in putUserThird', error)
+    }
+}
+
+async function putUserBestPlayer(id, bestPlayer) {
+    try {
+        const idUser = await User.findOne({
+            where: {
+                sub: id
+            }
+        }) 
+
+        await idUser.update({bestPlayer: bestPlayer});
+
+        return 
+    } catch (error) {
+        console.log('error in putUserBestPlayer', error)
+    }
+}
+
 module.exports = {
     postUser,
     putUserInfo,
     putUserResult,
     getUserById,
-    putUserOctavos
+    putUserOctavos,
+    putUserChampion,
+    putUserSecond,
+    putUserThird,
+    putUserBestPlayer
 }
