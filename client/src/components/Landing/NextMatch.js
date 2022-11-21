@@ -4,6 +4,7 @@ import style from './NextMatch.module.css'
 import { Link } from 'react-router-dom';
 import calendarC from '../../images/calendariocolor.png';
 import { useAuth0 } from "@auth0/auth0-react";
+const moment = require('moment');
 
 
 function NextMatch() {
@@ -11,7 +12,8 @@ function NextMatch() {
     const games = useSelector(state=> state.games);
     // let fecha = new Date(2022,12,28);
     let fecha = new Date();
-    let nextGames = games.filter(game=> new Date(game.date) > fecha);
+    let localDate = moment(fecha).subtract(3, 'h');
+    let nextGames = games.filter(game=> new Date(game.date) > localDate);
     let newDate = new Date(nextGames[0]?.date);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
