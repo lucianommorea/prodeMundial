@@ -2643,6 +2643,8 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
         e.target.value = parseInt(stringNumber);
       }
     }
+
+    // let date = dateNow();
         
     return (
             <div className={style.all}>
@@ -2692,7 +2694,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             autoComplete='off'
                             onChange={handleChangeGoalsLocal}
                             className={style.input1}
-                            disabled={!team1 || !team2} />  
+                            disabled={!team1 || !team2 || localResult || localResult === 0} />  
   
                 </div>
                 <div className={style.goals}>
@@ -2707,7 +2709,7 @@ function Partido({id, date, hour, stadium, group, position, penalties, img1, tea
                             autoComplete='off'
                             onChange={handleChangeGoalsAway}
                             className={style.input2}
-                            disabled={!team1 || !team2} />  
+                            disabled={!team1 || !team2 || awayResult || awayResult === 0} />  
                     { (group === 'Octavos de Final' || group === "Cuartos de Final" || group === 'Semifinales' || group === "Final y Tercer Puesto") &&
                         localResult === awayResult && localResult !== null && awayResult !== null && localResult !== undefined && awayResult !== undefined ?
                       <input    type='radio' 
