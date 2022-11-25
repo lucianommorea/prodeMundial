@@ -1072,6 +1072,10 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
 
     const momentGrupos = moment(dateGrupos, format)
     const momentNow   = moment(fecha, format)
+
+    console.log(momentGrupos._i);
+    console.log(momentNow._i);
+    console.log(momentNow._i > momentGrupos._i)
         
     if(loading) {
         return <Loading />
