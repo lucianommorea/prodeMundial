@@ -1073,9 +1073,6 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     const momentGrupos = moment(dateGrupos, format)
     const momentNow   = moment(fecha, format)
 
-    console.log(momentGrupos._i);
-    console.log(momentNow._i);
-    console.log(momentNow._i > momentGrupos._i)
         
     if(loading) {
         return <Loading />
@@ -1113,46 +1110,86 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                         {team1}
                     </span>
                 </div>
-                <div className={style.goals}>
+                { 
+                    group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
+                    <div className={style.goals}>
+                        <input  type='number'
+                                min='0'
+                                max='9'
+                                maxLength="2"
+                                pattern="[0-9(\-)]"
+                                defaultValue={goals.localResult} 
+                                name='localResult' 
+                                autoComplete='off'
+                                onChange={handleChangeGoalsLocal}
+                                className={style.input1}
+                                disabled={!team1 || !team2
+                                || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                                || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                                || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
+                                || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())}
+                        /> 
+                    </div> : null
+                }
+                {   
+                    group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
+                    <div className={style.goals}>
+                        <input  type='number'
+                                min= '0'
+                                max='9'
+                                maxLength="1"
+                                pattern="[0-9(\-)]"
+                                defaultValue={goals.awayResult} 
+                                name='awayResult' 
+                                autoComplete='off'
+                                onChange={handleChangeGoalsAway}
+                                className={style.input2}
+                                disabled={!team1 || !team2
+                                        || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                                        || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                                        || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
+                                        || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString()) } />  
+                    </div> : null             
+                }
 
-                    <input  type='number'
-                            min='0'
-                            max='9'
-                            maxLength="2"
-                            pattern="[0-9(\-)]"
-                            defaultValue={goals.localResult} 
-                            name='localResult' 
-                            autoComplete='off'
-                            onChange={handleChangeGoalsLocal}
-                            className={style.input1}
-                            disabled={!team1 || !team2
-                             || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
-                             || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
-                             || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
-                             || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
-                             || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime() || momentNow._i > momentGrupos._i) ) } />  
-  
-                </div>
-                <div className={style.goals}>
-                    <input  type='number'
-                            min= '0'
-                            max='9'
-                            maxLength="1"
-                            pattern="[0-9(\-)]"
-                            defaultValue={goals.awayResult} 
-                            name='awayResult' 
-                            autoComplete='off'
-                            onChange={handleChangeGoalsAway}
-                            className={style.input2}
-                            disabled={!team1 || !team2
-                                    || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
-                                    || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
-                                    || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
-                                    || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
-                                    || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                    group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime() || momentNow._i > momentGrupos._i) ) } />  
-                </div>
+                { 
+                    group === "A" || group === "B" ||  group === "C" || group === "D" || 
+                    group === "E" || group === "F" ||  group === "G" || group === "H" ?
+                    <div className={style.goals}>
+                        <input  type='number'
+                                min='0'
+                                max='9'
+                                maxLength="2"
+                                pattern="[0-9(\-)]"
+                                defaultValue={goals.localResult} 
+                                name='localResult' 
+                                autoComplete='off'
+                                onChange={handleChangeGoalsLocal}
+                                className={style.input1}
+                                disabled
+                        /> 
+                    </div> : null
+                }
+                {   
+                    group === "A" || group === "B" ||  group === "C" || group === "D" || 
+                    group === "E" || group === "F" ||  group === "G" || group === "H" ?
+                    <div className={style.goals}>
+                        <input  type='number'
+                                min= '0'
+                                max='9'
+                                maxLength="1"
+                                pattern="[0-9(\-)]"
+                                defaultValue={goals.awayResult} 
+                                name='awayResult' 
+                                autoComplete='off'
+                                onChange={handleChangeGoalsAway}
+                                className={style.input2}
+                                disabled
+                        />  
+                    </div> : null             
+                }
+       
+                
                 <div className={style.team}>
                     <span className={style.team2}>
                          {team2}
