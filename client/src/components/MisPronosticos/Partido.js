@@ -4,6 +4,7 @@ import { putUserResult, putUserOctavos } from '../../redux/actions';
 import style from './Partido.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
+const moment = require('moment');
 
 
 function Partido({id, date, hour, stadium, group, position, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, localResult, awayResult, loading, setLoading}) {
@@ -1066,9 +1067,11 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     let dateCuartos = new Date("2022, 12, 09");
     let dateSemis = new Date("2022, 12, 13");
     let dateFinales = new Date("2022, 12, 17");
-    console.log(fecha);
-    console.log(dateGrupos)
-    console.log(dateGrupos < fecha)
+
+    const format = 'DD-MM-YYYY HH:mm'; 
+
+    const momentGrupos = moment(dateGrupos, format)
+    const momentNow   = moment(fecha, format)
         
     if(loading) {
         return <Loading />
@@ -1124,7 +1127,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                              || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                              || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
                              || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha > dateGrupos) ) } />  
+                                group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime() || momentNow > momentGrupos) ) } />  
   
                 </div>
                 <div className={style.goals}>
@@ -1144,7 +1147,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                     || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                     || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())
                                     || ((group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                                    group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha > dateGrupos) ) } />  
+                                    group === "E" || group === "F" ||  group === "G" || group === "H") && (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime() || momentNow > momentGrupos) ) } />  
                 </div>
                 <div className={style.team}>
                     <span className={style.team2}>
