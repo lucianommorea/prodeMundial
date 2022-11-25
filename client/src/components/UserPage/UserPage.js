@@ -37,6 +37,7 @@ const UserPage = () => {
   }, [dispatch, user, isAuthenticated, sub]);
 
   let fecha = new Date();
+  let now = Date.now();
   // let dateGrupos = new Date("2022, 10, 19");
   // let dateOctavos = new Date("2022, 10, 13");
   // let dateCuartos = new Date("2022, 10, 13");
@@ -47,6 +48,14 @@ const UserPage = () => {
   let dateCuartos = new Date("2022, 12, 09");
   let dateSemis = new Date("2022, 12, 13");
   let dateFinales = new Date("2022, 12, 17");
+
+  console.log(fecha)
+  console.log(now)
+  console.log(dateGrupos)
+  console.log(dateGrupos.toLocaleDateString())
+  console.log(dateGrupos.toString())
+  console.log(now > dateGrupos)
+  console.log(fecha > dateGrupos)
 
   if (isLoading) {
     return (
@@ -285,7 +294,7 @@ const UserPage = () => {
               <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || now > dateGrupos ) ?
                           <div className={style.fase}>Clasificados</div> :
                           null
                       }
