@@ -246,15 +246,15 @@ const UserPage = () => {
                   </div>
               </div>
               
-              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ? style.resultados : style.none }`}> 
+              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ?
                           <div className={style.fase}>Primera Fase</div> :
                           null
                       }
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ?
                           games.filter(g => g.id > 0 && g.id < 49).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
@@ -268,15 +268,15 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ? style.resultados : style.none }`}> 
+              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ?
                           <div className={style.fase}>Premios</div> :
                           null
                       }
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ?
                           <>
                           <div className={`row`}>
                             <div className={`col-lg-6 ${style.pos}`}> Campeon: <span className={style.resu}>{userInfo.first}</span> </div>
@@ -291,15 +291,15 @@ const UserPage = () => {
                       }
                   </div>
               </div>
-              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ? style.resultados : style.none }`}> 
+              <div className={`row ${ (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ? style.resultados : style.none }`}> 
                   <div>
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || now > dateGrupos ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime() ) ?
                           <div className={style.fase}>Clasificados</div> :
                           null
                       }
                       {   
-                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() ) ?
+                          (fecha.toLocaleDateString() > dateGrupos.toLocaleDateString() || fecha.toString() > dateGrupos.toString() || fecha.getTime() > dateGrupos.getTime()) ?
                           <>
                           <div className={style.pos}> Grupo A: <br></br> 1º <span className={style.resu}> {userInfo.octavos[0] ? userInfo.octavos[0] : 'Sin determinar'} </span>
                                                               2º <span className={style.resu}> {userInfo.octavos[1] ? userInfo.octavos[1] : 'Sin determinar'} </span>
