@@ -11,7 +11,7 @@ import NotFound from "../NotFound/NotFound";
 import CardLanding from '../Landing/CardLanding';
 import CardPoints from '../Landing/CardPoints';
 import Pronostico from "./Pronostico";
-const moment = require('moment');
+// const moment = require('moment');
 
 
 const UserPage = () => {
@@ -43,7 +43,7 @@ const UserPage = () => {
   // let dateCuartos = new Date("2022, 10, 13");
   // let dateSemis = new Date("2022, 10, 13");
   // let dateFinales = new Date("2022, 10, 13");
-  let dateGrupos = new Date("2022, 11, 20");
+  // let dateGrupos = new Date("2022, 11, 20");
   let dateOctavos = new Date("2022, 12, 03");
   let dateCuartos = new Date("2022, 12, 09");
   let dateSemis = new Date("2022, 12, 13");
@@ -55,10 +55,10 @@ const UserPage = () => {
   // console.log(dateGrupos.toString())
   // console.log(fecha > dateGrupos)
 
-  const format = 'DD-MM-YYYY HH:mm'; 
+  // const format = 'DD-MM-YYYY HH:mm'; 
 
-  const momentGrupos = moment(dateGrupos, format)
-  const momentNow   = moment(fecha, format)
+  // const momentGrupos = moment(dateGrupos, format)
+  // const momentNow   = moment(fecha, format)
 
   if (isLoading) {
     return (

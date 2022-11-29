@@ -4,7 +4,7 @@ import { putUserResult, putUserOctavos } from '../../redux/actions';
 import style from './Partido.module.css';
 import Loading from '../Loading/LoadingComponent';
 import { useAuth0 } from "@auth0/auth0-react";
-const moment = require('moment');
+// const moment = require('moment');
 
 
 function Partido({id, date, hour, stadium, group, position, img1, team1, team2, img2, id1, id2, setIsModify, isModify, teams2, localResult, awayResult, loading, setLoading}) {
@@ -1062,16 +1062,16 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     // let dateCuartos = new Date("2022, 09, 19");
     // let dateSemis = new Date("2022, 09, 19");
     // let dateFinales = new Date("2022, 09, 19");
-    let dateGrupos = new Date("2022, 11, 20");
+    // let dateGrupos = new Date("2022, 11, 20");
     let dateOctavos = new Date("2022, 12, 03");
     let dateCuartos = new Date("2022, 12, 09");
     let dateSemis = new Date("2022, 12, 13");
     let dateFinales = new Date("2022, 12, 17");
 
-    const format = 'DD-MM-YYYY HH:mm'; 
+    // const format = 'DD-MM-YYYY HH:mm'; 
 
-    const momentGrupos = moment(dateGrupos, format)
-    const momentNow   = moment(fecha, format)
+    // const momentGrupos = moment(dateGrupos, format)
+    // const momentNow   = moment(fecha, format)
 
         
     if(loading) {
