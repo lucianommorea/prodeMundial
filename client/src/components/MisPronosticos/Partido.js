@@ -1124,7 +1124,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                 onChange={handleChangeGoalsLocal}
                                 className={style.input1}
                                 disabled={!team1 || !team2
-                                || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                                // || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
                                 || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
                                 || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                 || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())}
@@ -1145,7 +1145,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                 onChange={handleChangeGoalsAway}
                                 className={style.input2}
                                 disabled={!team1 || !team2
-                                        || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
+                                        // || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
                                         || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
                                         || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                         || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString()) } />  
