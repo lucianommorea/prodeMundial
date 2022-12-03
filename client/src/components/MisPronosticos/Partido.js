@@ -1063,7 +1063,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     // let dateSemis = new Date("2022, 09, 19");
     // let dateFinales = new Date("2022, 09, 19");
     // let dateGrupos = new Date("2022, 11, 20");
-    let dateOctavos = new Date("2022, 12, 03");
+    // let dateOctavos = new Date("2022, 12, 03");
     let dateCuartos = new Date("2022, 12, 09");
     let dateSemis = new Date("2022, 12, 13");
     let dateFinales = new Date("2022, 12, 17");
@@ -1132,7 +1132,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                     </div> : null
                 }
                 {   
-                    group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
+                    group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
                     <div className={style.goals}>
                         <input  type='number'
                                 min= '0'
@@ -1145,7 +1145,6 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                 onChange={handleChangeGoalsAway}
                                 className={style.input2}
                                 disabled={!team1 || !team2
-                                        // || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
                                         || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
                                         || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                         || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString()) } />  
@@ -1154,7 +1153,8 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
 
                 { 
                     group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                    group === "E" || group === "F" ||  group === "G" || group === "H" ?
+                    group === "E" || group === "F" ||  group === "G" || group === "H" || 
+                    group === "Octavos de Final" ?
                     <div className={style.goals}>
                         <input  type='number'
                                 min='0'

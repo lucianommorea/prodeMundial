@@ -14,7 +14,7 @@ import BannedUser from '../GeneralComponents/BannedUser';
 function MisPronosticos() {
 
   const dispatch = useDispatch()
-  const [group, setGroup] = useState('A');
+  const [group, setGroup] = useState("Octavos de Final");
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated, isLoading, user } = useAuth0();
   const [loading, setLoading] = useState(true);
