@@ -1111,7 +1111,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                     </span>
                 </div>
                 { 
-                    group === "Octavos de Final" || group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
+                    group === "Cuartos de Final" || group === "Semifinales" || group === "Final y Tercer Puesto" ?
                     <div className={style.goals}>
                         <input  type='number'
                                 min='0'
@@ -1172,7 +1172,8 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                 }
                 {   
                     group === "A" || group === "B" ||  group === "C" || group === "D" || 
-                    group === "E" || group === "F" ||  group === "G" || group === "H" ?
+                    group === "E" || group === "F" ||  group === "G" || group === "H" || 
+                    group === "Octavos de Final" ?
                     <div className={style.goals}>
                         <input  type='number'
                                 min= '0'
