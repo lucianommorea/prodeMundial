@@ -14,7 +14,7 @@ import BannedUser from '../GeneralComponents/BannedUser';
 function MisPronosticos() {
 
   const dispatch = useDispatch()
-  const [group, setGroup] = useState("Octavos de Final");
+  const [group, setGroup] = useState("Cuartos de Final");
   const userInfo = useSelector(state=> state.user);
   const { isAuthenticated, isLoading, user } = useAuth0();
   const [loading, setLoading] = useState(true);
@@ -98,10 +98,7 @@ else if (isAuthenticated) {
                         <MenuItem value="G">Grupo G</MenuItem>
                         <MenuItem value="H">Grupo H</MenuItem>
                         <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
-                        {
-                          dateCuartos < fecha &&
-                          <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
-                        }
+                        <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
                         {
                           dateSemis < fecha &&
                           <MenuItem value="Semifinales">Semifinales</MenuItem>
