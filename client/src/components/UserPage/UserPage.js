@@ -45,7 +45,7 @@ const UserPage = () => {
   // let dateFinales = new Date("2022, 10, 13");
   // let dateGrupos = new Date("2022, 11, 20");
   // let dateOctavos = new Date("2022, 12, 03");
-  let dateCuartos = new Date("2022, 12, 10");
+  // let dateCuartos = new Date("2022, 12, 10");
   let dateSemis = new Date("2022, 12, 13");
   let dateFinales = new Date("2022, 12, 17");
 
@@ -205,15 +205,13 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha > dateCuartos ? style.resultados : style.none }`}> 
+              <div className={`row ${style.resultados}`}> 
                   <div >
+
+                      <div className={style.fase}>Cuartos de Final</div> :
+
                       {   
-                          fecha > dateCuartos ?
-                          <div className={style.fase}>Cuartos de Final</div> :
-                          null
-                      }
-                      {   
-                          fecha > dateCuartos ?
+                          games ?
                           games.filter(g => g.id > 56 && g.id < 61).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}

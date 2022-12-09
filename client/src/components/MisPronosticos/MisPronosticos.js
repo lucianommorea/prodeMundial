@@ -48,8 +48,8 @@ function MisPronosticos() {
   // let dateSemis = new Date("2022, 09, 18");
   // let dateFinales = new Date("2022, 09, 18");
   // let dateOctavos = new Date("2022, 11, 29");
-  let dateCuartos = new Date("2022, 12, 03");
-  let dateSemis = new Date("2022, 12, 09");
+  // let dateCuartos = new Date("2022, 12, 03");
+  // let dateSemis = new Date("2022, 12, 09");
   let dateFinales = new Date("2022, 12, 13");
 
   if(loading2) {
@@ -99,10 +99,7 @@ else if (isAuthenticated) {
                         <MenuItem value="H">Grupo H</MenuItem>
                         <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
                         <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
-                        {
-                          dateSemis < fecha &&
-                          <MenuItem value="Semifinales">Semifinales</MenuItem>
-                        }
+                        <MenuItem value="Semifinales">Semifinales</MenuItem>
                         {
                           dateFinales < fecha &&
                           <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>

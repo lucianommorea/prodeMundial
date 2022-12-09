@@ -777,10 +777,7 @@ function Grupo({group, setGroup}) {
           { group === 'Cuartos de Final' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Octavos de Final </button>
-            {
-              dateSemis < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Semifinales  </button>
-            }
           </div> }   
           { group === 'Semifinales' &&
           <div>      
