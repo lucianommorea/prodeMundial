@@ -1064,7 +1064,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
     // let dateFinales = new Date("2022, 09, 19");
     // let dateGrupos = new Date("2022, 11, 20");
     // let dateOctavos = new Date("2022, 12, 03");
-    let dateCuartos = new Date("2022, 12, 09");
+    // let dateCuartos = new Date("2022, 12, 09");
     let dateSemis = new Date("2022, 12, 13");
     let dateFinales = new Date("2022, 12, 17");
 
@@ -1125,7 +1125,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                 className={style.input1}
                                 disabled={!team1 || !team2
                                 // || (group === "Octavos de Final" && fecha.toLocaleDateString() > dateOctavos.toLocaleDateString())
-                                || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                                // || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
                                 || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                 || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString())}
                         /> 
@@ -1145,7 +1145,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                                 onChange={handleChangeGoalsAway}
                                 className={style.input2}
                                 disabled={!team1 || !team2
-                                        || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
+                                        // || (group === "Cuartos de Final" && fecha.toLocaleDateString() > dateCuartos.toLocaleDateString())
                                         || (group === "Semifinales" && fecha.toLocaleDateString() > dateSemis.toLocaleDateString())
                                         || (group === "Final y Tercer Puesto" && fecha.toLocaleDateString() > dateFinales.toLocaleDateString()) } />  
                     </div> : null             

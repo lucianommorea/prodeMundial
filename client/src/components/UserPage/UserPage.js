@@ -44,8 +44,8 @@ const UserPage = () => {
   // let dateSemis = new Date("2022, 10, 13");
   // let dateFinales = new Date("2022, 10, 13");
   // let dateGrupos = new Date("2022, 11, 20");
-  let dateOctavos = new Date("2022, 12, 03");
-  let dateCuartos = new Date("2022, 12, 09");
+  // let dateOctavos = new Date("2022, 12, 03");
+  let dateCuartos = new Date("2022, 12, 10");
   let dateSemis = new Date("2022, 12, 13");
   let dateFinales = new Date("2022, 12, 17");
 
