@@ -631,7 +631,7 @@ function Grupo({group, setGroup}) {
     if(group === "Final y Tercer Puesto") setGroup("Semifinales");
   }
 
-  let fecha = new Date()
+  // let fecha = new Date()
   // let dateOctavos = new Date("2022, 09, 18");
   // let dateCuartos = new Date("2022, 09, 18");
   // let dateSemis = new Date("2022, 09, 18");
@@ -639,7 +639,7 @@ function Grupo({group, setGroup}) {
   // let dateOctavos = new Date("2022, 11, 29");
   // let dateCuartos = new Date("2022, 12, 03");
   // let dateSemis = new Date("2022, 12, 09");
-  let dateFinales = new Date("2022, 12, 13");
+  // let dateFinales = new Date("2022, 12, 13");
   
   // if(loading) {
   //   return <Loading2 className={style.load}/>
