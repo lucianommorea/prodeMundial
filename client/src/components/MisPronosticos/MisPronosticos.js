@@ -100,10 +100,7 @@ else if (isAuthenticated) {
                         <MenuItem value="Octavos de Final">Octavos de Final</MenuItem>
                         <MenuItem value="Cuartos de Final">Cuartos de Final</MenuItem>
                         <MenuItem value="Semifinales">Semifinales</MenuItem>
-                        {
-                          dateFinales < fecha &&
-                          <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
-                        }
+                        <MenuItem value="Final y Tercer Puesto">Final y Tercer Puesto</MenuItem>
                       </Select>
                   </FormControl>
                 </div>

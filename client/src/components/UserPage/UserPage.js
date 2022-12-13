@@ -183,15 +183,11 @@ const UserPage = () => {
                   </div>
               </div>
 
-              <div className={`row ${fecha > dateSemis ? style.resultados : style.none }`}> 
+              <div className={`row ${style.resultados}`}> 
                   <div>
+                          <div className={style.fase}>Semifinales</div> 
                       {   
-                          fecha > dateSemis ?
-                          <div className={style.fase}>Semifinales</div> :
-                          null
-                      }
-                      {   
-                          fecha > dateSemis ?
+                          games ?
                           games.filter(g => g.id > 60 && g.id < 63).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}

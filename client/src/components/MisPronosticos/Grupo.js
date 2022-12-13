@@ -638,7 +638,7 @@ function Grupo({group, setGroup}) {
   // let dateFinales = new Date("2022, 09, 18");
   // let dateOctavos = new Date("2022, 11, 29");
   // let dateCuartos = new Date("2022, 12, 03");
-  let dateSemis = new Date("2022, 12, 09");
+  // let dateSemis = new Date("2022, 12, 09");
   let dateFinales = new Date("2022, 12, 13");
   
   // if(loading) {
@@ -782,10 +782,7 @@ function Grupo({group, setGroup}) {
           { group === 'Semifinales' &&
           <div>      
             <button className={style.prev} onClick={toPrevGroup}> Ir a Cuartos de Final </button>
-            {
-              dateFinales < fecha &&
             <button className={style.next} onClick={toNextGroup}> Ir a Final y Tercer Puesto  </button>
-            }
           </div> }  
           { group === 'Final y Tercer Puesto' &&
           <div >      
