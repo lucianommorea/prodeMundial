@@ -1111,7 +1111,7 @@ function Partido({id, date, hour, stadium, group, position, img1, team1, team2, 
                     </span>
                 </div>
                 { 
-                    group === "aFinal y Tercer Puesto" ?
+                    group === "Final y Tercer Puesto" ?
                     <div className={style.goals}>
                         <input  type='number'
                                 min='0'
