@@ -37,7 +37,7 @@ const UserPage = () => {
     }
   }, [dispatch, user, isAuthenticated, sub]);
 
-  let fecha = new Date();
+  // let fecha = new Date();
   // let dateGrupos = new Date("2022, 10, 19");
   // let dateOctavos = new Date("2022, 10, 13");
   // let dateCuartos = new Date("2022, 10, 13");
