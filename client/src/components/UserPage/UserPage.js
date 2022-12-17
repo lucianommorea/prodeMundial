@@ -47,13 +47,8 @@ const UserPage = () => {
   // let dateOctavos = new Date("2022, 12, 03");
   // let dateCuartos = new Date("2022, 12, 10");
   // let dateSemis = new Date("2022, 12, 13");
-  let dateFinales = new Date("2022, 12, 17");
+  // let dateFinales = new Date("2022, 12, 17");
 
-  // console.log(fecha)
-  // console.log(dateGrupos)
-  // console.log(dateGrupos.toLocaleDateString())
-  // console.log(dateGrupos.toString())
-  // console.log(fecha > dateGrupos)
 
   // const format = 'DD-MM-YYYY HH:mm'; 
 
@@ -161,15 +156,12 @@ const UserPage = () => {
             
             <div className={style.allResults}>
               <h4 className={style.title}>Pronosticos </h4>
-              <div className={`row ${fecha > dateFinales ? style.resultados : style.none }`}> 
+              <div className={`row ${style.resultados}`}> 
                   <div>
+                          <div className={style.fase}>Final y Tercer Puesto</div> 
+                  
                       {   
-                          fecha > dateFinales ?
-                          <div className={style.fase}>Final y Tercer Puesto</div> :
-                          null
-                      }
-                      {   
-                          fecha > dateFinales ?
+                          games ?
                           games.filter(g => g.id > 62 && g.id < 65).map(game=> <Pronostico 
                               img1={ game.local !== null ? game.local === game.teams[0].id ? game.teams[0].img : game.teams[1].img : null }
                               team1={game.local !== null ? game.local === game.teams[0].id ? game.teams[0].name : game.teams[1].name : null}
